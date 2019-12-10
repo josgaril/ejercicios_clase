@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class EntradaSalidaDatos2 {
+public class EntradaSalidaDatos2_Ej_4_5_6_7 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		/*
