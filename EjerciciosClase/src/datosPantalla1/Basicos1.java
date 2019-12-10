@@ -10,9 +10,9 @@ public class Basicos1 {
 		System.out.println("Variable N: " + N);
 		System.out.println("Variable A: " + A);
 		System.out.println("Variable C: " + C);
-		System.out.println("La suma de N + A es: " + (N + A));
-		System.out.println("La diferencia de A-N es: " + (A - N));
-		System.out.println("Valor numérico del caracter " + A + " es: " + (int) C);
+		System.out.println(N + " + " + A + " = " + (N + A));
+		System.out.println(A + " - " + N + " = \" " + (A - N));
+		System.out.println("Valor numérico del carácter " + C + " = " + (int) C);
 
 	}
 }
