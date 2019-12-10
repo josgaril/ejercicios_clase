@@ -52,9 +52,9 @@ public class EC1_Ejercicios_1_2_3 {
 		System.out.print("Introduzca una letra para comprobar si es mayúscula: ");
 		char letraa = sc.nextLine().charAt(0);
 		if (Character.isUpperCase(letraa))
-			System.out.println("La letra " + letraa + " es mayúscula");
+			System.out.println("La letra " + letraa + " es Mayúscula");
 		else
-			System.out.println("La letra " + letraa + " es minúscula");
+			System.out.println("La letra " + letraa + " es Minúscula");
 		System.out.println("");
 	}
 
