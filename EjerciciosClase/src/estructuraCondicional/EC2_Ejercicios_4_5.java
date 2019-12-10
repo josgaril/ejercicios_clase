@@ -26,9 +26,9 @@ public class EC2_Ejercicios_4_5 {
 		
 		//Otra forma de hacerlo
 		if (letraA.equals(letraB))
-			System.out.println("Las dos letras son iguales");
+			System.out.println("Los dos caracteres son iguales");
 		else
-			System.out.println("Las dos letras son distintas");
+			System.out.println("Los dos caracteres son distintos");
 		System.out.println();
 		
 		/*
