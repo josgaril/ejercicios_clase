@@ -1,6 +1,6 @@
 package datosPantalla1;
 
-public class Basico3 {
+public class Basicos3 {
 
 	public static void main(String[] args) {
 		int N = 1;
