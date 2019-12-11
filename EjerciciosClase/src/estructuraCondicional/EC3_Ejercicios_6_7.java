@@ -24,15 +24,27 @@ public class EC3_Ejercicios_6_7 {
 		numero = (br.readLine());
 		n = (numero.charAt(0));
 		if (Character.isDigit(n))
-			System.out.println("El carácter es un numero entre 0 y 9");
+			System.out.println("El carácter es un dígito");
 		else
-			System.out.println("No es un dígito entre 0 y 9");
+			System.out.println("No es un dígito");
 		System.out.println("");
 		/*
 		 * La otra solución es directa y consiste en comprobar si el carácter que se ha
 		 * leído por teclado es mayor o igual que el carácter 0 y menor o igual que el
 		 * carácter 9
 		 */
+		String numero1;
+		char n1;
+		System.out.println("Introduzca un carácter para saber sin es un dígito numérico ");
+		System.out.print("Numero: ");
+		numero1= br.readLine();
+		n1= numero1.charAt(0);
+		if(n1>='0' && n1<='9')
+			System.out.println("El carácter es un dígito");
+		else
+			System.out.println("No es un dígito");
+		System.out.println("");
+			
 	}
 
 }
