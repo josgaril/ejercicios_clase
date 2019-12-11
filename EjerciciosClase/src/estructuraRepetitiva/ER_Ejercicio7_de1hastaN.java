@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class EI1_de1hastaN_Ejercicio7 {
+public class ER_Ejercicio7_de1hastaN {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		/*
 		 * 7. Escribe un programa Java que pida por teclado el valor de un número N y

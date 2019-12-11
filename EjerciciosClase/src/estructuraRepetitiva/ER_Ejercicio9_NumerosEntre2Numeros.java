@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class EI1_NumerosEntre2Numeros_Ejercicio9 {
+public class ER_Ejercicio9_NumerosEntre2Numeros {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		

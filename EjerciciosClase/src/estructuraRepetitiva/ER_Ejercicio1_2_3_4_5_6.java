@@ -1,6 +1,6 @@
 package estructuraRepetitiva;
 
-public class EI1_Ejercicios_1_2_3_4_5_6 {
+public class ER_Ejercicio1_2_3_4_5_6 {
 
 	public static void main(String[] args) {
 

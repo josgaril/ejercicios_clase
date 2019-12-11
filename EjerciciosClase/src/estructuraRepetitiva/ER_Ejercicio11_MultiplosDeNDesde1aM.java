@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class EI1_MultiplosDeNDesde1aM_Ejercicio11 {
+public class ER_Ejercicio11_MultiplosDeNDesde1aM {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
@@ -20,18 +20,20 @@ public class EI1_MultiplosDeNDesde1aM_Ejercicio11 {
 		do {
 			System.out.print("Introduzca un número positivo: ");
 			M = Integer.parseInt(br.readLine());
-			if (M<=0) {
+			if (M <= 0) {
 				System.out.println("Debe introducir un núnmero positivo");
 			}
 		} while (M <= 0);
 		do {
 			System.out.print("¿Qué múltiplos quiere ver?");
 			N = Integer.parseInt(br.readLine());
-			if (M < N) {
+			if (N <= 0) {
+				System.out.println("El múltipo tiene que ser un número positivo");
+			} else if (M < N) {
 				System.out.println("El múltiplo tiene que ser menor que el número introducido");
 			}
-		} while (M < N);
-		System.out.println("Se muestras los múltiplos de " + N + " desde 1 hasta " + M + " :");
+		} while (M < N || N<=0);
+		System.out.println("Se muestran los múltiplos de " + N + " desde 1 hasta " + M + " :");
 		for (i = 1; i <= M; i++) {
 			if ((i % N) == 0) {
 				System.out.println(i + " es múltiplo de " + N);
