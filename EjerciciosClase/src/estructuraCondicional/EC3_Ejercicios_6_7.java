@@ -28,6 +28,7 @@ public class EC3_Ejercicios_6_7 {
 		else
 			System.out.println("No es un dígito");
 		System.out.println("");
+		
 		/*
 		 * La otra solución es directa y consiste en comprobar si el carácter que se ha
 		 * leído por teclado es mayor o igual que el carácter 0 y menor o igual que el
@@ -45,6 +46,24 @@ public class EC3_Ejercicios_6_7 {
 			System.out.println("No es un dígito");
 		System.out.println("");
 			
+		/*
+		 * 7. Programa que lea dos números por teclado y muestre el resultado de la
+		 * división del primer número por el segundo. Se debe comprobar que el divisor
+		 * no puede ser cero.
+		 */
+		double num1, num2;
+		System.out.println("Introduzca dos números para realizar su división");
+		System.out.print("Número 1-> ");
+		num1 = Double.parseDouble(br.readLine());
+		System.out.print("Numero 2-> ");
+		num2 = Integer.parseInt(br.readLine());
+		if (num2==0)
+			System.out.println("El divisor no puede ser cero");
+		else
+			System.out.println(num1 + " / " + num2 + " = " + (num1/num2));
+		System.out.println("");
+		
+		
 	}
 
 }
