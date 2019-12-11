@@ -20,10 +20,10 @@ public class EI1_MultiplosDeNDesde1aM_Ejercicio11 {
 		do {
 			System.out.print("Introduzca un número positivo: ");
 			M = Integer.parseInt(br.readLine());
-			if (M<0) {
+			if (M<=0) {
 				System.out.println("Debe introducir un núnmero positivo");
 			}
-		} while (M < 0);
+		} while (M <= 0);
 		do {
 			System.out.print("¿Qué múltiplos quiere ver?");
 			N = Integer.parseInt(br.readLine());
