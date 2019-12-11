@@ -89,7 +89,7 @@ public class ER_Ejercicio12_PosNegParImpar {
 				cadena= br.readLine();
 				respuesta= cadena.charAt(0);
 			}
-		}while(respuesta!='N' || respuesta!='n');
+		}while(respuesta!='N' && respuesta!='n');
 		System.out.println("Fin del programa con Do While");
 	}
 }
