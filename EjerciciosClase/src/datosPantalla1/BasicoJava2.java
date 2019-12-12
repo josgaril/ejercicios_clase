@@ -3,6 +3,7 @@ package datosPantalla1;
 public class BasicoJava2 {
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		int i=1, j=1, k=1, x;
 		System.out.println("x = " + ((j>=0 && k>1) ? ++j : k+1));
 		System.out.println("x = " + ((j>1 || k>=1) ? j+3 : k+1));

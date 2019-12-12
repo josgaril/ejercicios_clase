@@ -3,8 +3,11 @@ package datosPantalla1;
 public class BasicoJava1 {
 
 	public static void main(String[] args) {
+	@SuppressWarnings("unused")
 	int i=8, j=5, k;
+	@SuppressWarnings("unused")
 	float x=0.005F, y=-0.01F,z;
+	@SuppressWarnings("unused")
 	char a, b='p', c='q';
 	System.out.println("k = " + ((j==5) ? i : j ));
 	System.out.println("k = " + ((j>5) ? i : j));

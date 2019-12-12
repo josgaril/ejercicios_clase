@@ -21,7 +21,7 @@ public class ES3_Ejercicios_Ej_8_9_10 {
 
 		// Con Scanner
 		Scanner sc8 = new Scanner(System.in);
-		double radio, volumen;
+		double radio;
 		System.out.print("Introduzca radio de la esfera: ");
 		radio = sc8.nextDouble();
 		System.out.println("Volumen de la esfera de radio " + radio + " = " + (4.0 / 3) * Math.PI * Math.pow(radio, 3));

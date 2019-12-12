@@ -9,6 +9,7 @@ public class Prueba {
 		
 		
 		int[] bailarines = { 3, 0, 1, 8, 7, 2, 5, 4, 6, 9 };
+		@SuppressWarnings("unused")
 		int i, j, aux;
 		System.out.println("Mostramos el array desordenado:");
 		for (i = 0; i <= 9; i++) {
