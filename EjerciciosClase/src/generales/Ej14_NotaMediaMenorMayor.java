@@ -44,7 +44,6 @@ public class Ej14_NotaMediaMenorMayor {
 		System.out.println("La nota mas alta de la clase es: " + mayor);
 		System.out.println("La nota mas baja de la clase es: " + menor);
 		System.out.printf("La nota media de la clase es: %.2f %n", acum/alumnos);
-		System.out.println("La nota media de la clase es: " + (acum/alumnos));
 	}
 	
 	
