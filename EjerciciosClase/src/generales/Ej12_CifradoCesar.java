@@ -27,9 +27,9 @@ public class Ej12_CifradoCesar {
 		 * 
 		 */
 
-		int num, i;
-		String texto, cadena, codificado = "", resultado;
-		char letra, opcion;
+		int num;
+		String texto, cadena;
+		char opcion;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			System.out.print("Introduce un texto: ");
@@ -45,36 +45,62 @@ public class Ej12_CifradoCesar {
 			System.out.print("Elija codificar(C) o decodificar(D)-> ");
 			cadena = br.readLine();
 			opcion = cadena.charAt(0);
-			if (opcion == 'C') {
-				resultado = cifradoCesar(texto, num);
+		} while (Character.toUpperCase(opcion) != 'C' && Character.toUpperCase(opcion) != 'D');
+			if (Character.toUpperCase(opcion) == 'C') {
+				System.out.println("El texto cifrado es: " + cifradoCesar(texto, num));
 			}
-			if (opcion == 'D') {
-				descifradoCesar(texto, num);
+			if (Character.toUpperCase(opcion) == 'D') {
+				System.out.println("El texto descifrado es: " + descifradoCesar(texto, num));
 			}
-		} while (opcion != 'C' && opcion != 'D');
+		
 
 	}
 
-	private static void descifradoCesar(String texto, int num) {
-		/*
-		 * System.out.println("descifrar"); String resultado; return
-		 * resultado.tostring();
-		 */
-		// return acabar!!!();
+	private static String descifradoCesar(String texto, int num) {
+		System.out.println("Se procede a descifrar el texto.");
+		StringBuilder cifrado = new StringBuilder();
+		int i;
+		for (i = 0; i < texto.length(); i++) {
+			for (i = 0; i < texto.length(); i++) {
+				if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
+					if ((texto.charAt(i) + num) > 'z') {
+						cifrado.append((char) (texto.charAt(i) - num + 26));
+					} else {
+						cifrado.append((char) (texto.charAt(i) - num));
+					}
+				} else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
+					if ((texto.charAt(i) + num) > 'Z') {
+						cifrado.append((char) (texto.charAt(i) - num + 26));
+					} else {
+						cifrado.append((char) (texto.charAt(i) - num));
+					}
+				}
+			}
+		}
+		return cifrado.toString();
 	}
 
 	private static String cifradoCesar(String texto, int num) {
 		System.out.println("Se procede a cifrar el texto.");
+		StringBuilder cifrado = new StringBuilder();
 		int i;
-		String cifrado = "";
-		char letra;
-		for (i = 1; i <= texto.length(); i++) {
-			letra = texto.charAt(i);
-			System.out.println("Letra " + letra);
-			cifrado += (letra + num);
+		for (i = 0; i < texto.length(); i++) {
+			for (i = 0; i < texto.length(); i++) {
+				if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
+					if ((texto.charAt(i) + num) > 'z') {
+						cifrado.append((char) (texto.charAt(i) + num - 26));
+					} else {
+						cifrado.append((char) (texto.charAt(i) + num));
+					}
+				} else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
+					if ((texto.charAt(i) + num) > 'Z') {
+						cifrado.append((char) (texto.charAt(i) + num - 26));
+					} else {
+						cifrado.append((char) (texto.charAt(i) + num));
+					}
+				}
+			}
 		}
-		return cifrado;
-
+		return cifrado.toString();
 	}
-
 }

@@ -11,8 +11,9 @@ public class Ej4_TablaMultiplicar {
 		/* 4. Mostrar la tabla de multiplicar de un número. */
 		int num,i;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Introduzca un número para ver su tabla de multiplicar: ");
+		do{System.out.print("Introduzca un número positivo para ver su tabla de multiplicar: ");
 		num = Integer.parseInt(br.readLine());
+		}while(num<0);
 		System.out.println("Tabla del " + num);
 		System.out.println("----------");
 		for(i=1;i<=10;i++) {
