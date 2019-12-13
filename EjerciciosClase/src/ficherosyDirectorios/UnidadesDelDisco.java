@@ -9,7 +9,12 @@ public class UnidadesDelDisco {
 		 * para cada una de ellas el tamaño disponible y el tamaño total. Clase File.
 		 */
 		
-		
+		System.out.println(File());
+	}
+
+	private static char[] File() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

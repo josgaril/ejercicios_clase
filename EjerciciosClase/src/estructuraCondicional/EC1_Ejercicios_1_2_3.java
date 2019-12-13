@@ -56,6 +56,7 @@ public class EC1_Ejercicios_1_2_3 {
 		else
 			System.out.println("La letra " + letraa + " es Minúscula");
 		System.out.println("");
+		sc.close();
 	}
 
 }

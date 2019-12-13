@@ -37,6 +37,7 @@ public class ES4_Ejercicios_Ej_11_12_13 {
 		System.out.println(numero11 / 100);
 		System.out.println(numero11 / 10);
 		System.out.println(numero11);
+		sc11.close();
 		System.out.println();
 
 		/*
@@ -67,6 +68,7 @@ public class ES4_Ejercicios_Ej_11_12_13 {
 		System.out.println(numero12 % 1000);
 		System.out.println(numero12 % 10000);
 		System.out.println(numero12);
+		sc12.close();
 		System.out.println("");
 		System.out.println("");
 
@@ -108,6 +110,7 @@ public class ES4_Ejercicios_Ej_11_12_13 {
 		cifra_3=(suma13/10)%10;
 		cifra_4=suma13%10;
 		System.out.println("Su número de la suerte es: " + (cifra_1+ cifra_2+ cifra_3+ cifra_4));	
+		sc13.close();
 		System.out.println("");
 	}
 

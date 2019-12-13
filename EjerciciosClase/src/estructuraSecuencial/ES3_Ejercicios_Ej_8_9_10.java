@@ -25,6 +25,7 @@ public class ES3_Ejercicios_Ej_8_9_10 {
 		System.out.print("Introduzca radio de la esfera: ");
 		radio = sc8.nextDouble();
 		System.out.println("Volumen de la esfera de radio " + radio + " = " + (4.0 / 3) * Math.PI * Math.pow(radio, 3));
+		sc8.close();
 		System.out.println("");
 
 		/*
@@ -54,6 +55,7 @@ public class ES3_Ejercicios_Ej_8_9_10 {
 		double C1 = sc9.nextDouble();
 		double p9 = (A + B + C) / 2;
 		System.out.print("El área del triángulo es: " + Math.sqrt(p9 * (p9 - A1) * (p9 - B1) * (p9 - C1)));
+		sc9.close();
 		System.out.println("");
 
 		/*
@@ -74,6 +76,7 @@ public class ES3_Ejercicios_Ej_8_9_10 {
 		System.out.println("Primera cifra: " + NUM10/100);
 		System.out.println("Segunda cifra: " + (NUM10/10)%10);
 		System.out.println("Tercera cifra: " + NUM10%10);
+		sc10.close();
 		System.out.println("");
 		
 		

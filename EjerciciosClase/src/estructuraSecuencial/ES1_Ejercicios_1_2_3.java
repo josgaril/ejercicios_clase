@@ -32,6 +32,7 @@ public class ES1_Ejercicios_1_2_3 {
 		n2 = sc.nextInt(); // lee un entero por teclado
 		// mostrar resultado
 		System.out.println("Ha introducido los números: " + n1 + " y " + n2);
+		sc.close();
 		System.out.println("");
 
 		/*
@@ -49,6 +50,7 @@ public class ES1_Ejercicios_1_2_3 {
 		System.out.println("Introduce un nombre: ");
 		cadena = sc1.nextLine();
 		System.out.println("Buenos Días " + cadena);
+		sc1.close();
 		System.out.println("");
 
 		/*
@@ -69,6 +71,8 @@ public class ES1_Ejercicios_1_2_3 {
 		System.out.println("Número introducido: " + numero3);
 		System.out.println("Doble de " + numero3 + " -> " + 2 * numero3);
 		System.out.println("Triple de " + numero3 + " -> " + 3 * numero3);
+		sc2.close();
+		System.out.println("");
 	}
 
 }

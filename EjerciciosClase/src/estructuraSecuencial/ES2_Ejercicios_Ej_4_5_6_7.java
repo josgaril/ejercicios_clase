@@ -26,6 +26,7 @@ public class ES2_Ejercicios_Ej_4_5_6_7 {
 		gradosC1 = sc.nextDouble();
 		gradosF1 = 32 + (9 * gradosC1 / 5);
 		System.out.println(gradosC1 + " ºC = " + gradosF1 + " ºF");
+		sc.close();
 		System.out.println("");
 
 		/*
@@ -49,6 +50,7 @@ public class ES2_Ejercicios_Ej_4_5_6_7 {
 		area = Math.PI * Math.pow(radio1, 2);
 		System.out.println("Longitud de la circunferencia -> " + longitud);
 		System.out.println("Area de la circunferencia -> " + area);
+		sc0.close();
 		System.out.println("");
 
 		/*
@@ -67,6 +69,7 @@ public class ES2_Ejercicios_Ej_4_5_6_7 {
 		System.out.print("Introduzca velocidad en Km/h: ");
 		velocidad = sc1.nextDouble();
 		System.out.println(velocidad + " Km/h -> " + velocidad * 1000 / 3600 + " m/s");
+		sc1.close();
 		System.out.println("");
 
 		/*
@@ -88,6 +91,8 @@ public class ES2_Ejercicios_Ej_4_5_6_7 {
 		System.out.print("Introduzca longitud del segundo cateto: ");
 		cateto4 = sc3.nextDouble();
 		System.out.println("Hipotenusa -> " + Math.sqrt(Math.pow(cateto3, 2) + Math.pow(cateto4, 2)));
+		sc3.close();
+		System.out.println("");
 	}
 
 }
