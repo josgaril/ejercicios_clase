@@ -10,7 +10,7 @@ public class FT2_LecturaFicheroTextoPorCaracteres {
 	public static void main(String[] args) {
 
 		/*
-		 * Mostrar por pantalla el contenido del fichero de texto datos.txt pero en este
+		 * 2. Mostrar por pantalla el contenido del fichero de texto datos.txt pero en este
 		 * caso lo vamos a leer carácter a carcater. El proceso consiste en leer un
 		 * carácter del fichero y mostrarlo por pantalla. Este proceso se repite hasta
 		 * que no queden más caracteres que leer en el fichero, es decir, hasta que se

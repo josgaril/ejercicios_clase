@@ -24,9 +24,9 @@ public class FT1_EscribirEnFicheroTexto {
 		PrintWriter pw = null;
 		FileWriter fw = null;
 		try {
-		    fw= new FileWriter("C:\\ficheros eclipse\\LeerYEscribir.txt", true);
+		    fw= new FileWriter("C:\\ficheros eclipse\\datos.txt", true);
 			pw = new PrintWriter(fw);
-			System.out.println("Introduzca texto. Para acabar introduce la cadena FIN: ");
+			System.out.println("Introduzca texto. Para acabar introduzca la cadena FIN: ");
 			texto = br.readLine();			
 			while (!texto.equalsIgnoreCase("FIN")) {
 				pw.println(texto);
@@ -34,8 +34,7 @@ public class FT1_EscribirEnFicheroTexto {
 			}
 			pw.flush();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha encontrado el archivo.");
 		} finally {
 			pw.close();
 			fw.close();
@@ -43,9 +42,9 @@ public class FT1_EscribirEnFicheroTexto {
 		System.out.println("Escritura realizada");
 
 		// usando try-with-resources
-		try (FileWriter fw1= new FileWriter("C:\\ficheros eclipse\\LeerYEscribir1.txt", true);
+		try (FileWriter fw1= new FileWriter("C:\\ficheros eclipse\\datos.txt", true);
 			PrintWriter pw1 = new PrintWriter(fw1)) {
-			System.out.println("Introducimos texto. Para acabar introduce la cadena FIN:");
+			System.out.println("Introducimos texto. Para acabar introducir la cadena FIN:");
 			texto = br.readLine();			
 			while (!texto.equalsIgnoreCase("FIN")) {
 				pw1.println(texto);
