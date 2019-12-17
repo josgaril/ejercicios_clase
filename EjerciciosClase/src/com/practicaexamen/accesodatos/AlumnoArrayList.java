@@ -8,7 +8,7 @@ import com.practicaexamen.entidades.AlumnoExamen;
 public class AlumnoArrayList implements Dao<AlumnoExamen> {
 
 	private ArrayList<AlumnoExamen> alumnos = new ArrayList<>();
-	
+
 	private static Long ultimoId = 0L;
 
 	// Singleton
@@ -37,18 +37,18 @@ public class AlumnoArrayList implements Dao<AlumnoExamen> {
 				return i;
 			}
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public AlumnoExamen obtenerPorId(Long id) {
 		Integer i = obtenerIndicePorId(id);
-		
+
 		if (i == null) {
 			return null;
 		}
-		
+
 		return alumnos.get(i);
 
 	}

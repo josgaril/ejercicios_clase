@@ -1,11 +1,13 @@
 package com.practicaexamen.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.practicaexamen.utilidades.Biblioteca;
 
-public class AlumnoExamen {
+public class AlumnoExamen implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private static final String REGEX_NOMBRE = "[\\p{L} ]+ ";
 	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";

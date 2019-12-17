@@ -10,7 +10,7 @@ import com.practicaexamen.entidades.EntidadesException;
 import com.practicaexamen.utilidades.Biblioteca;
 
 public class Menu {
-	
+
 	private static final Dao<AlumnoExamen> dao = AlumnoArrayList.getInstancia();
 
 	private static final SimpleDateFormat FECHA_CORTA = new SimpleDateFormat("dd-MM-yyyy");
@@ -38,7 +38,9 @@ public class Menu {
 			saludoFinal();
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e.getMessage());
+			return;
 		}
+
 	}
 
 	private static void mostrarOpciones() {
