@@ -61,7 +61,7 @@ public class Menu {
 	}
 
 	private static int pedirOpcion() {
-		return Biblioteca.leerEntero("Dime la opción: ");
+		return Biblioteca.leerEntero("Elija una opción: ");
 	}
 
 	private static void procesarOpcion(int opcion) {
