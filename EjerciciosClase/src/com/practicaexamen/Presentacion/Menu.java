@@ -27,36 +27,37 @@ public class Menu {
 	private static final int OPCION_CARGAR = 9;
 
 	public static void main(String[] args) {
-
 		try {
 			int opcion = 0;
+
 			do {
+				// BORRAR CONSOLA DE MSDOS (Sólo funciona en el MSDOS, no en Eclipse)
+				// new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				mostrarOpciones();
 				opcion = pedirOpcion();
 				procesarOpcion(opcion);
 			} while (opcion != OPCION_SALIR);
+
 			saludoFinal();
 		} catch (Exception e) {
-			System.out.println("ERROR: " + e.getMessage());
+			mostrar("ERROR: " + e.getMessage());
 			return;
 		}
-
 	}
 
 	private static void mostrarOpciones() {
-
-		System.out.println("\tMENU\t");
-		System.out.println("----------------");
-		System.out.println(OPCION_LISTADO + ". Listado");
-		System.out.println(OPCION_AGREGAR + ". Añadir alumno");
-		System.out.println(OPCION_MODIFICAR + ". Modificar alumno");
-		System.out.println(OPCION_BORRAR + ". Borrar alumno");
-		System.out.println(OPCION_BUSCAR + ". Buscar alumno");
-		System.out.println(OPCION_GUARDAR_CSV + ". Guardar en CSV");
-		System.out.println(OPCION_CARGAR_CSV + ". Cargar CSV");
-		System.out.println(OPCION_GUARDAR + ". Guardar");
-		System.out.println(OPCION_CARGAR + ". Cargar");
-		System.out.println(OPCION_SALIR + ". Salir");
+		mostrar("\n\tMENU");
+		mostrar("------------------");
+		mostrar(OPCION_LISTADO + ". Listado");
+		mostrar(OPCION_AGREGAR + ". Añadir alumno");
+		mostrar(OPCION_MODIFICAR + ". Modificar alumno");
+		mostrar(OPCION_BORRAR + ". Borrar alumno");
+		mostrar(OPCION_BUSCAR + ". Buscar alumno");
+		mostrar(OPCION_GUARDAR_CSV + ". Guardar en CSV");
+		mostrar(OPCION_CARGAR_CSV + ". Cargar CSV");
+		mostrar(OPCION_GUARDAR + ". Guardar");
+		mostrar(OPCION_CARGAR + ". Cargar");
+		mostrar(OPCION_SALIR + ". Salir");
 	}
 
 	private static int pedirOpcion() {
@@ -66,64 +67,67 @@ public class Menu {
 	private static void procesarOpcion(int opcion) {
 		switch (opcion) {
 		case OPCION_SALIR:
-			System.out.println("SALIR");
+			mostrar("SALIR");
 			break;
 		case OPCION_LISTADO:
-			System.out.println("LISTADO");
+			mostrar("LISTADO");
 			listadoAlumnos();
 			break;
 		case OPCION_AGREGAR:
-			System.out.println("AÑADIR ALUMNO");
+			mostrar("AÑADIR ALUMNO");
 			agregarAlumno();
 			break;
 		case OPCION_MODIFICAR:
-			System.out.println("MODIFICAR ALUMNO");
+			mostrar("MODIFICAR ALUMNO");
 			modificarAlumno();
 			break;
 		case OPCION_BORRAR:
-			System.out.println("BORRAR ALUMNO");
+			mostrar("BORRAR ALUMNO");
 			borrarAlumno();
 			break;
 		case OPCION_BUSCAR:
-			System.out.println("BUSCAR");
+			mostrar("BUSCAR");
 			buscarAlumno();
 			break;
 		case OPCION_GUARDAR_CSV:
-			System.out.println("GUARDAR CSV");
+			mostrar("GUARDAR CSV");
 			guardarCSV();
 			break;
 		case OPCION_CARGAR_CSV:
-			System.out.println("CARGAR CSV");
+			mostrar("CARGAR CSV");
 			cargarCSV();
 			break;
 		case OPCION_GUARDAR:
-			System.out.println("GUARDAR");
+			mostrar("GUARDAR");
 			guardar();
 			break;
 		case OPCION_CARGAR:
-			System.out.println("CARGAR");
+			mostrar("CARGAR");
 			cargar();
 			break;
 		default:
-			System.out.println("NO IMPLEMENTADO");
+			mostrar("NO IMPLEMENTADO");
 		}
 	}
 
 	private static void cargar() {
-		// TODO Auto-generated method stub
-
+		//
 	}
 
 	private static void guardar() {
-		// TODO implementar guardar
+		//
+	}
+
+	private static void gestionErrores(Exception e) {
+		//
 	}
 
 	private static void cargarCSV() {
-		// TODO implementar cargar
+		//
 	}
 
 	private static void guardarCSV() {
-		// TODO implementar guardarCSV
+		//
 	}
 
 	private static void buscarAlumno() {
@@ -134,7 +138,7 @@ public class Menu {
 		if (alumno != null) {
 			mostrarAlumno(alumno);
 		} else {
-			System.out.println("No se ha encontrado el alumno");
+			mostrar("No se ha encontrado el alumno");
 		}
 	}
 
@@ -155,9 +159,9 @@ public class Menu {
 		try {
 			dao.borrar(id);
 
-			System.out.println("Alumno borrado");
+			mostrar("Alumno borrado");
 		} catch (AccesoDatosException e) {
-			System.out.println("ERROR al borrar alumno: " + e.getMessage());
+			mostrar("ERROR: " + e.getMessage());
 		}
 	}
 
@@ -168,7 +172,7 @@ public class Menu {
 		Long id = (long) Biblioteca.leerEntero("Dime el ID a modificar: ");
 
 		if (dao.obtenerPorId(id) == null) {
-			System.out.println("ERROR: No se ha encontrado el alumno a modificar");
+			mostrar("ERROR: No se ha encontrado el alumno a modificar");
 			return;
 		}
 
@@ -178,9 +182,9 @@ public class Menu {
 
 		try {
 			dao.modificar(alumno);
-			System.out.println("Alumno modificado");
+			mostrar("Alumno modificado");
 		} catch (AccesoDatosException e) {
-			System.out.println("ERROR al modificar alumno: " + e.getMessage());
+			mostrar("ERROR: " + e.getMessage());
 		}
 	}
 
@@ -222,7 +226,7 @@ public class Menu {
 				campo++;
 
 			} catch (EntidadesException e) {
-				System.out.println("ERROR al pedir datos al alumno para modificar: " + e.getMessage());
+				mostrar("ERROR: " + e.getMessage());
 			}
 		}
 		return alumno;
@@ -264,6 +268,10 @@ public class Menu {
 
 	private static void saludoFinal() {
 		System.out.println("Gracias por usar nuestro programa");
+	}
+
+	private static void mostrar(Object o) {
+		System.out.println(o);
 	}
 
 }

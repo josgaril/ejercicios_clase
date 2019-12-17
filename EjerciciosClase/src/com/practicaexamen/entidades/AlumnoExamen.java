@@ -8,7 +8,7 @@ import com.practicaexamen.utilidades.Biblioteca;
 public class AlumnoExamen implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static final String REGEX_NOMBRE = "[\\p{L} ]+ ";
+	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
 	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
 
