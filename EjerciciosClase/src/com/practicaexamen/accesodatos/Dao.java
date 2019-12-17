@@ -1,11 +1,10 @@
 package com.practicaexamen.accesodatos;
 
-public interface Dao <T>{
-	public Iterable<T> obtenertodos();
-	public T obtenerPorId(long id);
+public interface Dao<T> {
+	public Iterable<T> obtenerTodos();
+	public T obtenerPorId(Long id);
+
 	public T agregar(T t);
-	public T modificar (T t);
-	public void borrar (Long Id);
-
-
+	public T modificar(T t);
+	public void borrar(Long id);
 }

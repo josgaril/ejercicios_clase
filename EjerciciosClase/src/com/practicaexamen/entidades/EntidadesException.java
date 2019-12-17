@@ -5,7 +5,7 @@ public class EntidadesException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	public EntidadesException() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public EntidadesException(String message) {

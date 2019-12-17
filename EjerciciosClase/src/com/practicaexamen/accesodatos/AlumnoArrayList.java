@@ -8,6 +8,7 @@ import com.practicaexamen.entidades.AlumnoExamen;
 public class AlumnoArrayList implements Dao<AlumnoExamen> {
 
 	private ArrayList<AlumnoExamen> alumnos = new ArrayList<>();
+	
 	private static Long ultimoId = 0L;
 
 	// Singleton
@@ -26,7 +27,7 @@ public class AlumnoArrayList implements Dao<AlumnoExamen> {
 	// Fin singleton
 
 	@Override
-	public Iterable<AlumnoExamen> obtenertodos() {
+	public Iterable<AlumnoExamen> obtenerTodos() {
 		return alumnos;
 	}
 
@@ -36,22 +37,25 @@ public class AlumnoArrayList implements Dao<AlumnoExamen> {
 				return i;
 			}
 		}
+		
 		return null;
 	}
 
 	@Override
-	public AlumnoExamen obtenerPorId(long id) {
+	public AlumnoExamen obtenerPorId(Long id) {
 		Integer i = obtenerIndicePorId(id);
+		
 		if (i == null) {
 			return null;
 		}
-	return alumnos.get(i);
-	
+		
+		return alumnos.get(i);
+
 	}
 
 	@Override
 	public AlumnoExamen agregar(AlumnoExamen alumno) {
-		if (alumnos == null) {
+		if (alumno == null) {
 			throw new AccesoDatosException("No se aceptan alumnos nulos");
 		}
 
@@ -62,7 +66,7 @@ public class AlumnoArrayList implements Dao<AlumnoExamen> {
 		} else {
 			throw new AccesoDatosException("No debes pasar un ID");
 		}
-		
+
 		alumnos.add(alumno);
 
 		return alumno;
@@ -80,14 +84,14 @@ public class AlumnoArrayList implements Dao<AlumnoExamen> {
 	}
 
 	@Override
-	public void borrar(Long Id) {
-		Integer i = obtenerIndicePorId(Id);
+	public void borrar(Long id) {
+		Integer i = obtenerIndicePorId(id);
 
 		if (i == null) {
 			throw new AccesoDatosException("No se ha encontrado ese ID");
 		}
 		alumnos.remove((int) i);
-		
+
 	}
 
 }
