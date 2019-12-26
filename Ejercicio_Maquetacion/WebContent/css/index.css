@@ -1,0 +1,28 @@
+header{
+	background-image: url(../imagenes/fondo_encabezado.png);
+	
+}
+
+#menu {
+    background: rgb(60, 103, 10);
+    color: white;
+}
+
+#Bienvenida{
+	font-size: 21px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+section #cuadro{
+	tab-size:  462*95px;
+	background-color: #F6F7D5, 0.65;
+	font-size: 18px;
+}
+menu ul{
+	
+}
