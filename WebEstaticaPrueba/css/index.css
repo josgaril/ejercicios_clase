@@ -1,0 +1,19 @@
+body {
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+header{
+	background-color: black;
+	color: white;
+	
+	padding: 1em;
+	margin: 1em 1em 1em 1em;
+	margin-top: 0em;
+	margin-left: 0em;
+	
+}
+
+h1{
+	background-color: aquamarine;
+}
+
