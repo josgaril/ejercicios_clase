@@ -1,0 +1,23 @@
+/* CSS Hoja de estilo. excel5.css */
+ ul {
+    list-style-type: none
+}
+.rectangulo1 {
+    background-color: beige;
+    color: green;
+    border: 1px;
+    border-style: solid;
+}
+.rectangulo2 {
+    background-color: beige;
+    color: green;
+    border: 1px;
+    border-style: solid;
+}
+.rectangulo3 {
+    background-color: beige;
+    color: green;
+    border: 1px;
+    border-style: solid;
+ }
+

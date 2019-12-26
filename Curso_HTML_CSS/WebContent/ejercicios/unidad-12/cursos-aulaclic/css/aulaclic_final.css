@@ -1,0 +1,53 @@
+/* CSS Hoja de estilo. aulaclic.css */
+body {
+    font-size: 12px
+}
+ul {
+    list-style-type: none;
+     
+}
+ul.menu li {
+    display: inline;
+    background-color: antiquewhite;
+    margin-right: 10px;
+    padding: 5px;
+    color:black
+}
+h2 {
+    font-size: 16px;
+     color:darkred
+}
+.cursos section  {
+    margin-left: 55px;
+}
+.cursos section h3 {
+    font-size: 14px;
+     color: blue;
+    margin-left: -25px;
+}
+.articulos h3 {
+    color: green
+}
+
+article h4 {
+   color:darkred
+}
+ul li {
+    font-size: 13px
+}
+
+li h4 {
+   color: darkred 
+}
+
+
+#sin_subrayar {
+    text-decoration: none;
+   letter-spacing: 3px
+}
+
+a:link {
+    text-decoration: none 
+} 
+
+
