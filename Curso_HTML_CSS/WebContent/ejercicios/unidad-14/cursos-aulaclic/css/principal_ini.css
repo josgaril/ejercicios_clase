@@ -1,0 +1,24 @@
+body {
+	background-color: #FFFAF4;
+}
+a {
+	text-decoration: none;
+}
+.rojo_grande {
+	font-size: 1.1em;
+	color: #C60000;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.sin-sub-azul {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #000080;
+	font-weight: normal;
+}
+.sin-sub-verde a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #045111;
+	font-weight: normal;
+}

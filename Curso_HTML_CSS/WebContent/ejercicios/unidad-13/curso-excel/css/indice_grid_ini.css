@@ -1,0 +1,37 @@
+/* CSS Hoja de estilo. indice_grid_ini.css */
+nav p {
+    color: brown;
+}
+footer p {
+    color: blue;
+}
+aside p {
+    color: darkgreen;
+}
+#logo {
+   
+    width: 9em;
+}
+h1 {
+    font-size: 1.3em;
+    margin-left: 5px;
+    margin-right: 10px
+}
+.cabeceras {
+    display: flex;
+    align-items: center;
+    margin-top: -10px;
+     
+}
+.central {
+    display: flex;
+    justify-content: space-between;
+}
+aside {
+    margin-left: 1em;
+}
+footer {
+     display: flex;
+    justify-content: space-between;
+}
+

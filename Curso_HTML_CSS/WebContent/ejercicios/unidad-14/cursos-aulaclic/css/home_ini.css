@@ -1,0 +1,135 @@
+body {
+	background-color: #FFFAF4;
+}
+a {
+	text-decoration: none;
+}
+
+.cont_cabecera {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-around;
+	border-left: 2px solid #DCBEA8;
+	border-right: 2px solid #DCBEA8;
+	border-top: 2px solid #DCBEA8;
+	border-bottom: 2px solid #DCBEA8;
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-bottom: 9px;
+	margin-top: 4px;
+	background-color: #f9f5f0;
+	padding-top: 0.5em;
+	
+}
+.curso_cabecera_elem_1 {
+	text-align: center;
+	padding-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+    flex-grow: 0;
+}
+.curso_cabecera_elem_2 {
+	text-align: center;
+	padding-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+    flex-grow: 1;
+}
+
+.cont_curso {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-radius: 0px 0px 14px 14px ;
+	margin-left: 1em;
+	margin-right: 1em;
+	background-color: #f9f5f0;
+	padding-top: 0.5em;
+	border-left: 2px solid #DCBEA8;
+	border-right: 2px solid #DCBEA8;
+	border-bottom: 2px solid #DCBEA8;
+	
+}
+.curso_elem {
+	width: 13em;
+	padding-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+.curso_elem a {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #800000;
+	text-decoration: none;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+.curso_elem_disco {
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+	font-size: 1em;
+	font-weight: bold; 
+	
+}
+.cont_curso_tit {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #DCBEA8;
+	border-radius: 14px 14px 0px 0px;
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-bottom: 0px;
+	background: linear-gradient(#FFFFFF, #F6F1EA);
+}
+.cont_curso_tit  p {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #996600;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	
+}
+.cont_curso_medio {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	border-left: 2px solid #DCBEA8;
+	border-right: 2px solid #DCBEA8;	
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-bottom: -4px;
+	margin-top: 1px;
+	background-color: #f9f5f0;
+	padding-top: 0.5em;
+	
+}
+.curso_medio_elem {
+	text-align: center;
+	padding-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+.rojo_grande {
+	font-size: 18px;
+	color: #C60000;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.rojo_mediano {
+	font-size: 1.1em;
+	color: #C60000;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.sin-sub-azul {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #000080;
+	font-weight: normal;
+}
+.sin-sub-verde a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #045111;
+	font-weight: normal;
+}
+

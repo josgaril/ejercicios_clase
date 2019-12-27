@@ -1,0 +1,15 @@
+/* CSS Hoja de estilo. excel.css */
+a:link {
+    color:darkgreen;
+    text-decoration: none }
+a.:visited {
+    color: red }
+a:hover { 
+    color: darkviolet;
+    font-weight: bold }
+a:active { 
+    color: yellowgreen; }
+ul {
+    list-style-type: none
+}
+

@@ -1,0 +1,24 @@
+h1{
+    text-align: center;
+}
+h2{
+    color: blue;
+}
+
+a: link{
+    text-decoration: none;
+}
+
+ul{
+    list-style-type: none;
+    color: blue;
+}
+
+ol{
+    color:black;
+}
+
+.rojo{
+    color:red;
+}
+
