@@ -1,28 +1,82 @@
-header{
+header {
 	background-image: url(../imagenes/fondo_encabezado.png);
-	
 }
+
 
 #menu {
-    background: rgb(60, 103, 10);
-    color: white;
+	background: rgb(60, 103, 10);
+	color: white;
 }
 
-#Bienvenida{
+#menu li {
+	list-style-type: none;
+	display: inline-block;
+	border: 1px solid rgb(60, 103, 10);
+	text-align: center;
+	padding: 5px;
+}
+
+#menu li:hover {
+	background-color: olive;
+}
+
+#idioma li {
+	list-style-type: none;
+	display: inline-block;
+	background-color: olive;
+	text-align: :center;
+	padding: 2px;
+
+}
+
+#Bienvenida {
 	font-size: 21px;
+	color: #35360B;
 }
 
-a{
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
 }
 
-section #cuadro{
-	tab-size:  462*95px;
+section #cuadro {
+	tab-size: 462*95px;
 	background-color: #F6F7D5, 0.65;
 	font-size: 18px;
 }
-menu ul{
-	
+
+#Cuadro {
+	width: 462px;
+	height: 95px;
+	background-color: #F6F7D5;
+	color: #35360b;
+	font-size: 18px;
+}
+
+#Barra_inferior {
+	width: 1000px;
+	height: 25px;
+	background-color: #9EA123;
+	padding: 1px;
+
+}
+
+#Barra_inferior ul li {
+	font-size: 18px;
+	color: #E4E682;
+	margin-left: 21px;
+	border border-style: solid;
+	display: inline-block;
+	list-style-type: none;
+}
+
+#Barra_inferior ul li:hover {
+	color: #35360B;
+}
+
+footer {
+	width: 100%;
+	grid-template-rows: 20% 80%;
+	background-color: #9EA123;
 }
