@@ -1,0 +1,57 @@
+h1{
+    text-align: center;
+}
+h2{
+    color: blue;
+}
+
+a: link{
+    text-decoration: none;
+}
+
+ul{
+    list-style-type: none;
+    font-weight: bold;
+}
+
+ol{
+    color:black;
+}
+
+.rojo{
+    color:red;
+}
+
+table{
+
+    width: 100%;
+}
+table td{
+    border border-collapse: collapse;
+    border-style: none;
+}
+thead{
+    text-align: center;
+    background-color:beige;
+}
+
+tbody{
+    text-align: center;
+    background-color: azure;
+}
+
+tfoot{
+    text-align:center;
+    background-color: bisque;
+}
+.primera{
+    width: 80%;
+    color: darkred;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.opciones{
+    background-color: #eee;
+    width: 20%;
+}
