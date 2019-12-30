@@ -1,0 +1,181 @@
+body {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	margin-top: 0;
+}
+header {
+
+	background-image: url(../imagenes/fondo_encabezado.png);
+	width: 100%;
+	margin-bottom: 0;
+	display: grid;
+	grid-template-columns: 1fr 10%; 
+}
+header img {
+	display: block;
+	margin: auto;
+}
+#idioma li {
+	list-style-type: none;
+	display: inline-block;
+	background-color: olive;
+}
+
+main {
+	padding-left: 300px;
+}
+
+#menu {
+
+	background: rgb(60, 103, 10);
+	color: white;
+	margin-top: 0;
+	padding-left: 0;
+	padding-left: 300px;
+}
+
+.tablamenu {
+	display: grid;
+	grid-template-columns: repeat(8, auto);
+}
+
+.somos {
+	grid-column: 1;
+}
+
+.nuestros {
+	grid-column: 2;
+}
+
+.estamos {
+	grid-column: 3;
+}
+
+.blog {
+	grid-column: 7;
+}
+
+#menu li {
+	list-style-type: none;
+	border: 1px solid rgb(60, 103, 10);
+	text-align: center;
+	padding: 5px;
+}
+
+#menu li:hover {
+	background-color: olive;
+}
+#menu a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+#imagen-cuadro {
+	display: grid;
+	grid-template-columns: repeat(12, 8.3%);
+	grid-template-rows: repeat(4, 20%);
+	margin-bottom: 0;
+}
+
+#imagen {
+	width=1000px;
+	height=416px;
+	border-bottom-style: solid blue;
+	grid-column: 1/12;
+	grid-row: 1/5;
+	margin-bottom: 0;
+}
+
+#Cuadro {
+	width: 462px;
+	height: 95px;
+	background-color: rgb(246, 247, 213, 0.65);
+	color: #35360b;
+	font-size: 18px;
+	text-align: center;
+	grid-column: 6/9;
+	grid-row: 2;
+}
+
+#Barra_inferior ul {
+
+	height: 25px;
+	background-color: #9EA123;
+	margin-top: 0;
+
+}
+
+#Barra_inferior ul li {
+	font-size: 18px;
+	color: #E4E682;
+	margin-left: 20px;
+	border border-style: solid;
+	display: inline-block;
+	list-style-type: none;
+}
+
+#Barra_inferior ul li:hover {
+	color: #35360B;
+}
+
+#Bienvenida {
+	font-size: 21px;
+	color: #35360B;
+	margin-left: 21px;
+	padding: 30px;
+}
+
+
+
+footer {
+	background-color: #9EA123;
+	font-size: 12px;
+	color: black;
+}
+
+.footer {
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-template-rows: 10% 30% 30% 30%;
+}
+
+.footer1 {
+	grid-column: 1;
+	grid-row: 1;
+	background-color: darkolivegreen;
+	width: :100%;
+}
+.footer2 {
+	grid-column: 1;
+	grid-row: 2;
+	background: red;
+
+}
+.footer3 {
+	grid-column: 1;
+	grid-row: 3;
+	background: green;
+}
+.footer4 {
+	grid-column: 1;
+	grid-row: 4;
+	background: orange
+}
+.footerdireccion {
+	grid-column: 3;
+	grid-row: 2;
+	background: blue;
+}
+/*poner tabla con la primera fila para la franja verde oscura, el resto a dstribuir*/
+footer img {
+	display: block;
+	margin: auto;
+}
+
+#logo_pie {
+	position: relative;
+}
+footer a {
+	text-decoration: none;
+	color: black;
+}
