@@ -2,64 +2,104 @@ body {
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	margin-top: 0;
 }
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+    font-weight: bold;
+	
+}
 
 header {
 
 	background-image: url(../imagenes/fondo_encabezado.png);
-	width: 100%;
 	margin-bottom: 0;
-	display: grid;
-	grid-template-columns: 1fr 10%;
+	background-repeat: no-repeat;
+	margin-left: -50px;
+
+
 }
 
 header img {
 	display: block;
 	margin: auto;
+
 }
 
+/*
 #idioma li {
 	list-style-type: none;
 	display: inline-block;
 	background-color: olive;
 }
+*/
 
 main {
-	padding-left: 300px;
+
 }
 
-.menu {
+#menu {
 	background-color: rgb(60, 103, 10);
-	display: grid;
-	grid-template-columns: repeat (4, 4fr);
-	grid-template-rows: 1fr;
+	display: inline;
+	grid-template-columns: 20% 20% 40% 20%;
+	padding: 10px;
 }
 
-.menu a{
+#menu ul{
+	text-decoration: none;
+	
+}
+#menu li{
+	text-decoration: none;
+	
+}
+#menu a{
 	text-decoration: none;
 	color: white;
 }
 
-.menu a:hover {
+#menu a {
+    display: inline-block;
+    color: black;
+    padding: 1em;
+}
+#menu a:hover {
 	background-color: olive;
 }
 
-#imagen-cuadro {
+#menu a:nth-child(1) {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#menu a:nth-child(2) {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+#menu a:nth-child(3) {
+	grid-column: 3;
+	grid-row: 1;
+}
+
+#menu a:nth-child(4) {
+	grid-column: 4;
+	grid-row: 1;
+}
+
+
+.imagen-cuadro {
 	display: grid;
 	grid-template-columns: repeat(12, 8.3%);
 	grid-template-rows: repeat(4, 20%);
 	margin-bottom: 0;
 }
 
-#imagen {
+.hojarasca {
 	width=1000px;
 	height=416px;
-	border-bottom-style: solid blue;
-	grid-column: 1/12;
-	grid-row: 1/5;
-	margin-bottom: 0;
 }
 
-#Cuadro {
+.Cuadro {
 	width: 462px;
 	height: 95px;
 	background-color: rgb(246, 247, 213, 0.65);
@@ -70,15 +110,15 @@ main {
 	grid-row: 2;
 }
 
-#Barra_inferior ul {
+.Barra_inferior ul {
 
 	height: 25px;
 	background-color: #9EA123;
 	margin-top: 0;
-
+	width: 100%;
 }
 
-#Barra_inferior ul li {
+.Barra_inferior ul li {
 	font-size: 18px;
 	color: #E4E682;
 	margin-left: 20px;
@@ -87,11 +127,11 @@ main {
 	list-style-type: none;
 }
 
-#Barra_inferior ul li:hover {
+.Barra_inferior ul li:hover {
 	color: #35360B;
 }
 
-#Bienvenida {
+.Bienvenida {
 	font-size: 21px;
 	color: #35360B;
 	margin-left: 21px;
@@ -104,44 +144,50 @@ footer {
 	background-color: #9EA123;
 	font-size: 12px;
 	color: black;
-}
-
-.footer {
+	width:1000px;
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
-	grid-template-rows: 10% 30% 30% 30%;
+	grid-template-rows: 40px 40px 40px;
 }
 
+/*.footer {
+	
+}*/
+
 .footer1 {
-	grid-column: 1;
+	grid-column: 1/4;
 	grid-row: 1;
 	background-color: darkolivegreen;
-	width: :100%;
+	width:100%;
+	margin-top:0
 }
 
 .footer2 {
 	grid-column: 1;
 	grid-row: 2;
 	background: red;
-
+	width:100%;
 }
 
 .footer3 {
 	grid-column: 1;
 	grid-row: 3;
 	background: green;
+	width:100%;
 }
 
 .footer4 {
 	grid-column: 1;
 	grid-row: 4;
-	background: orange
+	background: orange;
+	width:100%;
 }
 
 .footerdireccion {
 	grid-column: 3;
 	grid-row: 2;
 	background: blue;
+	width:100%;
 }
 
 /*poner tabla con la primera fila para la franja verde oscura, el resto a dstribuir*/
@@ -151,7 +197,7 @@ footer img {
 }
 
 #logo_pie {
-	position: relative;
+
 }
 
 footer a {
