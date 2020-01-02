@@ -40,7 +40,7 @@ public class Ej1_AlturaMediaAlumnos {
 		int num;
 		double media;
 		num = numeroAlumnos();
-		ArrayList<Double> altura = new ArrayList();
+		ArrayList<Double> altura = new ArrayList<Double>();
 		leerAlturas(altura, num);
 		media = calcularMedias(altura);
 		mostrarResultados(altura, media);

@@ -14,7 +14,7 @@ public class Ej1_Media10Numeros {
 		 * positivos y la de los valores negativos.
 		 */
 		int i;
-		double sumapos = 0, sumaneg = 0, contpos = 0, contneg = 0, mediapos = 0, medianeg = 0;
+		double sumapos = 0, sumaneg = 0, contpos = 0, contneg = 0;
 		int[] numeros = new int[10];
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

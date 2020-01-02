@@ -18,7 +18,6 @@ public class FT2_LecturaFicheroTextoPorCaracteres {
 		 */
 
 		int texto;
-		int i;
 		FileReader fr = null;
 		BufferedReader br = null;
 		try {
