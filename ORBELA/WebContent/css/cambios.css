@@ -24,6 +24,7 @@ header {
     background-position: right 4em top;
 }
 
+
 /*idiomas*/
 #idiomas {
     display: inline-block;
@@ -85,18 +86,20 @@ header {
 }
 
 /*imagenes*/
-#imagenes {}
+#imagenes {
+    background-color: red;
+}
 
 #imagenes figure {
-    margin-top: 0;
+    margin: 0;
     text-align: center;
     position: relative;
 }
 
 #imagenes figure img {
+    width: 100%;
     max-width: 1000px;
     max-height: 416px;
-    width: 100%;
 }
 
 #imagenes figure figcaption {
@@ -106,38 +109,122 @@ header {
     font-size: 18px;
     color: #35360B;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 111px;
+    right: 351px;
 
 }
 
+/*pruebas alinear paginacion y texo*/
+.centrado {
+    background-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+     width: 100%;
+}
+
+article {
+position: relative;
+}
+
+/*fin de pruebas*/
+
 /*Barra inferior*/
+#barra_numeros {
+}
+
 #paginacion {
-    width: 1000px;
-    height: 25px;
     background-color: #9EA123;
     font-size: 18px;
-    margin-left: 21px;
+    margin: 0 0 0 21px;
+    max-width: 1000px;
+    height: 25px;
+   
 }
 
 #paginacion a {
     text-decoration: none;
     color: #E4E682;
+
 }
 
 #paginacion li {
     list-style: none;
     display: inline;
+
 }
 
 #paginacion a.activo {
     color: #35360B;
 }
 
+
 /*texto de bienvenida*/
 #texto_bienvenida {
     font-size: 21px;
     color: #35360B;
     margin-left: 30px;
+    margin-top: 50px;
     height: 300px;
+}
+
+/*footer*/
+footer {
+    background-color: #9EA123;
+    position: relative;
+    height: 170px;
+    font-size: 12px;
+}
+
+footer a {
+    color: black;
+}
+
+footer ul {
+    padding-left: 0;
+}
+
+footer li {
+    list-style: none;
+    display: inline;
+}
+
+footer ul:nth-child(1) {
+    text-transform: uppercase;
+}
+
+footer address {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}
+
+#pie_footer {
+    position: absolute;
+    top: 40px;
+    border-left: 20px;
+    padding-left: 20px;
+}
+
+.enlaces_footer li:nth-child(1):after,
+.enlaces_footer li:nth-child(2):after {
+    content: " | ";
+}
+
+#imagen_footer {
+
+    text-align: center;
+}
+
+#imagen_footer img {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+footer header {
+    background-image: none;
+    height: 35px;
+    background-color: #7C7C1D;
 }
