@@ -1,200 +1,286 @@
 body {
-	font-family: sans-serif;
-	margin: 0;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 h1,
 h2,
 h3 {
-	display: none;
+    display: none;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 /*cabecera*/
 header {
-	background-image: url(../imagenes/fondo_encabezado.png);
-	height: 104px;
-	background-position: right 4em top;
+    background-image: url(../imagenes/fondo_encabezado.png);
+    height: 104px;
+    background-position: right 4em top;
 }
 
 /*idiomas*/
 #idiomas {
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	right: 1em;
-	margin: 0;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 1em;
+    margin: 0;
 }
 
 #idiomas li {
-	list-style: none;
-	display: inline-block;
+    list-style: none;
+    display: inline-block;
 }
 
 #idiomas abbr {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #idiomas a {
-	background-color: #9EA123;
-	padding: 0.5em;
-	font-size: 0.75em;
-	font-weight: bold;
-	color: #35360B;
+    background-color: #9EA123;
+    padding: 0.5em;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #35360B;
 }
 
 #idiomas a:hover {
-	background-color: #E4E682;
+    background-color: #E4E682;
 }
 
 /*menu*/
 #menu {
-	background-color: #7C7C1D;
-	margin: 0;
+    background-color: #7C7C1D;
+    margin: 0;
 }
 
 #menu li a {
-	text-decoration: none;
-	color: #E4E682;
-	padding: 1em;
-	font-weight: bold;
+    text-decoration: none;
+    color: #E4E682;
+    padding: 1em;
+    font-weight: bold;
 }
 
 #menu li a:hover {
-	background-color: #9EA123;
+    background-color: #9EA123;
 }
 
 #menu li {
-	display: inline-block;
-	text-transform: uppercase;
-	list-style: none;
-	font-size: 18px;
-	padding: 1em;
+    display: inline-block;
+    text-transform: uppercase;
+    list-style: none;
+    font-size: 18px;
+    padding: 1em;
 }
 
 #menu li:last-child {
-	position: absolute;
-	right: 2em;
+    position: absolute;
+    right: 2em;
 }
 
 /*imagenes*/
 #imagenes figure {
-	margin-top: 0;
-	text-align: center;
-	position: relative;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto -4.5px;
+    text-align: center;
+    position: relative;
+
 }
 
 #imagenes figure img {
-	max-width: 1000px;
-	max-height: 416px;
-	width: 100%;
+    max-width: 1000px;
+    max-height: 416px;
+    width: 100%;
 }
 
 #imagenes figure figcaption {
-	max-width: 462px;
-	max-height: 95px;
-	background-color: rgba(246, 247, 213, 0.65);
-	font-size: 18px;
-	color: #35360B;
-	position: absolute;
-	top: 1em;
-	right: 1em;
-
+    max-width: 462px;
+    max-height: 95px;
+    background-color: rgba(246, 247, 213, 0.65);
+    font-size: 18px;
+    color: #35360B;
+    position: absolute;
+    top: 10em;
+    right: 4em;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 1em
 }
 
 /*Barra inferior*/
+#barra_numeros {
+    max-width: 1000px;
+    max-height: 25px;
+    margin: 0 auto;
+    background-color: #9EA123;
+    font-size: 18px;
+    width: 100%;
+    padding: 0;
+}
+
 #paginacion {
-	max-width: 1000px;
-	max-height: 25px;
-	background-color: #9EA123;
-	font-size: 18px;
-	padding-left: 21px;
+    margin: 0;
+    padding-left: 21px;
 }
 
 #paginacion a {
-	text-decoration: none;
-	color: #E4E682;
+    text-decoration: none;
+    color: #E4E682;
 }
 
 #paginacion li {
-	list-style: none;
-	display: inline;
+    list-style: none;
+    display: inline;
 }
 
 #paginacion a.activo {
-	color: #35360B;
+    color: #35360B;
 }
 
 /*texto de bienvenida*/
 #texto_bienvenida {
-	font-size: 21px;
-	color: #35360B;
-	height: 300px;
+    font-size: 21px;
+    color: #35360B;
+    max-width: 1000px;
+    margin: auto;
+    padding: 2em 1em 3em;
+    width: 100%;
 }
+
+#texto_bienvenida p {
+    line-height: 1.5em;
+    margin: 1em;
+}
+
 
 /*footer*/
 footer {
-	background-color: #9EA123;
-	border-top: 2.5em solid #7C7C1D;
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	font-size: 0.7em;
-	height: 12em;
+    background-color: #9EA123;
+    border-top: 3em solid #7C7C1D;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 0.7em;
+
 }
 
 #vinculos {
-	order: -1;
-	width: 40%;
-	width: 32em;
-	color: #35360B;
+    order: -1;
+    width: 40%;
+    width: 32em;
+    color: #35360B;
 }
 
 #vinculos > * {
-	text-align: left;
+    text-align: left;
 }
 
 #vinculos li {
-	list-style: none;
-	display: inline;
+    list-style: none;
+    display: inline;
 }
 
 #vinculos ul {
-	padding: 0;
+    padding: 0;
 }
 
-footer, footer a{
-	color: #35360B;
+footer,
+footer a {
+    color: #35360B;
 
 }
+
 #vinculoslegales li:after {
-	content = " | ";
+    content: " | ";
+}
+
+#vinculoslegales li:last-child:after {
+    content: "";
 }
 
 #vinculosmenu li {
-	text-transform: uppercase;
-}
-
-#vinculoslegales {
-
+    text-transform: uppercase;
 }
 
 #logo_orbela {
-	margin-top: -2.5em;
-	order: 0;
-	width: 20%;
-	text-align: center;
+    margin-top: -3em;
+    order: 0;
+    width: 20%;
+    text-align: center;
 }
 
 address {
-	order: 1;
-	width: 40%;
-	text-decoration: none;
+    order: 1;
+    width: 40%;
+    font-style: normal;
+}
+
+address abbr {
+    text-decoration: none;
+}
+
+@media (max-width: 890px) {
+ 
+
+    #menu {
+        margin: 0;
+        padding-left: 0;
+    }
+
+    #menu li {
+        display: block;
+        text-align: center;
+        padding: 0;
+    }
+
+    #menu li:last-child {
+        position: inherit;
+    }
+
+    #menu li a {
+        display: block;
+    }
+
+    footer {
+      flex-direction: column;
+        padding-bottom: 0.5em;
+    }
+    
+    footer > *, #vinculos, #vinculos ul, #vinculos p{
+        width: 100% !important;
+        text-align: center;
+    }
+
+    #vinculos {
+        order: 1;
+    }
+
+
+    #logo_orbela {
+        order: 0;
+    }
+
+    #address {
+        order: 2;
+    }
+
+}
+
+@media (max-width:640px) {
+    #imagenes figure figcaption {
+        top: 1em;
+        right: 0.5em;
+
+    }
 }
