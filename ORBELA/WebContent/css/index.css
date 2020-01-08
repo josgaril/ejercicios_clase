@@ -1,286 +1,314 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
+* {
+	box-sizing: border-box;
 }
 
-* {
-    box-sizing: border-box;
+body {
+	font-family: sans-serif;
+	margin: 0;
 }
 
 h1,
 h2,
-h3 {
-    display: none;
+h3{
+	display: none;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 /*cabecera*/
 header {
-    background-image: url(../imagenes/fondo_encabezado.png);
-    height: 104px;
-    background-position: right 4em top;
+	background-image: url(../imagenes/fondo_encabezado.png);
+	height: 104px;
+	background-position: right 4em top;
 }
+
 
 /*idiomas*/
 #idiomas {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 1em;
-    margin: 0;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 1em;
+	margin: 0;
 }
 
 #idiomas li {
-    list-style: none;
-    display: inline-block;
+	list-style: none;
+	display: inline-block;
 }
 
 #idiomas abbr {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 #idiomas a {
-    background-color: #9EA123;
-    padding: 0.5em;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: #35360B;
+	background-color: #9EA123;
+	padding: 0.5em;
+	font-size: 0.75em;
+	font-weight: bold;
+	color: #35360B;
 }
 
 #idiomas a:hover {
-    background-color: #E4E682;
+	background-color: #E4E682;
 }
+
 
 /*menu*/
 #menu {
-    background-color: #7C7C1D;
-    margin: 0;
+	background-color: #7C7C1D;
+	margin: 0;
 }
 
 #menu li a {
-    text-decoration: none;
-    color: #E4E682;
-    padding: 1em;
-    font-weight: bold;
+	text-decoration: none;
+	color: #E4E682;
+	padding: 1em;
+	font-weight: bold;
 }
 
 #menu li a:hover {
-    background-color: #9EA123;
+	background-color: #9EA123;
 }
 
 #menu li {
-    display: inline-block;
-    text-transform: uppercase;
-    list-style: none;
-    font-size: 18px;
-    padding: 1em;
+	display: inline-block;
+	text-transform: uppercase;
+	list-style: none;
+	font-size: 18px;
+	padding: 1em;
 }
 
 #menu li:last-child {
-    position: absolute;
-    right: 2em;
+	position: absolute;
+	right: 2em;
 }
+
 
 /*imagenes*/
 #imagenes figure {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto -4.5px;
-    text-align: center;
-    position: relative;
+	max-width: 1000px;
+	width: 100%;
+	margin: 0 auto -4.5px;
+	text-align: center;
+	position: relative;
 
 }
 
 #imagenes figure img {
-    max-width: 1000px;
-    max-height: 416px;
-    width: 100%;
+	max-width: 1000px;
+	max-height: 416px;
+	width: 100%;
 }
 
 #imagenes figure figcaption {
-    max-width: 462px;
-    max-height: 95px;
-    background-color: rgba(246, 247, 213, 0.65);
-    font-size: 18px;
-    color: #35360B;
-    position: absolute;
-    top: 10em;
-    right: 4em;
-    box-sizing: border-box;
-    text-align: left;
-    padding: 1em
+	max-width: 462px;
+	max-height: 95px;
+	background-color: rgba(246, 247, 213, 0.65);
+	font-size: 18px;
+	color: #35360B;
+	position: absolute;
+	top: 6em;
+	right: 4em;
+	text-align: center;
+	padding: 1em;
 }
+
 
 /*Barra inferior*/
 #barra_numeros {
-    max-width: 1000px;
-    max-height: 25px;
-    margin: 0 auto;
-    background-color: #9EA123;
-    font-size: 18px;
-    width: 100%;
-    padding: 0;
+	max-width: 1000px;
+	max-height: 25px;
+	margin: 0 auto;
+	background-color: #9EA123;
+	font-size: 18px;
+	width: 100%;
+	padding: 0;
 }
 
 #paginacion {
-    margin: 0;
-    padding-left: 21px;
+	margin: 0;
+	padding-left: 21px;
 }
 
 #paginacion a {
-    text-decoration: none;
-    color: #E4E682;
+	text-decoration: none;
+	color: #E4E682;
 }
 
 #paginacion li {
-    list-style: none;
-    display: inline;
+	list-style: none;
+	display: inline;
 }
 
 #paginacion a.activo {
-    color: #35360B;
+	color: #35360B;
 }
+
 
 /*texto de bienvenida*/
 #texto_bienvenida {
-    font-size: 21px;
-    color: #35360B;
-    max-width: 1000px;
-    margin: auto;
-    padding: 2em 1em 3em;
-    width: 100%;
+	font-size: 21px;
+	color: #35360B;
+	max-width: 1000px;
+	margin: auto;
+	padding: 2em 1em 3em;
+	width: 100%;
 }
 
 #texto_bienvenida p {
-    line-height: 1.5em;
-    margin: 1em;
+	line-height: 1.5em;
+	margin: 1em;
 }
 
 
 /*footer*/
 footer {
-    background-color: #9EA123;
-    border-top: 3em solid #7C7C1D;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    font-size: 0.7em;
-
-}
-
-#vinculos {
-    order: -1;
-    width: 40%;
-    width: 32em;
-    color: #35360B;
-}
-
-#vinculos > * {
-    text-align: left;
-}
-
-#vinculos li {
-    list-style: none;
-    display: inline;
-}
-
-#vinculos ul {
-    padding: 0;
+	background-color: #9EA123;
+	border-top: 3em solid #7C7C1D;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	font-size: 0.7em;
 }
 
 footer,
 footer a {
-    color: #35360B;
-
+	color: #35360B;
 }
 
+#vinculos {
+	order: -1;
+	width: 40%;
+	text-align: right;
+	margin-top:0.5em;
+}
+
+#vinculos h3 {
+	display: none !important;
+}
+
+#vinculos > * {
+	margin: 0.5em 0;
+	padding: 0;
+	text-align: left;
+	width: 32em;
+	display: inline-block;
+}
+
+#vinculos li {
+	list-style: none;
+	display: inline;
+}
+
+
+#vinculoslegales li:nth-child(1):after,
+#vinculoslegales li:nth-child(2):after {
+	content: " | ";
+}
+
+/* Es mejor poner el espacio solo al ultimo por si más adelante se añaden más vínculos 
 #vinculoslegales li:after {
     content: " | ";
 }
 
 #vinculoslegales li:last-child:after {
     content: "";
-}
+}*/
 
 #vinculosmenu li {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 #logo_orbela {
-    margin-top: -3em;
-    order: 0;
-    width: 20%;
-    text-align: center;
+	margin-top: -3em;
+	order: 0;
+	width: 20%;
+	text-align: center;
 }
 
 address {
-    order: 1;
-    width: 40%;
-    font-style: normal;
+	order: 1;
+	width: 40%;
+	font-style: normal;
 }
 
 address abbr {
-    text-decoration: none;
+	text-decoration: none;
 }
 
+
+/*Media Queries*/
 @media (max-width: 890px) {
- 
 
-    #menu {
-        margin: 0;
-        padding-left: 0;
-    }
+	#idiomas a {
+		font-size: 1.2em;
+		right: 12em;
+	}
 
-    #menu li {
-        display: block;
-        text-align: center;
-        padding: 0;
-    }
+	#menu {
+		margin: 0;
+		padding-left: 0;
+	}
 
-    #menu li:last-child {
-        position: inherit;
-    }
+	#menu li {
+		display: block;
+		padding: 0;
+	}
 
-    #menu li a {
-        display: block;
-    }
+	#menu li:last-child {
+		position: inherit;
+	}
 
-    footer {
-      flex-direction: column;
-        padding-bottom: 0.5em;
-    }
-    
-    footer > *, #vinculos, #vinculos ul, #vinculos p{
-        width: 100% !important;
-        text-align: center;
-    }
+	#menu li a {
+		display: block;
+	}
 
-    #vinculos {
-        order: 1;
-    }
+	footer {
+		flex-direction: column;
+		padding-bottom: 0.5em;
+	}
 
+	footer > *,
+	#vinculos,
+	#vinculos ul,
+	#vinculos p {
+		width: 100% !important;
+		text-align: center;
+	}
 
-    #logo_orbela {
-        order: 0;
-    }
+	#vinculos {
+		order: 1;
+	}
 
-    #address {
-        order: 2;
-    }
+	#logo_orbela {
+		order: 0;
+	}
+
+	#address {
+		order: 2;
+	}
 
 }
 
 @media (max-width:640px) {
-    #imagenes figure figcaption {
-        top: 1em;
-        right: 0.5em;
+	#imagenes figure figcaption {
+		top: 1em;
+		right: 0.5em;
+	}
 
-    }
+	#vinculos {
+		order: 2;
+	}
+
+	#address {
+		order: 1;
+	}
+
 }
