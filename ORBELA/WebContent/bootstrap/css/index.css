@@ -1,0 +1,25 @@
+#vinculosmenu li,
+#vinculoslegales li {
+	list-style: none;
+	display: inline;
+
+}
+
+footer a {
+	color: #35360B;
+}
+
+footer {
+	background-color: #9EA123;
+	border-top: 3em solid #7C7C1D;
+
+}
+
+
+/*background-color: #9EA123;
+	border-top: 3em solid #7C7C1D;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	font-size: 0.7em;*/
+}
