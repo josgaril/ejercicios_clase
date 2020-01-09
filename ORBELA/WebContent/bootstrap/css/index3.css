@@ -1,0 +1,79 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+h1,
+h2,
+h3 {
+	display: none;
+}
+
+/*Header*/
+header {
+	background-image: url(../imagenes/fondo_encabezado.png);
+	height: 104px;
+}
+
+header li {
+	background-color: olive;
+}
+
+header ul {
+	position: absolute;
+	top: 0.2em;
+	right: 1em;
+}
+
+/*Menu*/
+#menu a {
+	color: #E4E682;
+}
+
+#menu a:hover {
+	color: black;
+}
+
+
+/*paginacion*/
+.paginacion a {
+	color: #E4E682;
+}
+
+.paginacion a:hover {
+	background-color: olive;
+}
+
+
+/*footer*/
+#vinculosmenu li,
+#vinculoslegales li {
+	list-style: none;
+	display: inline;
+
+}
+
+footer a,
+header a {
+	color: #35360B;
+}
+
+footer {
+
+	/*border-top: 2.5rem solid #7C7C1D;*/
+	font-size: 0.8rem;
+}
+
+/*footer img{
+	position: absolute;
+	top: -2.5rem;
+}*/
+
+/*background-color: #9EA123;
+	border-top: 3em solid #7C7C1D;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	font-size: 0.7em;*/
+}
