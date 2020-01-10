@@ -1,106 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+
 <head>
-	<meta charset="UTF-8">
-	<title>CRUD</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css">
 
-	<link rel="stylesheet" href="css/fonts.css" />
+    <!-- enlace desde la página
+   <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+   -->
 
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="css/all.min.css" />	
+    <title>Datatables</title>
 </head>
 
 <body>
-	<div class="container">
-		<h2>Listado de empleados</h2>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido</th>
-					<th scope="ema">Email</th>
-					<th scope="col">Opciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Jose Angel</td>
-					<td>Garcia</td>
-					<td>jose@usuario.com</td>
-					<td>
-						<div class="btn-group" role="group" aria-label="opciones">
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Borrar</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Roberto</td>
-					<td>Gonzalez</td>
-					<td>Roberto@usuario.com</td>
-						<td>
-						<div class="btn-group" role="group" aria-label="opciones">
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Borrar</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Alberto</td>
-					<td>Perez</td>
-					<td>Alberto@usuario.com</td>
-						<td>
-						<div class="btn-group" role="group" aria-label="opciones">
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Borrar</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">4</th>
-					<td>Francisco</td>
-					<td>Alegre</td>
-					<td>Francisco@usuario.com</td>
-					<td>
-						<div class="btn-group" role="group" aria-label="opciones">
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Borrar</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">5</th>
-					<td>Monica</td>
-					<td>Alcalde</td>
-					<td>Monica@usuario.com</td>
-						<td>
-						<div class="btn-group" role="group" aria-label="opciones">
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Borrar</button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+    <div class="container-fluid mt-5" style="font-family: 'Raleway', sans-serif">
+        <h2>Listado de empleados <i class="fas fa-users"></i></h2>
+        <table class="table table-striped table-bordered" id="tablaprincipal">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Jose</td>
+                    <td>Garcia</td>
+                    <td>Jose@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Alberto</td>
+                    <td>Lopez</td>
+                    <td>Alberto@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Beatriz</td>
+                    <td>Martinez</td>
+                    <td>Beatriz@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Paula</td>
+                    <td>Puertas</td>
+                    <td>Paula@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Mario</td>
+                    <td>Hermoso</td>
+                    <td>Mario@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Miguel</td>
+                    <td>Pelaez</td>
+                    <td>Miguel@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Leonor</td>
+                    <td>Rodriguez</td>
+                    <td>Leonor@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td>Marta</td>
+                    <td>Hernandez</td>
+                    <td>Marta@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td>Jairo</td>
+                    <td>Duarte</td>
+                    <td>Jairo@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td>Helena</td>
+                    <td>Rioseras</td>
+                    <td>Helena@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">11</th>
+                    <td>Maribel</td>
+                    <td>Fuente</td>
+                    <td>Maribel@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">12</th>
+                    <td>Domingo</td>
+                    <td>Campos</td>
+                    <td>Domingo@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">13</th>
+                    <td>Leticia</td>
+                    <td>Ruiz</td>
+                    <td>Leticia@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">14</th>
+                    <td>Roberto</td>
+                    <td>Sancho</td>
+                    <td>Roberto@usuario.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">15</th>
+                    <td>Isabela</td>
+                    <td>Anton</td>
+                    <td>Isabela@usuario.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 
-		<a href="formulario.html"><button type="button" class="btn btn-primary">Agregar usuario</button></a>
-	</div>
-	
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery-3.4.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Datatables -->
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+    <script src="js/dataTables.bootstrap4.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tablaprincipal').DataTable();
+        });
+    </script>
 </body></html>
-
-
