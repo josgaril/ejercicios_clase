@@ -10,11 +10,13 @@ header {
 	height: 104px;
 }
 
+/*
 header ul {
 	position: absolute;
 	top: 0.2em;
 	right: 1em;
 }
+*/
 
 
 header abbr {

@@ -1,0 +1,21 @@
+-Curso profesor HTML y CSS:
+https://www.w3.org/TR/2018/SPSD-html5-20180327/
+
+- Curso de HTML y CSS:
+https://www.aulaclic.es/html/index.htm
+
+- Bootstrap:
+https://getbootstrap.com/docs/4.4/getting-started/introduction/
+
+-Resumen css de bootstrap:
+https://hackerthemes.com/bootstrap-cheatsheet/
+
+- Fuentes gratuitas de google:
+https://fonts.google.com/
+
+- Fuentes web e iconos:
+https://fontawesome.com/
+https://fontawesome.com/icons
+
+- Datatables:
+https://datatables.net/

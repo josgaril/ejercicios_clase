@@ -1,0 +1,40 @@
+body {
+    background-color: lightgray;
+    text-align: center;
+}
+
+#title{
+    padding-top: 1em;
+}
+#img-div {
+    background-color: white;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+#image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.info-head {
+    text-align: center;
+    margin: 2em 0;
+}
+
+ul {
+    max-width: 550px;
+    margin: 0 auto 2em auto;
+    text-align: left;
+    line-height: 1.6;
+}
+
+blockquote {
+    font-style: italic;
+    max-width: 550px;
+    margin: 0 auto 2em auto;
+    text-align: left;
+
+}
