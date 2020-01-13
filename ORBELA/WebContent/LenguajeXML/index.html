@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--CSS-->
+	<link rel="stylesheet" href="css/index.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="css/fonts.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="css/all.min.css">
+
+
+	<title>Supermercado</title>
+</head>
+
+<body class="bg-success">
+	<!--Cabecera-->
+	<header class="jumbotron mb-0 text-center ">
+		<h2>Bienvenido a</h2>
+		<h1 class="display-3 mb-5">Supermercado Josete</h1>
+		<h3> Su supermercado de confianza para el dia a dia</h3>
+
+		<!--	meter estos enlaces solo en la pagina del administrador
+		<a href="Registro_producto.html">Registrar producto</a>
+		<a href="Listado_producto.html">Listado de productos </a>
+		<a href="index.html">Cerrar Sesion </a>
+		fin enlaces-->
+	</header>
+	<!--Fin cabecera-->
+
+	<!--MenuPrincipal-->
+	<div id="menu_principal class">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Supermercados Josete</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="menu_productos">
+				<a class="nav-item nav-link" href="#">Alimentos <i class="fas fa-utensils"></i></a>
+				<a class="nav-item nav-link" href="#">Bebidas <i class="fas fa-wine-bottle"></i></a>
+				<a class="nav-item nav-link" href="#">Hogar <i class="fas fa-home"></i></a>
+				<a class="nav-item nav-link" href="#">Animales <i class="fas fa-dog"></i></a>
+
+
+			</div>
+		</nav>
+	</div>
+	<!--Fin Menu Principal-->
+
+	<!--Login administrador-->
+	<div class="container-fluid text-right ">
+		<a href="Login_administrador.html" class="btn btn-secondary btn-lg " role="button" aria-pressed="true">Login Administrador <i class="fas fa-unlock-alt"></i></a>
+	</div>
+	<!--Fin Login administrador-->
+
+	<!--Cuerpo de la pagina-->
+	<main class="container">
+		<h2>Productos</h2>
+
+		<!--Fila1-->
+		<div class="row">
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="descuento"> 30%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+
+						<p class="card-text precio precioanterior">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+
+				<div class="card">
+					<button class="descuento"> 20%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="descuento">50%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+				<div class="card">
+					<button class="descuento"> 10%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+			</div>
+			<!--Fin Producto-->
+		</div>
+		<!--Fin Fila1-->
+
+		<!--Fila2-->
+		<div class="row">
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="descuento"> 25%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="descuento"> 20%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento precionuevo">12.95€ Nuevo precio</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+		</div>
+		<!--Fin Fila2-->
+
+		<!--Fila3-->
+		<div class="row">
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col-12 col-lg mb-5">
+
+				<div class="card">
+					<button class="sindescuento">0%</button>
+					<img src="https://www.alcampo.es/media/h21/he3/8952702468126.jpg" alt="Botella Ginebra" class="img-fluid">
+
+					<div class="card-body">
+						<p class="card-text precio">13.35€</p>
+						<p class="card-text precio_descuento sindescuento">12.95€</p>
+						<p class="card-text euros/litro">(18.50€ / Litro)</p>
+						<p class="card-text nombre">BEEFEATER</p>
+						<p class="card-text descripcion">Ginebra inglesa botella 100 cl</p>
+						<div class="btn-group" role="group" aria-label="Botones agregar producto">
+							<button type="button" class="btn btn-secondary">-</button>
+							<button type="button" class="btn btn-secondary">1</button>
+							<button type="button" class="btn btn-secondary">+</button>
+						</div>
+						<button type="button" class="btn btn-success">AÑADIR AL CARRO</button>
+					</div>
+				</div>
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col">
+
+			</div>
+			<!--Fin Producto-->
+			<!--Producto-->
+			<div class="col">
+
+			</div>
+			<!--Fin Producto-->
+
+			<!--Producto-->
+			<div class="col">
+
+			</div>
+			<!--Fin Producto-->
+
+
+		</div>
+		<!--Fin Fila3-->
+
+		<!--Boton TOP--->
+		<div class="container-fluid d-flex justify-content-end">
+			<a href="#" class="btn btn-primary btn-sm active botontop d-block d-md-none" role="button" aria-pressed="true">TOP</a>
+		</div>
+		<!-- Fin Boton TOP--->
+	</main>
+	<!--FIn Cuerpo de la pagina-->
+
+	<!--Footer-->
+	<footer class="container-fluid bg-dark text-white text-center mt-4 py-3">
+		<p>Facebook <i class="fab fa-facebook-f"></i></p>
+		<p>Twitter <i class="fab fa-twitter"></i></p>
+		<a href="#" class="m-3">Política de privacidad</a>
+		<a href="#" class="m-3">Contacto</a>
+		<a href="#" class="m-3">Localización</a>
+		<p class="m-2">&copy;2020</p>
+	</footer>
+	<!--Fin Footer-->
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+</body></html>

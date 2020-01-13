@@ -1,0 +1,35 @@
+#menu_productos a{
+	color: white;
+}
+.descuento {
+	background-color: red;
+	width: 4em;
+}
+
+.sindescuento {
+	visibility: hidden;
+}
+
+.precionuevo{
+	color:red;
+
+}
+/*.botontop {
+	width: 50px;
+	float: right;
+}*/
+
+footer {
+	background-color: black;
+	color: white;
+	margin-bottom: 0;
+}
+
+
+/*@media (min-width:576px){
+	.botontop{
+		display: none;
+	}
+}
+	*/
+/**/
