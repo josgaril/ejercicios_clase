@@ -18,7 +18,7 @@ public class ProgramaPrincipal {
 	private static final int OPCION_SALIR = 0;
 	private static final int OPCION_LISTADO = 1;
 
-	private static final int OPCION_AÑADIR = 2;
+	private static final int OPCION_AGREGAR = 2;
 
 	private static final int OPCION_BORRAR = 3;
 
@@ -36,7 +36,7 @@ public class ProgramaPrincipal {
 				opcion = pedirOpcion();
 				System.out.println();
 				procesadoOpcion(opcion);
-			} while (opcion != OPCION_SALIR); // Mostramos el menú mientras la opción sea diferente de 0.
+			} while (opcion != OPCION_SALIR); // Mostramos el menï¿½ mientras la opciï¿½n sea diferente de 0.
 			saludoFinal();
 
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public class ProgramaPrincipal {
 		System.out.println("\n\tMENU");
 		System.out.println("-----------------");
 		System.out.println(OPCION_LISTADO + ". Listado");
-		System.out.println(OPCION_AÑADIR + ". Añadir");
+		System.out.println(OPCION_AGREGAR + ". Aï¿½adir");
 		System.out.println(OPCION_BORRAR + ". Borrar");
 		System.out.println(OPCION_MODIFICAR + ". Modificar");
 		System.out.println(OPCION_GUARDAR_CSV + ". Guardar");
@@ -60,7 +60,7 @@ public class ProgramaPrincipal {
 	}
 
 	private static int pedirOpcion() {
-		return Biblioteca.leerEntero("Elija una opción: ");
+		return Biblioteca.leerEntero("Elija una opciï¿½n: ");
 
 	}
 
@@ -73,8 +73,8 @@ public class ProgramaPrincipal {
 			System.out.println("LISTADO");
 			listadoLibros();
 			break;
-		case OPCION_AÑADIR:
-			System.out.println("AÑADIR");
+		case OPCION_AGREGAR:
+			System.out.println("Aï¿½ADIR");
 			agregarLibro();
 			break;
 		case OPCION_BORRAR:
@@ -134,9 +134,9 @@ public class ProgramaPrincipal {
 		System.out.println("Los datos del nuevo libro que desea agregar son:");
 		System.out.println("Titulo: " + libro.getTitulo());
 		System.out.println("ISBN: " + libro.getIsbn());
-		System.out.println("Número de páginas: " + libro.getPaginas());
+		System.out.println("Nï¿½mero de pï¿½ginas: " + libro.getPaginas());
 		System.out.println("Formato: " + libro.getFormato());
-		System.out.print("¿Desea agregar el nuevo libro?(S/N): ");
+		System.out.print("ï¿½Desea agregar el nuevo libro?(S/N): ");
 		cadena = br.readLine();
 		respuesta = cadena.charAt(0);
 		if (respuesta == 'S' || respuesta == 's') {
@@ -161,13 +161,13 @@ public class ProgramaPrincipal {
 			try {
 				switch (campo) {
 				case TITULO:
-					libro.setTitulo(Biblioteca.leerLinea("Título: "));
+					libro.setTitulo(Biblioteca.leerLinea("Tï¿½tulo: "));
 					break;
 				case ISBN:
 					libro.setIsbn(Biblioteca.leerLinea("ISBN: "));
 					break;
 				case PAGINAS:
-					libro.setPaginas(Biblioteca.leerEntero("Número de páginas: "));
+					libro.setPaginas(Biblioteca.leerEntero("Nï¿½mero de pï¿½ginas: "));
 					break;
 				case FORMATO:
 					libro.setFormato(Biblioteca.leerLinea("Formato: "));
