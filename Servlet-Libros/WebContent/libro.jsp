@@ -9,11 +9,11 @@
 <body>
 	<h1>Aregar nuevo libro</h1>
 	<form action="libro">
-		 <input readonly name="id" type="number" value="${libro.id}" />
-	 	<input name="titulo" />
-	 	<input name="isbn" />
-	 	<input name="paginas" />
-	 	<input name="formato" />
+		<input readonly name="id" type="number" value="${libro.id}" />
+	 	<input name="titulo" value="${libro.titulo}"/>
+	 	<input name="isbn" value="${libro.isbn}"/>
+	 	<input name="paginas" value="${libro.paginas}"/>
+	 	<input name="formato" value="${libro.formato}"/>
 	 	<button>Aceptar</button>
 	</form>
 

@@ -26,7 +26,7 @@
 		<tbody>
 			<c:forEach items="${libros}" var="libro">
 				<tr>
-					<%-- ${alumno.id} == alumno.getId() == null ? "" : alumno.getId() --%>
+					<%-- ${libro.id} == libro.getId() == null ? "" : libro.getId() --%>
 					<th>${libro.id}</th>
 					<th>${libro.titulo}</th>
 					<th>${libro.isbn}</th>
@@ -40,6 +40,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="alumnos?op=agregar">Añadir</a>
+	<a href="libros?op=agregar">Añadir</a>
 </body>
 </html>
