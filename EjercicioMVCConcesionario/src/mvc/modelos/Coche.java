@@ -1,6 +1,6 @@
 package mvc.modelos;
 
-public class Moto {
+public class Coche {
 	private Long id;
 	private String marca;
 	private String modelo;
@@ -10,7 +10,7 @@ public class Moto {
 	private boolean correcto = true;
 	private String errorMarca, errorModelo, errorPrecio, errorURL;
 
-	public Moto(Long id, String marca, String modelo, String precio, String url) {
+	public Coche(Long id, String marca, String modelo, String precio, String url) {
 		setId(id);
 		setMarca(marca);
 		setModelo(modelo);
@@ -18,11 +18,11 @@ public class Moto {
 		setUrl(url);
 	}
 
-	public Moto() {
+	public Coche() {
 		
 	}
 	
-	public Moto( String marca, String modelo, String precio, String url) {
+	public Coche( String marca, String modelo, String precio, String url) {
 		this(null,marca,modelo,precio,url);
 	}
 

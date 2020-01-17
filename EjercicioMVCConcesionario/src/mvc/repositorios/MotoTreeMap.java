@@ -24,14 +24,12 @@ public class MotoTreeMap implements Dao<Moto> {
 
 	@Override
 	public Iterable<Moto> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return motos.values();
 	}
 
 	@Override
 	public Moto obtenerPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return motos.get(id);
 	}
 
 	@Override

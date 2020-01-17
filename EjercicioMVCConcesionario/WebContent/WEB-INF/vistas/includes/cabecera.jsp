@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-<title>CVJ></title>
+
+<title>CVJ</title>
 
 <base href="${pageContext.request.contextPath}/" />
 
@@ -38,11 +38,11 @@
 
 </head>
 <body>
-
-	<h1>Primeras pruebas con MVC</h1>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">TMJ</a>
+	<header>
+		<h1>Confeccionando pagina CVJ</h1>
+	</header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<a class="navbar-brand" href="#">CVJ</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"

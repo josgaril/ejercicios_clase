@@ -8,16 +8,16 @@
 </header>
 
 <section id="motos" class="row">
-	<c:forEach items="${coches}" var="coche">
-		<article id="coche" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<!-- ID: ${coche.id} -->
+	<c:forEach items="${motos}" var="moto">
+		<article id="moto" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+			<!-- ID: ${moto.id} -->
 			<div class="card-body">
-				<img src="imgs/${coche.id}.jpg" class="card-img-top" alt="">
-				<h3 class="card-title">${coche.marca}</h3>
-				<p class="card-text">${coche.modelo}</p>
-				<p class="card-text">Precio: ${coche.precio}</p>
+				<img src="imgs/${moto.id}.jpg" class="card-img-top" alt="">
+				<h3 class="card-title">${moto.marca}</h3>
+				<p class="card-text">${moto.modelo}</p>
+				<p class="card-text">Precio: ${moto.precio}</p>
 				<p class="card-text">
-					<a href="${coche.url}">${coche.url}</a>
+					<a href="${moto.url}">${moto.url}</a>
 				</p>
 				
 			</div>
