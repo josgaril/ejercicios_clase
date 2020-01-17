@@ -6,7 +6,7 @@
 	<h1 class="display-">CVJ Concesionario de Vehículos Josete</h1>
 	<p class="lead">Su concesionario de confianza</p>
 </header>
-
+<h3>COCHES</h3>
 <section id="coches" class="row">
 	<c:forEach items="${coches}" var="coche">
 		<article id="coche" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">

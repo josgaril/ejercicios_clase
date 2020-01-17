@@ -52,11 +52,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Motos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/indexmotos">Motos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/WEB-INF/vistas/indexcoches">Coches</a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#"
-					tabindex="-1" aria-disabled="true">Coches</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="#"
-					tabindex="-1" aria-disabled="true">Coches</a></li>
+					tabindex="-1" aria-disabled="true">Quads</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"

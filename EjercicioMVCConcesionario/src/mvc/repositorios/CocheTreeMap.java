@@ -11,9 +11,9 @@ public class CocheTreeMap implements Dao<Coche> {
 	private static final CocheTreeMap INSTANCIA = new CocheTreeMap();
 
 	private CocheTreeMap() {
-		agregar(new Coche("Renaut", "Clio Sport", "26850",
+		agregar(new Coche("Renaut", "Clio Sport", "26850 €",
 				"https://www.diariomotor.com/2016/05/21/renault-clio-rs-250-cv-2016/"));
-		agregar(new Coche("Seat", "Leon FR", "23200",
+		agregar(new Coche("Seat", "Leon FR", "23200 €",
 				"https://www.motor.es/seat/leon/fr"));
 	}
 

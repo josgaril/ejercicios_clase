@@ -8,16 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mvc.repositorios.CocheTreeMap;
-import mvc.repositorios.MotoTreeMap;
 import mvc.repositorios.VideoTreeMap;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
+@WebServlet("/indexvideo")
+public class IndexVideoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("motos", MotoTreeMap.getInstancia().obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		request.setAttribute("videos", VideoTreeMap.getInstancia().obtenerTodos());
+		request.getRequestDispatcher("/WEB-INF/vistas/indexvideo.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -6,20 +6,17 @@
 	<h1 class="display-">CVJ Concesionario de Vehículos Josete</h1>
 	<p class="lead">Su concesionario de confianza</p>
 </header>
-
-<section id="motos" class="row">
-	<c:forEach items="${motos}" var="moto">
-		<article id="moto" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<!-- ID: ${moto.id} -->
+<h3>VIDEOS</h3>
+<section id="videos" class="row">
+	<c:forEach items="${videos}" var="video">
+		<article id="video" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+			<!-- ID: ${video.id} -->
 			<div class="card-body">
-				<img src="imgs/${moto.id}.jpg" class="card-img-top" alt="">
-				<h3 class="card-title">${moto.marca}</h3>
-				<p class="card-text">${moto.modelo}</p>
-				<p class="card-text">Precio: ${moto.precio}</p>
+				<img src="imgs/video/${video.id}.jpg" class="card-img-top" alt="">
+				<h3 class="card-title">${video.nombre}</h3>
 				<p class="card-text">
-					<a href="${moto.url}">${moto.url}</a>
+					<a href="${video.url}">${video.url}</a>
 				</p>
-				
 			</div>
 		</article>
 	</c:forEach>
