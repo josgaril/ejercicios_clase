@@ -8,7 +8,7 @@ public class Moto {
 	private String url;
 	
 	private boolean correcto = true;
-	private String errorMarca, errorModelo, errorPrecio, errorURL;
+	private String errorMarca, errorModelo, errorPrecio, errorUrl;
 
 	public Moto(Long id, String marca, String modelo, String precio, String url) {
 		setId(id);
@@ -110,20 +110,20 @@ public class Moto {
 		this.errorPrecio = errorPrecio;
 	}
 
-	public String getErrorURL() {
-		return errorURL;
+	public String geterrorUrl() {
+		return errorUrl;
 	}
 
-	public void setErrorURL(String errorURL) {
+	public void seterrorUrl(String errorUrl) {
 		correcto = false;
-		this.errorURL = errorURL;
+		this.errorUrl = errorUrl;
 	}
 
 	@Override
 	public String toString() {
 		return "Moto [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", url=" + url
 				+ ", correcto=" + correcto + ", errorMarca=" + errorMarca + ", errorModelo=" + errorModelo
-				+ ", errorPrecio=" + errorPrecio + ", errorURL=" + errorURL + "]";
+				+ ", errorPrecio=" + errorPrecio + ", errorURL=" + errorUrl + "]";
 	}
 	
 	

@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc.repositorios.MotoTreeMap;
-
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
+	
+// La ruta /admin/index se puede crear ya que podemos inventarnos cualquier ruta
+// http://localhost:8080/EjemploMVC/admin/index
+// NO hay ninguna carpeta admin
+@WebServlet("/admin/index")
+public class AdminIndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("motos", MotoTreeMap.getInstancia().obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		request.setAttribute("moto", MotoTreeMap.getInstancia().obtenerTodos());
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
