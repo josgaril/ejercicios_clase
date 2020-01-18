@@ -9,8 +9,7 @@
 <h3>MOTOS</h3>
 <section id="motos" class="row">
 	<c:forEach items="${motos}" var="moto">
-		<article id="moto"
-			class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+		<article id="moto" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
 			<!-- ID: ${moto.id} -->
 			<div class="card-body">
 				<img src="imgs/motos/${moto.id}.jpg" class="card-img-top" alt="">

@@ -52,7 +52,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="admin/indexmotos">Administrador</a></li>
+				<li class="nav-item"><a class="nav-link" href="admin/index">Administrador</a></li>
 				<li class="nav-item"><a class="nav-link" href="/WEB-INF/vistas/indexmotos.jsp">Motos</a></li>
 				<li class="nav-item"><a class="nav-link" href="/EjercicioMVCConcesionario/WEB-INF/vistas/indexcoches">Coches</a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#"
@@ -64,7 +64,6 @@
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 
-			<%-- añadir cuando tengamos el login
 			 <c:choose>
 				<c:when test="${sessionScope.email != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.email} </span>
@@ -80,8 +79,22 @@
 					</ul>
 				</c:otherwise>
 			</c:choose> 
-			--%>
 
 		</div>
 	</nav>
+	<c:if test="${alertatexto != null}">
+		<div class="alert alert-${alertanivel} alert-dismissible fade show"
+			role="alert">
+			${alertatexto}
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<%
+			session.removeAttribute("alertatexto");
+				session.removeAttribute("alertanivel");
+		%>
+	</c:if>
 	<main class="container-fluid">
