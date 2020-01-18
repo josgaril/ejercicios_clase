@@ -51,7 +51,6 @@ public class CocheTreeMap implements Dao<Coche> {
 
 	@Override
 	public void borrar(Long id) {
-		// TODO Auto-generated method stub
 		coches.remove(id);
 	}
 
