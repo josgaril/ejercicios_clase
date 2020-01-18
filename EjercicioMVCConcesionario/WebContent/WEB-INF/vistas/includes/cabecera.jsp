@@ -54,7 +54,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="admin/indexmotos">Administrador</a></li>
 				<li class="nav-item"><a class="nav-link" href="/WEB-INF/vistas/indexmotos.jsp">Motos</a></li>
-				<li class="nav-item"><a class="nav-link" href="/indexcoches">Coches</a></li>
+				<li class="nav-item"><a class="nav-link" href="/EjercicioMVCConcesionario/WEB-INF/vistas/indexcoches">Coches</a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#"
 					tabindex="-1" aria-disabled="true">Quads</a></li>
 			</ul>
