@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<header class="jumbotron">
-	<h1 class="display-">CVJ Concesionario de Vehículos Josete</h1>
-	<p class="lead">Su concesionario de confianza</p>
-</header>
 <h3>VIDEOS</h3>
 <section id="videos" class="row">
 	<c:forEach items="${videos}" var="video">
