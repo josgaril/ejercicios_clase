@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mvc.repositorios.MotoTreeMap;
+import mvc.repositorios.CocheTreeMap;
 	
 // La ruta /admin/index se puede crear ya que podemos inventarnos cualquier ruta
 // http://localhost:8080/EjemploMVC/admin/index
 // NO hay ninguna carpeta admin
-@WebServlet("/admin/indexmoto")
-public class AdminIndexMotoController extends HttpServlet {
+@WebServlet("/admin/indexcoche")
+public class AdminIndexCocheController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("motos", MotoTreeMap.getInstancia().obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/indexmoto.jsp").forward(request, response);
+		request.setAttribute("coches", CocheTreeMap.getInstancia().obtenerTodos());
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/indexcoche.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

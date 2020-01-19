@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<h3>COCHES</h3>
+<h3>COCHES DISPONIBLES</h3>
 <section id="coches" class="row">
 	<c:forEach items="${coches}" var="coche">
 		<article id="coche"
