@@ -36,6 +36,7 @@
 	</table>
 
 	<a class="btn btn-primary" href="admin/quad?op=agregar">Añadir</a>
+	<a class="btn btn-success" href="admin/index"> Atrás</a>
 
 </section>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
