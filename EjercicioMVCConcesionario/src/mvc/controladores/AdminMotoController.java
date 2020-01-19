@@ -82,7 +82,7 @@ public class AdminMotoController extends HttpServlet {
 			// A diferencia del requestDispatcher, el response.sendRedirect lo que hace
 			// es pedir al navegador que cargue la URL que le enviamos
 			// SE PIERDEN TODAS LAS VARIABLES DE REQUEST
-			response.sendRedirect(request.getContextPath() + "/admin/index");
+			response.sendRedirect(request.getContextPath() + "/admin/indexmoto");
 		} else {
 			request.setAttribute("alertatexto", "Hay un error en el formulario. Revise los datos.");
 			request.setAttribute("alertanivel", "danger");

@@ -28,7 +28,7 @@
 					<td><img class="img-thumbnail" style="height: 4rem;"
 						src="imgs/coches/${coche.modelo}.jpg" /></td>
 					<td><a class="btn btn-warning"
-						href="admin/quad?id=${coche.id}&op=modificar">Modificar</a> <a
+						href="admin/coche?id=${coche.id}&op=modificar">Modificar</a> <a
 						class="btn btn-danger" href="admin/borrar?id=${coche.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
