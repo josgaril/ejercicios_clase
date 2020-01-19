@@ -9,7 +9,7 @@
 			class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
 			<!-- ID: ${coche.id} -->
 			<div class="card-body">
-				<img src="imgs/coches/${coche.id}.jpg" class="card-img-top" alt="">
+				<img src="imgs/coches/${coche.modelo}.jpg" class="card-img-top" alt="">
 				<h3 class="card-title">${coche.marca}</h3>
 				<p class="card-text">
 					${coche.modelo} 
