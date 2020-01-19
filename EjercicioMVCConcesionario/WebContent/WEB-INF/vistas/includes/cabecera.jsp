@@ -53,11 +53,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="admin/index">Administrador</a></li>
-				<li class="nav-item"><a class="nav-link" href="indexmoto">Motos</a></li>
-				<li class="nav-item"><a class="nav-link" href="indexcoche">Coches</a></li>
-				<li class="nav-item"><a class="nav-link" href="indexquad">Quads</a></li>
+				<li class="nav-item"><a class="nav-link" href="indexmoto">Motos <i class="fas fa-motorcycle"></i></a></li>
+				<li class="nav-item"><a class="nav-link" href="indexcoche">Coches <i class="fas fa-car-side"></i></a></li>
+				<li class="nav-item"><a class="nav-link" href="indexquad">Quads <i class="fas fa-truck-monster"></i></a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#"
-					tabindex="-1" aria-disabled="true">Tractores (Próximamente)</a></li>
+					tabindex="-1" aria-disabled="true">Tractores <i class="fas fa-tractor"></i>(Próximamente)</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
@@ -75,7 +75,7 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="login">Login</a>
+						<li class="nav-item"><a class="nav-link" href="login">Login <i class="fas fa-user-cog"></i></a>
 						</li>
 					</ul>
 				</c:otherwise>
