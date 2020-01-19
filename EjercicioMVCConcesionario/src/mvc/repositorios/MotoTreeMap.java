@@ -16,7 +16,7 @@ public class MotoTreeMap implements Dao<Moto> {
 		agregar(new Moto("Yamaha", "YZF-R1", "10200 €",
 				"https://www.yamaha-motor.eu/es/es/products/motocicletas/supersport/yzf-r1/"));
 
-		agregar(new Moto("Honda", "CBR 750 ", "6580",
+		agregar(new Moto("Honda", "CBR 750 ", "6580 €",
 				"https://moto.suzuki.es/motos/deportivas/2020/gsx-r1000r/ficha-tecnica/?ib_comercializa=1"));
 	}
 
