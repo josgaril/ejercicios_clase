@@ -32,6 +32,14 @@
 			<a href="indexquad" class="btn btn-primary">QUADS</a>
 		</div>
 	</article>
+		<article class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+		style="width: 18rem;">
+		<img src="imgs/vehiculos/tractores.jpg" class="card-img-top"
+			alt="Imagen de tractores">
+		<div class="card-body">
+			<a href="indextractor" class="btn btn-primary">TRACTORES</a>
+		</div>
+	</article>
 </section>
 
 <p>Navegue por el menú para visitar los vehículos deseados</p>

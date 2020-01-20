@@ -7,6 +7,7 @@
 		<a class="btn btn-primary btn-large" href="admin/indexmoto" role="button">Motos</a>
 		<a class="btn btn-primary btn-large" href="admin/indexcoche" role="button">Coches</a>
 		<a class="btn btn-primary btn-large" href="admin/indexquad" role="button">Quads</a>
+		<a class="btn btn-primary btn-large" href="admin/indextractor" role="button">Tractores</a>
 	</section>
 	
 <%-- <section id="motos">
