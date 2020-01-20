@@ -26,7 +26,7 @@
 	</article>
 	<article class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
 		style="width: 18rem;">
-		<img src="imgs/vehiculos/kuads.jpg" class="card-img-top"
+		<img src="imgs/vehiculos/quads.jpg" class="card-img-top"
 			alt="Imagen de quads">
 		<div class="card-body">
 			<a href="indexquad" class="btn btn-primary">QUADS</a>

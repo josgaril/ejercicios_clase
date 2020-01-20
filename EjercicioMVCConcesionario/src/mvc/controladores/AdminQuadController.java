@@ -30,7 +30,16 @@ public class AdminQuadController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		request.getRequestDispatcher(QUAD_JSP).forward(request, response);
+		Dao<Quad> dao = QuadTreeMap.getInstancia();
+		if ("borrar".equals(op)) {
+			dao.borrar(Long.parseLong(id));
+			HttpSession session = request.getSession();
+			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");
+			session.setAttribute("alertanivel", "success");
+			response.sendRedirect(request.getContextPath() + "/admin/indexquad");
+		} else {
+			request.getRequestDispatcher(QUAD_JSP).forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +48,7 @@ public class AdminQuadController extends HttpServlet {
 		// SI QUEREMOS QUE SE GUARDEN CORRECTAMENTE LOS CARACTERES
 		// Ññá...
 		request.setCharacterEncoding("UTF-8");
-		
+
 		Dao<Quad> dao = QuadTreeMap.getInstancia();
 
 		String op = request.getParameter("op");
@@ -49,6 +58,8 @@ public class AdminQuadController extends HttpServlet {
 		String precio = request.getParameter("precio");
 		String url = request.getParameter("url");
 
+//		Boolean borrado = false;
+
 		Quad quad = null;
 
 		switch (op) {
@@ -57,19 +68,15 @@ public class AdminQuadController extends HttpServlet {
 			if (quad.isCorrecto()) {
 				dao.agregar(quad);
 			}
-
 			break;
+
 		case "modificar":
 			quad = new Quad(Long.parseLong(id), marca, modelo, precio, url);
 			if (quad.isCorrecto()) {
 				dao.modificar(quad);
 			}
 			break;
-			
-		/*
-		 * case "borrar": dao.borrar(Long.parseLong(id)); break;
-		 */
-			
+
 		default:
 			throw new RuntimeException("Operación no reconocida");
 		}

@@ -6,16 +6,15 @@
 <h3>QUADS DISPONIBLES</h3>
 <section id="quads" class="row">
 	<c:forEach items="${quads}" var="quad">
-		<article id="quad" class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+		<article id="quad"
+			class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
 			<!-- ID: ${quad.id} -->
 			<div class="card-body">
 				<img src="imgs/quads/${quad.modelo}.jpg" class="card-img-top" alt="">
 				<h3 class="card-title">${quad.marca}</h3>
-				<p class="card-text">
-					${quad.modelo}
-					${quad.precio}
-					<a href="${quad.url}">${quad.url}</a>
-				</p>
+				<p class="card-text">${quad.modelo}<p>
+				<p class="card-text">Precio: ${quad.precio}</p>
+				<p class="card-text"><a href="${quad.url}">${quad.url}</a></p>
 			</div>
 		</article>
 	</c:forEach>

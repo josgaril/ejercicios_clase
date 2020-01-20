@@ -30,7 +30,16 @@ public class AdminMotoController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		request.getRequestDispatcher(MOTO_JSP).forward(request, response);
+		Dao<Moto> dao = MotoTreeMap.getInstancia();
+		if ("borrar".equals(op)) {
+			dao.borrar(Long.parseLong(id));
+			HttpSession session = request.getSession();
+			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");
+			session.setAttribute("alertanivel", "success");
+			response.sendRedirect(request.getContextPath() + "/admin/indexmoto");
+		} else {
+			request.getRequestDispatcher(MOTO_JSP).forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +48,7 @@ public class AdminMotoController extends HttpServlet {
 		// SI QUEREMOS QUE SE GUARDEN CORRECTAMENTE LOS CARACTERES
 		// Ññá...
 		request.setCharacterEncoding("UTF-8");
-		
+
 		Dao<Moto> dao = MotoTreeMap.getInstancia();
 
 		String op = request.getParameter("op");

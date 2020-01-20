@@ -30,7 +30,16 @@ public class AdminCocheController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		request.getRequestDispatcher(COCHE_JSP).forward(request, response);
+		Dao<Coche> dao = CocheTreeMap.getInstancia();
+		if ("borrar".equals(op)) {
+			dao.borrar(Long.parseLong(id));
+			HttpSession session = request.getSession();
+			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");
+			session.setAttribute("alertanivel", "success");
+			response.sendRedirect(request.getContextPath() + "/admin/indexcoche");
+		} else {
+			request.getRequestDispatcher(COCHE_JSP).forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
