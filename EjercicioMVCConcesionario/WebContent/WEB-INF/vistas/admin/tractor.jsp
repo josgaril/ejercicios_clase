@@ -62,15 +62,29 @@
 				</div>
 			</div>
 			
-			<div class="form-group row">
-				<label for="modelo" class="col-sm-2 col-form-label">IMAGEN</label>
-				<div class="col-sm-10">
-					<input
+ 			<div class="form-group row">
+ 				<label for="imagen" class="col-sm-2 col-form-label">IMAGEN</label>
+				<div class="col-sm-10"> 
+ 					<input
 						class="form-control ${primeravez ? '' : (tractor.errorImagen== null ? 'is-valid' : 'is-invalid') }"
-						id="modelo" name="imagen" value="${tractor.imagen}">
+						id="imagen" name="imagen" value="${tractor.imagen}">
 					<div class="invalid-feedback">${tractor.errorImagen}</div>
+ 				</div> 
+			</div> 
+			
+			
+			<%-- OPCION DE BUSCAR LA IMAGEN Y RECIBIRLA EN VEZ DE INTRODUCIR LOS DATOS MANUALMENTE
+			<div class="form-group row">
+				<label for="imagen" class="col-sm-2 col-form-label">IMAGEN2</label>
+				<div class="custom-file">
+						<input type="file"
+							class="form-control ${primeravez ? '' : (tractor.errorImagen== null ? 'is-valid' : 'is-invalid') }"
+							id="imagen" name="imagen" value="${tractor.imagen} custom-file-input">
+						<label class="custom-file-label" for="imagen">Escoger Imagen</label>
+						<div class="invalid-feedback">${tractor.errorImagen}</div>
 				</div>
 			</div>
+		 --%>
 			
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">
