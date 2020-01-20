@@ -64,8 +64,12 @@ public class AdminQuadController extends HttpServlet {
 			if (quad.isCorrecto()) {
 				dao.modificar(quad);
 			}
-
 			break;
+			
+		/*
+		 * case "borrar": dao.borrar(Long.parseLong(id)); break;
+		 */
+			
 		default:
 			throw new RuntimeException("Operación no reconocida");
 		}
