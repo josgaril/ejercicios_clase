@@ -23,7 +23,7 @@
 					<th>${moto.id}</th>
 					<td>${moto.marca}</td>
 					<td>${moto.modelo}</td>
-					<td>${moto.precio}</td>
+					<td>${moto.precio} €</td>
 					<td><a href="${moto.url}">${moto.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;"
 						src="imgs/motos/${moto.modelo}.jpg" /></td>

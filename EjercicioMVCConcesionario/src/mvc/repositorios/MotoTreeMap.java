@@ -11,12 +11,12 @@ public class MotoTreeMap implements Dao<Moto> {
 	private final static MotoTreeMap INSTANCIA = new MotoTreeMap();
 
 	private MotoTreeMap() {
-		agregar(new Moto("Kawasaki", "Ninja 650", "8900 €",
+		agregar(new Moto("Kawasaki", "Ninja 650", "8900",
 				"https://www.kawasaki.es/es/products/Supersport/2020/Ninja_650/overview?Uid=0860WlFfWlwMXFhdDlBYXF0NDApYXAtfXg5aCllZXQ5cClA"));
-		agregar(new Moto("Yamaha", "YZF-R1", "10200 €",
+		agregar(new Moto("Yamaha", "YZF-R1", "10200",
 				"https://www.yamaha-motor.eu/es/es/products/motocicletas/supersport/yzf-r1/"));
 
-		agregar(new Moto("Suzuki", "GSX 1000R", "12580 €",
+		agregar(new Moto("Suzuki", "GSX 1000R", "12580",
 				"https://moto.suzuki.es/motos/deportivas/2020/gsx-r1000r/ficha-tecnica/?ib_comercializa=1"));
 	}
 

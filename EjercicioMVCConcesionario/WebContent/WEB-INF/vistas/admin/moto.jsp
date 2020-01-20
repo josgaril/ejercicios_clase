@@ -20,33 +20,55 @@
 			<div class="form-group row">
 				<label for="marca" class="col-sm-2 col-form-label">Marca</label>
 				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (moto.errorMarca == null ? 'is-valid' : 'is-invalid') }" id="marca" name="marca"
-						value="${moto.marca}">
+					<input
+						class="form-control ${primeravez ? '' : (moto.errorMarca == null ? 'is-valid' : 'is-invalid') }"
+						id="marca" name="marca" value="${moto.marca}">
 					<div class="invalid-feedback">${moto.errorMarca}</div>
 				</div>
 			</div>
-				<div class="form-group row">
+			<div class="form-group row">
 				<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
 				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (moto.errorModelo== null ? 'is-valid' : 'is-invalid') }" id="modelo" name="modelo"
-						value="${moto.modelo}">
+					<input
+						class="form-control ${primeravez ? '' : (moto.errorModelo== null ? 'is-valid' : 'is-invalid') }"
+						id="modelo" name="modelo" value="${moto.modelo}">
 					<div class="invalid-feedback">${moto.errorModelo}</div>
 				</div>
 			</div>
-				<div class="form-group row">
+			<!-- 			<div class="form-group row"> -->
+			<!-- 				<label for="precio" class="col-sm-2 col-form-label">Precio</label> -->
+			<!-- 				<div class="col-sm-10"> -->
+			<!-- 					<input -->
+			<%-- 						class="form-control ${primeravez ? '' : (moto.errorPrecio == null ? 'is-valid' : 'is-invalid') }" --%>
+			<%-- 						id="precio" name="precio" value="${moto.precio}"> --%>
+			<%-- 					<div class="invalid-feedback">${moto.errorPrecio}</div> --%>
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+
+			<div class="form-group row">
 				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
-				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (moto.errorPrecio == null ? 'is-valid' : 'is-invalid') }" id="precio" name="precio"
-						value="${moto.precio}">
-					<div class="invalid-feedback">${moto.errorPrecio}</div>
+				<div class="col-sm-10 input-group ">
+					<input
+						class="form-control ${primeravez ? '' : (moto.errorPrecio == null ? 'is-valid' : 'is-invalid') }"
+						id="precio" name="precio" value="${moto.precio}"
+						placeholder="precio" aria-label="precio"
+						aria-describedby="simboloprecio">
+					<div class="input-group-append">
+						<span class="input-group-text" id="simboloprecio"> €</span>
+					</div>
+
 				</div>
 			</div>
-			
+
+
+
+
 			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control ${primeravez ? '' : (moto.errorUrl == null ? 'is-valid' : 'is-invalid') }" id="url" name="url"
-						value="${moto.url}">
+					<input type="url"
+						class="form-control ${primeravez ? '' : (moto.errorUrl == null ? 'is-valid' : 'is-invalid') }"
+						id="url" name="url" value="${moto.url}">
 					<div class="invalid-feedback">${moto.errorUrl}</div>
 				</div>
 

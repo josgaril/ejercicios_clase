@@ -13,7 +13,7 @@
 				<img src="imgs/quads/${quad.modelo}.jpg" class="card-img-top" alt="">
 				<h3 class="card-title">${quad.marca}</h3>
 				<p class="card-text">${quad.modelo}<p>
-				<p class="card-text">Precio: ${quad.precio}</p>
+				<p class="card-text">Precio: ${quad.precio} €</p>
 				<p class="card-text"><a href="${quad.url}">${quad.url}</a></p>
 			</div>
 		</article>

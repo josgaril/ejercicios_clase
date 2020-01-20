@@ -11,12 +11,12 @@ public class QuadTreeMap implements Dao<Quad> {
 	private final static QuadTreeMap INSTANCIA = new QuadTreeMap();
 
 	private QuadTreeMap() {
-		agregar(new Quad("Honda", "TRX 350", "8400 €",
+		agregar(new Quad("Honda", "TRX 350", "8400",
 				"https://www.arpem.com/motos/modelos/honda/modelos-05/honda-trx-350-fe-fourtrax.html"));
-		agregar(new Quad("Yamaha", "Raptor 660", "8999 €",
+		agregar(new Quad("Yamaha", "Raptor 660", "8999",
 				"https://www.quadestonline.com/blog/2013/10/08/especial-raptor-660/"));
 
-		agregar(new Quad("Suzuki", "LTZ 400", "8580 €",
+		agregar(new Quad("Suzuki", "LTZ 400", "8580",
 				"https://alexquad.wordpress.com/2007/10/11/nuevo-suzuki-ltz-400-edicion-especial/"));
 	}
 

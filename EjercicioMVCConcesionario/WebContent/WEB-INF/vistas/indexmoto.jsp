@@ -12,7 +12,7 @@
 				<img src="imgs/motos/${moto.modelo}.jpg" class="card-img-top" alt="">
 				<h3 class="card-title">${moto.marca}</h3>
 				<p class="card-text">${moto.modelo}<p>
-				<p class="card-text">Precio: ${moto.precio}</p>
+				<p class="card-text">Precio: ${moto.precio} €</p>
 				<p class="card-text"><a href="${moto.url}">${moto.url}</a></p>
 				</p>
 			</div>
