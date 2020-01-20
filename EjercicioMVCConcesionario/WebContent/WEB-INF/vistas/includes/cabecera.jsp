@@ -39,7 +39,7 @@
 </head>
 <body>
 	<header>
-		<h1>Confeccionando pagina CVJ</h1>
+		<h1>Página CVJ en mantenimiento</h1>
 	</header>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<a class="navbar-brand" href="#">CVJ</a>

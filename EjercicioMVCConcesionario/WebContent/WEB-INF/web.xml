@@ -4,4 +4,9 @@
   <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
+  <!-- Desactivado para hacer pruebas
+ 	<error-page>
+		<location>/error</location>
+	</error-page> 
+	-->
 </web-app>
