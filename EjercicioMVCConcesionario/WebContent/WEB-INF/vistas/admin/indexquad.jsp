@@ -29,7 +29,7 @@
 						src="imgs/quads/${quad.modelo}.jpg" /></td>
 					<td><a class="btn btn-warning"
 						href="admin/quad?id=${quad.id}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/borrar?id=${quad.id}">Borrar</a></td>
+						class="btn btn-danger" href="admin/borrarquad?id=${quad.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

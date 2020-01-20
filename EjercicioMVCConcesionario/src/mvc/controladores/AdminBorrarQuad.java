@@ -8,14 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mvc.repositorios.MotoTreeMap;
+import mvc.repositorios.QuadTreeMap;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
+@WebServlet("/admin/borrarquad")
+public class AdminBorrarQuad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setAttribute("motos", MotoTreeMap.getInstancia().obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		String id = request.getParameter("id");
+		
+		QuadTreeMap.getInstancia().borrar(Long.parseLong(id));
+		
+		response.sendRedirect(request.getContextPath() + "/admin/indexquad");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

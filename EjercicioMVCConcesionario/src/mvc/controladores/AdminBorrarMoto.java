@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import mvc.repositorios.MotoTreeMap;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
+@WebServlet("/admin/borrarmoto")
+public class AdminBorrarMoto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setAttribute("motos", MotoTreeMap.getInstancia().obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		String id = request.getParameter("id");
+		
+		MotoTreeMap.getInstancia().borrar(Long.parseLong(id));
+		
+		response.sendRedirect(request.getContextPath() + "/admin/indexmoto");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
