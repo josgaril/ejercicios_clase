@@ -7,6 +7,33 @@
 	<p class="lead">Su concesionario de confianza</p>
 </header>
 
+<section id="vehiculos" class="row">
+	<article class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+		style="width: 18rem;">
+		<img src="imgs/vehiculos/motos.jpg" class="card-img-top"
+			alt="Imagen de motos">
+		<div class="card-body">
+			<a href="indexmoto" class="btn btn-primary">MOTOS</a>
+		</div>
+	</article>
+	<article class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+		style="width: 18rem;">
+		<img src="imgs/vehiculos/coches.jpg" class="card-img-top"
+			alt="Imagen de coches">
+		<div class="card-body">
+			<a href="indexcoche" class="btn btn-primary">COCHES</a>
+		</div>
+	</article>
+	<article class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+		style="width: 18rem;">
+		<img src="imgs/vehiculos/kuads.jpg" class="card-img-top"
+			alt="Imagen de quads">
+		<div class="card-body">
+			<a href="indexquad" class="btn btn-primary">QUADS</a>
+		</div>
+	</article>
+</section>
+
 <p>Navegue por el menú para visitar los vehículos deseados</p>
 
 <%-- <h3>MOTOS</h3>
