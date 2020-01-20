@@ -17,36 +17,47 @@
 						value="${quad.id}" readonly>
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="marca" class="col-sm-2 col-form-label">Marca</label>
 				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (quad.errorMarca == null ? 'is-valid' : 'is-invalid') }" id="marca" name="marca"
-						value="${quad.marca}">
+					<input
+						class="form-control ${primeravez ? '' : (quad.errorMarca == null ? 'is-valid' : 'is-invalid') }"
+						id="marca" name="marca" value="${quad.marca}">
 					<div class="invalid-feedback">${quad.errorMarca}</div>
-				</div>
-			</div>
-				<div class="form-group row">
-				<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
-				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (quad.errorModelo== null ? 'is-valid' : 'is-invalid') }" id="modelo" name="modelo"
-						value="${quad.modelo}">
-					<div class="invalid-feedback">${quad.errorModelo}</div>
-				</div>
-			</div>
-				<div class="form-group row">
-				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
-				<div class="col-sm-10">
-					<input class="form-control ${primeravez ? '' : (quad.errorPrecio == null ? 'is-valid' : 'is-invalid') }" id="precio" name="precio"
-						value="${quad.precio}">
-					<div class="invalid-feedback">${quad.errorPrecio}</div>
 				</div>
 			</div>
 			
 			<div class="form-group row">
+				<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
+				<div class="col-sm-10">
+					<input
+						class="form-control ${primeravez ? '' : (quad.errorModelo== null ? 'is-valid' : 'is-invalid') }"
+						id="modelo" name="modelo" value="${quad.modelo}">
+					<div class="invalid-feedback">${quad.errorModelo}</div>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
+				<div class="col-sm-10 input-group ">
+					<input type="number"
+						class="form-control ${primeravez ? '' : (quad.errorPrecio == null ? 'is-valid' : 'is-invalid') }"
+						id="precio" name="precio" value="${quad.precio}"
+						placeholder="precio" aria-label="precio"
+						aria-describedby="simboloprecio">
+					<div class="input-group-append">
+						<span class="input-group-text" id="simboloprecio"> €</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control ${primeravez ? '' : (quad.errorUrl == null ? 'is-valid' : 'is-invalid') }" id="url" name="url"
-						value="${quad.url}">
+					<input type="url"
+						class="form-control ${primeravez ? '' : (quad.errorUrl == null ? 'is-valid' : 'is-invalid') }"
+						id="url" name="url" value="${quad.url}">
 					<div class="invalid-feedback">${quad.errorUrl}</div>
 				</div>
 

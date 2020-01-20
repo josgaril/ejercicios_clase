@@ -17,6 +17,7 @@
 						value="${moto.id}" readonly>
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="marca" class="col-sm-2 col-form-label">Marca</label>
 				<div class="col-sm-10">
@@ -26,6 +27,7 @@
 					<div class="invalid-feedback">${moto.errorMarca}</div>
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
 				<div class="col-sm-10">
@@ -35,20 +37,11 @@
 					<div class="invalid-feedback">${moto.errorModelo}</div>
 				</div>
 			</div>
-			<!-- 			<div class="form-group row"> -->
-			<!-- 				<label for="precio" class="col-sm-2 col-form-label">Precio</label> -->
-			<!-- 				<div class="col-sm-10"> -->
-			<!-- 					<input -->
-			<%-- 						class="form-control ${primeravez ? '' : (moto.errorPrecio == null ? 'is-valid' : 'is-invalid') }" --%>
-			<%-- 						id="precio" name="precio" value="${moto.precio}"> --%>
-			<%-- 					<div class="invalid-feedback">${moto.errorPrecio}</div> --%>
-			<!-- 				</div> -->
-			<!-- 			</div> -->
 
 			<div class="form-group row">
 				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 				<div class="col-sm-10 input-group ">
-					<input
+					<input type="number"
 						class="form-control ${primeravez ? '' : (moto.errorPrecio == null ? 'is-valid' : 'is-invalid') }"
 						id="precio" name="precio" value="${moto.precio}"
 						placeholder="precio" aria-label="precio"
@@ -56,12 +49,8 @@
 					<div class="input-group-append">
 						<span class="input-group-text" id="simboloprecio"> €</span>
 					</div>
-
 				</div>
 			</div>
-
-
-
 
 			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
