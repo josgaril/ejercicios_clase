@@ -72,6 +72,22 @@
  				</div> 
 			</div> 
 			
+			<div class="form-group row">
+				<label for="fecha" class="col-sm-2 col-form-label">Fecha de
+					Fabricación</label>
+				<div class="col-sm-10">
+				<input id="fecha" type="date" name="fecha" step="1" value="Date()" readonly>	
+	
+				</div>
+			</div>
+				<div class="form-group row">
+				<label for="fecha" class="col-sm-2 col-form-label">Fecha de
+					registro</label>
+				<div class="col-sm-10">
+				<input id="fecha" type="date" name="fecha" step="1" min="2013-12-05" max="2013-12-25" value="">	
+	
+				</div>
+			</div>
 			
 			<%-- OPCION DE BUSCAR LA IMAGEN Y RECIBIRLA EN VEZ DE INTRODUCIR LOS DATOS MANUALMENTE
 			<div class="form-group row">
