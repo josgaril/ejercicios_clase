@@ -14,6 +14,7 @@
 				<th>Precio</th>
 				<th>URL</th>
 				<th>Imagen</th>
+				<th>Fecha Publicación</th>
 				<th>Opciones</th>
 			</tr>
 		</thead>
@@ -27,6 +28,7 @@
 					<td><a href="${tractor.url}" target="_blank">${tractor.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;"
 						src="imgs/tractores/${tractor.imagen}.jpg" /></td>
+					<td>${tractor.fecha}</td>
 					<td>
 						<a class="btn btn-warning" href="admin/tractor?id=${tractor.id}&op=modificar">Modificar</a> 
 					<a class="btn btn-danger" href="admin/tractor?id=${tractor.id}&op=borrar">Borrar</a>

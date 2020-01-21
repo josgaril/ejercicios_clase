@@ -58,20 +58,20 @@ public class AdminTractorController extends HttpServlet {
 		String precio = request.getParameter("precio");
 		String url = request.getParameter("url");
 		String imagen = request.getParameter("imagen");
-
+		String fecha = request.getParameter("fecha");
 
 		Tractor tractor = null;
 
 		switch (op) {
 		case "agregar":
-			tractor = new Tractor(marca, modelo, precio, url, imagen);
+			tractor = new Tractor(marca, modelo, precio, url, imagen,fecha);
 			if (tractor.isCorrecto()) {
 				dao.agregar(tractor);
 			}
 
 			break;
 		case "modificar":
-			tractor = new Tractor(Long.parseLong(id), marca, modelo, precio, url, imagen);
+			tractor = new Tractor(Long.parseLong(id), marca, modelo, precio, url, imagen, fecha);
 			if (tractor.isCorrecto()) {
 				dao.modificar(tractor);
 			}

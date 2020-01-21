@@ -1,5 +1,10 @@
 package mvc.modelos;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Tractor {
 	private Long id;
 	private String marca;
@@ -7,25 +12,27 @@ public class Tractor {
 	private String precio;
 	private String url;
 	private String imagen;
+	private String fecha;
 	
 	private boolean correcto = true;
-	private String errorMarca, errorModelo, errorPrecio, errorUrl, errorImagen;
+	private String errorMarca, errorModelo, errorPrecio, errorUrl, errorImagen,errorFecha;
 
-	public Tractor(Long id, String marca, String modelo, String precio, String url,String imagen) {
+	public Tractor(Long id, String marca, String modelo, String precio, String url,String imagen, String fecha) {
 		setId(id);
 		setMarca(marca);
 		setModelo(modelo);
 		setPrecio(precio);
 		setUrl(url);
 		setImagen(imagen);
+		setFecha(fecha);
 	}
 
 	public Tractor() {
 		
 	}
 	
-	public Tractor( String marca, String modelo, String precio, String url,String imagen) {
-		this(null,marca,modelo,precio,url,imagen);
+	public Tractor( String marca, String modelo, String precio, String url,String imagen, String fecha) {
+		this(null,marca,modelo,precio,url,imagen,fecha);
 	}
 
 	public Long getId() {
@@ -85,6 +92,18 @@ public class Tractor {
 		this.imagen = imagen;
 	}
 
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+	     Date date = Calendar.getInstance().getTime();  
+         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");  
+         fecha = dateFormat.format(date);  
+		
+		this.fecha = fecha;
+	}
+
 	public boolean isCorrecto() {
 		return correcto;
 	}
@@ -120,15 +139,15 @@ public class Tractor {
 		this.errorPrecio = errorPrecio;
 	}
 
-	public String geterrorUrl() {
+	public String getErrorUrl() {
 		return errorUrl;
 	}
 
-	public void seterrorUrl(String errorUrl) {
-		correcto = false;
+	public void setErrorUrl(String errorUrl) {
 		this.errorUrl = errorUrl;
 	}
-
+	
+	
 	public String getErrorImagen() {
 		return errorImagen;
 	}
@@ -137,16 +156,26 @@ public class Tractor {
 		this.errorImagen = errorImagen;
 	}
 
+	public String getErrorFecha() {
+		return errorFecha;
+	}
+
+	public void setErrorFecha(String errorFecha) {
+		this.errorFecha = errorFecha;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (correcto ? 1231 : 1237);
+		result = prime * result + ((errorFecha == null) ? 0 : errorFecha.hashCode());
 		result = prime * result + ((errorImagen == null) ? 0 : errorImagen.hashCode());
 		result = prime * result + ((errorMarca == null) ? 0 : errorMarca.hashCode());
 		result = prime * result + ((errorModelo == null) ? 0 : errorModelo.hashCode());
 		result = prime * result + ((errorPrecio == null) ? 0 : errorPrecio.hashCode());
 		result = prime * result + ((errorUrl == null) ? 0 : errorUrl.hashCode());
+		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
 		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
@@ -166,6 +195,11 @@ public class Tractor {
 			return false;
 		Tractor other = (Tractor) obj;
 		if (correcto != other.correcto)
+			return false;
+		if (errorFecha == null) {
+			if (other.errorFecha != null)
+				return false;
+		} else if (!errorFecha.equals(other.errorFecha))
 			return false;
 		if (errorImagen == null) {
 			if (other.errorImagen != null)
@@ -191,6 +225,11 @@ public class Tractor {
 			if (other.errorUrl != null)
 				return false;
 		} else if (!errorUrl.equals(other.errorUrl))
+			return false;
+		if (fecha == null) {
+			if (other.fecha != null)
+				return false;
+		} else if (!fecha.equals(other.fecha))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -228,10 +267,12 @@ public class Tractor {
 	@Override
 	public String toString() {
 		return "Tractor [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", url=" + url
-				+ ", imagen=" + imagen + ", correcto=" + correcto + ", errorMarca=" + errorMarca + ", errorModelo="
-				+ errorModelo + ", errorPrecio=" + errorPrecio + ", errorUrl=" + errorUrl + ", errorImagen="
-				+ errorImagen + "]";
+				+ ", imagen=" + imagen + ", fecha=" + fecha + ", correcto=" + correcto + ", errorMarca=" + errorMarca
+				+ ", errorModelo=" + errorModelo + ", errorPrecio=" + errorPrecio + ", errorUrl=" + errorUrl
+				+ ", errorImagen=" + errorImagen + ", errorFecha=" + errorFecha + "]";
 	}
+
+
 	
 	
 }	

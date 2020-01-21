@@ -17,7 +17,7 @@
 						value="${tractor.id}" readonly>
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="marca" class="col-sm-2 col-form-label">Marca</label>
 				<div class="col-sm-10">
@@ -27,7 +27,7 @@
 					<div class="invalid-feedback">${tractor.errorMarca}</div>
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
 				<div class="col-sm-10">
@@ -61,47 +61,35 @@
 					<div class="invalid-feedback">${tractor.errorUrl}</div>
 				</div>
 			</div>
-			
- 			<div class="form-group row">
- 				<label for="imagen" class="col-sm-2 col-form-label">IMAGEN</label>
-				<div class="col-sm-10"> 
- 					<input
+
+			<div class="form-group row">
+				<label for="imagen" class="col-sm-2 col-form-label">IMAGEN</label>
+				<div class="col-sm-10">
+					<input
 						class="form-control ${primeravez ? '' : (tractor.errorImagen== null ? 'is-valid' : 'is-invalid') }"
 						id="imagen" name="imagen" value="${tractor.imagen}">
 					<div class="invalid-feedback">${tractor.errorImagen}</div>
- 				</div> 
-			</div> 
-			
-			<div class="form-group row">
-				<label for="fecha" class="col-sm-2 col-form-label">Fecha de
-					Fabricación</label>
-				<div class="col-sm-10">
-				<input id="fecha" type="date" name="fecha" step="1" value="Date()" readonly>	
-	
 				</div>
 			</div>
-				<div class="form-group row">
-				<label for="fecha" class="col-sm-2 col-form-label">Fecha de
+
+
+			<div class="form-group row">
+				<label for="fecha" class="col-sm-2 col-form-label">FECHA PUBLICACIÓN</label>
+				<div class="col-sm-10">
+					<input id="fecha" class="form-control" type="text" name="fecha" value="${tractor.fecha}" readonly>
+				</div>
+			</div>
+
+		<!-- 	Falta por implementar bien para la fecha actual
+			<div class="form-group row">
+				<label for="fechareg" class="col-sm-2 col-form-label">Fecha de
 					registro</label>
 				<div class="col-sm-10">
-				<input id="fecha" type="date" name="fecha" step="1" min="2013-12-05" max="2013-12-25" value="">	
-	
+					<input id="fechareg" class="form-control" type="date" name="fechareg" value="" readonly>
 				</div>
-			</div>
-			
-			<%-- OPCION DE BUSCAR LA IMAGEN Y RECIBIRLA EN VEZ DE INTRODUCIR LOS DATOS MANUALMENTE
-			<div class="form-group row">
-				<label for="imagen" class="col-sm-2 col-form-label">IMAGEN2</label>
-				<div class="custom-file">
-						<input type="file"
-							class="form-control ${primeravez ? '' : (tractor.errorImagen== null ? 'is-valid' : 'is-invalid') }"
-							id="imagen" name="imagen" value="${tractor.imagen} custom-file-input">
-						<label class="custom-file-label" for="imagen">Escoger Imagen</label>
-						<div class="invalid-feedback">${tractor.errorImagen}</div>
-				</div>
-			</div>
-		 --%>
-			
+			</div> -->
+
+
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">Aceptar</button>

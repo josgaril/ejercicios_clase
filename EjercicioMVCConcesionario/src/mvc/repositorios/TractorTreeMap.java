@@ -11,14 +11,13 @@ public class TractorTreeMap implements Dao<Tractor> {
 	private final static TractorTreeMap INSTANCIA = new TractorTreeMap();
 
 	private TractorTreeMap() {
-		agregar(new Tractor("John Deere", "7720", "22.550.000"
-				+ "",
-				"https://www.arpem.com/motos/modelos/honda/modelos-05/honda-trx-350-fe-fourtrax.html","JD7720"));
+		agregar(new Tractor("John Deere", "7720", "22.550.000",
+				"https://www.arpem.com/motos/modelos/honda/modelos-05/honda-trx-350-fe-fourtrax.html","JD7720", "05-06-2020"));
 		agregar(new Tractor("Massey Fergusson", "8150", "17.665.256",
-				"https://www.quadestonline.com/blog/2013/10/08/especial-raptor-660/","MF8150"));
+				"https://www.quadestonline.com/blog/2013/10/08/especial-raptor-660/","MF8150", ""));
 
 		agregar(new Tractor("New Holland", "T7-190", "21.198.625",
-				"https://alexquad.wordpress.com/2007/10/11/nuevo-suzuki-ltz-400-edicion-especial/","NHT7-190"));
+				"https://alexquad.wordpress.com/2007/10/11/nuevo-suzuki-ltz-400-edicion-especial/","NHT7-190", "2020-10-12"));
 	}
 
 	public static TractorTreeMap getInstancia() {

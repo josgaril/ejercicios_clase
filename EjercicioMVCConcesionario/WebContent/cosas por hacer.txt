@@ -11,4 +11,9 @@ COMO SE HACE PARA CREAR Y CARGAR ARCHIVOS!!!/en csv por ejemplo y demas
 
 - para pasar el objeto directmanente a un servlet borrar, y que dependiendo del objeto que sea borre una cosa u otra..
 	${objeto/coleccion}
-	�se puede?
+	�se puede?
+	
+	¿ESTO PARA PONER LA HORA ACTUAL EN EL FORMULARIO AL AGREGAR? añadir en 
+	     Date date = Calendar.getInstance().getTime();  
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+                String strDate = dateFormat.format(date);  

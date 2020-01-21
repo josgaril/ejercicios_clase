@@ -16,6 +16,7 @@
 				<p class="card-text">
 					<a href="${tractor.url}" target="_blank">${tractor.url}</a>
 				</p>
+				<p class="card-text">${tractor.fecha}</p>
 			</div>
 		</article>
 	</c:forEach>
