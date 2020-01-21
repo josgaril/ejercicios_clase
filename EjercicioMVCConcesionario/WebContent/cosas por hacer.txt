@@ -14,6 +14,11 @@ COMO SE HACE PARA CREAR Y CARGAR ARCHIVOS!!!/en csv por ejemplo y demas
 	�se puede?
 	
 	¿ESTO PARA PONER LA HORA ACTUAL EN EL FORMULARIO AL AGREGAR? añadir en 
-	     Date date = Calendar.getInstance().getTime();  
+	     		Date date = Calendar.getInstance().getTime();  
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
                 String strDate = dateFormat.format(date);  
+                
+	en mi caso:
+				Date date = Calendar.getInstance().getTime();  
+                DateFormat fecha = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+                fecha = dateFormat.format(date);
