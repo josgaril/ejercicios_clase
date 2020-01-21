@@ -1,0 +1,14 @@
+- crear badge para que indique en cada enlace a vehiculos del menu principal cuantos hay (no se si se puede)
+- tabla responsive?
+- Que no haya dos usuarios con el mismo nombre
+
+
+- PONER UN CAMPO CON FECHA DE NACIMIENTO Y FECHA REGISTRO(QUE NO SE PUEDA MODIFICAR)
+
+
+-REPASAR 
+COMO SE HACE PARA CREAR Y CARGAR ARCHIVOS!!!/en csv por ejemplo y demas
+
+- para pasar el objeto directmanente a un servlet borrar, y que dependiendo del objeto que sea borre una cosa u otra..
+	${objeto/coleccion}
+	¿se puede?
