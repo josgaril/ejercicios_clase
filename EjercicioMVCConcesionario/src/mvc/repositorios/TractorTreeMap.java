@@ -5,7 +5,7 @@ import java.util.TreeMap;
 import mvc.modelos.Tractor;
 
 public class TractorTreeMap implements Dao<Tractor> {
-	private TreeMap<Long, Tractor> tractors = new TreeMap<>();
+	private TreeMap<Long, Tractor> tractores = new TreeMap<>();
 
 	// SINGLETON
 	private final static TractorTreeMap INSTANCIA = new TractorTreeMap();
@@ -28,32 +28,32 @@ public class TractorTreeMap implements Dao<Tractor> {
 
 	@Override
 	public Iterable<Tractor> obtenerTodos() {
-		return tractors.values();
+		return tractores.values();
 	}
 
 	@Override
 	public Tractor obtenerPorId(Long id) {
-		return tractors.get(id);
+		return tractores.get(id);
 	}
 
 	@Override
 	public void agregar(Tractor tractor) {
 		// Comprobamos si la colección está vacía y en ese caso ponemos el id a 1
 		// En caso contrario ponemos el id al último id + 1
-		Long id = tractors.size() == 0 ? 1L : tractors.lastKey() + 1;
+		Long id = tractores.size() == 0 ? 1L : tractores.lastKey() + 1;
 		tractor.setId(id);
-		tractors.put(id, tractor);
+		tractores.put(id, tractor);
 	}
 
 	@Override
 	public void modificar(Tractor tractor) {
-		tractors.put(tractor.getId(), tractor);
+		tractores.put(tractor.getId(), tractor);
 
 	}
 
 	@Override
 	public void borrar(Long id) {
-		tractors.remove(id);
+		tractores.remove(id);
 
 	}
 
