@@ -24,7 +24,7 @@
 					<td>${tractor.marca}</td>
 					<td>${tractor.modelo}</td>
 					<td>${tractor.precio} €</td>
-					<td><a href="${tractor.url}">${tractor.url}</a></td>
+					<td><a href="${tractor.url}" target="_blank">${tractor.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;"
 						src="imgs/tractores/${tractor.imagen}.jpg" /></td>
 					<td>

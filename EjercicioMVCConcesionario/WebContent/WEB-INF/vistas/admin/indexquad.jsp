@@ -24,7 +24,7 @@
 					<td>${quad.marca}</td>
 					<td>${quad.modelo}</td>
 					<td>${quad.precio} €</td>
-					<td><a href="${quad.url}">${quad.url}</a></td>
+					<td><a href="${quad.url}" target="_blank">${quad.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;"
 						src="imgs/quads/${quad.modelo}.jpg" /></td>
 					<td>

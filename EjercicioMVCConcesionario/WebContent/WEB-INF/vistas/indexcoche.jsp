@@ -14,7 +14,7 @@
 				<h4 class="card-text">${coche.modelo}</h4>
 				<p class="card-text">Precio: ${coche.precio} €</p>
 				<p class="card-text">
-					<a href="${coche.url}">${coche.url}</a>
+					<a href="${coche.url}" target="_blank">${coche.url}</a>
 				</p>
 			</div>
 		</article>
