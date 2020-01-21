@@ -30,8 +30,9 @@ public class AdminTractorController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		Dao<Tractor> dao = TractorTreeMap.getInstancia();
+		
 		if ("borrar".equals(op)) {
+			Dao<Tractor> dao = TractorTreeMap.getInstancia();
 			dao.borrar(Long.parseLong(id));
 			HttpSession session = request.getSession();
 			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");

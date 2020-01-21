@@ -8,7 +8,7 @@ public class Coche {
 	private String url;
 	
 	private boolean correcto = true;
-	private String errorMarca, errorModelo, errorPrecio, errorURL;
+	private String errorMarca, errorModelo, errorPrecio, errorUrl;
 
 	public Coche(Long id, String marca, String modelo, String precio, String url) {
 		setId(id);
@@ -110,20 +110,96 @@ public class Coche {
 		this.errorPrecio = errorPrecio;
 	}
 
-	public String getErrorURL() {
-		return errorURL;
+	public String getErrorUrl() {
+		return errorUrl;
 	}
 
-	public void setErrorURL(String errorURL) {
+	public void setErrorUrl(String errorUrl) {
 		correcto = false;
-		this.errorURL = errorURL;
+		this.errorUrl = errorUrl;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (correcto ? 1231 : 1237);
+		result = prime * result + ((errorMarca == null) ? 0 : errorMarca.hashCode());
+		result = prime * result + ((errorModelo == null) ? 0 : errorModelo.hashCode());
+		result = prime * result + ((errorPrecio == null) ? 0 : errorPrecio.hashCode());
+		result = prime * result + ((errorUrl == null) ? 0 : errorUrl.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
+		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
+		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coche other = (Coche) obj;
+		if (correcto != other.correcto)
+			return false;
+		if (errorMarca == null) {
+			if (other.errorMarca != null)
+				return false;
+		} else if (!errorMarca.equals(other.errorMarca))
+			return false;
+		if (errorModelo == null) {
+			if (other.errorModelo != null)
+				return false;
+		} else if (!errorModelo.equals(other.errorModelo))
+			return false;
+		if (errorPrecio == null) {
+			if (other.errorPrecio != null)
+				return false;
+		} else if (!errorPrecio.equals(other.errorPrecio))
+			return false;
+		if (errorUrl == null) {
+			if (other.errorUrl != null)
+				return false;
+		} else if (!errorUrl.equals(other.errorUrl))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (modelo == null) {
+			if (other.modelo != null)
+				return false;
+		} else if (!modelo.equals(other.modelo))
+			return false;
+		if (precio == null) {
+			if (other.precio != null)
+				return false;
+		} else if (!precio.equals(other.precio))
+			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Moto [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", url=" + url
+		return "Coche [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", url=" + url
 				+ ", correcto=" + correcto + ", errorMarca=" + errorMarca + ", errorModelo=" + errorModelo
-				+ ", errorPrecio=" + errorPrecio + ", errorURL=" + errorURL + "]";
+				+ ", errorPrecio=" + errorPrecio + ", errorUrl=" + errorUrl + "]";
 	}
 	
 	
