@@ -71,7 +71,7 @@ public class Tractor {
 
 	public void setPrecio(String precio) {
 		if(precio == null || precio.trim().length() < 2) {
-			setErrorPrecio("Se necesitan como mínimo 3 caracteres");
+			setErrorPrecio("Se necesitan como mínimo 2 caracteres");
 		}
 		this.precio = precio;
 	}

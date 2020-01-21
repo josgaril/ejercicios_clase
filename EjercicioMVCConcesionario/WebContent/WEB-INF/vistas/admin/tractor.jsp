@@ -49,6 +49,7 @@
 					<div class="input-group-append">
 						<span class="input-group-text" id="simboloprecio"> €</span>
 					</div>
+					<div class="invalid-feedback">${tractor.errorPrecio}</div>
 				</div>
 			</div>
 
@@ -74,13 +75,15 @@
 
 
 			<div class="form-group row">
-				<label for="fecha" class="col-sm-2 col-form-label">FECHA PUBLICACIÓN</label>
+				<label for="fecha" class="col-sm-2 col-form-label">FECHA
+					PUBLICACIÓN</label>
 				<div class="col-sm-10">
-					<input id="fecha" class="form-control" type="text" name="fecha" value="${tractor.fecha}" readonly>
+					<input id="fecha" class="form-control" type="text" name="fecha"
+						value="${tractor.fecha}" readonly>
 				</div>
 			</div>
 
-		<!-- 	Falta por implementar bien la fecha actual de publicacion y la de registro
+			<!-- 	Falta por implementar bien la fecha actual de publicacion y la de registro
 			<div class="form-group row">
 				<label for="fechareg" class="col-sm-2 col-form-label">Fecha de
 					registro</label>
