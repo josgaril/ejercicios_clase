@@ -80,7 +80,7 @@
 				</div>
 			</div>
 
-		<!-- 	Falta por implementar bien para la fecha actual
+		<!-- 	Falta por implementar bien la fecha actual de publicacion y la de registro
 			<div class="form-group row">
 				<label for="fechareg" class="col-sm-2 col-form-label">Fecha de
 					registro</label>

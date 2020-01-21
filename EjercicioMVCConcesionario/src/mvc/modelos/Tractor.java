@@ -98,7 +98,7 @@ public class Tractor {
 
 	public void setFecha(String fecha) {
 	     Date date = Calendar.getInstance().getTime();  
-         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");  
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-m-d hh:mm:ss");  
          fecha = dateFormat.format(date);  
 		
 		this.fecha = fecha;

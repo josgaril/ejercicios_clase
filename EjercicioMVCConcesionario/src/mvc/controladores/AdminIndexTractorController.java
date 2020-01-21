@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import mvc.repositorios.TractorTreeMap;
 	
-// La ruta /admin/index se puede crear ya que podemos inventarnos cualquier ruta
-// http://localhost:8080/EjemploMVC/admin/index
-// NO hay ninguna carpeta admin
 @WebServlet("/admin/indextractor")
 public class AdminIndexTractorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -79,10 +79,6 @@ public class AdminMotoController extends HttpServlet {
 			throw new RuntimeException("Operación no reconocida");
 		}
 
-		// response.getWriter().println(moto);
-
-		// request.getRequestDispatcher("/admin/index").forward(request, response);
-
 		if (moto.isCorrecto()) {
 
 			HttpSession session = request.getSession();

@@ -79,18 +79,12 @@ public class AdminCocheController extends HttpServlet {
 			throw new RuntimeException("Operación no reconocida");
 		}
 
-		// response.getWriter().println(coche);
-
-		// request.getRequestDispatcher("/admin/index").forward(request, response);
-
 		if (coche.isCorrecto()) {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");
 			session.setAttribute("alertanivel", "success");
-			// A diferencia del requestDispatcher, el response.sendRedirect lo que hace
-			// es pedir al navegador que cargue la URL que le enviamos
-			// SE PIERDEN TODAS LAS VARIABLES DE REQUEST
+
 			response.sendRedirect(request.getContextPath() + "/admin/indexcoche");
 		} else {
 			request.setAttribute("alertatexto", "Hay un error en el formulario. Revise los datos.");
