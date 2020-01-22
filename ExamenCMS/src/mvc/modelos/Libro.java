@@ -10,10 +10,6 @@ public class Libro {
 	private Integer descuento;
 	private boolean correcto = true;
 
-	public void setCorrecto(boolean correcto) {
-		this.correcto = correcto;
-	}
-
 	private String errorNombre, errorPrecio, errorDescuento;
 
 	public Libro(Long id, String nombre, Double precio, Integer descuento) {
@@ -81,7 +77,7 @@ public class Libro {
 		return correcto;
 	}
 
-	public void setCorrecto(Boolean correcto) {
+	public void setCorrecto(boolean correcto) {
 		this.correcto = correcto;
 	}
 
