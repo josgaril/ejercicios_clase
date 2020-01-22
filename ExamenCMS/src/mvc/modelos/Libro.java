@@ -1,29 +1,34 @@
 package mvc.modelos;
 
 public class Libro {
+
+	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
+
 	private Long id;
 	private String nombre;
 	private Double precio;
 	private Integer descuento;
 	private boolean correcto = true;
+
 	public void setCorrecto(boolean correcto) {
 		this.correcto = correcto;
 	}
 
 	private String errorNombre, errorPrecio, errorDescuento;
-	
+
 	public Libro(Long id, String nombre, Double precio, Integer descuento) {
 		setId(id);
 		setNombre(nombre);
 		setPrecio(precio);
 		setDescuento(descuento);
 	}
-	
+
 	public Libro(String nombre, Double precio, Integer descuento) {
 		this(null, nombre, precio, descuento);
 	}
+
 	public Libro() {
-		
+
 	}
 
 	public Long getId() {
@@ -39,11 +44,14 @@ public class Libro {
 	}
 
 	public void setNombre(String nombre) {
-		if(nombre == null || nombre.trim().length() < 2 || nombre.trim().length()>150) {
+		if (nombre == null || nombre.trim().length() < 2 || nombre.trim().length() > 150) {
 			setErrorNombre("Se necesitan como mínimo 2 letras y máximo 150");
-		}else{
-			this.nombre = nombre;
 		}
+
+		if (!nombre.matches(REGEX_NOMBRE)) {
+			setErrorNombre("Solo se admiten caracteres de letras y espacios");
+		}
+		this.nombre = nombre;
 	}
 
 	public Double getPrecio() {
@@ -51,10 +59,10 @@ public class Libro {
 	}
 
 	public void setPrecio(Double precio) {
-		if (precio == null || precio <=0) {
+		if (precio == null || precio <= 0) {
 			setErrorPrecio("El número debe ser mayor que 0");
 		}
-		//TODO controlar que tenga dos decimales.
+		// TODO controlar que tenga dos decimales.
 		this.precio = precio;
 	}
 
@@ -174,7 +182,5 @@ public class Libro {
 				+ ", correcto=" + correcto + ", errorNombre=" + errorNombre + ", errorPrecio=" + errorPrecio
 				+ ", errorDescuento=" + errorDescuento + "]";
 	}
-	
-	
 
 }
