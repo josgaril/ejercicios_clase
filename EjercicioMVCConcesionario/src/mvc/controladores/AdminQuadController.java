@@ -30,8 +30,9 @@ public class AdminQuadController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		Dao<Quad> dao = QuadTreeMap.getInstancia();
+		
 		if ("borrar".equals(op)) {
+			Dao<Quad> dao = QuadTreeMap.getInstancia();
 			dao.borrar(Long.parseLong(id));
 			HttpSession session = request.getSession();
 			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");

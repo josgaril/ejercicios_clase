@@ -30,8 +30,9 @@ public class AdminCocheController extends HttpServlet {
 
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		Dao<Coche> dao = CocheTreeMap.getInstancia();
+		
 		if ("borrar".equals(op)) {
+			Dao<Coche> dao = CocheTreeMap.getInstancia();
 			dao.borrar(Long.parseLong(id));
 			HttpSession session = request.getSession();
 			session.setAttribute("alertatexto", "La operación " + op + " se ha realizado correctamente");

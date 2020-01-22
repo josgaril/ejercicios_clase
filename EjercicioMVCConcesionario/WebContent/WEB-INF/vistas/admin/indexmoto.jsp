@@ -29,7 +29,9 @@
 						src="imgs/motos/${moto.modelo}.jpg" /></td>
 					<td><a class="btn btn-warning"
 						href="admin/moto?id=${moto.id}&op=modificar">Modificar</a> 
-						<a class="btn btn-danger" href="admin/borrarmoto?id=${moto.id}&op=borrar">Borrar</a>
+						<a class="btn btn-danger" href="admin/moto?id=${moto.id}&op=borrar">Borrar</a>
+
+						
 					</td>
 				</tr>
 			</c:forEach>

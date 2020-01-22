@@ -32,7 +32,6 @@
 					<td>
 						<a class="btn btn-warning" href="admin/tractor?id=${tractor.id}&op=modificar">Modificar</a> 
 					<a class="btn btn-danger" href="admin/tractor?id=${tractor.id}&op=borrar">Borrar</a>
-<%-- 						<a class="btn btn-danger" href="admin/borrartractor?id=${tractor.id}&op=borrar">Borrar</a></td> --%>
 				</tr>
 			</c:forEach>
 		</tbody>
