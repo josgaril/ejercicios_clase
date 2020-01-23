@@ -24,7 +24,7 @@
 					<td><a class="btn btn-warning disabled"
 						href="index?id=${libro.id}&op=modificar">Modificar</a> 
 						<a class="btn btn-danger my-1 disabled" data-id="${objeto.id}" data-name="${objeto.nombre}" 
-						data-href="index?id=${objeto.id}&op=borrar" ">Borrar</a></td>
+						data-href="index?id=${objeto.id}&op=borrar">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
