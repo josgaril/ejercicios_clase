@@ -27,12 +27,12 @@ public class LoginController extends HttpServlet {
 		// Comprobamos que el usuario es "administrador" y su contraseña "123456"
 		// Si no es correcto, el usuario debe volver a meter usuario y contraseña
 		if("administrador".equals(usuario) && "123456".equals(password)) {
-			request.getSession().setAttribute("nombre", usuario);
+			request.getSession().setAttribute("usuario", usuario);
 			response.sendRedirect("admin/index");
 		} else {
 			request.setAttribute("alertatexto", "El login no es correcto. Introduzca nombre y contraseña correctamente");
 			request.setAttribute("alertanivel", "danger");
-			request.setAttribute("nombre", usuario);
+			request.setAttribute("usuario", usuario);
 			
 			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
