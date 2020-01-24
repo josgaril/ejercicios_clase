@@ -58,8 +58,8 @@
 			</form>
 
 			<c:choose>
-				<c:when test="${sessionScope.nombre != null}">
-					<span class="navbar-text ml-3"> ${sessionScope.nombre} </span>
+				<c:when test="${sessionScope.usuario != null}">
+					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 						</li>
