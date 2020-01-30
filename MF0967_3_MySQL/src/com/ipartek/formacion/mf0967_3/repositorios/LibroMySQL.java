@@ -30,10 +30,10 @@ public class LibroMySQL implements Dao<Libro> {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			throw new AccesoDatosException("No se ha encontrado al driver de MySQL");
+			throw new AccesoDatosException("No se ha encontrado al driver de MySQL",e);
 		}
 	}
-
+		
 	public static LibroMySQL getInstancia(String pathConfiguracion) {
 		try {
 			if (instancia == null) {
@@ -54,12 +54,14 @@ public class LibroMySQL implements Dao<Libro> {
 
 	// FIN SINGLETON
 
-	private Connection getConnection() throws SQLException {
-		try {
-			return DriverManager.getConnection(url, usuario, password);
-		} catch (Exception e) {
-			throw new AccesoDatosException("No se puede establecer la conexión con la base de datos", e);
-		}
+	private Connection getConnection() {
+	
+			try {
+				return DriverManager.getConnection(url, usuario, password);
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la conexión a la base de datos",e);
+			}
+
 	}
 	
 	@Override
@@ -81,8 +83,6 @@ public class LibroMySQL implements Dao<Libro> {
 		}
 
 	}
-
-
 
 	@Override
 	public Libro obtenerPorId(Long id) {

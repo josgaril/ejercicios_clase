@@ -7,7 +7,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
                 
         <property name="java-output-path" value="/MF0967_3/build/classes"/>
-        <property name="context-root" value="MF0967_3"/>
+        <property name="context-root" value="MF0967_3_MySQL"/>
             
     </wb-module>
     
