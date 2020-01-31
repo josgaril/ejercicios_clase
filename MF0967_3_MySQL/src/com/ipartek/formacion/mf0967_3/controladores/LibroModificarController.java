@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.mf0967_3.modelos.Libro;
 import com.ipartek.formacion.mf0967_3.modelos.Mensaje;
-import com.ipartek.formacion.mf0967_3.repositorios.Dao;
-import com.ipartek.formacion.mf0967_3.repositorios.LibroTreeMap;
 
 @WebServlet("/admin/libro/modificar")
 public class LibroModificarController extends HttpServlet {
@@ -50,10 +48,10 @@ public class LibroModificarController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (libro.isCorrecto()) {
-			Dao<Libro> dao = LibroTreeMap.getInstancia();
+			//Dao<Libro> dao = LibroTreeMap.getInstancia();
 
-			dao.modificar(libro);
-
+			//dao.modificar(libro);
+			Globales.dao.modificar(libro);
 			mensaje = new Mensaje("Libro modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);

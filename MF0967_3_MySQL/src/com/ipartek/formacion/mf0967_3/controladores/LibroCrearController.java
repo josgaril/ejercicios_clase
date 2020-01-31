@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.mf0967_3.modelos.Libro;
 import com.ipartek.formacion.mf0967_3.modelos.Mensaje;
-import com.ipartek.formacion.mf0967_3.repositorios.Dao;
-import com.ipartek.formacion.mf0967_3.repositorios.LibroTreeMap;
 
 @WebServlet("/admin/libro/agregar")
 public class LibroCrearController extends HttpServlet {
@@ -50,10 +48,10 @@ public class LibroCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (libro.isCorrecto()) {
-			Dao<Libro> dao = LibroTreeMap.getInstancia();
+			//Dao<Libro> dao = LibroTreeMap.getInstancia();
 
-			dao.agregar(libro);
-
+			//dao.agregar(libro);
+				Globales.dao.agregar(libro);
 			mensaje = new Mensaje("Libro agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);

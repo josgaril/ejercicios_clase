@@ -16,6 +16,7 @@ public class IndexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//request.setAttribute("libros", LibroTreeMap.getInstancia().obtenerTodos());
 		request.setAttribute("libros", Globales.dao.obtenerTodos());
 
 		request.getRequestDispatcher(INDEX_JSP).forward(request, response);

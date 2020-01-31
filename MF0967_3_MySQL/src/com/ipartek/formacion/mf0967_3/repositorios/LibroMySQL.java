@@ -17,9 +17,9 @@ class LibroMySQL implements Dao<Libro> {
 	private static final String SQL_SELECT = "SELECT * FROM libreria";
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM libreria WHERE id = ?";
 
-	private static final String SQL_INSERT = "INSERT INTO libreria (nonbre,precio,descuento,autor,imagen) VALUES (?,?,?,?,?)";
+	private static final String SQL_INSERT = "INSERT INTO libreria (nombre,precio,descuento,autor,imagen) VALUES (?,?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE libreria SET nombre=?, precio=?, descuento=?, autor=?, imagen=? WHERE id=?";
-	private static final String SQL_DELETE = "DELETE FROM librerias WHERE id=?";
+	private static final String SQL_DELETE = "DELETE FROM libreria WHERE id=?";
 
 	private static String url, usuario, password;
 

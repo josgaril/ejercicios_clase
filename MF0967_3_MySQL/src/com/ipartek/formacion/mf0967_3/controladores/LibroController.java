@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.mf0967_3.modelos.Libro;
-import com.ipartek.formacion.mf0967_3.repositorios.Dao;
-import com.ipartek.formacion.mf0967_3.repositorios.LibroTreeMap;
-
 @WebServlet("/admin/libro")
 public class LibroController extends HttpServlet {
 	private static final String ADMIN_LIBRO_JSP = "/WEB-INF/vistas/admin/libro.jsp";
@@ -23,11 +19,11 @@ public class LibroController extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		if(id != null && id.trim().length() > 0) {
-			Dao<Libro> dao = LibroTreeMap.getInstancia();
+			//Dao<Libro> dao = LibroTreeMap.getInstancia();
 			
-			Libro libro = dao.obtenerPorId(Long.parseLong(id));
+			//Libro libro = dao.obtenerPorId(Long.parseLong(id));
 			
-			request.setAttribute("libro", libro);
+			request.setAttribute("libro", Globales.dao.obtenerPorId(Long.parseLong(id)));
 		}
 		
 		request.setAttribute("op", op);

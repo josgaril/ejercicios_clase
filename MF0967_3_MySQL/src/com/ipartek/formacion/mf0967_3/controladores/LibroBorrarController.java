@@ -8,11 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.mf0967_3.modelos.Libro;
 import com.ipartek.formacion.mf0967_3.modelos.Mensaje;
 import com.ipartek.formacion.mf0967_3.repositorios.AccesoDatosException;
-import com.ipartek.formacion.mf0967_3.repositorios.Dao;
-import com.ipartek.formacion.mf0967_3.repositorios.LibroTreeMap;
 
 @WebServlet("/admin/borrar")
 public class LibroBorrarController extends HttpServlet {
@@ -21,12 +18,13 @@ public class LibroBorrarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
-		Dao<Libro> dao = LibroTreeMap.getInstancia();
+		//Dao<Libro> dao = LibroTreeMap.getInstancia();
 		
 		Mensaje mensaje;
 		
 		try {
-			dao.borrar(Long.parseLong(id));
+			//dao.borrar(Long.parseLong(id));
+			Globales.dao.borrar(Long.parseLong(id));
 			mensaje = new Mensaje(
 					"Libro borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
