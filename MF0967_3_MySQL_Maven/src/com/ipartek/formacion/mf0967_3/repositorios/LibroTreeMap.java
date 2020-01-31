@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 import com.ipartek.formacion.mf0967_3.modelos.Libro;
 
-public class LibroTreeMap implements Dao<Libro> {
+ class LibroTreeMap implements Dao<Libro> {
 
 	private TreeMap<Long, Libro> libros = new TreeMap<>();
 
