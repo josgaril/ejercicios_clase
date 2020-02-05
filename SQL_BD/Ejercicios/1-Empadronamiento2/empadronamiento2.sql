@@ -113,13 +113,13 @@ DROP TABLE IF EXISTS `viviendas`;
 CREATE TABLE `viviendas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `codigo` char(5) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `calle` varchar(100) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `numero` varchar(5) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `calle` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `numero` varchar(5) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `municipio_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_viviendas1_municipios11_idx` (`municipio_id`),
   CONSTRAINT `fk_viviendas1_municipios11` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,4 +149,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-05 22:30:03
+-- Dump completed on 2020-02-06  0:25:30
