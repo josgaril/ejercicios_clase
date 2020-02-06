@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema SalonDeMasajes
@@ -20,7 +20,7 @@ USE `SalonDeMasajes` ;
 CREATE TABLE IF NOT EXISTS `SalonDeMasajes`.`servicios` (
   `id` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
-  `precio` DECIMAL NOT NULL,
+  `precio` DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '	';
@@ -65,14 +65,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SalonDeMasajes`.`actuacion`
+-- Table `SalonDeMasajes`.`actuaciones`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SalonDeMasajes`.`actuacion` (
+CREATE TABLE IF NOT EXISTS `SalonDeMasajes`.`actuaciones` (
   `servicios_id` INT NOT NULL,
   `trabajadores_id` INT NOT NULL,
   `clientes_id` INT NOT NULL,
   `fecha` DATETIME NOT NULL,
-  `opinion` TEXT NULL,
+  `opinion` TEXT(1000) NULL,
   `calificacion_id` INT NULL,
   PRIMARY KEY (`servicios_id`, `trabajadores_id`, `clientes_id`, `fecha`),
   INDEX `fk_servicios_has_trabajadores_trabajadores1_idx` (`trabajadores_id` ASC) VISIBLE,
