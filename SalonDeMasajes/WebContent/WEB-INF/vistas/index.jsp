@@ -8,6 +8,18 @@
 	<h2 class="display-6">Bienvenidos al salón de masajes SAMAJA</h2>
 </header>
 
+<section id="trabajadores" class="row">
+	<c:forEach items="${trabajadores}" var="trabajador">
+		<article class="libro col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+			<p class="autor">${trabajador.id}</p>
+			<p class="autor">${trabajador.nombre}</p>
+			<p class="autor">${trabajador.apellidos}</p>
+			<p class="autor">${trabajador.dni}</p>
+		</article>
+	</c:forEach>
+</section>
+
+
 <h3>Mostrando trabajadores</h3>
 
 <p> TRABAJADORES</p>
@@ -19,10 +31,8 @@
 			<tr>
 				<th>Id</th>
 				<th>Nombre</th>
-				<th>Precio</th>
-				<th>Descuento</th>
-				<th>Autor</th>
-				<th>Imagen</th>
+				<th>Apellidos</th>
+				<th>DNI</th>
 				<th>Opciones</th>
 			</tr>
 		</thead>
@@ -31,10 +41,10 @@
 				<tr>
 					<th>${trabajador.id}</th>
 					<td>${trabajador.nombre}</td>
-					<td>${trabajador.nombre}</td>
-					<td>${trabajador.nombre}</td>
+					<td>${trabajador.apellidos}</td>
+					<td>${trabajador.dni}</td>
 					<td><a class="btn btn-warning"
-						href="admin/libro?id=${trabajador.id}&op=modificar">Modificar</a> <a
+						href="admin/trabajador?id=${trabajador.id}&op=modificar">Modificar</a> <a
 						class="btn btn-danger" href="admin/borrar?id=${trabajador.id}">Borrar</a>
 					</td>
 				</tr>

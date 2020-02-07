@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value = "es_ES"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,14 +52,38 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
-
+				<li class="nav-item"><a class="nav-link" href="admin/listado">Administración</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+
+			<c:choose>
+				<c:when test="${sessionScope.usuario != null}">
+					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
+						</li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="login">Login</a>
+						</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</nav>
+	<c:if test="${mensaje != null}">
+		<div
+			class="alert alert-${mensaje.nivelBootstrap} alert-dismissible fade show"
+			role="alert">
+			${mensaje.texto}
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<% session.removeAttribute("mensaje"); %>
+	</c:if>
 	<main class="container-fluid">
