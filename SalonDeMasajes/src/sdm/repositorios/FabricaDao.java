@@ -34,7 +34,7 @@ public class FabricaDao {
 	
 	// FIN SINGLETON
 	
-	public Dao<Trabajador> getInstanciaVideo() {
+	public Dao<Trabajador> getInstanciaTrabajador() {
 		switch(tipo) {
 		case "memoria": return TrabajadorTreeMap.getInstancia();
 		case "mysql": return Trabajadores.getInstancia(pathConfiguracion);
