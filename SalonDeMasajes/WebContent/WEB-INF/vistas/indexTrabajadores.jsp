@@ -7,7 +7,7 @@
 <header class="jumbotron">
 	<h2 class="display-6">Bienvenidos al salón de masajes SAMAJA</h2>
 </header>
-<h2>Mostramos listado de los trabajadores</h2>
+<h2>Listado de los trabajadores</h2>
 <section id="trabajadores" class="row">
 	<c:forEach items="${trabajadores}" var="trabajador">
 		<article class="trabajador col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">

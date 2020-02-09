@@ -52,10 +52,16 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="admin/listado">Administración</a></li>
+				<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="admin/listado">Servicios</a></li>
+				<li class="nav-item"><a class="nav-link" href="indexTrabajadores">Trabajadores</a></li>
+			</ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="indexClientes">Clientes</a></li>
+			</ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="indexServicios">Servicios</a></li>
 			</ul>
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">

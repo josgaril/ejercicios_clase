@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
 		
 		if("administrador".equals(usuario) && "123456".equals(password)) {
 			request.getSession().setAttribute("usuario", usuario);
-			request.getRequestDispatcher("/admin/listado").forward(request, response);
+			request.getRequestDispatcher("/admin/index").forward(request, response);
 		} else {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("mensaje", new Mensaje("Login incorrecto", Mensaje.Nivel.ERROR));

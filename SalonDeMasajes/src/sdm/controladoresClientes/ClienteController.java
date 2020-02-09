@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresClientes;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sdm.controladores.Globales;
 
 @WebServlet("/admin/cliente")
 public class ClienteController extends HttpServlet {

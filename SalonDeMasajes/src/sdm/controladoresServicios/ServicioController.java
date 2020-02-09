@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresServicios;
 
 import java.io.IOException;
 
@@ -8,24 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/trabajador")
-public class TrabajadorController extends HttpServlet {
-	private static final String ADMIN_TRABAJADOR_JSP = "/WEB-INF/vistas/admin/trabajador.jsp";
+import sdm.controladores.Globales;
+
+@WebServlet("/admin/servicio")
+public class ServicioController extends HttpServlet {
+	private static final String ADMIN_SERVICIO_JSP = "/WEB-INF/vistas/admin/servicio.jsp";
 	private static final long serialVersionUID = 1L;
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String idtrabajadores = request.getParameter("idtrabajadores");
+		String id = request.getParameter("id");
 		
-		if(idtrabajadores != null && idtrabajadores.trim().length() > 0) {
+		if(id != null && id.trim().length() > 0) {
 			
-			request.setAttribute("trabajador", Globales.daoT.obtenerPorId(Integer.parseInt(idtrabajadores)));
+			request.setAttribute("servicio", Globales.daos.obtenerPorId(Long.parseLong(id)));
 		}
 		
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
-		request.getRequestDispatcher(ADMIN_TRABAJADOR_JSP).forward(request, response);
+		request.getRequestDispatcher(ADMIN_SERVICIO_JSP).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresClientes;
 
 import java.io.IOException;
 
@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdm.controladores.Globales;
 import sdm.modelos.Cliente;
 import sdm.modelos.Mensaje;
 
-@WebServlet("/admin/cliente/agregar")
-public class ClienteCrearController extends HttpServlet {
+@WebServlet("/admin/cliente/modificar")
+public class ClienteModificarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String ADMIN_CLIENTE_JSP = "/WEB-INF/vistas/admin/cliente.jsp";
@@ -28,38 +29,30 @@ public class ClienteCrearController extends HttpServlet {
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
 		
-
-		//Cliente cliente = null;
-		Cliente cliente = new Cliente(nombre, apellidos, dni);
-
-		//Cliente cliente = new Cliente(Long.parseLong(idclientes), nombre, apellidos, dni);
+		Cliente cliente = new Cliente(Long.parseLong(idclientes), nombre, apellidos, dni);
 
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
 
 		if (cliente.isCorrecto()) {
-			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
+			Globales.daoc.modificar(cliente);
 
-			Globales.daoc.agregar(cliente);
-
-			mensaje = new Mensaje("Servicio agregado correctamente", Mensaje.Nivel.INFORMATIVO);
+			mensaje = new Mensaje("Cliente modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
-			response.sendRedirect(request.getContextPath() + "/admin/listado");
+			response.sendRedirect(request.getContextPath() + "/admin/clientes");
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("cliente", cliente);
-			mensaje = new Mensaje(cliente.toString(), Mensaje.Nivel.INFORMATIVO);
 
-			//mensaje = new Mensaje("El cliente no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			mensaje = new Mensaje("El cliente no se ha podido modificar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 
 			request.getRequestDispatcher(ADMIN_CLIENTE_JSP).forward(request, response);
 		}
-
 	}
 
 }

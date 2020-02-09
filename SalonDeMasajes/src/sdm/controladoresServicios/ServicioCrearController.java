@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresServicios;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdm.controladores.Globales;
 import sdm.modelos.Mensaje;
 import sdm.modelos.Servicio;
 
@@ -42,7 +43,7 @@ public class ServicioCrearController extends HttpServlet {
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
-			response.sendRedirect(request.getContextPath() + "/admin/listado");
+			response.sendRedirect(request.getContextPath() + "/admin/servicios");
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("servicio", servicio);

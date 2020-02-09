@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresServicios;
 
 import java.io.IOException;
 
@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/index")
-public class indexController extends HttpServlet {
+import sdm.controladores.Globales;
+
+@WebServlet("/indexServicios")
+public class IndexServiciosController extends HttpServlet {
+	private static final String INDEX_SERVICIOS = "/WEB-INF/vistas/indexServicios.jsp";
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		request.setAttribute("servicios", Globales.daos.obtenerTodos());
+		request.getRequestDispatcher(INDEX_SERVICIOS).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresClientes;
 
 import java.io.IOException;
 
@@ -8,18 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/listado")
-public class AdminListadoController extends HttpServlet {
-	private static final String ADMIN_LISTADO_JSP = "/WEB-INF/vistas/admin/listadoTrabajadores.jsp";
+import sdm.controladores.Globales;
+
+@WebServlet("/admin/clientes")
+public class AdminClienteController extends HttpServlet {
+	private static final String ADMIN_TABLA_JSP = "/WEB-INF/vistas/admin/tablaClientes.jsp";
 	
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setAttribute("clientes", Globales.daoc.obtenerTodos());
-		request.setAttribute("servicios", Globales.daos.obtenerTodos());
-		request.setAttribute("trabajadores", Globales.daoT.obtenerTodos());
-		request.getRequestDispatcher(ADMIN_LISTADO_JSP).forward(request, response);
+		request.getRequestDispatcher(ADMIN_TABLA_JSP).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

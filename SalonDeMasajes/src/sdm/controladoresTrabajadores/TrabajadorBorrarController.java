@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresTrabajadores;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdm.controladores.Globales;
 import sdm.modelos.Mensaje;
 import sdm.repositorios.AccesoDatosException;
 
@@ -17,9 +18,7 @@ public class TrabajadorBorrarController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idtrabajadores = request.getParameter("idtrabajadores");
-		
-
-		
+			
 		Mensaje mensaje;
 		
 		try {
@@ -39,7 +38,7 @@ public class TrabajadorBorrarController extends HttpServlet {
 		
 		request.getSession().setAttribute("mensaje", mensaje);
 
-		response.sendRedirect(request.getContextPath() + "/admin/listado");
+		response.sendRedirect(request.getContextPath() + "/admin/trabajadores");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

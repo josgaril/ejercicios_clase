@@ -1,4 +1,4 @@
-package sdm.controladores;
+package sdm.controladoresClientes;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdm.controladores.Globales;
 import sdm.modelos.Mensaje;
 import sdm.repositorios.AccesoDatosException;
 
@@ -39,7 +40,7 @@ public class ClienteBorrarController extends HttpServlet {
 		
 		request.getSession().setAttribute("mensaje", mensaje);
 
-		response.sendRedirect(request.getContextPath() + "/admin/listado");
+		response.sendRedirect(request.getContextPath() + "/admin/clientes");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

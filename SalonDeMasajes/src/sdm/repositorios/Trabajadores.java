@@ -14,6 +14,13 @@ import java.util.Properties;
 import sdm.modelos.Trabajador;
 
 public class Trabajadores implements DaoTrabajador<Trabajador> {
+	private static final String SQL_SELECT = "SELECT * FROM trabajadores";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
+	
+	private static final String SQL_INSERT = "INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)";
+	private static final String SQL_UPDATE = "UPDATE trabajadores set nombre=?, apellidos=?, dni=? WHERE idtrabajadores=?";
+	private static final String SQL_DELETE = "DELETE FROM trabajadores WHERE idtrabajadores=?";
+
 	private static String url, usuario, password;
 
 	// SINGLETON
@@ -64,7 +71,7 @@ public class Trabajadores implements DaoTrabajador<Trabajador> {
 	public Iterable<Trabajador> obtenerTodos() {
 
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
@@ -84,7 +91,7 @@ public class Trabajadores implements DaoTrabajador<Trabajador> {
 	public Trabajador obtenerPorId(Integer idtrabajadores) {
 
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores WHERE idtrabajadores=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				ps.setInt(1, idtrabajadores);
 				try (ResultSet rs = ps.executeQuery()) {
 
@@ -105,7 +112,7 @@ public class Trabajadores implements DaoTrabajador<Trabajador> {
 	public void agregar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)")) {
+					.prepareStatement(SQL_INSERT)) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
 				ps.setString(3, trabajador.getDni());
@@ -124,10 +131,10 @@ public class Trabajadores implements DaoTrabajador<Trabajador> {
 	public void modificar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("UPDATE trabajadores SET nombre=?, apellidos=?, dni=? WHERE idtrabajadores=?")) {
+					.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
-				ps.setString(2, trabajador.getDni());
+				ps.setString(3, trabajador.getDni());
 				ps.setInt(4, trabajador.getIdtrabajadores());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
@@ -143,7 +150,7 @@ public class Trabajadores implements DaoTrabajador<Trabajador> {
 	@Override
 	public void borrar(Integer idtrabajadores) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement("DELETE FROM trabajadores WHERE idtrabajadores=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setInt(1, idtrabajadores);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
