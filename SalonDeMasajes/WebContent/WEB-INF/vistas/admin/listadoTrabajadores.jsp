@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<section id="clientes">
-<h1>PRUEBAAAA</h1>
+<section id="trabajadores">
+<h1>TRABAJADORES</h1>
 	<table
 		class="table table-striped table-bordered table-hover table-sm table-responsive">
 		<thead>
@@ -16,22 +16,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${clientes}" var="cliente">
+			<c:forEach items="${trabajadores}" var="trabajador">
 				<tr>
-					<th>${cliente.idclientes}</th>
-					<td>${cliente.nombre}</td>
-					<td>${cliente.apellidos}</td>
-					<td>${cliente.dni}</td>
+					<th>${trabajador.idtrabajadores}</th>
+					<td>${trabajador.nombre}</td>
+					<td>${trabajador.apellidos}</td>
+					<td>${trabajador.dni}</td>
 					<td><a class="btn btn-warning"
-						href="admin/cliente?idclientes=${cliente.idclientes}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/cliente/borrar?idclientes=${cliente.idclientes}">Borrar</a>
+						href="admin/trabajador?idtrabajadores=${trabajador.idtrabajadores}&op=modificar">Modificar</a> <a
+						class="btn btn-danger" href="admin/trabajador/borrar?idtrabajadores=${trabajador.idtrabajadores}">Borrar</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary" href="admin/cliente?op=agregar">Añadir</a>
+	<a class="btn btn-primary" href="admin/trabajador?op=agregar">Añadir</a>
 
 </section>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

@@ -23,13 +23,13 @@ public class TrabjadorModificarController extends HttpServlet {
 
 		String op = request.getParameter("op");
 
-		String id = request.getParameter("id");
+		String idtrabajadores = request.getParameter("idtrabajadores");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
 
 
-		Trabajador trabajador = new Trabajador(Long.parseLong(id), nombre, apellidos, dni);
+		Trabajador trabajador = new Trabajador(Integer.parseInt(idtrabajadores), nombre, apellidos, dni);
 
 
 		Mensaje mensaje;
@@ -38,7 +38,7 @@ public class TrabjadorModificarController extends HttpServlet {
 
 		if (trabajador.isCorrecto()) {
 			
-			Globales.daot.modificar(trabajador);
+			Globales.daoT.modificar(trabajador);
 
 			mensaje = new Mensaje("Trabajadr modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 

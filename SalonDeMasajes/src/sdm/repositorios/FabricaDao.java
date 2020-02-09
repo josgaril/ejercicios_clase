@@ -53,11 +53,12 @@ public class FabricaDao {
 		}
 	}
 	
-	public Dao<Trabajador> getInstanciaTrabajador() {
+	public DaoTrabajador<Trabajador> getInstanciaTrabajador() {
 		switch(tipo) {
 		case "memoria": return TrabajadorTreeMap.getInstancia();
 		case "mysql": return Trabajadores.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
+	
 }

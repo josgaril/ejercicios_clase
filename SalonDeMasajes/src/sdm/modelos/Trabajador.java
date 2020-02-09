@@ -2,40 +2,38 @@ package sdm.modelos;
 
 public class Trabajador {
 
-	private Long id;
+	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
+	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
+	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
+	
+	private Integer idtrabajadores;
 	private String nombre;
 	private String apellidos;
 	private String dni;
 
-	private boolean correcto=true;
-	private String errorId, errorNombre, errorApellidos, errorDni;
+	private boolean correcto = true;
+	private String errorIdtrabajadores, errorNombre, errorApellidos, errorDni;
 
-	public Trabajador(Long id, String nombre, String apellidos, String dni) {
-		setId(id);
+	public Trabajador(Integer idtrabajadores, String nombre, String apellidos, String dni) {
+		setIdtrabajadores(idtrabajadores);
 		setNombre(nombre);
 		setApellidos(apellidos);
 		setDni(dni);
 	}
-
-	/*
-	 * public Trabajador(String id, String nombre, String apellidos, String dni){
-	 * setId(id); setNombre(nombre); setApellidos(apellidos); setDni(dni); }
-	 */
 
 	public Trabajador(String nombre, String apellidos, String dni) {
 		this(null, nombre, apellidos, dni);
 	}
 
 	public Trabajador() {
-
 	}
 
-	public Long getId() {
-		return id;
+	public Integer getIdtrabajadores() {
+		return idtrabajadores;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdtrabajadores(Integer idtrabajadores) {
+		this.idtrabajadores = idtrabajadores;
 	}
 
 	public String getNombre() {
@@ -46,6 +44,10 @@ public class Trabajador {
 		if (nombre == null || nombre.trim().length() < 1 || nombre.trim().length() > 45) {
 			setErrorNombre("El nombre tiene que tener entre 1 y 45 caracteres");
 		}
+		
+		if (!nombre.matches(REGEX_NOMBRE)) {
+			setErrorNombre("Solo se admiten caracteres de letras y espacios");
+		}
 		this.nombre = nombre;
 	}
 
@@ -55,7 +57,11 @@ public class Trabajador {
 
 	public void setApellidos(String apellidos) {
 		if (apellidos == null || apellidos.trim().length() < 1 || apellidos.trim().length() > 90) {
-			setErrorApellidos("Los apellidos tiene que tener una longitud entre 1 y 90");
+			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
+		}
+		
+		if (!apellidos.matches(REGEX_APELLIDOS)) {
+			setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe");
 		}
 		this.apellidos = apellidos;
 	}
@@ -65,20 +71,15 @@ public class Trabajador {
 	}
 
 	public void setDni(String dni) {
-		if (dni == null || dni.trim().length() != 9) {
-			setErrorDni("El dni tiene que tener una longitud de 9 caracteres");
+		if (dni==null || dni.trim().length()!=9) {
+			setErrorDni("El DNI tiene que tener 9 caracteres");
+		}
+		
+		if (!dni.matches(REGEX_DNI)) {
+			setErrorDni("El formato de DNI no es correcto");
 		}
 		this.dni = dni;
-
 	}
-
-	/*
-	 * private void setId(String id) { if (id == null || id.trim().length() == 0) {
-	 * this.id = null; return; }
-	 * 
-	 * try { this.id = Long.parseLong(id); } catch (NumberFormatException e) {
-	 * setErrorId("No era un número"); } }
-	 */
 
 	public boolean isCorrecto() {
 		return correcto;
@@ -88,13 +89,13 @@ public class Trabajador {
 		this.correcto = correcto;
 	}
 
-	public String getErrorId() {
-		return errorId;
+	public String getErrorIdtrabajadores() {
+		return errorIdtrabajadores;
 	}
 
-	public void setErrorId(String errorId) {
+	public void setErrorIdtrabajadores(String errorIdtrabajadores) {
 		setCorrecto(false);
-		this.errorId = errorId;
+		this.errorIdtrabajadores = errorIdtrabajadores;
 	}
 
 	public String getErrorNombre() {
@@ -130,7 +131,7 @@ public class Trabajador {
 		int result = 1;
 		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idtrabajadores == null) ? 0 : idtrabajadores.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -154,10 +155,10 @@ public class Trabajador {
 				return false;
 		} else if (!dni.equals(other.dni))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (idtrabajadores == null) {
+			if (other.idtrabajadores != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idtrabajadores.equals(other.idtrabajadores))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -169,7 +170,8 @@ public class Trabajador {
 
 	@Override
 	public String toString() {
-		return "Trabajador [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + "]";
+		return "Trabajador [idtrabajadores=" + idtrabajadores + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", dni=" + dni + "]";
 	}
 
 }

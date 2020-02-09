@@ -16,11 +16,11 @@ public class TrabajadorController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String id = request.getParameter("id");
+		String idtrabajadores = request.getParameter("idtrabajadores");
 		
-		if(id != null && id.trim().length() > 0) {
+		if(idtrabajadores != null && idtrabajadores.trim().length() > 0) {
 			
-			request.setAttribute("trabajador", Globales.daot.obtenerPorId(Long.parseLong(id)));
+			request.setAttribute("trabajador", Globales.daoT.obtenerPorId(Integer.parseInt(idtrabajadores)));
 		}
 		
 		request.setAttribute("op", op);

@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import sdm.modelos.Mensaje;
 import sdm.repositorios.AccesoDatosException;
 
-@WebServlet("/admin/borrar")
+@WebServlet("/admin/trabajador/borrar")
 public class TrabajadorBorrarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String idtrabajadores = request.getParameter("idtrabajadores");
 		
 
 		
 		Mensaje mensaje;
 		
 		try {
-			Globales.daot.borrar(Long.parseLong(id));
+			Globales.daoT.borrar(Integer.parseInt(idtrabajadores));
 			mensaje = new Mensaje(
 					"Trabajador borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);

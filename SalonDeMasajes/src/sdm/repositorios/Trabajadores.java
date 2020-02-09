@@ -13,10 +13,10 @@ import java.util.Properties;
 
 import sdm.modelos.Trabajador;
 
-public class Trabajadores implements Dao<Trabajador> {
+public class Trabajadores implements DaoTrabajador<Trabajador> {
 	private static String url, usuario, password;
-	// SINGLETON
 
+	// SINGLETON
 	private static Trabajadores instancia;
 
 	private Trabajadores(String url, String usuario, String password) {
@@ -48,25 +48,28 @@ public class Trabajadores implements Dao<Trabajador> {
 			throw new AccesoDatosException("Fallo de lectura/escritura al fichero", e);
 		}
 	}
+
 	// FIN SINGLETON
 
-	private Connection getConexion() {
+	private Connection getConnection() {
 		try {
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (Exception e) {
-			throw new AccesoDatosException("Error en la conexión a la base de datos");
+			throw new AccesoDatosException("Error en la conexión a la base de datos", e);
+
 		}
 	}
 
 	@Override
 	public Iterable<Trabajador> obtenerTodos() {
-		try (Connection con = getConexion()) {
+
+		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores")) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
 					while (rs.next()) {
-						trabajadores.add(new Trabajador(rs.getLong("id"), rs.getString("nombre"),
+						trabajadores.add(new Trabajador(rs.getInt("idtrabajadores"), rs.getString("nombre"),
 								rs.getString("apellidos"), rs.getString("dni")));
 					}
 					return trabajadores;
@@ -78,29 +81,29 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public Trabajador obtenerPorId(Long id) {
-		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores WHERE id=?")) {
-				ps.setLong(1, id);
+	public Trabajador obtenerPorId(Integer idtrabajadores) {
 
+		try (Connection con = getConnection()) {
+			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores WHERE idtrabajadores=?")) {
+				ps.setInt(1, idtrabajadores);
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Trabajador(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"),
-								rs.getString("dni"));
+						return new Trabajador(rs.getInt("idtrabajadores"), rs.getString("nombre"),
+								rs.getString("apellidos"), rs.getString("dni"));
 					} else {
 						return null;
 					}
 				}
 			}
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el video id: " + id, e);
+		} catch (Exception e) {
+			throw new AccesoDatosException("Error al obtener el trabajador: " + idtrabajadores, e);
 		}
 	}
 
 	@Override
 	public void agregar(Trabajador trabajador) {
-		try (Connection con = getConexion()) {
+		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con
 					.prepareStatement("INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)")) {
 				ps.setString(1, trabajador.getNombre());
@@ -108,43 +111,40 @@ public class Trabajadores implements Dao<Trabajador> {
 				ps.setString(3, trabajador.getDni());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
-
 				if (numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
+					throw new AccesoDatosException("Se ha hecho mas o menos de una insert");
 				}
 			}
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al insertar el trabajador", e);
+		} catch (Exception e) {
+			throw new AccesoDatosException("Error al agregar el trabajador", e);
 		}
 	}
 
 	@Override
 	public void modificar(Trabajador trabajador) {
-		try (Connection con = getConexion()) {
+		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("UPDATE tabajadores set nombre=?,apellidos=?,dni=? WHERE id=?")) {
+					.prepareStatement("UPDATE trabajadores SET nombre=?, apellidos=?, dni=? WHERE idtrabajadores=?")) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
-				ps.setString(3, trabajador.getDni());
-				ps.setLong(4, trabajador.getId());
+				ps.setString(2, trabajador.getDni());
+				ps.setInt(4, trabajador.getIdtrabajadores());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
-
 				if (numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Se ha hecho más o menos de una update");
+					throw new AccesoDatosException("Se ha hecho mas o menos de un update");
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el tabajador", e);
+			throw new AccesoDatosException("Error al modificar el trabajador");
 		}
-
 	}
 
 	@Override
-	public void borrar(Long id) {
-		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("DELETE FROM trabajadores WHERE id=?")) {
-				ps.setLong(1, id);
+	public void borrar(Integer idtrabajadores) {
+		try (Connection con = getConnection()) {
+			try (PreparedStatement ps = con.prepareStatement("DELETE FROM trabajadores WHERE idtrabajadores=?")) {
+				ps.setInt(1, idtrabajadores);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -156,5 +156,4 @@ public class Trabajadores implements Dao<Trabajador> {
 			throw new AccesoDatosException("Error al borrar el trabajador", e);
 		}
 	}
-
 }

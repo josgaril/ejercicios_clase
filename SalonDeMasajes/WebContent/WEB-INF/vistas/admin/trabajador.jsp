@@ -11,10 +11,10 @@
 			<input type="hidden" id="op" name="op" value="${op}">
 
 			<div class="form-group row">
-				<label for="id" class="col-sm-2 col-form-label">Id</label>
+				<label for="idtrabajadores" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="id" name="id"
-						value="${trabajador.id}" readonly>
+					<input type="number" class="form-control" id="idtrabajadores" name="idtrabajadores"
+						value="${trabajador.idtrabajadores}" readonly>
 				</div>
 			</div>
 			<div class="form-group row">

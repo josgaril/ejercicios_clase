@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/listado")
 public class AdminListadoController extends HttpServlet {
-	private static final String ADMIN_LISTADO_JSP = "/WEB-INF/vistas/admin/listadoClientes.jsp";
+	private static final String ADMIN_LISTADO_JSP = "/WEB-INF/vistas/admin/listadoTrabajadores.jsp";
 	
 	private static final long serialVersionUID = 1L;
     
@@ -18,7 +18,7 @@ public class AdminListadoController extends HttpServlet {
 		
 		request.setAttribute("clientes", Globales.daoc.obtenerTodos());
 		request.setAttribute("servicios", Globales.daos.obtenerTodos());
-
+		request.setAttribute("trabajadores", Globales.daoT.obtenerTodos());
 		request.getRequestDispatcher(ADMIN_LISTADO_JSP).forward(request, response);
 	}
 
