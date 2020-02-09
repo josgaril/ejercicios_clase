@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sdm.modelos.Mensaje;
-import sdm.modelos.Trabajador;
+import sdm.modelos.Servicio;
 
-@WebServlet("/admin/trabajador/modificar")
-public class TrabjadorModificarController extends HttpServlet {
+@WebServlet("/admin/servicio/agregar")
+public class ServicioCrearController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String ADMIN_TRABAJADOR_JSP = "/WEB-INF/vistas/admin/trabajador.jsp";
+	private static final String ADMIN_SERVICIO_JSP = "/WEB-INF/vistas/admin/servicio.jsp";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,36 +25,36 @@ public class TrabjadorModificarController extends HttpServlet {
 
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
-		String apellidos = request.getParameter("apellidos");
-		String dni = request.getParameter("dni");
+		String precio = request.getParameter("precio");
 
-
-		Trabajador trabajador = new Trabajador(Long.parseLong(id), nombre, apellidos, dni);
-
+		Servicio servicio = new Servicio(id, nombre, precio);
 
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
 
-		if (trabajador.isCorrecto()) {
-			
-			Globales.daot.modificar(trabajador);
+		if (servicio.isCorrecto()) {
+			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
 
-			mensaje = new Mensaje("Trabajadr modificado correctamente", Mensaje.Nivel.INFORMATIVO);
+			Globales.daos.agregar(servicio);
+
+			mensaje = new Mensaje("Servicio agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
 			response.sendRedirect(request.getContextPath() + "/admin/listado");
 		} else {
 			request.setAttribute("op", op);
-			request.setAttribute("trabajador", trabajador);
+			request.setAttribute("servicio", servicio);
+			mensaje = new Mensaje(servicio.toString(), Mensaje.Nivel.INFORMATIVO);
 
-			mensaje = new Mensaje("El trabajador no se ha podido modificar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			//mensaje = new Mensaje("El servicio no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 
-			request.getRequestDispatcher(ADMIN_TRABAJADOR_JSP).forward(request, response);
+			request.getRequestDispatcher(ADMIN_SERVICIO_JSP).forward(request, response);
 		}
+
 	}
 
 }

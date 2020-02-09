@@ -11,18 +11,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import sdm.modelos.Trabajador;
+import sdm.modelos.Servicio;
 
-public class Trabajadores implements Dao<Trabajador> {
+ class Servicios implements Dao<Servicio> {
+		private static final String SQL_SELECT= "SELECT * FROM servicios";
+		private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE id=?";
+
+		private static final String SQL_INSERT = "INSERT INTO servicios (nombre, precio) VALUES (?,?)";
+		private static final String SQL_UPDATE = "UPDATE servicios set nombre=?,precio=? WHERE id=?";
+		private static final String SQL_DELETE = "DELETE FROM servicios WHERE id=?";
+
 	private static String url, usuario, password;
 	// SINGLETON
 
-	private static Trabajadores instancia;
+	private static Servicios instancia;
 
-	private Trabajadores(String url, String usuario, String password) {
-		Trabajadores.url = url;
-		Trabajadores.usuario = usuario;
-		Trabajadores.password = password;
+	private Servicios(String url, String usuario, String password) {
+		Servicios.url = url;
+		Servicios.usuario = usuario;
+		Servicios.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,13 +38,13 @@ public class Trabajadores implements Dao<Trabajador> {
 		}
 	}
 
-	public static Trabajadores getInstancia(String pathConfiguracion) {
+	public static Servicios getInstancia(String pathConfiguracion) {
 		try {
 			if (instancia == null) {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				instancia = new Trabajadores(configuracion.getProperty("mysql.url"),
+				instancia = new Servicios(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 
@@ -59,35 +66,35 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public Iterable<Trabajador> obtenerTodos() {
+	public Iterable<Servicio> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
 				try (ResultSet rs = ps.executeQuery()) {
-					ArrayList<Trabajador> trabajadores = new ArrayList<>();
+					ArrayList<Servicio> servicios = new ArrayList<>();
 
 					while (rs.next()) {
-						trabajadores.add(new Trabajador(rs.getLong("id"), rs.getString("nombre"),
-								rs.getString("apellidos"), rs.getString("dni")));
+						servicios.add(new Servicio(rs.getLong("id"), rs.getString("nombre"),
+								rs.getBigDecimal("precio")));
 					}
-					return trabajadores;
+					return servicios;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los trabajadores", e);
+			throw new AccesoDatosException("Error al obtener todos los servicios", e);
 		}
 	}
 
 	@Override
-	public Trabajador obtenerPorId(Long id) {
+	public Servicio obtenerPorId(Long id) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores WHERE id=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				ps.setLong(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Trabajador(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"),
-								rs.getString("dni"));
+						return new Servicio(rs.getLong("id"), rs.getString("nombre"),
+								rs.getBigDecimal("precio"));
 					} else {
 						return null;
 					}
@@ -99,13 +106,12 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public void agregar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)")) {
-				ps.setString(1, trabajador.getNombre());
-				ps.setString(2, trabajador.getApellidos());
-				ps.setString(3, trabajador.getDni());
+					.prepareStatement(SQL_INSERT)) {
+				ps.setString(1, servicio.getNombre());
+				ps.setBigDecimal(2, servicio.getPrecio());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -119,14 +125,13 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void modificar(Trabajador trabajador) {
+	public void modificar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("UPDATE tabajadores set nombre=?,apellidos=?,dni=? WHERE id=?")) {
-				ps.setString(1, trabajador.getNombre());
-				ps.setString(2, trabajador.getApellidos());
-				ps.setString(3, trabajador.getDni());
-				ps.setLong(4, trabajador.getId());
+					.prepareStatement(SQL_UPDATE)) {
+				ps.setString(1, servicio.getNombre());
+				ps.setBigDecimal(2, servicio.getPrecio());
+				ps.setLong(3, servicio.getId());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -135,7 +140,7 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el tabajador", e);
+			throw new AccesoDatosException("Error al modificar el servicio", e);
 		}
 
 	}
@@ -143,7 +148,7 @@ public class Trabajadores implements Dao<Trabajador> {
 	@Override
 	public void borrar(Long id) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("DELETE FROM trabajadores WHERE id=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setLong(1, id);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
@@ -153,7 +158,7 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar el trabajador", e);
+			throw new AccesoDatosException("Error al borrar el servicio", e);
 		}
 	}
 

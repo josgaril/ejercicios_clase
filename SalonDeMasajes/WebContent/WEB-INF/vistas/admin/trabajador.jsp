@@ -14,13 +14,13 @@
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" id="id" name="id"
-						value="${libro.id}" readonly>
+						value="${trabajador.id}" readonly>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-10">
-					<input type="text" minlength="1" maxlength="45" placeholder="El nombre debe tener entre 1 y 45aracteres"
+					<input type="text" minlength="1" maxlength="45" placeholder="El nombre debe tener entre 1 y 45 caracteres"
 						class="form-control ${primeravez ? '' : (trabajador.errorNombre == null ? 'is-valid' : 'is-invalid') }"
 						id="nombre" name="nombre" value="${trabajador.nombre}">
 					<div class="invalid-feedback">${trabajador.errorNombre}</div>
@@ -31,7 +31,7 @@
 				<label for="apellidos" class="col-sm-2 col-form-label">Apelllidos</label>
 				<div class="col-sm-10">
 					<input type="text" minlength="1" maxlength="90" placeholder="El apelido debe tener entre 1 y 90 caracteres"
-						class="form-control ${primeravez ? '' : (trabajador.errorAPellidos == null ? 'is-valid' : 'is-invalid') }"
+						class="form-control ${primeravez ? '' : (trabajador.errorApellidos == null ? 'is-valid' : 'is-invalid') }"
 						id="apellidos" name="apellidos" value="${trabajador.apellidos}">
 					<div class="invalid-feedback">${trabajador.errorApellidos}</div>
 				</div>

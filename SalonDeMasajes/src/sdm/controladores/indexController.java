@@ -14,8 +14,10 @@ public class indexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("trabajadores", Globales.dao.obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		request.setAttribute("clientes", Globales.daoc.obtenerTodos());
+		request.setAttribute("servicios", Globales.daos.obtenerTodos());
+
+		request.getRequestDispatcher("/WEB-INF/vistas/indexClientes.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

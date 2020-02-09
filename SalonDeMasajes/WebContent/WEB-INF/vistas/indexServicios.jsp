@@ -7,14 +7,15 @@
 <header class="jumbotron">
 	<h2 class="display-6">Bienvenidos al salón de masajes SAMAJA</h2>
 </header>
-<h2>Mostramos listado de los trabajadores</h2>
-<section id="trabajadores" class="row">
-	<c:forEach items="${trabajadores}" var="trabajador">
+<h2>Mostramos listado de los servicios</h2>
+<section id="servicios" class="row">
+	<c:forEach items="${servicios}" var="servicio">
 		<article class="libro col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<p class="id: ">${trabajador.id}</p>
-			<p class="nombre: ">${trabajador.nombre}</p>
-			<p class="apellidos: ">${trabajador.apellidos}</p>
-			<p class="dni: ">${trabajador.dni}</p>
+			<p class="id: ">${servicio.id}</p>
+			<p class="nombre: ">${servicio.nombre}</p>
+<%-- 			<p class="precio: ">${servicio.precio}</p> --%>
+			<p class="precio"> <fmt:formatNumber type="currency"
+						value="${servicio.precio}" pattern="#0.000" />
 		</article>
 	</c:forEach>
 </section>

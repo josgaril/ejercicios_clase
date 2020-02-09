@@ -12,7 +12,7 @@ import sdm.modelos.Mensaje;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-	private static final String LOGIN_JSP = "/WEB-INF/vistas/index.jsp";
+	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
 	
 	private static final long serialVersionUID = 1L;
 	

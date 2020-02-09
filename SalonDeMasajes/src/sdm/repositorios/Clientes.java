@@ -11,18 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import sdm.modelos.Trabajador;
+import sdm.modelos.Cliente;
 
-public class Trabajadores implements Dao<Trabajador> {
+public class Clientes implements Dao<Cliente> {
 	private static String url, usuario, password;
 	// SINGLETON
 
-	private static Trabajadores instancia;
+	private static Clientes instancia;
 
-	private Trabajadores(String url, String usuario, String password) {
-		Trabajadores.url = url;
-		Trabajadores.usuario = usuario;
-		Trabajadores.password = password;
+	private Clientes(String url, String usuario, String password) {
+		Clientes.url = url;
+		Clientes.usuario = usuario;
+		Clientes.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,13 +31,13 @@ public class Trabajadores implements Dao<Trabajador> {
 		}
 	}
 
-	public static Trabajadores getInstancia(String pathConfiguracion) {
+	public static Clientes getInstancia(String pathConfiguracion) {
 		try {
 			if (instancia == null) {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				instancia = new Trabajadores(configuracion.getProperty("mysql.url"),
+				instancia = new Clientes(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 
@@ -59,17 +59,17 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public Iterable<Trabajador> obtenerTodos() {
+	public Iterable<Cliente> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores")) {
+			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM clientes")) {
 				try (ResultSet rs = ps.executeQuery()) {
-					ArrayList<Trabajador> trabajadores = new ArrayList<>();
+					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					while (rs.next()) {
-						trabajadores.add(new Trabajador(rs.getLong("id"), rs.getString("nombre"),
+						clientes.add(new Cliente(rs.getLong("idclientes"), rs.getString("nombre"),
 								rs.getString("apellidos"), rs.getString("dni")));
 					}
-					return trabajadores;
+					return clientes;
 				}
 			}
 		} catch (SQLException e) {
@@ -78,15 +78,15 @@ public class Trabajadores implements Dao<Trabajador> {
 	}
 
 	@Override
-	public Trabajador obtenerPorId(Long id) {
+	public Cliente obtenerPorId(Long idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM trabajadores WHERE id=?")) {
-				ps.setLong(1, id);
+			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM clientes WHERE idclientes=?")) {
+				ps.setLong(1, idclientes);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Trabajador(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"),
+						return new Cliente(rs.getLong("idclientes"), rs.getString("nombre"), rs.getString("apellidos"),
 								rs.getString("dni"));
 					} else {
 						return null;
@@ -94,18 +94,18 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el video id: " + id, e);
+			throw new AccesoDatosException("Error al obtener el cliente id: " + idclientes, e);
 		}
 	}
 
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public void agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)")) {
-				ps.setString(1, trabajador.getNombre());
-				ps.setString(2, trabajador.getApellidos());
-				ps.setString(3, trabajador.getDni());
+					.prepareStatement("INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)")) {
+				ps.setString(1, cliente.getNombre());
+				ps.setString(2, cliente.getApellidos());
+				ps.setString(3, cliente.getDni());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -114,19 +114,19 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al insertar el trabajador", e);
+			throw new AccesoDatosException("Error al insertar el cliente", e);
 		}
 	}
 
 	@Override
-	public void modificar(Trabajador trabajador) {
+	public void modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("UPDATE tabajadores set nombre=?,apellidos=?,dni=? WHERE id=?")) {
-				ps.setString(1, trabajador.getNombre());
-				ps.setString(2, trabajador.getApellidos());
-				ps.setString(3, trabajador.getDni());
-				ps.setLong(4, trabajador.getId());
+					.prepareStatement("UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?")) {
+				ps.setString(1, cliente.getNombre());
+				ps.setString(2, cliente.getApellidos());
+				ps.setString(3, cliente.getDni());
+				ps.setLong(4, cliente.getIdclientes());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -135,16 +135,16 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el tabajador", e);
+			throw new AccesoDatosException("Error al modificar el cliente", e);
 		}
 
 	}
 
 	@Override
-	public void borrar(Long id) {
+	public void borrar(Long idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("DELETE FROM trabajadores WHERE id=?")) {
-				ps.setLong(1, id);
+			try (PreparedStatement ps = con.prepareStatement("DELETE FROM clientes WHERE idclientes=?")) {
+				ps.setLong(1, idclientes);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -153,7 +153,7 @@ public class Trabajadores implements Dao<Trabajador> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar el trabajador", e);
+			throw new AccesoDatosException("Error al borrar el cliente", e);
 		}
 	}
 

@@ -29,16 +29,19 @@ public class TrabajadorCrearController extends HttpServlet {
 		String dni = request.getParameter("dni");
 
 
-		Trabajador trabajador = new Trabajador(Integer.parseInt(id), nombre, apellidos, dni);
-
+		//Trabajador trabajador = new Trabajador(11, nombre, apellidos, dni);
+		//Trabajador trabajador = new Trabajador(Integer.parseInt(id), nombre, apellidos, dni);
+		Trabajador trabajador=new Trabajador(nombre, apellidos, dni);
+		//Trabajador trabajador = new Trabajador(id,nombre, apellidos, dni);
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
-
+		
+		mensaje = new Mensaje(trabajador.toString(), Mensaje.Nivel.ERROR);
 		if (trabajador.isCorrecto()) {
 
-
-			Globales.dao.agregar(trabajador);
+	
+			Globales.daot.agregar(trabajador);
 
 			mensaje = new Mensaje("Trabajador agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 
@@ -48,8 +51,8 @@ public class TrabajadorCrearController extends HttpServlet {
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("trabajador", trabajador);
-
-			mensaje = new Mensaje("El trabajador no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			//mensaje = new Mensaje(trabajador.toString(), Mensaje.Nivel.ERROR);
+			//mensaje = new Mensaje("El trabajador no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 

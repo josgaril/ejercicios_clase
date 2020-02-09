@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 		
 		HttpSession session = httpRequest.getSession();
 		
-		if(session.getAttribute("email") == null) {
+		if(session.getAttribute("usuario") == null) {
 			session.setAttribute("alertatexto", "Necesitas iniciar sesión para entrar en admin");
 			session.setAttribute("alertanivel", "danger");
 			

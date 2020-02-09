@@ -1,41 +1,49 @@
 package sdm.modelos;
 
-public class Trabajador {
+public class Cliente {
 
-	private Long id;
+	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
+	
+	private Long idclientes;
 	private String nombre;
 	private String apellidos;
 	private String dni;
 
-	private boolean correcto=true;
+	private boolean correcto = true;
 	private String errorId, errorNombre, errorApellidos, errorDni;
 
-	public Trabajador(Long id, String nombre, String apellidos, String dni) {
-		setId(id);
+	public Cliente(Long idclientes, String nombre, String apellidos, String dni) {
+		setIdclientes(idclientes);
 		setNombre(nombre);
 		setApellidos(apellidos);
 		setDni(dni);
 	}
 
 	/*
-	 * public Trabajador(String id, String nombre, String apellidos, String dni){
-	 * setId(id); setNombre(nombre); setApellidos(apellidos); setDni(dni); }
+	 * public Cliente(String idclientes, String nombre, String apellidos, String
+	 * dni) { setIdclientes(idclientes); setNombre(nombre); setApellidos(apellidos);
+	 * setDni(dni); }
 	 */
 
-	public Trabajador(String nombre, String apellidos, String dni) {
-		this(null, nombre, apellidos, dni);
+	public Cliente(String nombre, String apellidos, String dni) {
+		this(null, nombre, apellidos,dni);
+	}
+	public Cliente(String nombre) {
+		this(null, nombre, null,null);
+	}
+	public Cliente(Long id, String nombre) {
+		this(id, nombre, null, null);
 	}
 
-	public Trabajador() {
-
+	public Cliente() {
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdclientes() {
+		return idclientes;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdclientes(Long idclientes) {
+		this.idclientes = idclientes;
 	}
 
 	public String getNombre() {
@@ -55,7 +63,7 @@ public class Trabajador {
 
 	public void setApellidos(String apellidos) {
 		if (apellidos == null || apellidos.trim().length() < 1 || apellidos.trim().length() > 90) {
-			setErrorApellidos("Los apellidos tiene que tener una longitud entre 1 y 90");
+			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
 		}
 		this.apellidos = apellidos;
 	}
@@ -66,19 +74,27 @@ public class Trabajador {
 
 	public void setDni(String dni) {
 		if (dni == null || dni.trim().length() != 9) {
-			setErrorDni("El dni tiene que tener una longitud de 9 caracteres");
+			setErrorDni("El dni tiene que estar formado por 9 caracteres");
+		}
+	
+		if (!dni.matches(REGEX_DNI)) {
+			setErrorDni("Formato de DNI incorrecto");
 		}
 		this.dni = dni;
-
 	}
 
-	/*
-	 * private void setId(String id) { if (id == null || id.trim().length() == 0) {
-	 * this.id = null; return; }
-	 * 
-	 * try { this.id = Long.parseLong(id); } catch (NumberFormatException e) {
-	 * setErrorId("No era un número"); } }
-	 */
+	private void setIdclientes(String idclientes) {
+		if (idclientes == null || idclientes.trim().length() == 0) {
+			this.idclientes = null;
+			return;
+		}
+
+		try {
+			this.idclientes = Long.parseLong(idclientes);
+		} catch (NumberFormatException e) {
+			setErrorId("El id no es un numero");
+		}
+	}
 
 	public boolean isCorrecto() {
 		return correcto;
@@ -130,7 +146,7 @@ public class Trabajador {
 		int result = 1;
 		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idclientes == null) ? 0 : idclientes.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -143,7 +159,7 @@ public class Trabajador {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Trabajador other = (Trabajador) obj;
+		Cliente other = (Cliente) obj;
 		if (apellidos == null) {
 			if (other.apellidos != null)
 				return false;
@@ -154,10 +170,10 @@ public class Trabajador {
 				return false;
 		} else if (!dni.equals(other.dni))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (idclientes == null) {
+			if (other.idclientes != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idclientes.equals(other.idclientes))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -169,7 +185,8 @@ public class Trabajador {
 
 	@Override
 	public String toString() {
-		return "Trabajador [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + "]";
+		return "Cliente [idclientes=" + idclientes + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni
+				+ "]";
 	}
 
 }

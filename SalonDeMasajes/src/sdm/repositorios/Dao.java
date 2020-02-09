@@ -3,11 +3,11 @@ package sdm.repositorios;
 public interface Dao<T> {
 	Iterable<T> obtenerTodos();
 
-	T obtenerPorId(Integer id);
+	T obtenerPorId(Long id);
 
 	void agregar(T objeto);
 
 	void modificar(T objeto);
 
-	void borrar(Integer id);
+	void borrar(Long id);
 }

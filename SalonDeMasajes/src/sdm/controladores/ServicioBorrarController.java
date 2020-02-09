@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import sdm.modelos.Mensaje;
 import sdm.repositorios.AccesoDatosException;
 
-@WebServlet("/admin/borrar")
-public class TrabajadorBorrarController extends HttpServlet {
+@WebServlet("/admin/servicio/borrar")
+public class ServicioBorrarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,13 +23,13 @@ public class TrabajadorBorrarController extends HttpServlet {
 		Mensaje mensaje;
 		
 		try {
-			Globales.daot.borrar(Long.parseLong(id));
+			Globales.daos.borrar(Long.parseLong(id));
 			mensaje = new Mensaje(
-					"Trabajador borrado correctamente", 
+					"Borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
 		} catch (AccesoDatosException e) {
 			mensaje = new Mensaje(
-				"No se ha encontrado el trabajador a borrar",
+				"No se ha encontrado el servicio a borrar",
 				Mensaje.Nivel.ALERTA);
 		} catch(NumberFormatException e) {
 			mensaje = new Mensaje(

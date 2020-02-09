@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<fmt:setLocale value = "es_ES"/>
+<fmt:setLocale value="es_ES" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,8 +41,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index">SAMAJA</a>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<a class="navbar-brand" href="#">SAMAJA</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -54,7 +54,9 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="admin/listado">Administración</a></li>
 			</ul>
-
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="admin/listado">Servicios</a></li>
+			</ul>
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
@@ -84,6 +86,8 @@
 			</button>
 		</div>
 
-		<% session.removeAttribute("mensaje"); %>
+		<%
+			session.removeAttribute("mensaje");
+		%>
 	</c:if>
 	<main class="container-fluid">

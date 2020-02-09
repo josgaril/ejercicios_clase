@@ -20,7 +20,7 @@ public class TrabajadorController extends HttpServlet {
 		
 		if(id != null && id.trim().length() > 0) {
 			
-			request.setAttribute("trabajadores", Globales.dao.obtenerPorId(Integer.parseInt(id)));
+			request.setAttribute("trabajador", Globales.daot.obtenerPorId(Long.parseLong(id)));
 		}
 		
 		request.setAttribute("op", op);
