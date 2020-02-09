@@ -21,7 +21,8 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="css/all.min.css" />
 
-<link rel="stylesheet" href="css/salonDeMasajes.css" />
+<link rel="stylesheet" href="css/masajes.css" />
+
 
 <!-- jQuery -->
 <script src="js/jquery-3.4.1.min.js"></script>
@@ -37,7 +38,6 @@
 	});
 </script>
 
-
 </head>
 <body>
 
@@ -51,17 +51,25 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="admin/index">Administración <i class="fas fa-user-cog"></i></a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="indexTrabajadores">Trabajadores <i class="fas fa-user-hard-hat"></i> </a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="indexClientes">Clientes <i class="fas fa-user"></i> </a>
+				</li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="indexTrabajadores">Trabajadores</a></li>
-			</ul>
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="indexClientes">Clientes</a></li>
-			</ul>
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="indexServicios">Servicios</a></li>
+				<li class="nav-item">
+					<a class="nav-link" href="indexServicios">Servicios <i class="fas fa-concierge-bell"></i> </a>
+				</li>
 			</ul>
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
@@ -92,8 +100,6 @@
 			</button>
 		</div>
 
-		<%
-			session.removeAttribute("mensaje");
-		%>
+		<% session.removeAttribute("mensaje"); %>
 	</c:if>
 	<main class="container-fluid">
