@@ -15,11 +15,11 @@ import sdm.modelos.Servicio;
 
  class Servicios implements Dao<Servicio> {
 		private static final String SQL_SELECT= "SELECT * FROM servicios";
-		private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE id=?";
+		private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE idservicios=?";
 
 		private static final String SQL_INSERT = "INSERT INTO servicios (nombre, precio) VALUES (?,?)";
-		private static final String SQL_UPDATE = "UPDATE servicios set nombre=?,precio=? WHERE id=?";
-		private static final String SQL_DELETE = "DELETE FROM servicios WHERE id=?";
+		private static final String SQL_UPDATE = "UPDATE servicios set nombre=?,precio=? WHERE idservicios=?";
+		private static final String SQL_DELETE = "DELETE FROM servicios WHERE idservicios=?";
 
 	private static String url, usuario, password;
 	// SINGLETON
@@ -73,7 +73,7 @@ import sdm.modelos.Servicio;
 					ArrayList<Servicio> servicios = new ArrayList<>();
 
 					while (rs.next()) {
-						servicios.add(new Servicio(rs.getLong("id"), rs.getString("nombre"),
+						servicios.add(new Servicio(rs.getLong("idservicios"), rs.getString("nombre"),
 								rs.getBigDecimal("precio")));
 					}
 					return servicios;
@@ -85,15 +85,15 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Servicio obtenerPorId(Long id) {
+	public Servicio obtenerPorId(Long idservicios) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
-				ps.setLong(1, id);
+				ps.setLong(1, idservicios);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Servicio(rs.getLong("id"), rs.getString("nombre"),
+						return new Servicio(rs.getLong("idservicios"), rs.getString("nombre"),
 								rs.getBigDecimal("precio"));
 					} else {
 						return null;
@@ -101,7 +101,7 @@ import sdm.modelos.Servicio;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el video id: " + id, e);
+			throw new AccesoDatosException("Error al obtener el servicio id: " + idservicios, e);
 		}
 	}
 
@@ -131,7 +131,7 @@ import sdm.modelos.Servicio;
 					.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, servicio.getNombre());
 				ps.setBigDecimal(2, servicio.getPrecio());
-				ps.setLong(3, servicio.getId());
+				ps.setLong(3, servicio.getIdservicios());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 

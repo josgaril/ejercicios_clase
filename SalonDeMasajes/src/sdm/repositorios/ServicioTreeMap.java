@@ -30,28 +30,28 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Servicio obtenerPorId(Long id) {
-		return servicios.get(id);
+	public Servicio obtenerPorId(Long idservicios) {
+		return servicios.get(idservicios);
 	}
 
 	@Override
 	public void agregar(Servicio servicio) {
-				Long id = servicios.size() == 0L ? 1L : servicios.lastKey() + 1L;
-				servicio.setId(id);
-				servicios.put(id, servicio);
+				Long idservicios = servicios.size() == 0L ? 1L : servicios.lastKey() + 1L;
+				servicio.setIdservicios(idservicios);
+				servicios.put(idservicios, servicio);
 	}
 
 	@Override
 	public void modificar(Servicio servicio) {
-		servicios.put(servicio.getId(), servicio);
+		servicios.put(servicio.getIdservicios(), servicio);
 	}
 
 	@Override
-	public void borrar(Long id) {
-		if (!servicios.containsKey(id)) {
+	public void borrar(Long idservicios) {
+		if (!servicios.containsKey(idservicios)) {
 			throw new AccesoDatosException("No se ha encontrado el libro a borrar");
 		}
-		servicios.remove(id);
+		servicios.remove(idservicios);
 
 	}
 

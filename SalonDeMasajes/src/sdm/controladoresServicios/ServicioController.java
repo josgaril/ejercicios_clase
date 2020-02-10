@@ -18,11 +18,11 @@ public class ServicioController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String id = request.getParameter("id");
+		String idservicios = request.getParameter("idservicios");
 		
-		if(id != null && id.trim().length() > 0) {
+		if(idservicios != null && idservicios.trim().length() > 0) {
 			
-			request.setAttribute("servicio", Globales.daos.obtenerPorId(Long.parseLong(id)));
+			request.setAttribute("servicio", Globales.daos.obtenerPorId(Long.parseLong(idservicios)));
 		}
 		
 		request.setAttribute("op", op);

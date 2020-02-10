@@ -9,7 +9,7 @@
 <section id="servicios" class="row">
 	<c:forEach items="${servicios}" var="servicio">
 		<article class="libro col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<p class="id: ">${servicio.id}</p>
+			<p class="id: ">${servicio.idservicios}</p>
 			<p class="nombre: ">${servicio.nombre}</p>
 			<p class="precio"> <fmt:formatNumber type="currency"
 						value="${servicio.precio}" pattern="#0.000" /></p>

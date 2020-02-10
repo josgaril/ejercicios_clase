@@ -24,11 +24,11 @@ public class ServicioModificarController extends HttpServlet {
 
 		String op = request.getParameter("op");
 
-		String id = request.getParameter("id");
+		String idservicios = request.getParameter("idservicios");
 		String nombre = request.getParameter("nombre");
 		String precio = request.getParameter("precio");
 
-		Servicio servicio = new Servicio(id, nombre, precio);
+		Servicio servicio = new Servicio(idservicios, nombre, precio);
 
 		Mensaje mensaje;
 

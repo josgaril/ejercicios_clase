@@ -17,12 +17,12 @@
 		<tbody>
 			<c:forEach items="${servicios}" var="servicio">
 				<tr>
-					<th>${servicio.id}</th>
+					<th>${servicio.idservicios}</th>
 					<td>${servicio.nombre}</td>
 					<td><fmt:formatNumber type="currency" value="${servicio.precio}" pattern="#0.000"/></td>
 					<td><a class="btn btn-warning"
-						href="admin/servicio?id=${servicio.id}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/servicio/borrar?id=${servicio.id}">Borrar</a>
+						href="admin/servicio?idservicios=${servicio.idservicios}&op=modificar">Modificar</a> <a
+						class="btn btn-danger" href="admin/servicio/borrar?idservicios=${servicio.idservicios}">Borrar</a>
 					</td>
 				</tr>
 			</c:forEach>

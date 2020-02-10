@@ -4,21 +4,21 @@ import java.math.BigDecimal;
 
 public class Servicio {
 
-	private Long id;
+	private Long idservicios;
 	private String nombre;
 	private BigDecimal precio;
 
 	private boolean correcto=true;
 	private String errorId, errorNombre, errorPrecio;
 
-	public Servicio(String id, String nombre, String precio) {
-		setId(id);
+	public Servicio(String idservicios, String nombre, String precio) {
+		setIdservicios(idservicios);
 		setNombre(nombre);
 		setPrecio(precio);
 	}
 
-	public Servicio(Long id, String nombre, BigDecimal precio) {
-		setId(id);
+	public Servicio(Long idservicios, String nombre, BigDecimal precio) {
+		setIdservicios(idservicios);
 		setNombre(nombre);
 		setPrecio(precio);
 	}
@@ -30,12 +30,12 @@ public class Servicio {
 	public Servicio() {
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdservicios() {
+		return idservicios;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdservicios(Long idservicios) {
+		this.idservicios = idservicios;
 	}
 
 	public String getNombre() {
@@ -60,14 +60,14 @@ public class Servicio {
 		this.precio = precio;
 	}
 
-	private void setId(String id) {
-		if (id == null || id.trim().length() == 0) {
-			this.id = null;
+	private void setIdservicios(String idservicios) {
+		if (idservicios == null || idservicios.trim().length() == 0) {
+			this.idservicios = null;
 			return;
 		}
 
 		try {
-			this.id = Long.parseLong(id);
+			this.idservicios = Long.parseLong(idservicios);
 		} catch (NumberFormatException e) {
 			setErrorId("No era un número");
 		}
@@ -131,7 +131,7 @@ public class Servicio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idservicios == null) ? 0 : idservicios.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
 		return result;
@@ -146,10 +146,10 @@ public class Servicio {
 		if (getClass() != obj.getClass())
 			return false;
 		Servicio other = (Servicio) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idservicios == null) {
+			if (other.idservicios != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idservicios.equals(other.idservicios))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -166,7 +166,7 @@ public class Servicio {
 
 	@Override
 	public String toString() {
-		return "Servicios [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
+		return "Servicios [id=" + idservicios + ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
 
 }

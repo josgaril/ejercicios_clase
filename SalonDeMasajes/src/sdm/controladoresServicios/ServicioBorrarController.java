@@ -17,14 +17,14 @@ public class ServicioBorrarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String idservicios = request.getParameter("idservicios");
 		
 
 		
 		Mensaje mensaje;
 		
 		try {
-			Globales.daos.borrar(Long.parseLong(id));
+			Globales.daos.borrar(Long.parseLong(idservicios));
 			mensaje = new Mensaje(
 					"Borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
