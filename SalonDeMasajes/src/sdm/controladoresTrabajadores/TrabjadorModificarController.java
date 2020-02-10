@@ -32,14 +32,13 @@ public class TrabjadorModificarController extends HttpServlet {
 
 		Trabajador trabajador = new Trabajador(Integer.parseInt(idtrabajadores), nombre, apellidos, dni);
 
-
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
 
 		if (trabajador.isCorrecto()) {
 			
-			Globales.daoT.modificar(trabajador);
+			Globales.daoTrabajador.modificar(trabajador);
 
 			mensaje = new Mensaje("Trabajador modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 

@@ -29,14 +29,14 @@ public class ClienteModificarController extends HttpServlet {
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
 		
-		Cliente cliente = new Cliente(Long.parseLong(idclientes), nombre, apellidos, dni);
+		Cliente cliente = new Cliente(Integer.parseInt(idclientes), nombre, apellidos, dni);
 
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
 
 		if (cliente.isCorrecto()) {
-			Globales.daoc.modificar(cliente);
+			Globales.daoCliente.modificar(cliente);
 
 			mensaje = new Mensaje("Cliente modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 

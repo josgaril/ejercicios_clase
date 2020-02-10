@@ -22,7 +22,7 @@ public class ClienteController extends HttpServlet {
 		
 		if(idclientes != null && idclientes.trim().length() > 0) {
 			
-			request.setAttribute("cliente", Globales.daoc.obtenerPorId(Long.parseLong(idclientes)));
+			request.setAttribute("cliente", Globales.daoCliente.obtenerPorId(Integer.parseInt(idclientes)));
 		}
 		
 		request.setAttribute("op", op);

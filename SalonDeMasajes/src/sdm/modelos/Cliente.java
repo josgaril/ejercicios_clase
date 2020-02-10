@@ -4,7 +4,7 @@ public class Cliente {
 
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
 	
-	private Long idclientes;
+	private Integer idclientes;
 	private String nombre;
 	private String apellidos;
 	private String dni;
@@ -12,7 +12,7 @@ public class Cliente {
 	private boolean correcto = true;
 	private String errorId, errorNombre, errorApellidos, errorDni;
 
-	public Cliente(Long idclientes, String nombre, String apellidos, String dni) {
+	public Cliente(Integer idclientes, String nombre, String apellidos, String dni) {
 		setIdclientes(idclientes);
 		setNombre(nombre);
 		setApellidos(apellidos);
@@ -31,18 +31,18 @@ public class Cliente {
 	public Cliente(String nombre) {
 		this(null, nombre, null,null);
 	}
-	public Cliente(Long id, String nombre) {
-		this(id, nombre, null, null);
+	public Cliente(Integer idclientes, String nombre) {
+		this(idclientes, nombre, null, null);
 	}
 
 	public Cliente() {
 	}
 
-	public Long getIdclientes() {
+	public Integer getIdclientes() {
 		return idclientes;
 	}
 
-	public void setIdclientes(Long idclientes) {
+	public void setIdclientes(Integer idclientes) {
 		this.idclientes = idclientes;
 	}
 
@@ -83,18 +83,13 @@ public class Cliente {
 		this.dni = dni;
 	}
 
-	private void setIdclientes(String idclientes) {
-		if (idclientes == null || idclientes.trim().length() == 0) {
-			this.idclientes = null;
-			return;
-		}
-
-		try {
-			this.idclientes = Long.parseLong(idclientes);
-		} catch (NumberFormatException e) {
-			setErrorId("El id no es un numero");
-		}
-	}
+	/*
+	 * private void setIdclientes(String idclientes) { if (idclientes == null ||
+	 * idclientes.trim().length() == 0) { this.idclientes = null; return; }
+	 * 
+	 * try { this.idclientes = Integer.parseInt(idclientes); } catch
+	 * (NumberFormatException e) { setErrorId("El id no es un numero"); } }
+	 */
 
 	public boolean isCorrecto() {
 		return correcto;

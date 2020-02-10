@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 import sdm.modelos.Trabajador;
 
-public class TrabajadorTreeMap implements DaoTrabajador<Trabajador> {
+public class TrabajadorTreeMap implements Dao<Trabajador> {
 	private TreeMap<Integer, Trabajador> trabajadores = new TreeMap<>();
 
 	// SINGLETON

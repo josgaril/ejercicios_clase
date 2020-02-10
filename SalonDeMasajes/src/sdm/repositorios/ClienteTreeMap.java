@@ -7,7 +7,7 @@ import sdm.modelos.Cliente;
 public class ClienteTreeMap implements Dao<Cliente> {
 
 
-	private TreeMap<Long, Cliente> clientes = new TreeMap<>();
+	private TreeMap<Integer, Cliente> clientes = new TreeMap<>();
 
 	// SINGLETON
 	private static final ClienteTreeMap INSTANCIA = new ClienteTreeMap();
@@ -30,13 +30,13 @@ public class ClienteTreeMap implements Dao<Cliente> {
 	}
 
 	@Override
-	public Cliente obtenerPorId(Long idclientes) {
+	public Cliente obtenerPorId(Integer idclientes) {
 		return clientes.get(idclientes);
 	}
 
 	@Override
 	public void agregar(Cliente cliente) {
-		Long idclientes = clientes.size() == 0 ? 1L : clientes.lastKey() + 1L;
+		Integer idclientes = clientes.size() == 0 ? 1 : clientes.lastKey() + 1;
 		cliente.setIdclientes(idclientes);
 		clientes.put(idclientes, cliente);
 	}
@@ -47,7 +47,7 @@ public class ClienteTreeMap implements Dao<Cliente> {
 	}
 
 	@Override
-	public void borrar(Long idclientes) {
+	public void borrar(Integer idclientes) {
 		if (!clientes.containsKey(idclientes)) {
 			throw new AccesoDatosException("No se ha encontrado el cliente a borrar");
 		}

@@ -22,7 +22,7 @@ public class ServicioController extends HttpServlet {
 		
 		if(idservicios != null && idservicios.trim().length() > 0) {
 			
-			request.setAttribute("servicio", Globales.daos.obtenerPorId(Long.parseLong(idservicios)));
+			request.setAttribute("servicio", Globales.daoServicio.obtenerPorId(Integer.parseInt(idservicios)));
 		}
 		
 		request.setAttribute("op", op);

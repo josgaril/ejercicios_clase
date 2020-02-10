@@ -22,7 +22,7 @@ public class TrabajadorBorrarController extends HttpServlet {
 		Mensaje mensaje;
 		
 		try {
-			Globales.daoT.borrar(Integer.parseInt(idtrabajadores));
+			Globales.daoTrabajador.borrar(Integer.parseInt(idtrabajadores));
 			mensaje = new Mensaje(
 					"Trabajador borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);

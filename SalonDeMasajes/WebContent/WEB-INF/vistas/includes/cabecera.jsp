@@ -58,12 +58,12 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="indexTrabajadores">Trabajadores <i class="fas fa-user-hard-hat"></i> </a>
+					<a class="nav-link" href="indexTrabajadores">Trabajadores <i class="fas fa-user-tie"></i> </a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="indexClientes">Clientes <i class="fas fa-user"></i> </a>
+					<a class="nav-link" href="indexClientes">Clientes <i class="fas fa-users"></i> </a>
 				</li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
@@ -81,7 +81,7 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="login">Login</a>
+						<li class="nav-item"><a class="nav-link" href="login">Login <i class="fas fa-user-cog"></i> </a>
 						</li>
 					</ul>
 				</c:otherwise>

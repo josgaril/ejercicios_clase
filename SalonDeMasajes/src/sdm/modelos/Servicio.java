@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Servicio {
 
-	private Long idservicios;
+	private Integer idservicios;
 	private String nombre;
 	private BigDecimal precio;
 
@@ -17,7 +17,7 @@ public class Servicio {
 		setPrecio(precio);
 	}
 
-	public Servicio(Long idservicios, String nombre, BigDecimal precio) {
+	public Servicio(Integer idservicios, String nombre, BigDecimal precio) {
 		setIdservicios(idservicios);
 		setNombre(nombre);
 		setPrecio(precio);
@@ -30,11 +30,11 @@ public class Servicio {
 	public Servicio() {
 	}
 
-	public Long getIdservicios() {
+	public Integer getIdservicios() {
 		return idservicios;
 	}
 
-	public void setIdservicios(Long idservicios) {
+	public void setIdservicios(Integer idservicios) {
 		this.idservicios = idservicios;
 	}
 
@@ -67,7 +67,7 @@ public class Servicio {
 		}
 
 		try {
-			this.idservicios = Long.parseLong(idservicios);
+			this.idservicios = Integer.parseInt(idservicios);
 		} catch (NumberFormatException e) {
 			setErrorId("No era un número");
 		}

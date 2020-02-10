@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import sdm.modelos.Trabajador;
 
-public class Trabajadores implements DaoTrabajador<Trabajador> {
+public class Trabajadores implements Dao<Trabajador> {
 	private static final String SQL_SELECT = "SELECT * FROM trabajadores";
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
 	

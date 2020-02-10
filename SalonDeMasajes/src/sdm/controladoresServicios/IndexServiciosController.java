@@ -17,7 +17,7 @@ public class IndexServiciosController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("servicios", Globales.daos.obtenerTodos());
+		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
 		request.getRequestDispatcher(INDEX_SERVICIOS).forward(request, response);
 	}
 

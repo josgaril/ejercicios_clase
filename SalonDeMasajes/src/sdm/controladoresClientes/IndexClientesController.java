@@ -17,7 +17,7 @@ public class IndexClientesController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("clientes", Globales.daoc.obtenerTodos());
+		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
 		request.getRequestDispatcher(INDEX_CLIENTES).forward(request, response);
 	}
 

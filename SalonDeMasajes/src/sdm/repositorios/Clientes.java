@@ -66,7 +66,7 @@ public class Clientes implements Dao<Cliente> {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					while (rs.next()) {
-						clientes.add(new Cliente(rs.getLong("idclientes"), rs.getString("nombre"),
+						clientes.add(new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
 								rs.getString("apellidos"), rs.getString("dni")));
 					}
 					return clientes;
@@ -78,15 +78,15 @@ public class Clientes implements Dao<Cliente> {
 	}
 
 	@Override
-	public Cliente obtenerPorId(Long idclientes) {
+	public Cliente obtenerPorId(Integer idclientes) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM clientes WHERE idclientes=?")) {
-				ps.setLong(1, idclientes);
+				ps.setInt(1, idclientes);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Cliente(rs.getLong("idclientes"), rs.getString("nombre"), rs.getString("apellidos"),
+						return new Cliente(rs.getInt("idclientes"), rs.getString("nombre"), rs.getString("apellidos"),
 								rs.getString("dni"));
 					} else {
 						return null;
@@ -126,7 +126,7 @@ public class Clientes implements Dao<Cliente> {
 				ps.setString(1, cliente.getNombre());
 				ps.setString(2, cliente.getApellidos());
 				ps.setString(3, cliente.getDni());
-				ps.setLong(4, cliente.getIdclientes());
+				ps.setInt(4, cliente.getIdclientes());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -141,7 +141,7 @@ public class Clientes implements Dao<Cliente> {
 	}
 
 	@Override
-	public void borrar(Long idclientes) {
+	public void borrar(Integer idclientes) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM clientes WHERE idclientes=?")) {
 				ps.setLong(1, idclientes);

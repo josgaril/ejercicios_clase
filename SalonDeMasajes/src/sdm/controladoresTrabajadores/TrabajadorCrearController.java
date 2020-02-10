@@ -30,10 +30,8 @@ public class TrabajadorCrearController extends HttpServlet {
 		String dni = request.getParameter("dni");
 
 
-		//Trabajador trabajador = new Trabajador(11, nombre, apellidos, dni);
-		//Trabajador trabajador = new Trabajador(Integer.parseInt(id), nombre, apellidos, dni);
 		Trabajador trabajador=new Trabajador(nombre, apellidos, dni);
-		//Trabajador trabajador = new Trabajador(id,nombre, apellidos, dni);
+
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
@@ -41,7 +39,7 @@ public class TrabajadorCrearController extends HttpServlet {
 		if (trabajador.isCorrecto()) {
 
 	
-			Globales.daoT.agregar(trabajador);
+			Globales.daoTrabajador.agregar(trabajador);
 
 			mensaje = new Mensaje("Trabajador agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 

@@ -17,7 +17,7 @@ public class AdminServicioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("servicios", Globales.daos.obtenerTodos());
+		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
 		request.getRequestDispatcher(ADMIN_TABLA_JSP).forward(request, response);
 	}
 

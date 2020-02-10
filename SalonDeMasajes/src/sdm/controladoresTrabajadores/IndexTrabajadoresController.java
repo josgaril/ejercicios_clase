@@ -17,7 +17,7 @@ public class IndexTrabajadoresController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("trabajadores", Globales.daoT.obtenerTodos());
+		request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
 		request.getRequestDispatcher(INDEX_TRABAJADORES).forward(request, response);
 	}
 

@@ -53,7 +53,7 @@ public class FabricaDao {
 		}
 	}
 	
-	public DaoTrabajador<Trabajador> getInstanciaTrabajador() {
+	public Dao<Trabajador> getInstanciaTrabajador() {
 		switch(tipo) {
 		case "memoria": return TrabajadorTreeMap.getInstancia();
 		case "mysql": return Trabajadores.getInstancia(pathConfiguracion);

@@ -7,7 +7,7 @@ import sdm.modelos.Servicio;
 
  class ServicioTreeMap implements Dao<Servicio> {
 
-	private TreeMap<Long, Servicio> servicios = new TreeMap<>();
+	private TreeMap<Integer, Servicio> servicios = new TreeMap<>();
 
 	// SINGLETON
 	private static final ServicioTreeMap INSTANCIA = new ServicioTreeMap();
@@ -30,13 +30,13 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Servicio obtenerPorId(Long idservicios) {
+	public Servicio obtenerPorId(Integer idservicios) {
 		return servicios.get(idservicios);
 	}
 
 	@Override
 	public void agregar(Servicio servicio) {
-				Long idservicios = servicios.size() == 0L ? 1L : servicios.lastKey() + 1L;
+		Integer idservicios = servicios.size() == 0L ? 1 : servicios.lastKey() + 1;
 				servicio.setIdservicios(idservicios);
 				servicios.put(idservicios, servicio);
 	}
@@ -47,7 +47,7 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void borrar(Long idservicios) {
+	public void borrar(Integer idservicios) {
 		if (!servicios.containsKey(idservicios)) {
 			throw new AccesoDatosException("No se ha encontrado el libro a borrar");
 		}

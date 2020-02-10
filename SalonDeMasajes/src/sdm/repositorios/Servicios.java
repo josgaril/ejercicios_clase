@@ -73,7 +73,7 @@ import sdm.modelos.Servicio;
 					ArrayList<Servicio> servicios = new ArrayList<>();
 
 					while (rs.next()) {
-						servicios.add(new Servicio(rs.getLong("idservicios"), rs.getString("nombre"),
+						servicios.add(new Servicio(rs.getInt("idservicios"), rs.getString("nombre"),
 								rs.getBigDecimal("precio")));
 					}
 					return servicios;
@@ -85,15 +85,15 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Servicio obtenerPorId(Long idservicios) {
+	public Servicio obtenerPorId(Integer idservicios) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
-				ps.setLong(1, idservicios);
+				ps.setInt(1, idservicios);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Servicio(rs.getLong("idservicios"), rs.getString("nombre"),
+						return new Servicio(rs.getInt("idservicios"), rs.getString("nombre"),
 								rs.getBigDecimal("precio"));
 					} else {
 						return null;
@@ -131,7 +131,7 @@ import sdm.modelos.Servicio;
 					.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, servicio.getNombre());
 				ps.setBigDecimal(2, servicio.getPrecio());
-				ps.setLong(3, servicio.getIdservicios());
+				ps.setInt(3, servicio.getIdservicios());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -146,10 +146,10 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void borrar(Long id) {
+	public void borrar(Integer id) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
-				ps.setLong(1, id);
+				ps.setInt(1, id);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 

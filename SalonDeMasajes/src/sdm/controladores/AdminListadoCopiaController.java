@@ -16,9 +16,9 @@ public class AdminListadoCopiaController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("clientes", Globales.daoc.obtenerTodos());
-		request.setAttribute("servicios", Globales.daos.obtenerTodos());
-		request.setAttribute("trabajadores", Globales.daoT.obtenerTodos());
+		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
+		request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
 		request.getRequestDispatcher(ADMIN_LISTADO_JSP).forward(request, response);
 	}
 

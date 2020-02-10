@@ -30,10 +30,7 @@ public class ClienteCrearController extends HttpServlet {
 		String dni = request.getParameter("dni");
 		
 
-		//Cliente cliente = null;
 		Cliente cliente = new Cliente(nombre, apellidos, dni);
-
-		//Cliente cliente = new Cliente(Long.parseLong(idclientes), nombre, apellidos, dni);
 
 		Mensaje mensaje;
 
@@ -42,7 +39,7 @@ public class ClienteCrearController extends HttpServlet {
 		if (cliente.isCorrecto()) {
 			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
 
-			Globales.daoc.agregar(cliente);
+			Globales.daoCliente.agregar(cliente);
 
 			mensaje = new Mensaje("Servicio agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 
@@ -52,9 +49,9 @@ public class ClienteCrearController extends HttpServlet {
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("cliente", cliente);
-			mensaje = new Mensaje(cliente.toString(), Mensaje.Nivel.INFORMATIVO);
+			//mensaje = new Mensaje(cliente.toString(), Mensaje.Nivel.ERROR);
 
-			//mensaje = new Mensaje("El cliente no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			mensaje = new Mensaje("El cliente no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 

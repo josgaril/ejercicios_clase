@@ -24,7 +24,7 @@ public class ServicioBorrarController extends HttpServlet {
 		Mensaje mensaje;
 		
 		try {
-			Globales.daos.borrar(Long.parseLong(idservicios));
+			Globales.daoServicio.borrar(Integer.parseInt(idservicios));
 			mensaje = new Mensaje(
 					"Borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
