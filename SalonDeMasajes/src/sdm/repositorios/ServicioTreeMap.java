@@ -36,7 +36,7 @@ import sdm.modelos.Servicio;
 
 	@Override
 	public void agregar(Servicio servicio) {
-		Integer idservicios = servicios.size() == 0L ? 1 : servicios.lastKey() + 1;
+		Integer idservicios = servicios.size() == 0 ? 1 : servicios.lastKey() + 1;
 				servicio.setIdservicios(idservicios);
 				servicios.put(idservicios, servicio);
 	}

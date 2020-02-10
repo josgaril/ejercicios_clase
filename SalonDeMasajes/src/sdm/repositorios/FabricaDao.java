@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import sdm.modelos.Cliente;
 import sdm.modelos.Servicio;
+import sdm.modelos.Sesion;
 import sdm.modelos.Trabajador;
 
 public class FabricaDao {
@@ -57,6 +58,14 @@ public class FabricaDao {
 		switch(tipo) {
 		case "memoria": return TrabajadorTreeMap.getInstancia();
 		case "mysql": return Trabajadores.getInstancia(pathConfiguracion);
+		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
+		}
+	}
+	
+	public Dao<Sesion> getInstanciaSesion() {
+		switch(tipo) {
+		case "memoria": return SesionTreeMap.getInstancia();
+		case "mysql": return Sesiones.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
