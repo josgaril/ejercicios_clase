@@ -77,8 +77,8 @@ public class Sesiones implements Dao<Sesion> {
 				ArrayList<Sesion> sesiones = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						sesiones.add(new Sesion(rs.getInt("id"), rs.getClass(), rs.getClass(), rs.getClass(),
-								rs.getDate("fecha")), rs.getString("resena"), rs.getString("calificacion"));
+						sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
+								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));
 					}
 					return sesiones;
 				}
@@ -96,8 +96,8 @@ public class Sesiones implements Dao<Sesion> {
 
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new Sesion(id, clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios,
-								fecha, resena, calificacion);
+						return new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
+								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion"));
 					} else {
 						return null;
 					}
@@ -112,10 +112,9 @@ public class Sesiones implements Dao<Sesion> {
 	public void agregar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
-				ps.setTipoClaseCliente(1, clientes.idclientes .getClientes_idclientes());
-				ps.setInt(1, "SELECT id FROM sesiones where id=1");
-				ps.setTipoClaseTrabajador(2, sesion.getTrabajadores_idtrabajadores());
-				ps.setTipoClaseServicio(3, sesion.getServicios_idservicios());
+				ps.setInt(1, sesion.getClientes_idclientes());
+				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
+				ps.setInt(3, sesion.getServicios_idservicios());
 				ps.setDate(4, (Date) sesion.getFecha());
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
@@ -130,9 +129,9 @@ public class Sesiones implements Dao<Sesion> {
 	public void modificar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
-				ps.setTipoClaseCliente(1, sesion.getClientes_idclientes());
-				ps.setTipoClaseTrabajador(2, sesion.getTrabajadores_idtrabajadores());
-				ps.setTipoClaseServicio(3, sesion.getServicios_idservicios());
+				ps.setInt(1, sesion.getClientes_idclientes());
+				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
+				ps.setInt(3, sesion.getServicios_idservicios());
 				ps.setDate(4, (Date) sesion.getFecha());
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());

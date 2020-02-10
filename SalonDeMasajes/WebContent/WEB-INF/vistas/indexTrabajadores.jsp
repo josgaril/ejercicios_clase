@@ -11,10 +11,10 @@
 <section id="trabajadores" class="row">
 	<c:forEach items="${trabajadores}" var="trabajador">
 		<article class="trabajador col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<p class="id: ">${trabajador.idtrabajadores}</p>
-			<p class="nombre: ">${trabajador.nombre}</p>
-			<p class="apellidos: ">${trabajador.apellidos}</p>
-			<p class="dni: ">${trabajador.dni}</p>
+			<p class="id">id: ${trabajador.idtrabajadores}</p>
+			<p class="nombre">nombre: ${trabajador.nombre}</p>
+			<p class="apellidos">apellidos: ${trabajador.apellidos}</p>
+			<p class="dni">dni: ${trabajador.dni}</p>
 		</article>
 	</c:forEach>
 </section>

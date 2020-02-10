@@ -9,6 +9,6 @@
 <a class="btn btn-primary" href="indexTrabajadores" role="button">Trabajadores</a>
 <a class="btn btn-primary" href="indexClientes" role="button">Clientes</a>
 <a class="btn btn-primary" href="indexServicios" role="button">Servicios</a>
-
+<a class="btn btn-primary" href="indexSesiones" role="button">Sesiones</a>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
