@@ -29,8 +29,8 @@ public class Sesion {
 		setResena(resena);
 		setCalificacion(calificacion);
 	}
-	
-	//CONSTRUCTOR DE TIPOS STRING
+
+	// CONSTRUCTOR DE TIPOS STRING
 	/*
 	 * public Sesion(String id, String clientes_idclientes, String
 	 * trabajadores_idtrabajadores, String servicios_idservicios, String fecha,
@@ -79,23 +79,30 @@ public class Sesion {
 		 */
 	}
 
-	public void setClientes_idclientes(Integer clientes_idclientes) {	
-		if (clientes_idclientes==null) {
+	public void setClientes_idclientes(Integer clientes_idclientes) {
+		if (clientes_idclientes == null) {
 			setErrorClientes_idclientes("El id del cliente no puede ser null");
 		}
-		Cliente IDCLIENTE = new Cliente();
-		this.clientes_idclientes = IDCLIENTE.getIdclientes();
+		this.clientes_idclientes = clientes_idclientes;
+		
+				
 		/*
 		 * if (clientes_idclientes==null) {
-		 * setErrorClientes_idclientes("El id del cliente no puede ser null"); }
-		 * this.clientes_idclientes = clientes_idclientes;
+		 * setErrorClientes_idclientes("El id del cliente no puede ser null"); } Cliente
+		 * IDCLIENTE = new Cliente(); this.clientes_idclientes =
+		 * IDCLIENTE.getIdclientes();
 		 */
+		 	
 	}
 
 	public Integer getTrabajadores_idtrabajadores() {
-		//return trabajadores_idtrabajadores;
-		Trabajador trabajadores_idtrabajadores = new Trabajador();
-		return trabajadores_idtrabajadores.getIdtrabajadores();
+		 return trabajadores_idtrabajadores;
+		
+		
+		/*
+		 * Trabajador trabajadores_idtrabajadores = new Trabajador(); return
+		 * trabajadores_idtrabajadores.getIdtrabajadores();
+		 */
 	}
 
 	public void setTrabajadores_idtrabajadores(Integer trabajadores_idtrabajadores) {
@@ -103,12 +110,24 @@ public class Sesion {
 			setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null");
 		}
 		this.trabajadores_idtrabajadores = trabajadores_idtrabajadores;
+		
+		
+		/*
+		 * if (trabajadores_idtrabajadores == null) {
+		 * setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null"
+		 * ); } Trabajador IDTRABAJADOR= new Trabajador();
+		 * this.trabajadores_idtrabajadores= IDTRABAJADOR.getIdtrabajadores();
+		 */
 	}
 
 	public Integer getServicios_idservicios() {
-		//return servicios_idservicios;
-		Servicio servicios_idservicios= new Servicio();
-		return servicios_idservicios.getIdservicios();
+		 return servicios_idservicios;
+		
+		
+		/*
+		 * Servicio servicios_idservicios = new Servicio(); return
+		 * servicios_idservicios.getIdservicios();
+		 */
 	}
 
 	public void setServicios_idservicios(Integer servicios_idservicios) {
@@ -116,6 +135,14 @@ public class Sesion {
 			setErrorServicios_idservicios("El id del servicio no puede ser null");
 		}
 		this.servicios_idservicios = servicios_idservicios;
+	
+	
+		/*
+		 * if (servicios_idservicios == null) {
+		 * setErrorServicios_idservicios("El id del servicio no puede ser null"); }
+		 * Servicio IDSERVICIO= new Servicio(); this.servicios_idservicios=
+		 * IDSERVICIO.getIdservicios();
+		 */
 	}
 
 	public Date getFecha() {

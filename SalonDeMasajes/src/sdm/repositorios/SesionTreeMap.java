@@ -27,6 +27,11 @@ public class SesionTreeMap implements Dao<Sesion> {
 		 * BigDecimal("48.154")), new GregorianCalendar(2020, 10, 02).getTime(),
 		 * "Lo mejor", "Excelente"));
 		 */
+		/*
+		 * agregar(new Sesion(null, "Select idcliente FROM clientes WHERE id=1", 1, 1,
+		 * new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
+		 * "Notable"));
+		 */
 		agregar(new Sesion(null, 1, 1, 1, new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
 				"Notable"));
 		agregar(new Sesion(null, 2, 2, 3, new GregorianCalendar(2019, 5, 05).getTime(), "No me ha gustado nada",
