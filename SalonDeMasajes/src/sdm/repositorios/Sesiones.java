@@ -19,7 +19,7 @@ public class Sesiones implements Dao<Sesion> {
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
-	private static final String SQL_UPDATE = "UPDATE FROM sesiones SET id=?, clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
+	private static final String SQL_UPDATE = "UPDATE sesiones set clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM sesiones WHERE id=?";
 
 	private static String url, usuario, password;
@@ -115,9 +115,15 @@ public class Sesiones implements Dao<Sesion> {
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
-				ps.setDate(4, (Date) sesion.getFecha());
+				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
+				}
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al agregar la sesión", e);
@@ -132,7 +138,7 @@ public class Sesiones implements Dao<Sesion> {
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
-				ps.setDate(4, (Date) sesion.getFecha());
+				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
 				ps.setInt(7, sesion.getId());

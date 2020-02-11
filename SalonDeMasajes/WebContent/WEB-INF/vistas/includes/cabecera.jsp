@@ -66,9 +66,14 @@
 					<a class="nav-link" href="indexClientes">Clientes <i class="fas fa-users"></i> </a>
 				</li>
 			</ul>
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="indexServicios">Servicios <i class="fas fa-concierge-bell"></i> </a>
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="indexSesiones">Sesiones <i class="fas fa-concierge-bell"></i> </a>
 				</li>
 			</ul>
 			<c:choose>

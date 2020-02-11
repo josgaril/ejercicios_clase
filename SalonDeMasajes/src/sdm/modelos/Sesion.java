@@ -1,9 +1,12 @@
 package sdm.modelos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Sesion {
-
+	//FNMT para la hora
+	
 	// CREAR SESION SOLO CON LOS CAMPOS DE CLIENTES; TRABAJADOR Y SERVICIO
 	// https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=511:clases-que-utilizan-objetos-relacion-de-uso-entre-clases-java-concepto-de-diagrama-de-clases-cu00641b&catid=68&Itemid=188
 
@@ -30,16 +33,19 @@ public class Sesion {
 		setCalificacion(calificacion);
 	}
 
-	// CONSTRUCTOR DE TIPOS STRING
-	/*
-	 * public Sesion(String id, String clientes_idclientes, String
-	 * trabajadores_idtrabajadores, String servicios_idservicios, String fecha,
-	 * String resena, String calificacion) { setId(id);
-	 * setClientes_idclientes(clientes_idclientes);
-	 * setTrabajadores_idtrabajadores(trabajadores_idtrabajadores);
-	 * setServicios_idservicios(servicios_idservicios); setFecha(fecha);
-	 * setResena(resena); setCalificacion(calificacion); }
-	 */
+	// Constructor de tipos String
+	public Sesion(String id, String clientes_idclientes, String trabajadores_idtrabajadores,
+			String servicios_idservicios, String fecha, String resena, String calificacion) {
+		setId(id);
+		setClientes_idclientes(clientes_idclientes);
+		setTrabajadores_idtrabajadores(trabajadores_idtrabajadores);
+		setServicios_idservicios(servicios_idservicios);
+		setFecha(fecha);
+		setResena(resena);
+		setCalificacion(calificacion);
+	}
+
+	
 
 	// esto ES PRUEBA
 	/*
@@ -84,21 +90,19 @@ public class Sesion {
 			setErrorClientes_idclientes("El id del cliente no puede ser null");
 		}
 		this.clientes_idclientes = clientes_idclientes;
-		
-				
+
 		/*
 		 * if (clientes_idclientes==null) {
 		 * setErrorClientes_idclientes("El id del cliente no puede ser null"); } Cliente
 		 * IDCLIENTE = new Cliente(); this.clientes_idclientes =
 		 * IDCLIENTE.getIdclientes();
 		 */
-		 	
+
 	}
 
 	public Integer getTrabajadores_idtrabajadores() {
-		 return trabajadores_idtrabajadores;
-		
-		
+		return trabajadores_idtrabajadores;
+
 		/*
 		 * Trabajador trabajadores_idtrabajadores = new Trabajador(); return
 		 * trabajadores_idtrabajadores.getIdtrabajadores();
@@ -110,8 +114,7 @@ public class Sesion {
 			setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null");
 		}
 		this.trabajadores_idtrabajadores = trabajadores_idtrabajadores;
-		
-		
+
 		/*
 		 * if (trabajadores_idtrabajadores == null) {
 		 * setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null"
@@ -121,9 +124,8 @@ public class Sesion {
 	}
 
 	public Integer getServicios_idservicios() {
-		 return servicios_idservicios;
-		
-		
+		return servicios_idservicios;
+
 		/*
 		 * Servicio servicios_idservicios = new Servicio(); return
 		 * servicios_idservicios.getIdservicios();
@@ -135,8 +137,7 @@ public class Sesion {
 			setErrorServicios_idservicios("El id del servicio no puede ser null");
 		}
 		this.servicios_idservicios = servicios_idservicios;
-	
-	
+
 		/*
 		 * if (servicios_idservicios == null) {
 		 * setErrorServicios_idservicios("El id del servicio no puede ser null"); }
@@ -179,6 +180,75 @@ public class Sesion {
 		this.calificacion = calificacion;
 	}
 
+	private void setId(String id) {
+		if (id == null || id.trim().length() == 0) {
+			this.id = null;
+			return;
+		}
+
+		try {
+			this.id = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			setErrorId("No era un número");
+		}
+	}
+	
+	private void setServicios_idservicios(String servicios_idservicios) {
+		if (servicios_idservicios == null || servicios_idservicios.trim().length() == 0) {
+			this.servicios_idservicios = null;
+			return;
+		}
+
+		try {
+			this.servicios_idservicios = Integer.parseInt(servicios_idservicios);
+		} catch (NumberFormatException e) {
+			setErrorId("IdServicio introducido no es un número");
+		}
+	}
+
+	private void setTrabajadores_idtrabajadores(String trabajadores_idtrabajadores) {
+		if (trabajadores_idtrabajadores == null || trabajadores_idtrabajadores.trim().length() == 0) {
+			this.trabajadores_idtrabajadores = null;
+			return;
+		}
+
+		try {
+			this.trabajadores_idtrabajadores = Integer.parseInt(trabajadores_idtrabajadores);
+		} catch (NumberFormatException e) {
+			setErrorId("IdTrabajador introducido no es un número");
+		}
+	}
+
+	private void setClientes_idclientes(String clientes_idclientes) {
+		if (clientes_idclientes == null || clientes_idclientes.trim().length() == 0) {
+			this.clientes_idclientes = null;
+			return;
+		}
+
+		try {
+			this.clientes_idclientes = Integer.parseInt(clientes_idclientes);
+		} catch (NumberFormatException e) {
+			setErrorId("IdCliente introducido no es un número");
+		}
+	}
+
+	private void setFecha(String fecha) {	
+		if (fecha == null) {
+			setErrorFecha("La fecha es obligatorio");
+			this.fecha = null;
+			return;
+		}
+		
+		SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");			
+		try {
+			Date fecha1 = formatoFecha.parse(fecha);
+			this.fecha= fecha1;
+		} catch (ParseException e) {
+			setErrorFecha("Error al convertir fecha");
+		}
+	}
+	
+	
 	public boolean isCorrecto() {
 		return correcto;
 	}
