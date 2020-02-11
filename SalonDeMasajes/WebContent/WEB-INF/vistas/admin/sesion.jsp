@@ -13,10 +13,50 @@
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="id"
-						name="id" value="${sesion.id}" readonly>
+					<input type="number" class="form-control" id="id" name="id"
+						value="${sesion.id}" readonly>
 				</div>
 			</div>
+
+			<div class="form-group row">
+				<label for="nombre_cliente" class="col-sm-2 col-form-label">Nombre Cliente</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="nombre_cliente">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="nombre_trabajador" class="col-sm-2 col-form-label">Nombre Trabajador</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="nombre_trabajador">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="nombre_servicio" class="col-sm-2 col-form-label">Nombre Servicio</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="nombre_servicio">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+
 			<div class="form-group row">
 				<label for="clientes_idclientes" class="col-sm-2 col-form-label">IdCliente</label>
 				<div class="col-sm-10">
@@ -29,11 +69,13 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="trabajadores_idtrabajadores" class="col-sm-2 col-form-label">IdTrabajador</label>
+				<label for="trabajadores_idtrabajadores"
+					class="col-sm-2 col-form-label">IdTrabajador</label>
 				<div class="col-sm-10">
 					<input type="number"
 						class="form-control ${primeravez ? '' : (sesion.errorTrabajadores_idtrabajadores == null ? 'is-valid' : 'is-invalid') }"
-						id="trabajadores_idtrabajadores" name="trabajadores_idtrabajadores"
+						id="trabajadores_idtrabajadores"
+						name="trabajadores_idtrabajadores"
 						value="${sesion.trabajadores_idtrabajadores}">
 					<div class="invalid-feedback">${sesion.errorTrabajadores_idtrabajadores}</div>
 				</div>
@@ -76,7 +118,8 @@
 					<input type="text" maxlength="156"
 						placeholder="La calificación debe tener como máximo de 15 caracteres"
 						class="form-control ${primeravez ? '' : (sesion.errorCalificacion == null ? 'is-valid' : 'is-invalid') }"
-						id="calificacion" name="calificacion" value="${sesion.calificacion}">
+						id="calificacion" name="calificacion"
+						value="${sesion.calificacion}">
 					<div class="invalid-feedback">${sesion.errorCalificacion}</div>
 				</div>
 			</div>

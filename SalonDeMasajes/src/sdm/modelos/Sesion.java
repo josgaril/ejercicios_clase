@@ -6,6 +6,8 @@ import java.util.Date;
 
 public class Sesion {
 	//FNMT para la hora
+	//https://tutorialjava7.wordpress.com/2011/06/01/tutorial-java-jcombobox-con-valores-de-una-tabla-video/
+	
 	
 	// CREAR SESION SOLO CON LOS CAMPOS DE CLIENTES; TRABAJADOR Y SERVICIO
 	// https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=511:clases-que-utilizan-objetos-relacion-de-uso-entre-clases-java-concepto-de-diagrama-de-clases-cu00641b&catid=68&Itemid=188
