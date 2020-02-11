@@ -23,6 +23,7 @@ public class SesionController extends HttpServlet {
 		if(id != null && id.trim().length() > 0) {
 			
 			request.setAttribute("sesion", Globales.daoSesion.obtenerPorId(Integer.parseInt(id)));
+			
 		}
 		
 		request.setAttribute("op", op);

@@ -14,6 +14,12 @@ import java.util.Properties;
 import sdm.modelos.Sesion;
 
 public class Sesiones implements Dao<Sesion> {
+	//Bloque de consultas de prueba
+	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
+	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
+	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
+	//Fin bloque de consultas de prueba
+	
 	private static final String SQL_SELECT = "SELECT * FROM sesiones";
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
