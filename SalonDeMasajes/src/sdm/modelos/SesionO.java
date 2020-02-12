@@ -43,6 +43,10 @@ public class SesionO {
 	
 	public SesionO() {
 	}
+	
+	public SesionO(Integer id, Cliente clienteO, Trabajador trabajadorO, Servicio servicioO, Date fecha) {
+		this(id, clienteO,trabajadorO,servicioO,fecha, null, null);
+	}
 	//FIN CONSTRUCTORES
 	
 	
@@ -138,7 +142,7 @@ public class SesionO {
 			setErrorClienteO("El cliente es obligatorio");
 			this.clienteO=null;
 		}
-		
+			
 			Cliente objetoCliente = new Cliente();
 			this.clienteO= objetoCliente;
 		//TODO Comprobar bien

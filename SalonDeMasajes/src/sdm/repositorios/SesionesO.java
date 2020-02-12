@@ -30,6 +30,7 @@ public class SesionesO implements Dao<SesionO> {
 			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
 			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
 			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios";
+	private static final String SQL_INSERT_OBJETOS="INSERT INTO sesiones (id, clientes, trabajadores, servicios,fecha, resena, calificacion) VALUES (?,?,?,?,?,?,?)";
 	//Fin bloque de consultas de prueba
 	
 	private static final String SQL_SELECT = "SELECT * FROM sesiones";
@@ -143,7 +144,7 @@ public class SesionesO implements Dao<SesionO> {
 	public void agregar(SesionO sesionO) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
-				ps.setInt(1, sesionO.getClienteO());
+				ps.setint(1, sesionO.getClienteO());
 				ps.setInt(2, sesionO.getTrabajadorO());
 				ps.setInt(3, sesionO.getServicioO());
 				ps.setDate(4, new java.sql.Date(sesionO.getFecha().getTime()));
