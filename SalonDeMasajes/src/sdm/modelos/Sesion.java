@@ -195,16 +195,16 @@ public class Sesion {
 		}
 	}
 	
-	private void setServicios_idservicios(String servicios_idservicios) {
-		if (servicios_idservicios == null || servicios_idservicios.trim().length() == 0) {
-			this.servicios_idservicios = null;
+	private void setClientes_idclientes(String clientes_idclientes) {
+		if (clientes_idclientes == null || clientes_idclientes.trim().length() == 0) {
+			this.clientes_idclientes = null;
 			return;
 		}
 
 		try {
-			this.servicios_idservicios = Integer.parseInt(servicios_idservicios);
+			this.clientes_idclientes = Integer.parseInt(clientes_idclientes);
 		} catch (NumberFormatException e) {
-			setErrorId("IdServicio introducido no es un número");
+			setErrorClientes_idclientes("IdCliente introducido no es un número");
 		}
 	}
 
@@ -217,20 +217,20 @@ public class Sesion {
 		try {
 			this.trabajadores_idtrabajadores = Integer.parseInt(trabajadores_idtrabajadores);
 		} catch (NumberFormatException e) {
-			setErrorId("IdTrabajador introducido no es un número");
+			setErrorTrabajadores_idtrabajadores("IdTrabajador introducido no es un número");
 		}
 	}
 
-	private void setClientes_idclientes(String clientes_idclientes) {
-		if (clientes_idclientes == null || clientes_idclientes.trim().length() == 0) {
-			this.clientes_idclientes = null;
+	private void setServicios_idservicios(String servicios_idservicios) {
+		if (servicios_idservicios == null || servicios_idservicios.trim().length() == 0) {
+			this.servicios_idservicios = null;
 			return;
 		}
 
 		try {
-			this.clientes_idclientes = Integer.parseInt(clientes_idclientes);
+			this.servicios_idservicios = Integer.parseInt(servicios_idservicios);
 		} catch (NumberFormatException e) {
-			setErrorId("IdCliente introducido no es un número");
+			setErrorServicios_idservicios("IdServicio introducido no es un número");
 		}
 	}
 

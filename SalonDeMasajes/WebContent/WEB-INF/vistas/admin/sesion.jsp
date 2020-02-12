@@ -69,6 +69,7 @@
 						class="form-control ${primeravez ? '' : (sesion.errorClientes_idclientes == null ? 'is-valid' : 'is-invalid') }"
 						id="clientes_idclientes" name="clientes_idclientes"
 						value="${sesion.clientes_idclientes}">
+						<option>6</option>
 						<option>7</option>
 						<option>8</option>
 						<option>9</option>

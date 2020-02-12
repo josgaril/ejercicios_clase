@@ -18,6 +18,12 @@ public class Sesiones implements Dao<Sesion> {
 	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
 	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
 	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
+	private static final String SQL_SELECT_JOIN = 
+			"SELECT sesion.id, c.idclientes, c.nombre as Nombre_Cliente, c.apellidos as Apellidos_cliente, t.idtrabajadores, t.nombre as Nombre_trabajador, t.apellidos as Apellidos_trabajador, s.nombre as Nombre_servicio, sesion.fecha as fecha, sesion.resena as resena, sesion.calificacion as calificacion\r\n" + 
+			"FROM sesiones sesion\r\n" + 
+			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
+			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
+			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios";
 	//Fin bloque de consultas de prueba
 	
 	private static final String SQL_SELECT = "SELECT * FROM sesiones";
@@ -82,8 +88,16 @@ public class Sesiones implements Dao<Sesion> {
 				ArrayList<Sesion> sesiones = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));
+						/* PARA CONSULTA SQL_SELECT_JOIN
+						 * sesiones.add(new Sesion(rs.getString("sesion.id"), rs.getString("cliente"),
+						 * rs.getString("trabajador"), rs.getString("servicio"), rs.getString("fecha"),
+						 * rs.getString("resena"), rs.getString("calificacion")));
+						 */
+						
+						  sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
+						  rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
+						  rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));
+						 
 					}
 					return sesiones;
 				}
