@@ -8,6 +8,7 @@
 <a class="btn btn-primary" href="admin/clientes" role="button">Clientes</a>
 <a class="btn btn-primary" href="admin/servicios" role="button">Servicios</a>
 <a class="btn btn-primary" href="admin/sesiones" role="button">Sesiones</a>
+<a class="btn btn-primary" href="admin/sesionesO" role="button">SesionesO</a>
 </section>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

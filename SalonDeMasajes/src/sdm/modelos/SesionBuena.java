@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Sesion {
+public class SesionBuena {
 	//FNMT para la hora
 	//https://tutorialjava7.wordpress.com/2011/06/01/tutorial-java-jcombobox-con-valores-de-una-tabla-video/
 	
@@ -24,7 +24,7 @@ public class Sesion {
 	private String errorId, errorClientes_idclientes, errorTrabajadores_idtrabajadores, errorServicios_idservicios,
 			errorFecha, errorResena, errorCalificacion;
 
-	public Sesion(Integer id, Integer clientes_idclientes, Integer trabajadores_idtrabajadores,
+	public SesionBuena(Integer id, Integer clientes_idclientes, Integer trabajadores_idtrabajadores,
 			Integer servicios_idservicios, Date fecha, String resena, String calificacion) {
 		setId(id);
 		setClientes_idclientes(clientes_idclientes);
@@ -36,7 +36,7 @@ public class Sesion {
 	}
 
 	// Constructor de tipos String
-	public Sesion(String id, String clientes_idclientes, String trabajadores_idtrabajadores,
+	public SesionBuena(String id, String clientes_idclientes, String trabajadores_idtrabajadores,
 			String servicios_idservicios, String fecha, String resena, String calificacion) {
 		setId(id);
 		setClientes_idclientes(clientes_idclientes);
@@ -66,7 +66,7 @@ public class Sesion {
 	// hacer en el set cliente un new cliente;.....
 	// fin prueba
 
-	public Sesion(Integer clientes_idclientes, Integer trabajadores_idtrabajadores, Integer servicios_idservicios,
+	public SesionBuena(Integer clientes_idclientes, Integer trabajadores_idtrabajadores, Integer servicios_idservicios,
 			Date fecha) {
 		this(null, clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, null, null);
 	}
@@ -347,7 +347,7 @@ public class Sesion {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sesion other = (Sesion) obj;
+		SesionBuena other = (SesionBuena) obj;
 		if (calificacion == null) {
 			if (other.calificacion != null)
 				return false;

@@ -76,6 +76,11 @@
 					<a class="nav-link" href="indexSesiones">Sesiones <i class="fas fa-concierge-bell"></i> </a>
 				</li>
 			</ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="indexSesiones">SesionesO <i class="fas fa-concierge-bell"></i> </a>
+				</li>
+			</ul>
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
