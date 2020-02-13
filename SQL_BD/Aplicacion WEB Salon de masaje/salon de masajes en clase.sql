@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `masajes` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
-USE `masajes`;
--- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: masajes
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,12 +21,12 @@ USE `masajes`;
 
 DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `idclientes` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `apellidos` varchar(90) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `dni` char(9) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `idclientes` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `apellidos` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `dni` char(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`idclientes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,10 +47,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `servicios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `servicios` (
-  `idservicios` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `idservicios` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `precio` decimal(6,3) NOT NULL,
   PRIMARY KEY (`idservicios`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
@@ -74,15 +72,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sesiones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sesiones` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `clientes_idclientes` int(11) NOT NULL,
-  `trabajadores_idtrabajadores` int(11) NOT NULL,
-  `servicios_idservicios` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `clientes_idclientes` int NOT NULL,
+  `trabajadores_idtrabajadores` int NOT NULL,
+  `servicios_idservicios` int NOT NULL,
   `fecha` datetime NOT NULL,
-  `resena` text COLLATE utf8mb4_spanish2_ci,
-  `calificacion` varchar(15) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `resena` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci,
+  `calificacion` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `actuacion_UNIQUE` (`clientes_idclientes`,`trabajadores_idtrabajadores`,`servicios_idservicios`,`fecha`),
   KEY `fk_actuaciones_clientes_idx` (`clientes_idclientes`),
@@ -91,7 +89,7 @@ CREATE TABLE `sesiones` (
   CONSTRAINT `fk_actuaciones_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`),
   CONSTRAINT `fk_actuaciones_servicios1` FOREIGN KEY (`servicios_idservicios`) REFERENCES `servicios` (`idservicios`),
   CONSTRAINT `fk_actuaciones_trabajadores1` FOREIGN KEY (`trabajadores_idtrabajadores`) REFERENCES `trabajadores` (`idtrabajadores`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,6 +98,7 @@ CREATE TABLE `sesiones` (
 
 LOCK TABLES `sesiones` WRITE;
 /*!40000 ALTER TABLE `sesiones` DISABLE KEYS */;
+INSERT INTO `sesiones` VALUES (1,1,2,5,'1111-11-09 00:00:00','',''),(2,1,2,5,'2222-01-31 00:00:00','',''),(3,1,2,4,'2005-05-04 00:00:00','aaaa','');
 /*!40000 ALTER TABLE `sesiones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,12 +108,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `trabajadores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trabajadores` (
-  `idtrabajadores` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `apellidos` varchar(90) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `dni` char(9) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `idtrabajadores` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `apellidos` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `dni` char(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   PRIMARY KEY (`idtrabajadores`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-10 14:34:39
+-- Dump completed on 2020-02-14  0:35:15
