@@ -86,8 +86,7 @@
 					<input type="number"
 						class="form-control ${primeravez ? '' : (sesionO.errorTrabajadores_idtrabajadores == null ? 'is-valid' : 'is-invalid') }"
 						id="trabajadores_idtrabajadores"
-						name="trabajadores_idtrabajadores"
-						value="${sesionO.trabajadorO}">
+						name="trabajadores_idtrabajadores" value="${sesionO.trabajadorO}">
 					<div class="invalid-feedback">${sesionO.errorTrabajadorO}</div>
 				</div>
 			</div>
@@ -126,20 +125,20 @@
 			<div class="form-group row">
 				<label for="calificacion" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
-					<input type="text" maxlength="156"
-						placeholder="La calificación debe tener como máximo de 15 caracteres"
-						class="form-control ${primeravez ? '' : (sesionO.errorCalificacion == null ? 'is-valid' : 'is-invalid') }"
-						id="calificacion" name="calificacion"
-						value="${sesionO.calificacion}">
-					<div class="invalid-feedback">${sesionO.errorCalificacion}</div>
+					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="calificacion" name="calificacion">
+						<option></option>
+						<option ${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No recomendable</option>
+						<option ${sesion.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
+						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para repetir</option>
+					</select>
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<div class="offset-sm-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Aceptar</button>
+				<div class="form-group row">
+					<div class="offset-sm-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
 				</div>
-			</div>
 		</fieldset>
 	</form>
 </div>

@@ -195,7 +195,6 @@ public class SesionO {
 	}
 
 	public void setCorrecto(boolean correcto) {
-		setCorrecto(false);
 		this.correcto = correcto;
 	}
 

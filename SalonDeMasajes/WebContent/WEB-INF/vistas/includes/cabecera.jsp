@@ -78,7 +78,7 @@
 			</ul>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="indexSesiones">SesionesO <i class="fas fa-concierge-bell"></i> </a>
+					<a class="nav-link" href="indexSesionesO">SesionesO <i class="fas fa-concierge-bell"></i> </a>
 				</li>
 			</ul>
 			<c:choose>

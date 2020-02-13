@@ -8,18 +8,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import sdm.modelos.Cliente;
+import sdm.modelos.Servicio;
 import sdm.modelos.Sesion;
 import sdm.modelos.SesionO;
+import sdm.modelos.Trabajador;
 
 public class SesionesO implements Dao<SesionO> {
 	//Bloque de consultas de prueba
 	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
 	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
 	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
-	private static final String SQL_SELECT_JOIN = "SELECT sesion.id, CONCAT(c.idclientes, \"-\", c.nombre, \" \", c.apellidos) as cliente , CONCAT(t.nombre, \" \", t.apellidos) as trabajador, s.idservicios as servicio, sesion.fecha as fecha, sesion.resena as resena, sesion.calificacion as calificacion\r\n" + 
+	private static final String SQL_SELECT_JOIN = "SELECT *\r\n" + 
 			"FROM sesiones sesion\r\n" + 
 			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
 			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
@@ -91,24 +95,24 @@ public class SesionesO implements Dao<SesionO> {
 	@Override
 	public Iterable<SesionO> obtenerTodos() {
 		try (Connection con = getConnexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_JOIN)) {
-				ArrayList<SesionO> sesionesO = new ArrayList<>();
-				try (ResultSet rs = ps.executeQuery()) {
+			try (Statement s = con.createStatement()) {
+				try (ResultSet rs = s.executeQuery(SQL_SELECT_JOIN)) {
+					ArrayList<SesionO> sesionesO = new ArrayList<>();
+					Cliente cliente;
+					Trabajador trabajador;
+					Servicio servicio;
+					SesionO sesionO;
+					
+					
 					while (rs.next()) {
 						//Crear ArrayList aqui si usamos Statement en vez de PreparedStatement
-						//usamos el constructor genear, con tipos integer, string y fechas...
-						sesionesO.add(new SesionO(rs.getString("id"), rs.getString("cliente"), rs.getString("trabajador"),rs.getString("servicio"), rs.getString("fecha"), rs.getString("resena"), rs.getString("calificacion")));
-						/* PARA CONSULTA SQL_SELECT_JOIN
-						 * sesiones.add(new Sesion(rs.getString("sesion.id"), rs.getString("cliente"),
-						 * rs.getString("trabajador"), rs.getString("servicio"), rs.getString("fecha"),
-						 * rs.getString("resena"), rs.getString("calificacion")));
-						 */
+						//usamos el constructor general, con tipos integer, string y fechas...
 						
-						  /*ASI ESTÁ CON LOS NORMALES
-						   * sesionesO.add(new SesionO(rs.getInt("id"), rs.getInt("clientes_idclientes"),
-						  rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-						  rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));*/
-						 
+						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
+						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
+						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
+						sesionO=(new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));						 
+						sesionesO.add(sesionO);
 					}
 					return sesionesO;
 				}

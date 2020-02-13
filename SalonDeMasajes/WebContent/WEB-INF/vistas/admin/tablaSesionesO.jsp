@@ -22,18 +22,17 @@
 			<c:forEach items="${sesionesO}" var="sesionO">
 				<tr>
 					<th>${sesionO.id}</th>
-					<td>${sesionO.clienteO}</td>
-					<td>${sesionO.trabajadorO}</td>
-					<td>${sesionO.servicioO}</td>
+					<td>${sesionO.clienteO.nombre}${sesionO.clienteO.apellidos}</td>
+					<td>${sesionO.trabajadorO.nombre}${sesionO.trabajadorO.apellidos}</td>
+					<td>${sesionO.servicioO.nombre}</td>
 					<td>${sesionO.fecha}</td>
 					<td>${sesionO.resena}</td>
 					<td>${sesionO.calificacion}</td>
 
 					<td><a class="btn btn-warning"
-						href="admin/sesionO?id=${sesionO.id}&op=modificar">Modificar</a>
-						<a class="btn btn-danger"
-						href="admin/sesionO/borrar?id=${sesionO.id}">Borrar</a>
-					</td>
+						href="admin/sesionO?id=${sesionO.id}&op=modificar">Modificar</a> <a
+						class="btn btn-danger"
+						href="admin/sesionO/borrar?id=${sesionO.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
