@@ -95,7 +95,7 @@ public class SesionesO implements Dao<SesionO> {
 				ArrayList<SesionO> sesionesO = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						//Crear ArrayList aqui
+						//Crear ArrayList aqui si usamos Statement en vez de PreparedStatement
 						//usamos el constructor genear, con tipos integer, string y fechas...
 						sesionesO.add(new SesionO(rs.getString("id"), rs.getString("cliente"), rs.getString("trabajador"),rs.getString("servicio"), rs.getString("fecha"), rs.getString("resena"), rs.getString("calificacion")));
 						/* PARA CONSULTA SQL_SELECT_JOIN
