@@ -6,7 +6,7 @@
 <h1>CLIENTES</h1>
 	<table
 		class="table table-striped table-bordered table-hover table-sm table-responsive">
-		<thead>
+		<thead class="thead-dark">
 			<tr>
 				<th>Id</th>
 				<th>Nombre</th>
@@ -29,6 +29,15 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>DNI</th>
+				<th>Opciones</th>
+			</tr>
+		</thead>
 	</table>
 
 	<a class="btn btn-primary" href="admin/cliente?op=agregar">Añadir</a>

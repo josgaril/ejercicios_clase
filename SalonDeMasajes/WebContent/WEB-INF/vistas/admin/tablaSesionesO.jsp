@@ -9,9 +9,9 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>IdCliente</th>
-				<th>IdTrabajador</th>
-				<th>IdServicio</th>
+				<th>Cliente</th>
+				<th>Trabajador</th>
+				<th>Servicio</th>
 				<th>Fecha</th>
 				<th>Reseña</th>
 				<th>Calificación</th>

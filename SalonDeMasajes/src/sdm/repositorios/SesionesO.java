@@ -80,7 +80,7 @@ public class SesionesO implements Dao<SesionO> {
 
 	
 	
-	private Connection getConnection() throws SQLException {
+	private Connection getConnexion() throws SQLException {
 		try {
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (Exception e) {
@@ -90,12 +90,13 @@ public class SesionesO implements Dao<SesionO> {
 
 	@Override
 	public Iterable<SesionO> obtenerTodos() {
-		try (Connection con = getConnection()) {
+		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_JOIN)) {
 				ArrayList<SesionO> sesionesO = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						
+						//Crear ArrayList aqui
+						//usamos el constructor genear, con tipos integer, string y fechas...
 						sesionesO.add(new SesionO(rs.getString("id"), rs.getString("cliente"), rs.getString("trabajador"),rs.getString("servicio"), rs.getString("fecha"), rs.getString("resena"), rs.getString("calificacion")));
 						/* PARA CONSULTA SQL_SELECT_JOIN
 						 * sesiones.add(new Sesion(rs.getString("sesion.id"), rs.getString("cliente"),
@@ -119,7 +120,7 @@ public class SesionesO implements Dao<SesionO> {
 
 	@Override
 	public SesionO obtenerPorId(Integer id) {
-		try (Connection con = getConnection()) {
+		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				ps.setInt(1, id);
 
@@ -142,7 +143,7 @@ public class SesionesO implements Dao<SesionO> {
 
 	@Override
 	public void agregar(SesionO sesionO) {
-		try (Connection con = getConnection()) {
+		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setint(1, sesionO.getClienteO());
 				ps.setInt(2, sesionO.getTrabajadorO());
@@ -165,7 +166,7 @@ public class SesionesO implements Dao<SesionO> {
 
 	@Override
 	public void modificar(SesionO sesionO) {
-		try (Connection con = getConnection()) {
+		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setInt(1, sesionO.getClienteO());
 				ps.setInt(2, sesionO.getTrabajadorO());
@@ -188,7 +189,7 @@ public class SesionesO implements Dao<SesionO> {
 
 	@Override
 	public void borrar(Integer id) {
-		try (Connection con = getConnection()) {
+		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setInt(1, id);
 
