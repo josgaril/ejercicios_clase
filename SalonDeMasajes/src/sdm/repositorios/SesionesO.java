@@ -111,7 +111,7 @@ public class SesionesO implements Dao<SesionO> {
 						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
 						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
 						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
-						sesionO=(new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));						 
+						sesionO=(new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));						 
 						sesionesO.add(sesionO);
 					}
 					return sesionesO;
