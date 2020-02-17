@@ -22,14 +22,16 @@
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
 					<select
+<%-- 							class="form-control ${sesion != null ? (sesion.errorClienteO == null ? 'is-valid' : 'is-invalid') : '' }" --%>
+					
 						class="form-control ${primeravez ? '' : (sesionO.errorClienteO == null ? 'is-valid' : 'is-invalid') }"
 						id="cliente" name="cliente">
 						<option disabled selected value="">Selecciona un cliente</option>
 						<c:forEach items="${clientes}" var="cliente" >
-							<option ${cliente.idclientes == sesion.cliente.idclientes ? 'selected': '' } value="${cliente.idclientes}">${cliente.nombre} ${cliente.apellidos}</option>			
+							<option ${cliente.idclientes == sesion0.cliente.idclientes ? 'selected': '' } value="${cliente.idclientes}">${cliente.nombre} ${cliente.apellidos}</option>			
 						</c:forEach>
 					</select>
-					<div class="invalid-feedback">${sesion.errorClienteO}</div>					
+					<div class="invalid-feedback">${sesion0.errorClienteO}</div>					
 				</div>
 			</div>
 
