@@ -25,15 +25,15 @@ public class SesionCrearController extends HttpServlet {
 		String op = request.getParameter("op");
 
 		String id = request.getParameter("id");
-		String clientes_idclientes = request.getParameter("clientes_idclientes");
-		String trabajadores_idtrabajadores = request.getParameter("trabajadores_idtrabajadores");
-		String servicios_idservicios= request.getParameter("servicios_idservicios");
+		String idCliente = request.getParameter("cliente");
+		String idTrabajador = request.getParameter("trabajador");
+		String idServicio= request.getParameter("servicio");
 		String fecha = request.getParameter("fecha");
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
 		
 
-		SesionO sesionO = new SesionO(id,clientes_idclientes, trabajadores_idtrabajadores,servicios_idservicios,fecha, resena, calificacion);
+		SesionO sesionO = new SesionO(id,idCliente, idTrabajador,idServicio,fecha, resena, calificacion);
 
 		Mensaje mensaje;
 
@@ -48,7 +48,7 @@ public class SesionCrearController extends HttpServlet {
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
-			response.sendRedirect(request.getContextPath() + "/admin/sesiones");
+			response.sendRedirect(request.getContextPath() + "/admin/sesionesO");
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("sesionO", sesionO);

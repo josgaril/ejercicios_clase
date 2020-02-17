@@ -77,9 +77,9 @@ public class Cliente {
 			setErrorDni("El dni tiene que estar formado por 9 caracteres");
 		}
 	
-		if (!dni.matches(REGEX_DNI)) {
-			setErrorDni("Formato de DNI incorrecto");
-		}
+		/*
+		 * if (!dni.matches(REGEX_DNI)) { setErrorDni("Formato de DNI incorrecto"); }
+		 */
 		this.dni = dni;
 	}
 

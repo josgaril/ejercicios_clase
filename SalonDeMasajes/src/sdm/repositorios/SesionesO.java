@@ -9,12 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import sdm.modelos.Cliente;
 import sdm.modelos.Servicio;
-import sdm.modelos.Sesion;
 import sdm.modelos.SesionO;
 import sdm.modelos.Trabajador;
 
@@ -118,7 +118,7 @@ public class SesionesO implements Dao<SesionO> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todas las sesiones", e);
+			throw new AccesoDatosException("Error al conectar para obtener todas las sesiones", e);
 		}
 	}
 
@@ -129,9 +129,20 @@ public class SesionesO implements Dao<SesionO> {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
+					Cliente clienteO;
+					Trabajador trabajadorO;
+					Servicio servicioO;
+					SesionO sesionO=null;
+					
 					if (rs.next()) {
-						return  new SesionO(rs.getString("id"), rs.getString("cliente"), rs.getString("trabajador"),rs.getString("servicio"), rs.getString("fecha"), rs.getString("resena"), rs.getString("calificacion"));
 						
+						clienteO = new Cliente(rs.getInt("clientes_idclientes"),null,null,null);
+						trabajadorO = new Trabajador(rs.getInt("trabajadores_idtrabajadores"),null,null,null);
+						servicioO = new Servicio(rs.getInt("servicios_idservicios"),null,null);
+
+						sesionO = new SesionO(rs.getInt("id"), clienteO, trabajadorO, servicioO, rs.getTimestamp("fecha"),rs.getString("resena"), rs.getString("calificacion"));
+						
+						return sesionO;				
 						/*ASI ESTA CON LOS NORMALES
 						 * return new SesionO(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
 								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion"));*/
@@ -141,7 +152,7 @@ public class SesionesO implements Dao<SesionO> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obetner la sesion id: " + id, e);
+			throw new AccesoDatosException("Error al conectar para obtener la sesion id: " + id, e);
 		}
 	}
 
@@ -149,10 +160,10 @@ public class SesionesO implements Dao<SesionO> {
 	public void agregar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
-				ps.setint(1, sesionO.getClienteO());
-				ps.setInt(2, sesionO.getTrabajadorO());
-				ps.setInt(3, sesionO.getServicioO());
-				ps.setDate(4, new java.sql.Date(sesionO.getFecha().getTime()));
+				ps.setInt(1, sesionO.getClienteO().getIdclientes());
+				ps.setInt(2, sesionO.getTrabajadorO().getIdtrabajadores());
+				ps.setInt(3, sesionO.getServicioO().getIdservicios());
+				ps.setTimestamp(4, new Timestamp(sesionO.getFecha().getTime()));
 				ps.setString(5, sesionO.getResena());
 				ps.setString(6, sesionO.getCalificacion());
 				
@@ -163,7 +174,7 @@ public class SesionesO implements Dao<SesionO> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al agregar la sesión", e);
+			throw new AccesoDatosException("Error al conectar para agregar la sesión", e);
 		}
 
 	}
@@ -172,10 +183,10 @@ public class SesionesO implements Dao<SesionO> {
 	public void modificar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
-				ps.setInt(1, sesionO.getClienteO());
-				ps.setInt(2, sesionO.getTrabajadorO());
-				ps.setInt(3, sesionO.getServicioO());
-				ps.setDate(4, new java.sql.Date(sesionO.getFecha().getTime()));
+				ps.setInt(1, sesionO.getClienteO().getIdclientes());
+				ps.setInt(2, sesionO.getTrabajadorO().getIdtrabajadores());
+				ps.setInt(3, sesionO.getServicioO().getIdservicios());
+				ps.setTimestamp(4, new Timestamp(sesionO.getFecha().getTime()));
 				ps.setString(5, sesionO.getResena());
 				ps.setString(6, sesionO.getCalificacion());
 				ps.setInt(7, sesionO.getId());
@@ -187,7 +198,7 @@ public class SesionesO implements Dao<SesionO> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar la sesión", e);
+			throw new AccesoDatosException("Error al conectar para modificar la sesión", e);
 		}
 	}
 
@@ -195,18 +206,20 @@ public class SesionesO implements Dao<SesionO> {
 	public void borrar(Integer id) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+				
 				ps.setInt(1, id);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Se ha hecho mas o menos de un delete");
+					throw new AccesoDatosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error al crear la sentencia", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar la sesion id:" + id, e);
+			throw new AccesoDatosException("Error al conectar para borrar la sesión", e);
 		}
-
 	}
 
 }

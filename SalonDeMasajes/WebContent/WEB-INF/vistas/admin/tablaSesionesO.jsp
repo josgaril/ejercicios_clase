@@ -22,8 +22,8 @@
 			<c:forEach items="${sesionesO}" var="sesionO">
 				<tr>
 					<th>${sesionO.id}</th>
-					<td>${sesionO.clienteO.nombre}${sesionO.clienteO.apellidos}</td>
-					<td>${sesionO.trabajadorO.nombre}${sesionO.trabajadorO.apellidos}</td>
+					<td>${sesionO.clienteO.nombre} ${sesionO.clienteO.apellidos}</td>
+					<td>${sesionO.trabajadorO.nombre} ${sesionO.trabajadorO.apellidos}</td>
 					<td>${sesionO.servicioO.nombre}</td>
 					<td>${sesionO.fecha}</td>
 					<td>${sesionO.resena}</td>

@@ -18,46 +18,6 @@
 				</div>
 			</div>
 
-			<!-- <div class="form-group row">
-				<label for="nombre_cliente" class="col-sm-2 col-form-label">Nombre
-					Cliente</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="nombre_cliente">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="nombre_trabajador" class="col-sm-2 col-form-label">Nombre
-					Trabajador</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="nombre_trabajador">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="nombre_servicio" class="col-sm-2 col-form-label">Nombre
-					Servicio</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="nombre_servicio">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-			</div> -->
-
 			<div class="form-group row">
 				<label for="clientes_idclientes" class="col-sm-2 col-form-label">IdCliente</label>
 				<div class="col-sm-10">

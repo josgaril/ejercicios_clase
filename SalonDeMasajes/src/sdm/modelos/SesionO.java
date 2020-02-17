@@ -17,7 +17,7 @@ public class SesionO {
 	private boolean correcto = true;
 	private String errorId, errorClienteO, errorTrabajadorO, errorServicioO, errorFecha, errorResena, errorCalificacion;
 
-	//CONSTRUCTORES
+	// CONSTRUCTORES
 	public SesionO(Integer id, Cliente clienteO, Trabajador trabajadorO, Servicio servicioO, Date fecha, String resena,
 			String calificacion) {
 		setId(id);
@@ -29,7 +29,7 @@ public class SesionO {
 		setCalificacion(calificacion);
 	}
 
-	//Constructor de String
+	// Constructor de String
 	public SesionO(String id, String clienteO, String trabajadorO, String servicioO, String fecha, String resena,
 			String calificacion) {
 		setId(id);
@@ -40,16 +40,15 @@ public class SesionO {
 		setResena(resena);
 		setCalificacion(calificacion);
 	}
-	
+
 	public SesionO() {
 	}
-	
+
 	public SesionO(Integer id, Cliente clienteO, Trabajador trabajadorO, Servicio servicioO, Date fecha) {
-		this(id, clienteO,trabajadorO,servicioO,fecha, null, null);
+		this(id, clienteO, trabajadorO, servicioO, fecha, null, null);
 	}
-	//FIN CONSTRUCTORES
-	
-	
+	// FIN CONSTRUCTORES
+
 	public Integer getId() {
 		return id;
 	}
@@ -63,9 +62,9 @@ public class SesionO {
 	}
 
 	public void setClienteO(Cliente clienteO) {
-		if (clienteO == null) {
-			setErrorClienteO("El cliente no puede ser null");
-		}
+		/*
+		 * if (clienteO == null) { setErrorClienteO("El cliente no puede ser null"); }
+		 */
 		this.clienteO = clienteO;
 	}
 
@@ -74,9 +73,10 @@ public class SesionO {
 	}
 
 	public void setTrabajadorO(Trabajador trabajadorO) {
-		if (trabajadorO == null) {
-			setErrorTrabajadorO("El trabajador no puede ser null");
-		}
+		/*
+		 * if (trabajadorO == null) {
+		 * setErrorTrabajadorO("El trabajador no puede ser null"); }
+		 */
 		this.trabajadorO = trabajadorO;
 	}
 
@@ -85,9 +85,10 @@ public class SesionO {
 	}
 
 	public void setServicioO(Servicio servicioO) {
-		if (servicioO == null) {
-			setErrorServicioO("El servicio no puede ser null");
-		}
+		/*
+		 * if (servicioO == null) { setErrorServicioO("El servicio no puede ser null");
+		 * }
+		 */
 		this.servicioO = servicioO;
 	}
 
@@ -138,53 +139,53 @@ public class SesionO {
 	}
 
 	private void setClienteO(String clienteO) {
-		if (clienteO == null|| clienteO.trim().length() == 0) {
-			setErrorClienteO("El cliente es obligatorio");
-			this.clienteO=null;
+		if (clienteO == null) {
+			setErrorClienteO("Debes seleccionar un cliente");
+		} else {
+			try {
+				setClienteO(new Cliente(Integer.parseInt(clienteO), null, null, null));
+			} catch (NumberFormatException e) {
+				setErrorClienteO("El id del cliente debe ser numérico");
+			}
 		}
-			
-			Cliente objetoCliente = new Cliente();
-			this.clienteO= objetoCliente;
-		//TODO Comprobar bien
 	}
 
 	private void setTrabajadorO(String trabajadorO) {
 		if (trabajadorO == null) {
-			setErrorTrabajadorO("El trabajador es obligatorio");
-			this.trabajadorO=null;
+			setErrorTrabajadorO("Debes seleccionar un trabajador");
+		} else {
+			try {
+				setTrabajadorO(new Trabajador(Integer.parseInt(trabajadorO), null, null, null));
+			} catch (NumberFormatException e) {
+				setErrorTrabajadorO("El id del trabajador debe ser numérico");
+			}
 		}
-		
-		try {
-			this.trabajadorO= new Trabajador();
-		} catch (Exception e) {
-			setErrorTrabajadorO("El dato pasado no es de trabajador");
-		}
-		//TODO Comprobar bien
+
 	}
 
 	private void setServicioO(String servicioO) {
-		if (servicioO == null|| servicioO.trim().length() == 0) {
-			setErrorServicioO("El servicio es obligatorio");
-			this.servicioO=null;
-		}
-		
-			Servicio objetoServicio = new Servicio();
-			this.servicioO= objetoServicio;
-		//TODO Comprobar bien
+		if (servicioO == null || servicioO.trim().length() == 0) {
+			setErrorServicioO("Debes elegir un servicio");
 
+		} else
+			try {
+				setServicioO(new Servicio(Integer.parseInt(servicioO), null, null));
+			} catch (NumberFormatException e) {
+				setErrorServicioO("El id del servicio debe ser numérico");
+			}
 	}
 
 	private void setFecha(String fecha) {
-		if (fecha == null || fecha.trim().length()==0) {
+		if (fecha == null || fecha.trim().length() == 0) {
 			setErrorFecha("La fecha es obligatoria");
 			this.fecha = null;
 			return;
 		}
-		
-		SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");			
+
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date fecha1 = formatoFecha.parse(fecha);
-			this.fecha= fecha1;
+			this.fecha = fecha1;
 		} catch (ParseException e) {
 			setErrorFecha("Error al convertir fecha");
 		}

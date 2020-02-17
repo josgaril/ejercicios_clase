@@ -25,15 +25,15 @@ public class SesionModificarController extends HttpServlet {
 		String op = request.getParameter("op");
 
 		String id = request.getParameter("id");
-		String clientes_idclientes = request.getParameter("clientes_idclientes");
-		String trabajadores_idtrabajadores = request.getParameter("trabajadores_idtrabajadores");
-		String servicios_idservicios= request.getParameter("servicios_idservicios");
+		String idcliente = request.getParameter("cliente");
+		String idtrabajador = request.getParameter("trabajador");
+		String idservicio= request.getParameter("servicio");
 		String fecha = request.getParameter("fecha");
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
 		
 
-		Sesion sesion = new Sesion(id,clientes_idclientes, trabajadores_idtrabajadores,servicios_idservicios,fecha, resena, calificacion);
+		Sesion sesion = new Sesion(id,idcliente, idtrabajador,idservicio,fecha, resena, calificacion);
 
 		Mensaje mensaje;
 
