@@ -106,6 +106,8 @@
 				<div class="form-group row">
 					<div class="offset-sm-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Aceptar</button>
+						<a class="btn btn-success mx-2" href="admin/sesionesO" role="button">Cancelar</a>
+						
 					</div>
 				</div>
 		</fieldset>

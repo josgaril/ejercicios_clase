@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		
-		if("administrador".equals(usuario) && "123456".equals(password)) {
+		if("administrador".equals(usuario) && "123456".equals(password)||("cliente".equals(usuario) && "112233".equals(password))) {
 			request.getSession().setAttribute("usuario", usuario);
 			request.getRequestDispatcher("/admin/index").forward(request, response);
 		} else {

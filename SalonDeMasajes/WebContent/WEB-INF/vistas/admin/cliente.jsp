@@ -6,7 +6,7 @@
 	<form action="admin/cliente/${op}" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
-			<legend>cliente</legend>
+			<legend>${op} cliente</legend>
 
 			<input type="hidden" id="op" name="op" value="${op}">
 

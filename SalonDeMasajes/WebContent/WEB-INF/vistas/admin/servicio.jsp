@@ -6,7 +6,7 @@
 	<form action="admin/servicio/${op}" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
-			<legend>servicio</legend>
+			<legend>${op} servicio</legend>
 
 			<input type="hidden" id="op" name="op" value="${op}">
 
@@ -40,8 +40,7 @@
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">Aceptar</button>
-										<a class="btn btn-success" href="admin/clientes" role="button">Cancelar</a>
-					
+					<a class="btn btn-success" href="admin/servicios" role="button">Cancelar</a>				
 				</div>
 			</div>
 		</fieldset>
