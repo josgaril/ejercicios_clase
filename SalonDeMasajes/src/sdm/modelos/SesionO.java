@@ -65,6 +65,7 @@ public class SesionO {
 		/*
 		 * if (clienteO == null) { setErrorClienteO("El cliente no puede ser null"); }
 		 */
+
 		this.clienteO = clienteO;
 	}
 
@@ -98,7 +99,8 @@ public class SesionO {
 
 	public void setFecha(Date fecha) {
 		if (fecha != null && fecha.after(new Date())) {
-			setErrorFecha("No puedes usar una fecha futura para la fecha del servicio");
+			//throw new AccesoDatosException("No puedes usar una fecha futura para la fecha de nacimiento");
+			setErrorFecha("No puedes usar una fecha futura para la fecha de la sesión");
 		}
 		this.fecha = fecha;
 	}
@@ -119,10 +121,22 @@ public class SesionO {
 	}
 
 	public void setCalificacion(String calificacion) {
-		if (calificacion.trim().length() > 15) {
-			setErrorCalificacion("La calificación debe tener como máximo 15 caracteres");
+		if (calificacion == null) {
+			setErrorCalificacion("Calificación incorrecta");
+		} else {
+			switch (calificacion) {
+			case "":
+			case "No recomendable":
+			case "Aceptable":
+			case "Para repetir":
+				break;
+			default:
+				setErrorCalificacion("Calificación incorrecta");
+			}
 		}
+
 		this.calificacion = calificacion;
+
 	}
 
 	private void setId(String id) {
@@ -139,7 +153,7 @@ public class SesionO {
 	}
 
 	private void setClienteO(String clienteO) {
-		if (clienteO == null) {
+		if (clienteO == null || clienteO.trim().length() == 0) {
 			setErrorClienteO("Debes seleccionar un cliente");
 		} else {
 			try {
@@ -151,7 +165,7 @@ public class SesionO {
 	}
 
 	private void setTrabajadorO(String trabajadorO) {
-		if (trabajadorO == null) {
+		if (trabajadorO == null || trabajadorO.trim().length() == 0) {
 			setErrorTrabajadorO("Debes seleccionar un trabajador");
 		} else {
 			try {
@@ -166,7 +180,6 @@ public class SesionO {
 	private void setServicioO(String servicioO) {
 		if (servicioO == null || servicioO.trim().length() == 0) {
 			setErrorServicioO("Debes elegir un servicio");
-
 		} else
 			try {
 				setServicioO(new Servicio(Integer.parseInt(servicioO), null, null));
@@ -176,19 +189,20 @@ public class SesionO {
 	}
 
 	private void setFecha(String fecha) {
-		if (fecha == null || fecha.trim().length() == 0) {
-			setErrorFecha("La fecha es obligatoria");
-			this.fecha = null;
-			return;
-		}
-
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			Date fecha1 = formatoFecha.parse(fecha);
-			this.fecha = fecha1;
+			setFecha(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha));
 		} catch (ParseException e) {
-			setErrorFecha("Error al convertir fecha");
+			setErrorFecha("El formato de la fecha es incorrecto");
 		}
+		
+		/*
+		 * if (fecha == null || fecha.trim().length() == 0) {
+		 * setErrorFecha("La fecha es obligatoria"); this.fecha = null; return; }
+		 * 
+		 * SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); try {
+		 * Date fecha1 = formatoFecha.parse(fecha); this.fecha = fecha1; } catch
+		 * (ParseException e) { setErrorFecha("Error al convertir fecha"); }
+		 */
 	}
 
 	public boolean isCorrecto() {

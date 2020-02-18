@@ -68,10 +68,10 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="indexServicios">Servicios <i class="fas fa-concierge-bell"></i> </a>
+					<a class="nav-link" href="indexServicios">Servicios <i class="fas fa-briefcase"></i> </a>
 				</li>
 			</ul>
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="indexSesiones">Sesiones <i class="fas fa-concierge-bell"></i> </a>
 				</li>
@@ -84,6 +84,8 @@
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
+					<img src="imgs/administrador.jpg" alt="Imagen administrador" class="fotoAdmin">
+					
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 						</li>

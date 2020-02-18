@@ -25,7 +25,7 @@
 					<td>${sesionO.clienteO.nombre} ${sesionO.clienteO.apellidos}</td>
 					<td>${sesionO.trabajadorO.nombre} ${sesionO.trabajadorO.apellidos}</td>
 					<td>${sesionO.servicioO.nombre}</td>
-					<td>${sesionO.fecha}</td>
+						<td><fmt:formatDate value="${sesionO.fecha}" pattern="dd-MM-yyyy HH:mm" /></td>
 					<td>${sesionO.resena}</td>
 					<td>${sesionO.calificacion}</td>
 

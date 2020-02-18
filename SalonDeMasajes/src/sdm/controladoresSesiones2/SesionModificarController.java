@@ -50,7 +50,10 @@ public class SesionModificarController extends HttpServlet {
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("sesionO", sesionO);
-
+			request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+			request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
+			request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
+			
 			mensaje = new Mensaje("La sesión no se ha podido modificar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);

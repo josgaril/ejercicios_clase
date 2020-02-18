@@ -22,16 +22,17 @@
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control ${sesion0 != null ? (sesion0.errorClienteO == null ? 'is-valid' : 'is-invalid') : '' }"
+<%-- 						class="form-control ${sesion0 != null ? (sesion0.errorClienteO == null ? 'is-valid' : 'is-invalid') : '' }" --%>
 					
-<%-- 						class="form-control ${primeravez ? '' : (sesionO.errorClienteO == null ? 'is-valid' : 'is-invalid') }" --%>
+						class="form-control ${primeravez ? '' : (sesionO.errorClienteO == null ? 'is-valid' : 'is-invalid') }"
 						id="cliente" name="cliente">
 						<option disabled selected value="">Selecciona un cliente</option>
 						<c:forEach items="${clientes}" var="cliente" >
-							<option ${cliente.idclientes == sesion0.cliente0.idclientes ? 'selected': '' } value="${cliente.idclientes}">${cliente.nombre} ${cliente.apellidos}</option>			
+								<option ${cliente.idclientes == sesionO.clienteO.idclientes? 'selected': '' } value="${cliente.idclientes}">${cliente.nombre} ${cliente.apellidos}</option>
+						
 						</c:forEach>
 					</select>
-					<div class="invalid-feedback">${sesion0.errorClienteO}</div>					
+					<div class="invalid-feedback">${sesionO.errorClienteO}</div>					
 				</div>
 			</div>
 
@@ -44,10 +45,10 @@
 						id="trabajador" name="trabajador">
 						<option disabled selected value="">Selecciona un trabajador</option>
 						<c:forEach items="${trabajadores}" var="trabajador" >
-							<option ${trabajador.idtrabajadores== sesion0.trabajador.idtrabajadores? 'selected': '' } value="${trabajador.idtrabajadores}">${trabajador.nombre} ${trabajador.apellidos}</option>			
+							<option ${trabajador.idtrabajadores== sesionO.trabajadorO.idtrabajadores? 'selected': '' } value="${trabajador.idtrabajadores}">${trabajador.nombre} ${trabajador.apellidos}</option>			
 						</c:forEach>
 					</select>
-					<div class="invalid-feedback">${sesion0.errorTrabajadorO}</div>					
+					<div class="invalid-feedback">${sesionO.errorTrabajadorO}</div>					
 				</div>
 			</div>
 
@@ -59,18 +60,18 @@
 						id="servicio" name="servicio">
 						<option disabled selected value="">Selecciona un servicio</option>
 						<c:forEach items="${servicios}" var="servicio" >
-							<option ${servicio.idservicios == sesion0.servicio.idservicios ? 'selected': '' } value="${servicio.idservicios}">${servicio.nombre}</option>			
+							<option ${servicio.idservicios == sesionO.servicioO.idservicios ? 'selected': '' } value="${servicio.idservicios}">${servicio.nombre}</option>			
 						</c:forEach>
 					</select>
-					<div class="invalid-feedback">${sesion0.errorServicioO}</div>					
+					<div class="invalid-feedback">${sesionO.errorServicioO}</div>					
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
-					<input type="date"
+					<input type="datetime-local"
 						class="form-control ${primeravez ? '' : (sesionO.errorFecha == null ? 'is-valid' : 'is-invalid') }"
-						id="fecha" name="fecha" value="${sesionO.fecha}">
+						id="fecha" name="fecha" value="<fmt:formatDate value="${sesionO.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
 					<div class="invalid-feedback">${sesionO.errorFecha}</div>
 				</div>
 			</div>
@@ -97,7 +98,7 @@
 						<option ${sesionO.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
 						<option ${sesionO.calificacion == 'Para repetir' ? 'selected': '' }>Para repetir</option>
 					</select>
-					<div class="invalid-feedback">${sesion0.errorCalificacion}</div>
+					<div class="invalid-feedback">${sesionO.errorCalificacion}</div>
 					
 				</div>
 			</div>
