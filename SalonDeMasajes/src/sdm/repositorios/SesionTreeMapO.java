@@ -1,11 +1,15 @@
 package sdm.repositorios;
 
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 import java.util.TreeMap;
 
+import sdm.modelos.Cliente;
+import sdm.modelos.Servicio;
 import sdm.modelos.SesionO;
+import sdm.modelos.Trabajador;
 
-public class SesionTreeMapO implements Dao<SesionO> {
+class SesionTreeMapO implements Dao<SesionO> {
 
 	private TreeMap<Integer, SesionO> sesionesO = new TreeMap<>();
 
@@ -13,30 +17,19 @@ public class SesionTreeMapO implements Dao<SesionO> {
 	private static final SesionTreeMapO INSTANCIA = new SesionTreeMapO();
 
 	public SesionTreeMapO() {
-		/*
-		 * agregar(new Sesion(null, new Cliente(1, "jose", "garcia", "71284315G"), new
-		 * Trabajador(1, "Fran", "Xisco", "71345622G"), new Servicio(2,
-		 * "Masaje a 4 manos", new BigDecimal("48.154")), new GregorianCalendar(2020,
-		 * 10, 02).getTime(), "Me ha gustado mucho", "Notable")); agregar(new
-		 * Sesion(null, new Cliente(2, "Alberto", "Perez", "72224315G"), new
-		 * Trabajador(2, "Roberto", "perex", "71284222G"), new Servicio(2,
-		 * "Masaje de pies", new BigDecimal("60,456")), new GregorianCalendar(2020, 10,
-		 * 02).getTime(), "Me ha gustado ", "Muy bien")); agregar(new Sesion(null, new
-		 * Cliente(3, "jose", "garcia", "71255515G"), new Trabajador(2, "Roberto",
-		 * "perex", "71284222G"), new Servicio(2, "Masaje cadera", new
-		 * BigDecimal("48.154")), new GregorianCalendar(2020, 10, 02).getTime(),
-		 * "Lo mejor", "Excelente"));
-		 */
-		/*
-		 * agregar(new Sesion(null, "Select idcliente FROM clientes WHERE id=1", 1, 1,
-		 * new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
-		 * "Notable"));
-		 */
-		agregar(new SesionO(null, 1, 1, 1, new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
-				"Notable"));
-		agregar(new SesionO(null, 2, 2, 3, new GregorianCalendar(2019, 5, 05).getTime(), "No me ha gustado nada",
-				"Lamentable"));
-		agregar(new SesionO(null, 3, 2, 3, new GregorianCalendar(2020, 6, 01).getTime(), "Ni fu ni nfa", "Pasable"));
+
+		agregar(new SesionO(1, new Cliente(1, "Leticia", "Gonzalez Ruiz", "71545258P"),
+				new Trabajador(1, "Manuel", "Martinez Gombarri", "85514521B"),
+				new Servicio(1, "Masaje de caderas", new BigDecimal("38.458")),
+				new GregorianCalendar(2019,11,15).getTime(), "mu bien", "mal"));
+		agregar(new SesionO(2, new Cliente(1, "jose", "garcia", "71284315G"),
+				new Trabajador(2, "Fran", "Xisco", "71345622G"),
+				new Servicio(2, "Masaje a 4 manos", new BigDecimal("48.154")),
+				new GregorianCalendar(2020, 10, 02).getTime(), "Me ha gustado mucho", "Notable"));
+		agregar(new SesionO(3, new Cliente(3, "Alberto", "Perez Alonso", "71284555O"),
+				new Trabajador(3, "Marcos", "Minguez Soleil", "71829335B"),
+				new Servicio(3, "Masaje de pies ", new BigDecimal("50.025")),
+				new GregorianCalendar(2018, 05, 05).getTime(), "No me ha gustado Nada", "Insuficiente"));
 	}
 
 	public static SesionTreeMapO getInstancia() {

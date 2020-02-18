@@ -4,6 +4,30 @@
 	font-size: 2em;
 }
 
-.fotoAdmin{
-	width:3em;
+.fotoAdmin {
+	width: 2em;
+}
+
+#sesiones thead th:nth-child(5) {
+	width: 8em;
+}
+
+#clientes thead th:nth-child(1),#servicios thead th:nth-child(1),#trabajadores thead th:nth-child(1),#sesiones thead th:nth-child(1) {
+	width: 2em;
+}
+
+#servicios tbody td:last-child {
+	text-align: center;
+}
+
+#servicios tbody td:nth-child(3) {
+	text-align: right;
+}
+
+#servicios thead th:nth-child(3) {
+	width: 4em;
+}
+.titulo{
+	font-size: 2.5em;
+	text-decoration: underline;
 }

@@ -3,9 +3,9 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <section id="clientes">
-<h1>CLIENTES</h1>
+<h1 class="titulo text-center pt-3">CLIENTES</h1>
 	<table
-		class="table table-striped table-bordered table-hover table-sm table-responsive">
+		class="table table-striped table-bordered table-hover table-sm">
 		<thead class="thead-dark">
 			<tr>
 				<th>Id</th>
@@ -41,6 +41,6 @@
 	</table>
 
 	<a class="btn btn-primary" href="admin/cliente?op=agregar">Añadir</a>
-
+	<a class="btn btn-success mx-2" href="admin/">Volver</a>
 </section>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
