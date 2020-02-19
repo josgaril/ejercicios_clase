@@ -14,8 +14,8 @@ import java.util.Properties;
 import sdm.modelos.Trabajador;
 
 public class Trabajadores implements Dao<Trabajador> {
-	private static final String SQL_SELECT = "SELECT * FROM trabajadores";
-	private static final String SQL_SELECT_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
+	private static final String SQL_GET_ALL = "SELECT * FROM trabajadores";
+	private static final String SQL_GET_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
 	
 	private static final String SQL_INSERT = "INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE trabajadores set nombre=?, apellidos=?, dni=? WHERE idtrabajadores=?";
@@ -71,7 +71,7 @@ public class Trabajadores implements Dao<Trabajador> {
 	public Iterable<Trabajador> obtenerTodos() {
 
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class Trabajadores implements Dao<Trabajador> {
 	public Trabajador obtenerPorId(Integer idtrabajadores) {
 
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, idtrabajadores);
 				try (ResultSet rs = ps.executeQuery()) {
 

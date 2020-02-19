@@ -14,6 +14,15 @@ import java.util.Properties;
 import sdm.modelos.Cliente;
 
 public class Clientes implements Dao<Cliente> {
+	private static final String SQL_GET_ALL = "SELECT * FROM clientes";
+	private static final String SQL_GET_BY_ID = "SELECT * FROM clientes WHERE idclientes=?";
+
+	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)";
+	private static final String SQL_UPDATE = "UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?";
+	private static final String SQL_DELETE = "DELETE FROM clientes WHERE idclientes=?";
+
+
+	
 	private static String url, usuario, password;
 	// SINGLETON
 
@@ -61,7 +70,7 @@ public class Clientes implements Dao<Cliente> {
 	@Override
 	public Iterable<Cliente> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM clientes")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
@@ -80,7 +89,7 @@ public class Clientes implements Dao<Cliente> {
 	@Override
 	public Cliente obtenerPorId(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM clientes WHERE idclientes=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, idclientes);
 
 				try (ResultSet rs = ps.executeQuery()) {
@@ -102,7 +111,7 @@ public class Clientes implements Dao<Cliente> {
 	public void agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)")) {
+					.prepareStatement(SQL_INSERT)) {
 				ps.setString(1, cliente.getNombre());
 				ps.setString(2, cliente.getApellidos());
 				ps.setString(3, cliente.getDni());
@@ -122,7 +131,7 @@ public class Clientes implements Dao<Cliente> {
 	public void modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement("UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?")) {
+					.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, cliente.getNombre());
 				ps.setString(2, cliente.getApellidos());
 				ps.setString(3, cliente.getDni());
@@ -143,7 +152,7 @@ public class Clientes implements Dao<Cliente> {
 	@Override
 	public void borrar(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement("DELETE FROM clientes WHERE idclientes=?")) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setLong(1, idclientes);
 
 				int numeroRegistrosModificados = ps.executeUpdate();

@@ -14,8 +14,8 @@ import java.util.Properties;
 import sdm.modelos.Servicio;
 
  class Servicios implements Dao<Servicio> {
-		private static final String SQL_SELECT= "SELECT * FROM servicios";
-		private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE idservicios=?";
+		private static final String SQL_GET_ALL= "SELECT * FROM servicios";
+		private static final String SQL_GET_BY_ID = "SELECT * FROM servicios WHERE idservicios=?";
 
 		private static final String SQL_INSERT = "INSERT INTO servicios (nombre, precio) VALUES (?,?)";
 		private static final String SQL_UPDATE = "UPDATE servicios set nombre=?,precio=? WHERE idservicios=?";
@@ -68,7 +68,7 @@ import sdm.modelos.Servicio;
 	@Override
 	public Iterable<Servicio> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Servicio> servicios = new ArrayList<>();
 
@@ -87,7 +87,7 @@ import sdm.modelos.Servicio;
 	@Override
 	public Servicio obtenerPorId(Integer idservicios) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, idservicios);
 
 				try (ResultSet rs = ps.executeQuery()) {

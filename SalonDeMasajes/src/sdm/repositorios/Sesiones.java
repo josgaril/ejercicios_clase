@@ -26,8 +26,8 @@ public class Sesiones implements Dao<Sesion> {
 			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios";
 	//Fin bloque de consultas de prueba
 	
-	private static final String SQL_SELECT = "SELECT * FROM sesiones";
-	private static final String SQL_SELECT_BY_ID = "SELECT * FROM sesiones WHERE id=?";
+	private static final String SQL_GET_ALL = "SELECT * FROM sesiones";
+	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE sesiones set clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
@@ -84,7 +84,7 @@ public class Sesiones implements Dao<Sesion> {
 	@Override
 	public Iterable<Sesion> obtenerTodos() {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				ArrayList<Sesion> sesiones = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
@@ -110,7 +110,7 @@ public class Sesiones implements Dao<Sesion> {
 	@Override
 	public Sesion obtenerPorId(Integer id) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {

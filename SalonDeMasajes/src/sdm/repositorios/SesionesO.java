@@ -23,11 +23,14 @@ public class SesionesO implements Dao<SesionO> {
 	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
 	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
 	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
+	
+	//La siguiente es la buena:
 	private static final String SQL_SELECT_JOIN = "SELECT *\r\n" + 
 			"FROM sesiones sesion\r\n" + 
 			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
 			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
 			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n";
+	
 	private static final String SQL_SELECT_JOIN_SEPARADO = 
 			"SELECT sesion.id, c.idclientes, c.nombre as Nombre_Cliente, c.apellidos as Apellidos_cliente, t.idtrabajadores, t.nombre as Nombre_trabajador, t.apellidos as Apellidos_trabajador, s.nombre as Nombre_servicio, sesion.fecha as fecha, sesion.resena as resena, sesion.calificacion as calificacion\r\n" + 
 			"FROM sesiones sesion\r\n" + 
@@ -37,8 +40,8 @@ public class SesionesO implements Dao<SesionO> {
 	private static final String SQL_INSERT_OBJETOS="INSERT INTO sesiones (id, clientes, trabajadores, servicios,fecha, resena, calificacion) VALUES (?,?,?,?,?,?,?)";
 	//Fin bloque de consultas de prueba
 	
-	private static final String SQL_SELECT = "SELECT * FROM sesiones";
-	private static final String SQL_SELECT_BY_ID = "SELECT * FROM sesiones WHERE id=?";
+	private static final String SQL_GET_ALL = "SELECT * FROM sesiones";
+	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE sesiones set clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
@@ -46,10 +49,11 @@ public class SesionesO implements Dao<SesionO> {
 
 	private static String url, usuario, password;
 
-	private static SesionesO instancia;
+	
 
 	// SINGLETON
-
+	private static SesionesO instancia;
+	
 	private SesionesO(String url, String usuario, String password) {
 		SesionesO.url = url;
 		SesionesO.usuario = usuario;
@@ -125,7 +129,7 @@ public class SesionesO implements Dao<SesionO> {
 	@Override
 	public SesionO obtenerPorId(Integer id) {
 		try (Connection con = getConnexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
