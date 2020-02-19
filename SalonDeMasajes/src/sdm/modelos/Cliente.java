@@ -2,8 +2,10 @@ package sdm.modelos;
 
 public class Cliente {
 
+	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
+	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
-	
+
 	private Integer idclientes;
 	private String nombre;
 	private String apellidos;
@@ -26,11 +28,13 @@ public class Cliente {
 	 */
 
 	public Cliente(String nombre, String apellidos, String dni) {
-		this(null, nombre, apellidos,dni);
+		this(null, nombre, apellidos, dni);
 	}
+
 	public Cliente(String nombre) {
-		this(null, nombre, null,null);
+		this(null, nombre, null, null);
 	}
+
 	public Cliente(Integer idclientes, String nombre) {
 		this(idclientes, nombre, null, null);
 	}
@@ -54,6 +58,11 @@ public class Cliente {
 		if (nombre == null || nombre.trim().length() < 1 || nombre.trim().length() > 45) {
 			setErrorNombre("El nombre tiene que tener entre 1 y 45 caracteres");
 		}
+
+		if (!nombre.matches(REGEX_NOMBRE)) {
+			setErrorNombre("Solo se admiten caracteres de letras y espacios");
+		}
+
 		this.nombre = nombre;
 	}
 
@@ -65,6 +74,11 @@ public class Cliente {
 		if (apellidos == null || apellidos.trim().length() < 1 || apellidos.trim().length() > 90) {
 			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
 		}
+
+		if (!apellidos.matches(REGEX_APELLIDOS)) {
+			setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe");
+		}
+
 		this.apellidos = apellidos;
 	}
 
@@ -76,10 +90,11 @@ public class Cliente {
 		if (dni == null || dni.trim().length() != 9) {
 			setErrorDni("El dni tiene que estar formado por 9 caracteres");
 		}
-	
-		/*
-		 * if (!dni.matches(REGEX_DNI)) { setErrorDni("Formato de DNI incorrecto"); }
-		 */
+
+		if (!dni.matches(REGEX_DNI)) {
+			setErrorDni("Formato de DNI incorrecto");
+		}
+
 		this.dni = dni;
 	}
 

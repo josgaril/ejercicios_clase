@@ -14,16 +14,26 @@
 <hr>
 <h3>Listado de servicios disponibles</h3>
 <section id="servicios" class="row">
+
 	<c:forEach items="${servicios}" var="servicio">
-		<article class="servicio col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-			<p class="id">id: ${servicio.idservicios}</p>
-			<p class="nombre">nombre: ${servicio.nombre}</p>
-			<p class="precio">precio: <fmt:formatNumber type="currency"
-						value="${servicio.precio}" pattern="#0.000" /> €</p>
-		</article>
+		<div class="card col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" style="width: 18rem;">
+			<img src="imgs/${servicio.nombre}.jpg" class="card-img-top"
+				alt="foto ${servicio.nombre}">
+			<div class="card-body">
+				<h5 class="card-title">${servicio.nombre}</h5>
+				<p class="precio">
+					precio:
+					<fmt:formatNumber type="currency" value="${servicio.precio}"
+						pattern="#0.000" />
+					€
+				</p>
+				<a href="#" class="btn btn-primary">Contratar</a>
+			</div>
+		</div>
 	</c:forEach>
 </section>
-<a class="btn btn-primary" href="admin/sesionO?op=agregar">Contratar servicio</a>
+<a class="btn btn-primary" href="admin/sesionO?op=agregar">Contratar
+	servicio</a>
 
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

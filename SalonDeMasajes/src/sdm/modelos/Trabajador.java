@@ -5,7 +5,7 @@ public class Trabajador {
 	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
 	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
-	
+
 	private Integer idtrabajadores;
 	private String nombre;
 	private String apellidos;
@@ -44,11 +44,11 @@ public class Trabajador {
 		if (nombre == null || nombre.trim().length() < 1 || nombre.trim().length() > 45) {
 			setErrorNombre("El nombre tiene que tener entre 1 y 45 caracteres");
 		}
+
 		
-		/*
-		 * if (!nombre.matches(REGEX_NOMBRE)) {
-		 * setErrorNombre("Solo se admiten caracteres de letras y espacios"); }
-		 */
+		  if (!nombre.matches(REGEX_NOMBRE)) {
+		  setErrorNombre("Solo se admiten caracteres de letras y espacios"); }
+		 
 		this.nombre = nombre;
 	}
 
@@ -61,11 +61,10 @@ public class Trabajador {
 			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
 		}
 		
-		/*
-		 * if (!apellidos.matches(REGEX_APELLIDOS)) {
-		 * setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe"
-		 * ); }
-		 */
+		  if (!apellidos.matches(REGEX_APELLIDOS)) {
+		  setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe"
+		  ); }
+		 
 		this.apellidos = apellidos;
 	}
 
@@ -74,14 +73,14 @@ public class Trabajador {
 	}
 
 	public void setDni(String dni) {
-		if (dni==null || dni.trim().length()!=9) {
+		if (dni == null || dni.trim().length() != 9) {
 			setErrorDni("El DNI tiene que tener 9 caracteres");
 		}
-		
-		/*
-		 * if (!dni.matches(REGEX_DNI)) {
-		 * setErrorDni("El formato de DNI no es correcto"); }
-		 */
+
+		if (!dni.matches(REGEX_DNI)) {
+			setErrorDni("El formato de DNI no es correcto");
+		}
+
 		this.dni = dni;
 	}
 
