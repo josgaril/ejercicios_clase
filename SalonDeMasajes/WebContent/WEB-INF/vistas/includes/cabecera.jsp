@@ -23,7 +23,7 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="css/all.min.css" />
 
-<link rel="stylesheet" href="css/masajes.css" />
+<link rel="stylesheet" href="css/SalonMasajes.css" />
 
 
 <!-- jQuery -->
@@ -86,7 +86,7 @@
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
-					<img src="imgs/administrador.jpg" alt="Imagen administrador" class="fotoAdmin">
+					<img src="imgs/${sessionScope.usuario}.jpg" alt="Imagen ${sessionScope.usuario}" class="fotoPerfil ml-1 mr-3">
 					
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
