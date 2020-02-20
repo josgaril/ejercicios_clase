@@ -26,13 +26,16 @@ public class ClientesMySQL implements Dao<Cliente> {
 	private static String url, usuario, password;
 	// SINGLETON
 
+	//Creamos la variable estática 'instancia'
 	private static ClientesMySQL instancia;
 
+	//Constructor privado de ClientesMySQL
 	private ClientesMySQL(String url, String usuario, String password) {
 		ClientesMySQL.url = url;
 		ClientesMySQL.usuario = usuario;
 		ClientesMySQL.password = password;
 
+		//Buscar el driver de MySQL
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -53,7 +56,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 				instancia = new ClientesMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
-			
+			//devolvemos la instancia
 			return instancia;
 		} catch (FileNotFoundException e) {
 			throw new AccesoDatosException("Fichero de configuración no encontrado", e);

@@ -37,11 +37,11 @@ public class ClienteCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (cliente.isCorrecto()) {
-			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
+			//Dao<Cliente> dao =ClienteMySQL.getInstancia();
 
 			Globales.daoCliente.agregar(cliente);
 
-			mensaje = new Mensaje("Servicio agregado correctamente", Mensaje.Nivel.INFORMATIVO);
+			mensaje = new Mensaje("Cliente agregado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
