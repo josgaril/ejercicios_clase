@@ -43,13 +43,13 @@ public class ClientesMySQL implements Dao<Cliente> {
 	//NOTAS MÍAS: Inicializamos la instancia
 	public static ClientesMySQL getInstancia(String pathConfiguracion) {
 		try {
-			//si no existe..
+			//si no existe la instancia..
 			if (instancia == null) {
 				//obtenemos los datos del archivo de configuración
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				//..la creamos con el constructor de clientes
+				//..la creamos con el constructor de ClientesMySQL
 				instancia = new ClientesMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
