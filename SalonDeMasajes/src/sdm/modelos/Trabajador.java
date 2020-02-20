@@ -45,10 +45,11 @@ public class Trabajador {
 			setErrorNombre("El nombre tiene que tener entre 1 y 45 caracteres");
 		}
 
-		
-		  if (!nombre.matches(REGEX_NOMBRE)) {
-		  setErrorNombre("Solo se admiten caracteres de letras y espacios"); }
-		 
+		/*
+		 * if (!nombre.matches(REGEX_NOMBRE)) {
+		 * setErrorNombre("Solo se admiten caracteres de letras y espacios"); }
+		 */
+
 		this.nombre = nombre;
 	}
 
@@ -60,11 +61,13 @@ public class Trabajador {
 		if (apellidos == null || apellidos.trim().length() < 1 || apellidos.trim().length() > 90) {
 			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
 		}
-		
-		  if (!apellidos.matches(REGEX_APELLIDOS)) {
-		  setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe"
-		  ); }
-		 
+
+		/*
+		 * if (!apellidos.matches(REGEX_APELLIDOS)) {
+		 * setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe"
+		 * ); }
+		 */
+
 		this.apellidos = apellidos;
 	}
 
@@ -77,9 +80,10 @@ public class Trabajador {
 			setErrorDni("El DNI tiene que tener 9 caracteres");
 		}
 
-		if (!dni.matches(REGEX_DNI)) {
-			setErrorDni("El formato de DNI no es correcto");
-		}
+		/*
+		 * if (!dni.matches(REGEX_DNI)) {
+		 * setErrorDni("El formato de DNI no es correcto"); }
+		 */
 
 		this.dni = dni;
 	}
