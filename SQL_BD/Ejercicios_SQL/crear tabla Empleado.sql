@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS Empleado;
+CREATE TABLE Empleado (
+nDIEmp VARCHAR( 12 ) NOT NULL PRIMARY KEY,
+nomEmp VARCHAR( 30 ) NOT NULL ,
+sexEmp CHAR( 1 ) NOT NULL CHECK (sexEmp IN ('F', 'M') ),
+fecNac DATE NOT NULL ,
+fecIncorporacion DATE NOT NULL,
+salEmp FLOAT NOT NULL,
+comisionE FLOAT NOT NULL,
+cargoE VARCHAR( 15 ) NOT NULL,
+jefeID VARCHAR( 12 ),
+codDepto VARCHAR( 4 ) NOT NULL
+);

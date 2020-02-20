@@ -1,0 +1,2 @@
+SELECT comisionE
+FROM empleado;
