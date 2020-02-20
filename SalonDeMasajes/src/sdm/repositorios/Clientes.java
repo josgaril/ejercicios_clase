@@ -40,16 +40,20 @@ public class Clientes implements Dao<Cliente> {
 		}
 	}
 
+	//NOTAS MÍAS: Inicializamos la instancia
 	public static Clientes getInstancia(String pathConfiguracion) {
 		try {
+			//si no existe..
 			if (instancia == null) {
+				//obtenemos los datos del archivo de configuración
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
+				//..la creamos con el constructor de clientes
 				instancia = new Clientes(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
-
+			
 			return instancia;
 		} catch (FileNotFoundException e) {
 			throw new AccesoDatosException("Fichero de configuración no encontrado", e);
