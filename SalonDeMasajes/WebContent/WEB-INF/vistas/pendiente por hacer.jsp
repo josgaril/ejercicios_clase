@@ -3,6 +3,7 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
 POR HACER:
+-VALIDACIONES EN SESION NORMAL. AL AGREGAR Y MODIFICAR
 - Fabrica Dao y FabricaDaoProperties
 - Pool de conexiones
 - Test de clientes
@@ -22,6 +23,8 @@ POR HACER:
 - Configurar bien las columnas de todas las tablas. 
 - Quitar los enlaces superiores de listado de trabajadores, clientes y sesiones?
 
+EJERCICIO casa, salonCasa, cocinaCasa
+https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=511:clases-que-utilizan-objetos-relacion-de-uso-entre-clases-java-concepto-de-diagrama-de-clases-cu00641b&catid=68&Itemid=188
 
 Hecho:
 - COMPROBAR LOS REGEX DE DNI, NOMBRE, APELLIDOS...

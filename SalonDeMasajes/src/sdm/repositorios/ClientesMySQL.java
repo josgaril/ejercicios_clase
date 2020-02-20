@@ -11,25 +11,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import sdm.modelos.Servicio;
+import sdm.modelos.Cliente;
 
- class Servicios implements Dao<Servicio> {
-		private static final String SQL_GET_ALL= "SELECT * FROM servicios";
-		private static final String SQL_GET_BY_ID = "SELECT * FROM servicios WHERE idservicios=?";
+public class ClientesMySQL implements Dao<Cliente> {
+	private static final String SQL_GET_ALL = "SELECT * FROM clientes";
+	private static final String SQL_GET_BY_ID = "SELECT * FROM clientes WHERE idclientes=?";
 
-		private static final String SQL_INSERT = "INSERT INTO servicios (nombre, precio) VALUES (?,?)";
-		private static final String SQL_UPDATE = "UPDATE servicios set nombre=?,precio=? WHERE idservicios=?";
-		private static final String SQL_DELETE = "DELETE FROM servicios WHERE idservicios=?";
+	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)";
+	private static final String SQL_UPDATE = "UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?";
+	private static final String SQL_DELETE = "DELETE FROM clientes WHERE idclientes=?";
 
+
+	
 	private static String url, usuario, password;
 	// SINGLETON
 
-	private static Servicios instancia;
+	private static ClientesMySQL instancia;
 
-	private Servicios(String url, String usuario, String password) {
-		Servicios.url = url;
-		Servicios.usuario = usuario;
-		Servicios.password = password;
+	private ClientesMySQL(String url, String usuario, String password) {
+		ClientesMySQL.url = url;
+		ClientesMySQL.usuario = usuario;
+		ClientesMySQL.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,16 +40,20 @@ import sdm.modelos.Servicio;
 		}
 	}
 
-	public static Servicios getInstancia(String pathConfiguracion) {
+	//NOTAS MÍAS: Inicializamos la instancia
+	public static ClientesMySQL getInstancia(String pathConfiguracion) {
 		try {
+			//si no existe..
 			if (instancia == null) {
+				//obtenemos los datos del archivo de configuración
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				instancia = new Servicios(configuracion.getProperty("mysql.url"),
+				//..la creamos con el constructor de clientes
+				instancia = new ClientesMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
-
+			
 			return instancia;
 		} catch (FileNotFoundException e) {
 			throw new AccesoDatosException("Fichero de configuración no encontrado", e);
@@ -66,52 +72,53 @@ import sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Iterable<Servicio> obtenerTodos() {
+	public Iterable<Cliente> obtenerTodos() {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
-					ArrayList<Servicio> servicios = new ArrayList<>();
+					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					while (rs.next()) {
-						servicios.add(new Servicio(rs.getInt("idservicios"), rs.getString("nombre"),
-								rs.getBigDecimal("precio")));
+						clientes.add(new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
+								rs.getString("apellidos"), rs.getString("dni")));
 					}
-					return servicios;
+					return clientes;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los servicios", e);
+			throw new AccesoDatosException("Error al obtener todos los trabajadores", e);
 		}
 	}
 
 	@Override
-	public Servicio obtenerPorId(Integer idservicios) {
+	public Cliente obtenerPorId(Integer idclientes) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
-				ps.setInt(1, idservicios);
+				ps.setInt(1, idclientes);
 
 				try (ResultSet rs = ps.executeQuery()) {
 
 					if (rs.next()) {
-						return new Servicio(rs.getInt("idservicios"), rs.getString("nombre"),
-								rs.getBigDecimal("precio"));
+						return new Cliente(rs.getInt("idclientes"), rs.getString("nombre"), rs.getString("apellidos"),
+								rs.getString("dni"));
 					} else {
 						return null;
 					}
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el servicio id: " + idservicios, e);
+			throw new AccesoDatosException("Error al obtener el cliente id: " + idclientes, e);
 		}
 	}
 
 	@Override
-	public void agregar(Servicio servicio) {
+	public void agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_INSERT)) {
-				ps.setString(1, servicio.getNombre());
-				ps.setBigDecimal(2, servicio.getPrecio());
+				ps.setString(1, cliente.getNombre());
+				ps.setString(2, cliente.getApellidos());
+				ps.setString(3, cliente.getDni());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -120,18 +127,19 @@ import sdm.modelos.Servicio;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al insertar el trabajador", e);
+			throw new AccesoDatosException("Error al insertar el cliente", e);
 		}
 	}
 
 	@Override
-	public void modificar(Servicio servicio) {
+	public void modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_UPDATE)) {
-				ps.setString(1, servicio.getNombre());
-				ps.setBigDecimal(2, servicio.getPrecio());
-				ps.setInt(3, servicio.getIdservicios());
+				ps.setString(1, cliente.getNombre());
+				ps.setString(2, cliente.getApellidos());
+				ps.setString(3, cliente.getDni());
+				ps.setInt(4, cliente.getIdclientes());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -140,16 +148,16 @@ import sdm.modelos.Servicio;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el servicio", e);
+			throw new AccesoDatosException("Error al modificar el cliente", e);
 		}
 
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void borrar(Integer idclientes) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
-				ps.setInt(1, id);
+				ps.setLong(1, idclientes);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
@@ -158,7 +166,7 @@ import sdm.modelos.Servicio;
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar el servicio", e);
+			throw new AccesoDatosException("Error al borrar el cliente", e);
 		}
 	}
 

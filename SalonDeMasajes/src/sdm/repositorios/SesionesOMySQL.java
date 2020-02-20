@@ -18,7 +18,7 @@ import sdm.modelos.Servicio;
 import sdm.modelos.SesionO;
 import sdm.modelos.Trabajador;
 
-public class SesionesO implements Dao<SesionO> {
+public class SesionesOMySQL implements Dao<SesionO> {
 	//Bloque de consultas de prueba
 	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
 	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
@@ -52,12 +52,12 @@ public class SesionesO implements Dao<SesionO> {
 	
 
 	// SINGLETON
-	private static SesionesO instancia;
+	private static SesionesOMySQL instancia;
 	
-	private SesionesO(String url, String usuario, String password) {
-		SesionesO.url = url;
-		SesionesO.usuario = usuario;
-		SesionesO.password = password;
+	private SesionesOMySQL(String url, String usuario, String password) {
+		SesionesOMySQL.url = url;
+		SesionesOMySQL.usuario = usuario;
+		SesionesOMySQL.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -66,13 +66,13 @@ public class SesionesO implements Dao<SesionO> {
 		}
 	}
 
-	public static SesionesO getInstancia(String pathConfiguracion) {
+	public static SesionesOMySQL getInstancia(String pathConfiguracion) {
 
 		try {
 			if (instancia == null) {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
-				instancia = new SesionesO(configuracion.getProperty("mysql.url"),
+				instancia = new SesionesOMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 			return instancia;

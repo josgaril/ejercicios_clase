@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import sdm.modelos.Sesion;
 
-public class Sesiones implements Dao<Sesion> {
+public class SesionesMySQL implements Dao<Sesion> {
 	//Bloque de consultas de prueba
 	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
 	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
@@ -35,14 +35,14 @@ public class Sesiones implements Dao<Sesion> {
 
 	private static String url, usuario, password;
 
-	private static Sesiones instancia;
+	private static SesionesMySQL instancia;
 
 	// SINGLETON
 
-	private Sesiones(String url, String usuario, String password) {
-		Sesiones.url = url;
-		Sesiones.usuario = usuario;
-		Sesiones.password = password;
+	private SesionesMySQL(String url, String usuario, String password) {
+		SesionesMySQL.url = url;
+		SesionesMySQL.usuario = usuario;
+		SesionesMySQL.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -51,13 +51,13 @@ public class Sesiones implements Dao<Sesion> {
 		}
 	}
 
-	public static Sesiones getInstancia(String pathConfiguracion) {
+	public static SesionesMySQL getInstancia(String pathConfiguracion) {
 
 		try {
 			if (instancia == null) {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
-				instancia = new Sesiones(configuracion.getProperty("mysql.url"),
+				instancia = new SesionesMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 			return instancia;

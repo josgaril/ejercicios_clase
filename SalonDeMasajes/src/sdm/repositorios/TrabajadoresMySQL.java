@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import sdm.modelos.Trabajador;
 
-public class Trabajadores implements Dao<Trabajador> {
+public class TrabajadoresMySQL implements Dao<Trabajador> {
 	private static final String SQL_GET_ALL = "SELECT * FROM trabajadores";
 	private static final String SQL_GET_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
 	
@@ -24,12 +24,12 @@ public class Trabajadores implements Dao<Trabajador> {
 	private static String url, usuario, password;
 
 	// SINGLETON
-	private static Trabajadores instancia;
+	private static TrabajadoresMySQL instancia;
 
-	private Trabajadores(String url, String usuario, String password) {
-		Trabajadores.url = url;
-		Trabajadores.usuario = usuario;
-		Trabajadores.password = password;
+	private TrabajadoresMySQL(String url, String usuario, String password) {
+		TrabajadoresMySQL.url = url;
+		TrabajadoresMySQL.usuario = usuario;
+		TrabajadoresMySQL.password = password;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,13 +38,13 @@ public class Trabajadores implements Dao<Trabajador> {
 		}
 	}
 
-	public static Trabajadores getInstancia(String pathConfiguracion) {
+	public static TrabajadoresMySQL getInstancia(String pathConfiguracion) {
 		try {
 			if (instancia == null) {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				instancia = new Trabajadores(configuracion.getProperty("mysql.url"),
+				instancia = new TrabajadoresMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 

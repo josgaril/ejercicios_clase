@@ -41,7 +41,7 @@ public class FabricaDao {
 	public Dao<Cliente> getInstanciaCliente() {
 		switch(tipo) {
 		case "memoria": return ClienteTreeMap.getInstancia();
-		case "mysql": return Clientes.getInstancia(pathConfiguracion);
+		case "mysql": return ClientesMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
@@ -50,7 +50,7 @@ public class FabricaDao {
 	public Dao<Servicio> getInstanciaServicio() {
 		switch(tipo) {
 		case "memoria": return ServicioTreeMap.getInstancia();
-		case "mysql": return Servicios.getInstancia(pathConfiguracion);
+		case "mysql": return ServiciosMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
@@ -58,7 +58,7 @@ public class FabricaDao {
 	public Dao<Trabajador> getInstanciaTrabajador() {
 		switch(tipo) {
 		case "memoria": return TrabajadorTreeMap.getInstancia();
-		case "mysql": return Trabajadores.getInstancia(pathConfiguracion);
+		case "mysql": return TrabajadoresMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
@@ -66,7 +66,7 @@ public class FabricaDao {
 	public Dao<Sesion> getInstanciaSesion() {
 		switch(tipo) {
 		case "memoria": return SesionTreeMap.getInstancia();
-		case "mysql": return Sesiones.getInstancia(pathConfiguracion);
+		case "mysql": return SesionesMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
@@ -74,7 +74,7 @@ public class FabricaDao {
 	public Dao<SesionO> getInstanciaSesionO() {
 		switch(tipo) {
 		case "memoria": return SesionTreeMapO.getInstancia();
-		case "mysql": return SesionesO.getInstancia(pathConfiguracion);
+		case "mysql": return SesionesOMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
