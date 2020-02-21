@@ -3,6 +3,12 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
 POR HACER:
+EJERCICIO PRIMERO DE LIBRO, en la biblioteca no tiene que ir la validacion del formato, tiene que ir 
+en el programa principal cuando se añade un libro
+EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
+CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
+- Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
+
 - VALIDACIONES EN LA CLASE SESION NORMAL, no la de objetos. AL AGREGAR Y MODIFICAR
 - REVISAR TODOS LOS COMENTARIOS DEL PROYETO; QUITANDO LOS QUE NO VALEN
 - REVISAR LOS MENSAJES CUANDO HAY ERRORES O AVISOS DE INFORMACION, QUE NO SALGAN DE OTRA CLASE
