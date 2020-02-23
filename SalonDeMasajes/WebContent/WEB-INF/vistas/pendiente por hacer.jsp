@@ -9,6 +9,11 @@ EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
 CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
 
+OJO!!y si en vez de meter la imagen como de fondo la pongo dentro de una card o algo? asi la puedo hacer responsive..
+VER SI LA IMAGEN QUEDA BIEN SIN PONER EL DISPLAY GRID..
+
+- EN CLASE TRABAJADORES CAMBIAR EL REGEX DE NOMBRE Y APELLIDOS. DEJA METER PUNTOS (.), 
+	COMPROBAR MAS. EN CLIENTES POSIBLEMENTE TMB PASE...
 - VALIDACIONES EN LA CLASE SESION NORMAL, no la de objetos. AL AGREGAR Y MODIFICAR
 - REVISAR TODOS LOS COMENTARIOS DEL PROYETO; QUITANDO LOS QUE NO VALEN
 - REVISAR LOS MENSAJES CUANDO HAY ERRORES O AVISOS DE INFORMACION, QUE NO SALGAN DE OTRA CLASE
@@ -34,7 +39,7 @@ CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 EJERCICIO casa, salonCasa, cocinaCasa
 https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=511:clases-que-utilizan-objetos-relacion-de-uso-entre-clases-java-concepto-de-diagrama-de-clases-cu00641b&catid=68&Itemid=188
 
-Hecho:
+Hecho pero no funciona si lo dejo activado, asique.. volver a mirar:
 - COMPROBAR LOS REGEX DE DNI, NOMBRE, APELLIDOS...
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>

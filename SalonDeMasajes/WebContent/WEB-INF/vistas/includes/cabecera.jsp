@@ -43,6 +43,7 @@
 </head>
 <body>
 
+	<!-- 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"> -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<a class="navbar-brand" href="#">SAMAJA</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -54,40 +55,107 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="admin/index">Administración <i class="fas fa-user-cog"></i></a>
-				</li>
+
+				<!-- Enlaces de submenus 
+				<a class="dropdown-item" href="#">Agregar</a>
+				<a class="dropdown-item" href="#">Editar</a>
+				<a class="dropdown-item" href="#">Borrar</a> 
+						FIn Enlaces de submenus -->
+
+				<!-- Example split danger button -->
+				<div class="btn-subgroup">
+					<a class="nav-link" href="admin/index">Admin <i
+						class="fas fa-user-cog"></i>
+					</a>
+					<button type="button"
+						class="btn btn-dark dropdown-toggle dropdown-toggle-split"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
+						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
+							class="dropdown-item" href="admin/servicios">Servicios</a> <a
+							class="dropdown-item" href="admin/sesiones">Sesiones</a>
+						<div class="btn-subgroup">
+							<a class="nav-link" href="admin/index">Admin <i
+								class="fas fa-user-cog"></i>
+							</a>
+							<button type="button"
+								class="btn btn-dark dropdown-toggle dropdown-toggle-split"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
+								<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
+									class="dropdown-item" href="admin/servicios">Servicios</a> <a
+									class="dropdown-item" href="admin/sesiones">Sesiones</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Example split danger button -->
+				<div class="btn-group">
+					<a class="nav-link" href="admin/index">Administración <i
+						class="fas fa-user-cog"></i>
+					</a>
+					<button type="button"
+						class="btn btn-dark dropdown-toggle dropdown-toggle-split"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+
+						<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
+						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
+							class="dropdown-item" href="admin/servicios">Servicios</a> <a
+							class="dropdown-item" href="admin/sesiones">Sesiones</a>
+					</div>
+				</div>
+
+				<!-- Acceso normal a Administracion -->
+				<li class="nav-item"><a class="nav-link" href="admin/index">Administración
+						<i class="fas fa-user-cog"></i>
+				</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="indexTrabajadores">Trabajadores <i class="fas fa-user-tie"></i> </a>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="indexTrabajadores">Trabajadores <i
+						class="fas fa-user-tie"></i>
+				</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="indexClientes">Clientes <i class="fas fa-users"></i> </a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="indexClientes">Clientes
+						<i class="fas fa-users"></i>
+				</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="indexServicios">Servicios <i class="fas fa-briefcase"></i> </a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="indexServicios">Servicios
+						<i class="fas fa-briefcase"></i>
+				</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="indexSesiones">Sesiones <i class="fas fa-concierge-bell"></i> </a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="indexSesiones">Sesiones
+						<i class="fas fa-concierge-bell"></i>
+				</a></li>
 			</ul>
+
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="indexSesionesO">SesionesO <i class="fas fa-concierge-bell"></i> </a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="indexSesionesO">SesionesO
+						<i class="fas fa-concierge-bell"></i>
+				</a></li>
 			</ul>
+
 			<c:choose>
 				<c:when test="${sessionScope.usuario != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.usuario} </span>
-					<img src="imgs/${sessionScope.usuario}.jpg" alt="Imagen ${sessionScope.usuario}" class="fotoPerfil ml-1 mr-3">
-					
+					<img src="imgs/${sessionScope.usuario}.jpg"
+						alt="Imagen ${sessionScope.usuario}" class="fotoPerfil ml-1 mr-3">
+
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 						</li>
@@ -95,8 +163,9 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="login">Login <i class="fas fa-user-cog"></i> </a>
-						</li>
+						<li class="nav-item"><a class="nav-link" href="login">Login
+								<i class="fas fa-user-cog"></i>
+						</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>
@@ -114,6 +183,8 @@
 			</button>
 		</div>
 
-		<% session.removeAttribute("mensaje"); %>
+		<%
+			session.removeAttribute("mensaje");
+		%>
 	</c:if>
 	<main class="container-fluid">
