@@ -77,8 +77,8 @@
 						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
 							class="dropdown-item" href="admin/servicios">Servicios</a> <a
 							class="dropdown-item" href="admin/sesiones">Sesiones</a>
-						<div class="btn-subgroup">
-							<a class="nav-link" href="admin/index">Admin <i
+						<div class="btn-group">
+							<a class="nav-link" href="admin/index">Menu Trabajadores  <i
 								class="fas fa-user-cog"></i>
 							</a>
 							<button type="button"

@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%> 
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
+Para que te lleve a administracion/trabajadores por ejemplo, tienes que guardar la direccion a la que ibas ç
+en el filtro, se guarda en una variable de sesion y luego en el loginController le mandamos a esa variable
+
 POR HACER:
 EJERCICIO PRIMERO DE LIBRO, en la biblioteca no tiene que ir la validacion del formato, tiene que ir 
 en el programa principal cuando se añade un libro

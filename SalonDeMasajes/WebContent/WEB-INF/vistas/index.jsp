@@ -7,10 +7,8 @@
 		class="img-fluid mb-3" />
 </header>
 
-<!-- <header class="jumbotron"> -->
-<!-- 	<h2 class="display-6">Bienvenidos al salón de masajes SAMAJA</h2> -->
-<!-- </header> -->
-<div class="EnlacesListados">
+<h2> Listados</h2>
+<div class="EnlacesListados"> 
 	<a class="btn btn-primary" href="indexTrabajadores" role="button">Trabajadores</a>
 	<a class="btn btn-primary" href="indexClientes" role="button">Clientes</a>
 	<a class="btn btn-primary" href="indexServicios" role="button">Servicios</a>
@@ -34,7 +32,7 @@
 						pattern="#0.000" />
 					€
 				</p>
-				<a href="#" class="btn btn-primary">Contratar</a>
+				<a href="admin/sesionO" class="btn btn-primary">Contratar</a>
 			</div>
 		</div>
 	</c:forEach>

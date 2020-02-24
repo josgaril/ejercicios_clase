@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<h1>Empezando la construcción de la página</h1>
-
-<header class="jumbotron">
-	<h2 class="display-6">Bienvenidos al salón de masajes SAMAJA</h2>
-</header>
-<h2>Listado de los trabajadores</h2>
+<h2 class="titulo my-3">Listado de los trabajadores</h2>
 <section id="trabajadores" class="row">
 	<c:forEach items="${trabajadores}" var="trabajador">
 		<article class="trabajador col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
