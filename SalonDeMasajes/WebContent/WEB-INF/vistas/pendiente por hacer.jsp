@@ -12,9 +12,7 @@ EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
 CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
 
-OJO!!y si en vez de meter la imagen como de fondo la pongo dentro de una card o algo? asi la puedo hacer responsive..
-VER SI LA IMAGEN QUEDA BIEN SIN PONER EL DISPLAY GRID..
-
+CONTROLAR     BIEN    LA    SESION    NORMAL  CUANDO    SE    MODIFICA  ,   SE    HACE    MAL
 - EN CLASE TRABAJADORES CAMBIAR EL REGEX DE NOMBRE Y APELLIDOS. DEJA METER PUNTOS (.), 
 	COMPROBAR MAS. EN CLIENTES POSIBLEMENTE TMB PASE...
 - VALIDACIONES EN LA CLASE SESION NORMAL, no la de objetos. AL AGREGAR Y MODIFICAR

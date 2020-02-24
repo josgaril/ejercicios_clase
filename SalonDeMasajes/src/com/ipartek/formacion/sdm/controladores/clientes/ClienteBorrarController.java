@@ -26,7 +26,7 @@ public class ClienteBorrarController extends HttpServlet {
 		try {
 			Globales.daoCliente.borrar(Integer.parseInt(idclientes));
 			mensaje = new Mensaje(
-					"Borrado correctamente", 
+					"Cliente borrado correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
 		} catch (AccesoDatosException e) {
 			mensaje = new Mensaje(

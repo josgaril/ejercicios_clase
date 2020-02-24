@@ -192,16 +192,18 @@ public class Sesion {
 	private void setClientes_idclientes(String clientes_idclientes) {
 		if (clientes_idclientes == null || clientes_idclientes.trim().length() == 0) {
 			setErrorClientes_idclientes("El id del cliente es obligatorio");
-			this.clientes_idclientes = null;
-			return;
+			/*
+			 * this.clientes_idclientes = null; return;
+			 */
 		}
 
 		try {
 			this.clientes_idclientes = Integer.parseInt(clientes_idclientes);
 		} catch (NumberFormatException e) {
-			setErrorClientes_idclientes("IdCliente introducido no es un número");
+			setErrorClientes_idclientes("El IdCliente introducido no es un número");
 		}
 	}
+	
 
 	private void setTrabajadores_idtrabajadores(String trabajadores_idtrabajadores) {
 		if (trabajadores_idtrabajadores == null || trabajadores_idtrabajadores.trim().length() == 0) {

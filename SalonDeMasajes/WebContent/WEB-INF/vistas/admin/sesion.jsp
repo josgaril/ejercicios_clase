@@ -25,20 +25,6 @@
 						class="form-control ${primeravez ? '' : (sesion.errorClientes_idclientes == null ? 'is-valid' : 'is-invalid') }"
 						id="clientes_idclientes" name="clientes_idclientes"
 						value="${sesion.clientes_idclientes}">
-				<%-- 	<select
-						class="form-control ${primeravez ? '' : (sesion.errorClientes_idclientes == null ? 'is-valid' : 'is-invalid') }"
-						id="clientes_idclientes" name="clientes_idclientes"
-						value="${sesion.clientes_idclientes}">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-					</select> --%>
 					<div class="invalid-feedback">${sesion.errorClientes_idclientes}</div>
 				</div>
 			</div>
@@ -66,12 +52,13 @@
 					<div class="invalid-feedback">${sesion.errorServicios_idservicios}</div>
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
-					<input type="date"
+					<input type="datetime-local"
 						class="form-control ${primeravez ? '' : (sesion.errorFecha == null ? 'is-valid' : 'is-invalid') }"
-						id="fecha" name="fecha" value="${sesion.fecha}">
+						id="fecha" name="fecha" value="<fmt:formatDate value="${sesion.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
 					<div class="invalid-feedback">${sesion.errorFecha}</div>
 				</div>
 			</div>

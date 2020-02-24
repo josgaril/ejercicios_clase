@@ -38,6 +38,34 @@
 	$(document).ready(function() {
 		$('.table').DataTable();
 	});
+
+	//CODIGO JAVASCRIPT PARA SUBMENUS
+	$(function() {
+		// ------------------------------------------------------- //
+		// Multi Level dropdowns
+		// ------------------------------------------------------ //
+		$("ul.dropdown-menu [data-toggle='dropdown']").on(
+				"click",
+				function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					$(this).siblings().toggleClass("show");
+
+					if (!$(this).next().hasClass('show')) {
+						$(this).parents('.dropdown-menu').first().find('.show')
+								.removeClass("show");
+					}
+					$(this).parents('li.nav-item.dropdown.show').on(
+							'hidden.bs.dropdown',
+							function(e) {
+								$('.dropdown-submenu .show')
+										.removeClass("show");
+							});
+
+				});
+	});
+	//FIN CODIGO PARA SUBMENUS
 </script>
 
 </head>
@@ -55,6 +83,46 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav">
+
+
+				<!-- Level one dropdown -->
+				<li class="nav-item dropdown"><a id="dropdownMenu1" href="#"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					class="nav-link dropdown-toggle">Administrador</a>
+					<ul aria-labelledby="dropdownMenu1"
+						class="dropdown-menu border-0 shadow">
+						<li><a href="#" class="dropdown-item">Some action </a></li>
+						<li><a href="#" class="dropdown-item">Some other action</a></li>
+
+						<li class="dropdown-divider"></li>
+
+						<!-- Level two dropdown-->
+						<li class="dropdown-submenu"><a id="dropdownMenu2" href="#"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false" class="dropdown-item dropdown-toggle">Trabajadores</a>
+							<ul aria-labelledby="dropdownMenu2"
+								class="dropdown-menu border-0 shadow">
+								<li><a tabindex="-1" href="#" class="dropdown-item">Agregar</a></li>
+
+								<!-- Level three dropdown-->
+								<li class="dropdown-submenu"><a id="dropdownMenu3" href="#"
+									role="button" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false" class="dropdown-item dropdown-toggle">level
+										2</a>
+									<ul aria-labelledby="dropdownMenu3"
+										class="dropdown-menu border-0 shadow">
+										<li><a href="#" class="dropdown-item">3rd level</a></li>
+										<li><a href="#" class="dropdown-item">3rd level</a></li>
+									</ul></li>
+								<!-- End Level three -->
+
+								<li><a href="#" class="dropdown-item">level 2</a></li>
+								<li><a href="#" class="dropdown-item">level 2</a></li>
+							</ul></li>
+						<!-- End Level two -->
+					</ul></li>
+				<!-- End Level one -->
+
 
 				<!-- Enlaces de submenus 
 				<a class="dropdown-item" href="#">Agregar</a>
@@ -78,7 +146,7 @@
 							class="dropdown-item" href="admin/servicios">Servicios</a> <a
 							class="dropdown-item" href="admin/sesiones">Sesiones</a>
 						<div class="btn-group">
-							<a class="nav-link" href="admin/index">Menu Trabajadores  <i
+							<a class="nav-link" href="admin/index">Menu Trabajadores <i
 								class="fas fa-user-cog"></i>
 							</a>
 							<button type="button"

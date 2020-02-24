@@ -22,8 +22,6 @@
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
 					<select
-<%-- 						class="form-control ${sesion0 != null ? (sesion0.errorClienteO == null ? 'is-valid' : 'is-invalid') : '' }" --%>
-					
 						class="form-control ${primeravez ? '' : (sesionO.errorClienteO == null ? 'is-valid' : 'is-invalid') }"
 						id="cliente" name="cliente">
 						<option disabled selected value="">Selecciona un cliente</option>
@@ -66,6 +64,7 @@
 					<div class="invalid-feedback">${sesionO.errorServicioO}</div>					
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
@@ -91,8 +90,6 @@
 				<label for="calificacion" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
 					<select class="form-control ${primeravez ? '' : (sesionO.errorCalificacion == null ? 'is-valid' : 'is-invalid') }" id="calificacion" name="calificacion">
-<%-- 					<select class="form-control${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') }" id="calificacion" name="calificacion">
- --%>						
 						<option selected value="">No ha calificado</option>
 						<option ${sesionO.calificacion == 'No recomendable' ? 'selected': '' }>No recomendable</option>
 						<option ${sesionO.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
@@ -107,7 +104,6 @@
 					<div class="offset-sm-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Aceptar</button>
 						<a class="btn btn-success mx-2" href="admin/sesionesO" role="button">Cancelar</a>
-						
 					</div>
 				</div>
 		</fieldset>

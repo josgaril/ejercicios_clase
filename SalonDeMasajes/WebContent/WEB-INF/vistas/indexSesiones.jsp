@@ -10,7 +10,7 @@
 			<p class="idcliente">idcliente: ${sesion.clientes_idclientes}</p>
 			<p class="idtrabajador">idtrabajador: ${sesion.trabajadores_idtrabajadores}</p>
 			<p class="idservicio">idservicio: ${sesion.servicios_idservicios}</p>
-			<p class="fecha">fecha: ${sesion.fecha}</p>
+			<p class="fecha">fecha: <fmt:formatDate value="${sesion.fecha}" pattern="dd-MM-yyyy HH:mm" /></p>
 			<p class="reseña">reseña: ${sesion.resena}</p>
 			<p class="calificacion">calificacion: ${sesion.calificacion}</p>
 		</article>

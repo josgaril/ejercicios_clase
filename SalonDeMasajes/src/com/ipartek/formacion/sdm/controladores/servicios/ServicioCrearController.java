@@ -47,9 +47,8 @@ public class ServicioCrearController extends HttpServlet {
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("servicio", servicio);
-			mensaje = new Mensaje(servicio.toString(), Mensaje.Nivel.INFORMATIVO);
 
-			//mensaje = new Mensaje("El servicio no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			mensaje = new Mensaje("El servicio no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 

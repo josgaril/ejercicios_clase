@@ -88,7 +88,7 @@ public class Servicio {
 				throw new NumberFormatException();
 			}
 		} catch (NumberFormatException e) {
-			setErrorPrecio("El precio debe tener tres decimales y al menos un entero y debe ser positivo");
+			setErrorPrecio("El precio debe tener al menos un entero y tres decimales, y debe ser positivo");
 		}
 	}
 

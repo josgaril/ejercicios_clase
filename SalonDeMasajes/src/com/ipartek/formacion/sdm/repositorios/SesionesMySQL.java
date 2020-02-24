@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -96,7 +97,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 						
 						  sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
 						  rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-						  rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion")));
+						  rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));
 						 
 					}
 					return sesiones;
@@ -116,7 +117,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
 						return new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion"));
+								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
 					} else {
 						return null;
 					}
@@ -134,7 +135,8 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
-				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
+				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
+//				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
 				
@@ -157,7 +159,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
-				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
+				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
 				ps.setInt(7, sesion.getId());

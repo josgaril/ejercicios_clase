@@ -30,7 +30,7 @@
 			<div class="form-group row">
 				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 				<div class="col-sm-10">
-					<input type="text" pattern="\d+,\d{3}" placeholder="Precio con dos dígitos decimales"
+					<input type="text" pattern="\d+,\d{3}" placeholder="Precio con tres dígitos decimales"
 						class="form-control ${primeravez ? '' : (servicio.errorPrecio == null ? 'is-valid' : 'is-invalid') }"
 						id="precio" name="precio" value="<fmt:formatNumber value = "${servicio.precio}" type = "number" pattern="#0.000"/>">
 					<div class="invalid-feedback">${servicio.errorPrecio}</div>

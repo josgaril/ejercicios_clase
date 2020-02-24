@@ -52,7 +52,9 @@ public class SesionCrearController extends HttpServlet {
 		} else {
 			request.setAttribute("op", op);
 			request.setAttribute("sesion", sesion);
-			//mensaje = new Mensaje(cliente.toString(), Mensaje.Nivel.ERROR);
+			request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+			request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
+			request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
 
 			mensaje = new Mensaje("La sesion no se ha podido agregar. Revisa los errores.", Mensaje.Nivel.ERROR);
 

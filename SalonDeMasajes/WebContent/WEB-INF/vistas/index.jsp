@@ -32,8 +32,9 @@
 						pattern="#0.000" />
 					€
 				</p>
-				<a href="admin/sesionO?idclientes="&{servicio.id" class="btn btn-primary">Contratar</a>
-			</div>0
+<%-- 				${servicio.idservicios == sesionO.servicioO.idservicios -- sesionO.servicio.idservicios=${servicio.idservicios}--%>
+				<a href="admin/sesionO?servicio=${servicio.idservicios}&op=agregar" class="btn btn-primary">Contratar</a>
+			</div>
 		</div>
 	</c:forEach>
 </section>

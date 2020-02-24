@@ -37,7 +37,7 @@ public class ServicioModificarController extends HttpServlet {
 		if (servicio.isCorrecto()) {
 			Globales.daoServicio.modificar(servicio);
 
-			mensaje = new Mensaje("Libro modificado correctamente", Mensaje.Nivel.INFORMATIVO);
+			mensaje = new Mensaje("Servicio modificado correctamente", Mensaje.Nivel.INFORMATIVO);
 
 			request.getSession().setAttribute("mensaje", mensaje);
 
