@@ -2,4 +2,3 @@
 SELECT SUM(comisionE), COUNT(nomEmp)
 FROM empleado 
 WHERE comisionE > 0;
-

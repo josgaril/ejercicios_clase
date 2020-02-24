@@ -2,4 +2,3 @@
 SELECT nomEmp, MAX(salEmp) AS "Salario Máximo"
 FROM empleado 
 WHERE salEmp IN (SELECT MAX(salEmp) FROM empleado);
-

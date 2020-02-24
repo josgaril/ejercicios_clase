@@ -3,5 +3,4 @@
 SELECT e.nomEmp, e.salEmp, e.comisionE, d.nombreDpto
 FROM empleado e
 INNER JOIN departamento d ON e.codDepto = d.codDepto
-WHERE e.nomEmp LIKE 'M%' AND (e.salEmp>800000 OR e.comisionE>0) AND d.nombreDpto = 'VENTAS'
-;
+WHERE e.nomEmp LIKE 'M%' AND (e.salEmp>800000 OR e.comisionE>0) AND d.nombreDpto = 'VENTAS';

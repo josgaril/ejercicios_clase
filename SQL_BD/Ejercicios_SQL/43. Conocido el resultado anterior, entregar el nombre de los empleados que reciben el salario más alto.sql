@@ -3,5 +3,4 @@
 SELECT DISTINCT (SELECT  nomEmp FROM empleado WHERE salEmp IN (SELECT MAX(salEmp) from empleado)) AS "Empleado con mayor salario",
 				(SELECT nomEmp FROM empleado WHERE salEmp IN (SELECT MIN(salEmp) from empleado)) AS "Empleado con menor salario",
 				(MAX(salEmp) + MIN(salEmp)) AS "Suma de salarios"
-FROM empleado
-
+FROM empleado;

@@ -7,5 +7,4 @@ INNER JOIN departamento d ON e.codDepto=d.codDepto
 WHERE e.cargoE IN('Secretaria', 'Vendedor') 
 AND d.nombreDpto NOT LIKE 'PRODUCCION' 
 AND e.salEmp>1000000
-ORDER BY e.fecIncorporacion
-;
+ORDER BY e.fecIncorporacion;
