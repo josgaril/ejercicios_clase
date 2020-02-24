@@ -32,8 +32,8 @@
 						pattern="#0.000" />
 					€
 				</p>
-				<a href="admin/sesionO" class="btn btn-primary">Contratar</a>
-			</div>
+				<a href="admin/sesionO?idclientes="&{servicio.id" class="btn btn-primary">Contratar</a>
+			</div>0
 		</div>
 	</c:forEach>
 </section>
