@@ -88,7 +88,7 @@
 				<!-- Level one dropdown -->
 				<li class="nav-item dropdown"><a id="dropdownMenu1" href="#"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					class="nav-link dropdown-toggle">Administrador</a>
+					class="nav-link dropdown-toggle">Administrador <i class="fas fa-user-cog"></i></a>
 					<ul aria-labelledby="dropdownMenu1"
 						class="dropdown-menu border-0 shadow">
 						<!-- 	<li><a href="#" class="dropdown-item">Some action </a></li>
@@ -97,42 +97,57 @@
 						<li class="dropdown-divider"></li> -->
 
 						<!-- Level two dropdown-->
-						<li class="dropdown-submenu bg-danger"><a id="dropdownMenu2"
+						<li class="dropdown-submenu"><a id="dropdownMenu2"
 							href="admin/trabajadores" role="button" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"
 							class="dropdown-item dropdown-toggle">Trabajadores</a>
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/trabajadores"
-									class="dropdown-item bg-warning">Listado</a></li>
+									class="dropdown-item">Listado</a></li>
 								<li><a tabindex="-1" href="admin/trabajador?op=agregar"
 									class="dropdown-item">Agregar</a></li>
-
-								<!-- Level three dropdown-->
-								<li class="dropdown-submenu"><a id="dropdownMenu3" href="#"
-									role="button" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false" class="dropdown-item dropdown-toggle">level
-										2</a>
-									<ul aria-labelledby="dropdownMenu3"
-										class="dropdown-menu border-0 shadow">
-										<li><a href="#" class="dropdown-item">3rd level</a></li>
-										<li><a href="#" class="dropdown-item">3rd level</a></li>
-									</ul></li>
-								<!-- End Level three -->
-
-								<li><a href="#" class="dropdown-item">level 2</a></li>
-								<li><a href="#" class="dropdown-item">level 2</a></li>
-							</ul></li>
+							</ul>
+						</li>
+						<li class="dropdown-submenu"><a id="dropdownMenu2"
+							href="admin/trabajadores" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"
+							class="dropdown-item dropdown-toggle">Clientes</a>
+							<ul aria-labelledby="dropdownMenu2"
+								class="dropdown-menu border-0 shadow">
+								<li><a tabindex="-1" href="admin/clientes"
+									class="dropdown-item">Listado</a></li>
+								<li><a tabindex="-1" href="admin/cliente?op=agregar"
+									class="dropdown-item">Agregar</a></li>
+							</ul>
+						</li>
+							<li class="dropdown-submenu"><a id="dropdownMenu2"
+							href="admin/trabajadores" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"
+							class="dropdown-item dropdown-toggle">Servicios</a>
+							<ul aria-labelledby="dropdownMenu2"
+								class="dropdown-menu border-0 shadow">
+								<li><a tabindex="-1" href="admin/servicios"
+									class="dropdown-item">Listado</a></li>
+								<li><a tabindex="-1" href="admin/sercicio?op=agregar"
+									class="dropdown-item">Agregar</a></li>
+							</ul>
+						</li>
+							<li class="dropdown-submenu"><a id="dropdownMenu2"
+							href="admin/trabajadores" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"
+							class="dropdown-item dropdown-toggle">Sesiones</a>
+							<ul aria-labelledby="dropdownMenu2"
+								class="dropdown-menu border-0 shadow">
+								<li><a tabindex="-1" href="admin/sesiones"
+									class="dropdown-item">Listado</a></li>
+								<li><a tabindex="-1" href="admin/sesionO?op=agregar"
+									class="dropdown-item">Agregar</a></li>
+							</ul>
+						</li>
 						<!-- End Level two -->
 					</ul></li>
 				<!-- End Level one -->
-
-
-				<!-- Enlaces de submenus 
-				<a class="dropdown-item" href="#">Agregar</a>
-				<a class="dropdown-item" href="#">Editar</a>
-				<a class="dropdown-item" href="#">Borrar</a> 
-						FIn Enlaces de submenus -->
 
 				<!-- Example split danger button -->
 				<div class="btn-group">
@@ -149,7 +164,7 @@
 						<a class="dropdown-item text-gray" href="admin/trabajadores">Trabajadores</a>
 						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
 							class="dropdown-item" href="admin/servicios">Servicios</a> <a
-							class="dropdown-item" href="admin/sesiones">Sesiones</a>
+							class="dropdown-item" href="admin/sesionesO">Sesiones</a>
 					</div>
 				</div>
 
@@ -158,27 +173,31 @@
 						<i class="fas fa-user-cog"></i>
 				</a></li>
 			</ul>
+			
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
 					href="indexTrabajadores">Trabajadores <i
 						class="fas fa-user-tie"></i>
 				</a></li>
 			</ul>
+			
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="indexClientes">Clientes
 						<i class="fas fa-users"></i>
 				</a></li>
 			</ul>
+			
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="indexServicios">Servicios
 						<i class="fas fa-briefcase"></i>
 				</a></li>
 			</ul>
-			<ul class="navbar-nav">
+			
+			<!-- <ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="indexSesiones">Sesiones
 						<i class="fas fa-concierge-bell"></i>
 				</a></li>
-			</ul>
+			</ul> -->
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="indexSesionesO">SesionesO

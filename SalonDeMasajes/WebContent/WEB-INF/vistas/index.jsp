@@ -12,8 +12,8 @@
 	<a class="btn btn-primary" href="indexTrabajadores" role="button">Trabajadores</a>
 	<a class="btn btn-primary" href="indexClientes" role="button">Clientes</a>
 	<a class="btn btn-primary" href="indexServicios" role="button">Servicios</a>
-	<a class="btn btn-primary" href="indexSesiones" role="button">Sesiones</a>
-	<a class="btn btn-primary" href="indexSesionesO" role="button">SesionesO</a>
+<!-- 	<a class="btn btn-primary" href="indexSesiones" role="button">Sesiones</a> -->
+	<a class="btn btn-primary" href="indexSesionesO" role="button">Sesiones</a>
 </div>
 <hr>
 <h3>Servicios disponibles:</h3>
