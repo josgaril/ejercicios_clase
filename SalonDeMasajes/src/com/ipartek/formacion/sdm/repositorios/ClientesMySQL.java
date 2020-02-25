@@ -5,21 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.ipartek.formacion.sdm.modelos.Cliente;
+import com.mysql.cj.jdbc.CallableStatement;
 
 public class ClientesMySQL implements Dao<Cliente> {
-	private static final String SQL_GET_ALL = "SELECT * FROM clientes";
-	private static final String SQL_GET_BY_ID = "SELECT * FROM clientes WHERE idclientes=?";
-
-	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)";
-	private static final String SQL_UPDATE = "UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?";
-	private static final String SQL_DELETE = "DELETE FROM clientes WHERE idclientes=?";
+	private static final String SQL_SELECT_ALL = "CALL clientesGetAll()";
+	private static final String SQL_SELECT_BY_ID = "CALL clientesGetById(?)";
+	
+	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
+	private static final String SQL_UPDATE = "CALL clientesUpdate(?,?,?,?)";
+	private static final String SQL_DELETE = "CALL clientesDelete(?)";
 	
 	private static String url, usuario, password;
 	// SINGLETON
@@ -70,8 +70,8 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public Iterable<Cliente> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
-				try (ResultSet rs = ps.executeQuery()) {
+			try (CallableStatement sp = (CallableStatement) con.prepareCall(SQL_SELECT_ALL)){
+				try (ResultSet rs = sp.executeQuery()) {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					while (rs.next()) {
@@ -89,10 +89,10 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public Cliente obtenerPorId(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
-				ps.setInt(1, idclientes);
+			try (java.sql.CallableStatement cs = con.prepareCall(SQL_SELECT_BY_ID)) {
+				cs.setInt(1, idclientes);
 
-				try (ResultSet rs = ps.executeQuery()) {
+				try (ResultSet rs = cs.executeQuery()) {
 
 					if (rs.next()) {
 						return new Cliente(rs.getInt("idclientes"), rs.getString("nombre"), rs.getString("apellidos"),
@@ -110,13 +110,14 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con
-					.prepareStatement(SQL_INSERT)) {
-				ps.setString(1, cliente.getNombre());
-				ps.setString(2, cliente.getApellidos());
-				ps.setString(3, cliente.getDni());
+			try (CallableStatement cs = (CallableStatement) con.prepareCall(SQL_INSERT)) {
+				cs.setString(1, cliente.getNombre());
+				cs.setString(2, cliente.getApellidos());
+				cs.setString(3, cliente.getDni());
 
-				int numeroRegistrosModificados = ps.executeUpdate();
+				cs.registerOutParameter(4, java.sql.Types.INTEGER);
+
+				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
@@ -130,14 +131,14 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con
-					.prepareStatement(SQL_UPDATE)) {
-				ps.setString(1, cliente.getNombre());
-				ps.setString(2, cliente.getApellidos());
-				ps.setString(3, cliente.getDni());
-				ps.setInt(4, cliente.getIdclientes());
+			try (java.sql.CallableStatement cs = con.prepareCall(SQL_UPDATE)) {
+				cs.setInt(1, cliente.getIdclientes());
+				cs.setString(2, cliente.getNombre());
+				cs.setString(3, cliente.getApellidos());
+				cs.setString(4, cliente.getDni());
+				
 
-				int numeroRegistrosModificados = ps.executeUpdate();
+				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
@@ -152,10 +153,10 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void borrar(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
-				ps.setLong(1, idclientes);
+			try (java.sql.CallableStatement cs = con.prepareCall(SQL_DELETE)) {
+				cs.setLong(1, idclientes);
 
-				int numeroRegistrosModificados = ps.executeUpdate();
+				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
