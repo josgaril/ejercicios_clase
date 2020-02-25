@@ -6,13 +6,7 @@ table{
 body{
 	background-color:#bdfe92;
 }
-/* .logoEmpresa{
-	background-image: url(../imgs/LogoEmpresa222.jpg);
-	width: 100%;
-	height: 200px;
-	display: grid;
-	grid-templates-columns: 1fr;
-} */
+
 .redes-sociales {
 	font-size: 2em;
 }

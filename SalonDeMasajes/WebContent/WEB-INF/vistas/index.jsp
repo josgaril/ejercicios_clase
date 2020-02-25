@@ -32,7 +32,6 @@
 						pattern="#0.000" />
 					€
 				</p>
-<%-- 				${servicio.idservicios == sesionO.servicioO.idservicios -- sesionO.servicio.idservicios=${servicio.idservicios}--%>
 				<a href="admin/sesionO?sid=${servicio.idservicios}&op=agregar" class="btn btn-primary">Contratar</a>
 			</div>
 		</div>

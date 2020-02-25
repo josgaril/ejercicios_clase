@@ -15,17 +15,6 @@ import java.util.Properties;
 import com.ipartek.formacion.sdm.modelos.Sesion;
 
 public class SesionesMySQL implements Dao<Sesion> {
-	//Bloque de consultas de prueba
-	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
-	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
-	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
-	private static final String SQL_SELECT_JOIN = 
-			"SELECT sesion.id, c.idclientes, c.nombre as Nombre_Cliente, c.apellidos as Apellidos_cliente, t.idtrabajadores, t.nombre as Nombre_trabajador, t.apellidos as Apellidos_trabajador, s.nombre as Nombre_servicio, sesion.fecha as fecha, sesion.resena as resena, sesion.calificacion as calificacion\r\n" + 
-			"FROM sesiones sesion\r\n" + 
-			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
-			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
-			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios";
-	//Fin bloque de consultas de prueba
 	
 	private static final String SQL_GET_ALL = "SELECT * FROM sesiones";
 	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
@@ -89,12 +78,6 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ArrayList<Sesion> sesiones = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						/* PARA CONSULTA SQL_SELECT_JOIN
-						 * sesiones.add(new Sesion(rs.getString("sesion.id"), rs.getString("cliente"),
-						 * rs.getString("trabajador"), rs.getString("servicio"), rs.getString("fecha"),
-						 * rs.getString("resena"), rs.getString("calificacion")));
-						 */
-						
 						  sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
 						  rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
 						  rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));
@@ -136,7 +119,6 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
 				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
-//				ps.setDate(4, new java.sql.Date(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
 				

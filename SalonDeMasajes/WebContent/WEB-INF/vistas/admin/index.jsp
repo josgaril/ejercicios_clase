@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <h1>Zona de administrador:</h1>
-	<section>
+<section>
 <a class="btn btn-primary" href="admin/trabajadores" role="button">Trabajadores</a>
 <a class="btn btn-primary" href="admin/clientes" role="button">Clientes</a>
 <a class="btn btn-primary" href="admin/servicios" role="button">Servicios</a>

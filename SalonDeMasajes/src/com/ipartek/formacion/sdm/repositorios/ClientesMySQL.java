@@ -20,13 +20,11 @@ public class ClientesMySQL implements Dao<Cliente> {
 	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE clientes set nombre=?,apellidos=?,dni=? WHERE idclientes=?";
 	private static final String SQL_DELETE = "DELETE FROM clientes WHERE idclientes=?";
-
-
 	
 	private static String url, usuario, password;
 	// SINGLETON
 
-	//Creamos la variable estática 'instancia'
+	//Creamos la variable 'instancia'
 	private static ClientesMySQL instancia;
 
 	//Constructor privado de ClientesMySQL
@@ -35,7 +33,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 		ClientesMySQL.usuario = usuario;
 		ClientesMySQL.password = password;
 
-		//Buscar el driver de MySQL
+		//Buscamos el driver de MySQL
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -43,7 +41,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 		}
 	}
 
-	//NOTAS MÍAS: Inicializamos la instancia
+	//Inicializamos la instancia
 	public static ClientesMySQL getInstancia(String pathConfiguracion) {
 		try {
 			//si no existe la instancia..

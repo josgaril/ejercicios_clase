@@ -91,19 +91,22 @@
 					class="nav-link dropdown-toggle">Administrador</a>
 					<ul aria-labelledby="dropdownMenu1"
 						class="dropdown-menu border-0 shadow">
-					<!-- 	<li><a href="#" class="dropdown-item">Some action </a></li>
+						<!-- 	<li><a href="#" class="dropdown-item">Some action </a></li>
 						<li><a href="#" class="dropdown-item">Some other action</a></li>
 
 						<li class="dropdown-divider"></li> -->
 
 						<!-- Level two dropdown-->
-						<li class="dropdown-submenu bg-danger"><a id="dropdownMenu2" href="admin/trabajadores"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false" class="dropdown-item dropdown-toggle">Trabajadores</a>
+						<li class="dropdown-submenu bg-danger"><a id="dropdownMenu2"
+							href="admin/trabajadores" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"
+							class="dropdown-item dropdown-toggle">Trabajadores</a>
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
-								<li><a tabindex="-1" href="admin/trabajadores" class="dropdown-item bg-warning">Listado</a></li>
-								<li><a tabindex="-1" href="admin/trabajador?op=agregar" class="dropdown-item">Agregar</a></li>
+								<li><a tabindex="-1" href="admin/trabajadores"
+									class="dropdown-item bg-warning">Listado</a></li>
+								<li><a tabindex="-1" href="admin/trabajador?op=agregar"
+									class="dropdown-item">Agregar</a></li>
 
 								<!-- Level three dropdown-->
 								<li class="dropdown-submenu"><a id="dropdownMenu3" href="#"
@@ -131,7 +134,7 @@
 				<a class="dropdown-item" href="#">Borrar</a> 
 						FIn Enlaces de submenus -->
 
-								<!-- Example split danger button -->
+				<!-- Example split danger button -->
 				<div class="btn-group">
 					<a class="nav-link" href="admin/index">Administración <i
 						class="fas fa-user-cog"></i>

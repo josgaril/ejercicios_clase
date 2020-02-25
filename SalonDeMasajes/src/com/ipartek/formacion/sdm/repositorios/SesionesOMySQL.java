@@ -19,28 +19,12 @@ import com.ipartek.formacion.sdm.modelos.SesionO;
 import com.ipartek.formacion.sdm.modelos.Trabajador;
 
 public class SesionesOMySQL implements Dao<SesionO> {
-	//Bloque de consultas de prueba
-	private static final String SQL_SELECT_CLIENTES = "SELECT nombre, apellidos FROM clientes";
-	private static final String SQL_SELECT_TRABAJADORES = "SELECT nombre, apellidos FROM trabjadores";
-	private static final String SQL_SELECT_SERVICIOS = "SELECT nombre, precio FROM servicios";
-	
-	//La siguiente es la buena:
-	private static final String SQL_SELECT_JOIN = "SELECT *\r\n" + 
+
+	private static final String SQL_GET_ALL= "SELECT *\r\n" + 
 			"FROM sesiones sesion\r\n" + 
 			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
 			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
 			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n";
-	
-	private static final String SQL_SELECT_JOIN_SEPARADO = 
-			"SELECT sesion.id, c.idclientes, c.nombre as Nombre_Cliente, c.apellidos as Apellidos_cliente, t.idtrabajadores, t.nombre as Nombre_trabajador, t.apellidos as Apellidos_trabajador, s.nombre as Nombre_servicio, sesion.fecha as fecha, sesion.resena as resena, sesion.calificacion as calificacion\r\n" + 
-			"FROM sesiones sesion\r\n" + 
-			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
-			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
-			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios";
-	private static final String SQL_INSERT_OBJETOS="INSERT INTO sesiones (id, clientes, trabajadores, servicios,fecha, resena, calificacion) VALUES (?,?,?,?,?,?,?)";
-	//Fin bloque de consultas de prueba
-	
-	private static final String SQL_GET_ALL = "SELECT * FROM sesiones";
 	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
@@ -100,7 +84,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	public Iterable<SesionO> obtenerTodos() {
 		try (Connection con = getConnexion()) {
 			try (Statement s = con.createStatement()) {
-				try (ResultSet rs = s.executeQuery(SQL_SELECT_JOIN)) {
+				try (ResultSet rs = s.executeQuery(SQL_GET_ALL)) {
 					ArrayList<SesionO> sesionesO = new ArrayList<>();
 					Cliente cliente;
 					Trabajador trabajador;
@@ -147,9 +131,6 @@ public class SesionesOMySQL implements Dao<SesionO> {
 						sesionO = new SesionO(rs.getInt("id"), clienteO, trabajadorO, servicioO, rs.getTimestamp("fecha"),rs.getString("resena"), rs.getString("calificacion"));
 						
 						return sesionO;				
-						/*ASI ESTA CON LOS NORMALES
-						 * return new SesionO(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-								rs.getDate("fecha"), rs.getString("resena"), rs.getString("calificacion"));*/
 					} else {
 						return null;
 					}
