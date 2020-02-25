@@ -33,12 +33,6 @@ public class ClientesMySQL implements Dao<Cliente> {
 		ClientesMySQL.usuario = usuario;
 		ClientesMySQL.password = password;
 
-		//Buscamos el driver de MySQL
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			throw new AccesoDatosException("No se ha encontrado el driver de MySQL");
-		}
 	}
 
 	//Inicializamos la instancia
@@ -66,6 +60,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 
 	private Connection getConexion() {
 		try {
+			new com.mysql.cj.jdbc.Driver();
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (Exception e) {
 			throw new AccesoDatosException("Error en la conexión a la base de datos");
