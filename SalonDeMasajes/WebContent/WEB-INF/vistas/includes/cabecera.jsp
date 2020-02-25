@@ -91,18 +91,19 @@
 					class="nav-link dropdown-toggle">Administrador</a>
 					<ul aria-labelledby="dropdownMenu1"
 						class="dropdown-menu border-0 shadow">
-						<li><a href="#" class="dropdown-item">Some action </a></li>
+					<!-- 	<li><a href="#" class="dropdown-item">Some action </a></li>
 						<li><a href="#" class="dropdown-item">Some other action</a></li>
 
-						<li class="dropdown-divider"></li>
+						<li class="dropdown-divider"></li> -->
 
 						<!-- Level two dropdown-->
-						<li class="dropdown-submenu"><a id="dropdownMenu2" href="#"
+						<li class="dropdown-submenu bg-danger"><a id="dropdownMenu2" href="admin/trabajadores"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false" class="dropdown-item dropdown-toggle">Trabajadores</a>
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
-								<li><a tabindex="-1" href="#" class="dropdown-item">Agregar</a></li>
+								<li><a tabindex="-1" href="admin/trabajadores" class="dropdown-item bg-warning">Listado</a></li>
+								<li><a tabindex="-1" href="admin/trabajador?op=agregar" class="dropdown-item">Agregar</a></li>
 
 								<!-- Level three dropdown-->
 								<li class="dropdown-submenu"><a id="dropdownMenu3" href="#"
@@ -130,43 +131,7 @@
 				<a class="dropdown-item" href="#">Borrar</a> 
 						FIn Enlaces de submenus -->
 
-				<!-- Example split danger button -->
-				<div class="btn-subgroup">
-					<a class="nav-link" href="admin/index">Admin <i
-						class="fas fa-user-cog"></i>
-					</a>
-					<button type="button"
-						class="btn btn-dark dropdown-toggle dropdown-toggle-split"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
-						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
-							class="dropdown-item" href="admin/servicios">Servicios</a> <a
-							class="dropdown-item" href="admin/sesiones">Sesiones</a>
-						<div class="btn-group">
-							<a class="nav-link" href="admin/index">Menu Trabajadores <i
-								class="fas fa-user-cog"></i>
-							</a>
-							<button type="button"
-								class="btn btn-dark dropdown-toggle dropdown-toggle-split"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">
-								<span class="sr-only">Toggle Dropdown</span>
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
-								<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
-									class="dropdown-item" href="admin/servicios">Servicios</a> <a
-									class="dropdown-item" href="admin/sesiones">Sesiones</a>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Example split danger button -->
+								<!-- Example split danger button -->
 				<div class="btn-group">
 					<a class="nav-link" href="admin/index">Administración <i
 						class="fas fa-user-cog"></i>
@@ -178,7 +143,7 @@
 					</button>
 					<div class="dropdown-menu">
 
-						<a class="dropdown-item" href="admin/trabajadores">Trabajadores</a>
+						<a class="dropdown-item text-gray" href="admin/trabajadores">Trabajadores</a>
 						<a class="dropdown-item" href="admin/clientes">Clientes</a> <a
 							class="dropdown-item" href="admin/servicios">Servicios</a> <a
 							class="dropdown-item" href="admin/sesiones">Sesiones</a>

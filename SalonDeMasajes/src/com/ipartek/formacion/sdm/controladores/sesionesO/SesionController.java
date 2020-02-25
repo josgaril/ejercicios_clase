@@ -21,7 +21,6 @@ public class SesionController extends HttpServlet {
 		String id= request.getParameter("id");
 		
 		if(id != null && id.trim().length() > 0) {
-			
 			request.setAttribute("sesionO", Globales.daoSesionO.obtenerPorId(Integer.parseInt(id)));
 		}
 		

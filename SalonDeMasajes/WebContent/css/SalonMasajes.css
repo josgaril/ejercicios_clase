@@ -1,5 +1,11 @@
 @charset "UTF-8";
+table{
+	background-color: white;
+}
 
+body{
+	background-color:#bdfe92;
+}
 /* .logoEmpresa{
 	background-image: url(../imgs/LogoEmpresa222.jpg);
 	width: 100%;

@@ -21,10 +21,12 @@ public class SesionController extends HttpServlet {
 		String id= request.getParameter("id");
 		
 		if(id != null && id.trim().length() > 0) {
-			
 			request.setAttribute("sesion", Globales.daoSesion.obtenerPorId(Integer.parseInt(id)));
-			
 		}
+		
+		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+		request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
+		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
 		
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
