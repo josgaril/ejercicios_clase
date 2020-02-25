@@ -35,8 +35,6 @@ public class ServicioCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (servicio.isCorrecto()) {
-			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
-
 			Globales.daoServicio.agregar(servicio);
 
 			mensaje = new Mensaje("Servicio agregado correctamente", Mensaje.Nivel.INFORMATIVO);

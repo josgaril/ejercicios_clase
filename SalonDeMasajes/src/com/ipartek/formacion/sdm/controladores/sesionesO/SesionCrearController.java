@@ -40,8 +40,6 @@ public class SesionCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (sesionO.isCorrecto()) {
-			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
-
 			Globales.daoSesionO.agregar(sesionO);
 
 			mensaje = new Mensaje("Sesion agregada correctamente", Mensaje.Nivel.INFORMATIVO);

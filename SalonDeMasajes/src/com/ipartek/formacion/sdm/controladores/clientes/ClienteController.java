@@ -15,7 +15,6 @@ public class ClienteController extends HttpServlet {
 	private static final String ADMIN_CLIENTE_JSP = "/WEB-INF/vistas/admin/cliente.jsp";
 	private static final long serialVersionUID = 1L;
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
 		String idclientes = request.getParameter("idclientes");

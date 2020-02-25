@@ -31,7 +31,6 @@ public class SesionCrearController extends HttpServlet {
 		String fecha = request.getParameter("fecha");
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
-		
 
 		Sesion sesion = new Sesion(id,clientes_idclientes, trabajadores_idtrabajadores,servicios_idservicios,fecha, resena, calificacion);
 
@@ -40,8 +39,6 @@ public class SesionCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (sesion.isCorrecto()) {
-			//Dao<Servicio> dao =ServicioTreeMap.getInstancia();
-
 			Globales.daoSesion.agregar(sesion);
 
 			mensaje = new Mensaje("Sesion agregada correctamente", Mensaje.Nivel.INFORMATIVO);

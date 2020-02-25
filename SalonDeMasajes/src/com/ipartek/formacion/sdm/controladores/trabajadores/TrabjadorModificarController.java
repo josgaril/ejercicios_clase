@@ -28,8 +28,7 @@ public class TrabjadorModificarController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
-
-
+		
 		Trabajador trabajador = new Trabajador(Integer.parseInt(idtrabajadores), nombre, apellidos, dni);
 
 		Mensaje mensaje;

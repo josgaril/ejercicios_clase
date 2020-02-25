@@ -54,10 +54,10 @@ public class Servicio {
 	}
 
 	public void setPrecio(BigDecimal precio) {
-		/*
-		 * if (precio.compareTo(BigDecimal.ZERO) <= 0) {
-		 * setErrorPrecio("El precio debe ser mayor que cero"); }
-		 */
+		
+		  if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+		  setErrorPrecio("El precio debe ser mayor que cero"); }
+		 
 		this.precio = precio;
 	}
 
@@ -85,7 +85,7 @@ public class Servicio {
 			setPrecio(new BigDecimal(precio.replace(",", ".")));
 
 			if (!precio.matches("\\d+[,\\.]\\d{3}")) {
-				throw new NumberFormatException();
+				throw new NumberFormatException("Error en el precio");
 			}
 		} catch (NumberFormatException e) {
 			setErrorPrecio("El precio debe tener al menos un entero y tres decimales, y debe ser positivo");

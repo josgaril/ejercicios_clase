@@ -19,8 +19,6 @@ public class ClienteBorrarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idclientes = request.getParameter("idclientes");
 		
-
-		
 		Mensaje mensaje;
 		
 		try {
@@ -46,5 +44,5 @@ public class ClienteBorrarController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
 }

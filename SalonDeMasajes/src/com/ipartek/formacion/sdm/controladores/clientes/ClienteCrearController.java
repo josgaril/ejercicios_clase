@@ -24,7 +24,6 @@ public class ClienteCrearController extends HttpServlet {
 
 		String op = request.getParameter("op");
 
-		String idclientes = request.getParameter("idclientes");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
@@ -37,7 +36,6 @@ public class ClienteCrearController extends HttpServlet {
 		request.setAttribute("primeravez", false);
 
 		if (cliente.isCorrecto()) {
-			//Dao<Cliente> dao =ClienteMySQL.getInstancia();
 
 			Globales.daoCliente.agregar(cliente);
 

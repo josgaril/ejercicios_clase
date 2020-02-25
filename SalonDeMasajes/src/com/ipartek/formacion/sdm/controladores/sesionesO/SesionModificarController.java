@@ -32,7 +32,6 @@ public class SesionModificarController extends HttpServlet {
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
 		
-
 		SesionO sesionO = new SesionO(id,idCliente, idTrabajador,idServicio,fecha, resena, calificacion);
 
 		Mensaje mensaje;

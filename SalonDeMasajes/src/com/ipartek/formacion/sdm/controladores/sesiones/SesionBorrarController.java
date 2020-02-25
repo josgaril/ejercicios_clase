@@ -19,14 +19,12 @@ public class SesionBorrarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
-
-		
 		Mensaje mensaje;
 		
 		try {
 			Globales.daoSesion.borrar(Integer.parseInt(id));
 			mensaje = new Mensaje(
-					"Borrado correctamente", 
+					"Sesión borrada correctamente", 
 					Mensaje.Nivel.INFORMATIVO);
 		} catch (AccesoDatosException e) {
 			mensaje = new Mensaje(

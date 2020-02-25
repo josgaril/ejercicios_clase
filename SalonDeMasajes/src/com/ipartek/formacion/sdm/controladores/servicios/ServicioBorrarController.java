@@ -19,8 +19,6 @@ public class ServicioBorrarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idservicios = request.getParameter("idservicios");
 		
-
-		
 		Mensaje mensaje;
 		
 		try {

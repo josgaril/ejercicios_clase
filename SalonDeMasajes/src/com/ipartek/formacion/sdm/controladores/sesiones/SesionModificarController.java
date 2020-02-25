@@ -31,7 +31,6 @@ public class SesionModificarController extends HttpServlet {
 		String fecha = request.getParameter("fecha");
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
-		
 
 		Sesion sesion = new Sesion(id,idcliente, idtrabajador,idservicio,fecha, resena, calificacion);
 
@@ -53,9 +52,8 @@ public class SesionModificarController extends HttpServlet {
 			request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
 			request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
 			request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
-			mensaje = new Mensaje(sesion.toString(), Mensaje.Nivel.INFORMATIVO);
-
-			//mensaje = new Mensaje("La sesión no se ha podido modificar. Revisa los errores.", Mensaje.Nivel.ERROR);
+			//mensaje = new Mensaje(sesion.toString(), Mensaje.Nivel.INFORMATIVO);
+			mensaje = new Mensaje("La sesión no se ha podido modificar. Revisa los errores.", Mensaje.Nivel.ERROR);
 
 			request.setAttribute("mensaje", mensaje);
 

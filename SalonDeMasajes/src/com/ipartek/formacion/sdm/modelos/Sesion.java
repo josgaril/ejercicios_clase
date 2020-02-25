@@ -41,25 +41,6 @@ public class Sesion {
 		setCalificacion(calificacion);
 	}
 
-	
-
-	// esto ES PRUEBA
-	/*
-	 * public Sesion() { clientes_idclientes = new Cliente();
-	 * trabajadores_idtrabajadores = new Trabajador(); servicios_idservicios= new
-	 * Servicio(); }
-	 * 
-	 * private String datosSesiones() { int idcliente =
-	 * clientes_idclientes.getIdclientes(); int idtrabajador =
-	 * trabajadores_idtrabajadores.getIdtrabajadores(); int idservicio =
-	 * servicios_idservicios.getIdservicios(); String datosSesiones= "idcliente" +
-	 * idcliente + ", idtrabajador " + idtrabajador + ", idservicio" + idservicio;
-	 * return datosSesiones; }
-	 */
-
-	// hacer en el set cliente un new cliente;.....
-	// fin prueba
-
 	public Sesion(Integer clientes_idclientes, Integer trabajadores_idtrabajadores, Integer servicios_idservicios,
 			Date fecha) {
 		this(null, clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, null, null);
@@ -75,10 +56,6 @@ public class Sesion {
 
 	public Integer getClientes_idclientes() {
 		return clientes_idclientes;
-		/*
-		 * Cliente clientes_idclientes = new Cliente(); return
-		 * clientes_idclientes.getIdclientes();
-		 */
 	}
 
 	public void setClientes_idclientes(Integer clientes_idclientes) {
@@ -86,23 +63,10 @@ public class Sesion {
 			setErrorClientes_idclientes("El id del cliente no puede ser null");
 		}
 		this.clientes_idclientes = clientes_idclientes;
-
-		/*
-		 * if (clientes_idclientes==null) {
-		 * setErrorClientes_idclientes("El id del cliente no puede ser null"); } Cliente
-		 * IDCLIENTE = new Cliente(); this.clientes_idclientes =
-		 * IDCLIENTE.getIdclientes();
-		 */
-
 	}
 
 	public Integer getTrabajadores_idtrabajadores() {
 		return trabajadores_idtrabajadores;
-
-		/*
-		 * Trabajador trabajadores_idtrabajadores = new Trabajador(); return
-		 * trabajadores_idtrabajadores.getIdtrabajadores();
-		 */
 	}
 
 	public void setTrabajadores_idtrabajadores(Integer trabajadores_idtrabajadores) {
@@ -110,22 +74,10 @@ public class Sesion {
 			setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null");
 		}
 		this.trabajadores_idtrabajadores = trabajadores_idtrabajadores;
-
-		/*
-		 * if (trabajadores_idtrabajadores == null) {
-		 * setErrorTrabajadores_idtrabajadores("El id del trabajador no puede ser null"
-		 * ); } Trabajador IDTRABAJADOR= new Trabajador();
-		 * this.trabajadores_idtrabajadores= IDTRABAJADOR.getIdtrabajadores();
-		 */
 	}
 
 	public Integer getServicios_idservicios() {
 		return servicios_idservicios;
-
-		/*
-		 * Servicio servicios_idservicios = new Servicio(); return
-		 * servicios_idservicios.getIdservicios();
-		 */
 	}
 
 	public void setServicios_idservicios(Integer servicios_idservicios) {
@@ -134,12 +86,6 @@ public class Sesion {
 		}
 		this.servicios_idservicios = servicios_idservicios;
 
-		/*
-		 * if (servicios_idservicios == null) {
-		 * setErrorServicios_idservicios("El id del servicio no puede ser null"); }
-		 * Servicio IDSERVICIO= new Servicio(); this.servicios_idservicios=
-		 * IDSERVICIO.getIdservicios();
-		 */
 	}
 
 	public Date getFecha() {
@@ -192,9 +138,6 @@ public class Sesion {
 	private void setClientes_idclientes(String clientes_idclientes) {
 		if (clientes_idclientes == null || clientes_idclientes.trim().length() == 0) {
 			setErrorClientes_idclientes("El id del cliente es obligatorio");
-			/*
-			 * this.clientes_idclientes = null; return;
-			 */
 		}
 
 		try {
@@ -203,13 +146,10 @@ public class Sesion {
 			setErrorClientes_idclientes("El IdCliente introducido no es un número");
 		}
 	}
-	
 
 	private void setTrabajadores_idtrabajadores(String trabajadores_idtrabajadores) {
 		if (trabajadores_idtrabajadores == null || trabajadores_idtrabajadores.trim().length() == 0) {
 			setErrorTrabajadores_idtrabajadores("El id del trabajador es obligatorio");
-			this.trabajadores_idtrabajadores = null;
-			return;
 		}
 
 		try {
@@ -222,8 +162,9 @@ public class Sesion {
 	private void setServicios_idservicios(String servicios_idservicios) {
 		if (servicios_idservicios == null || servicios_idservicios.trim().length() == 0) {
 			setErrorServicios_idservicios("El id del servicio es obligatorio");
-			this.servicios_idservicios = null;
-			return;
+			/*
+			 * this.servicios_idservicios = null; return;
+			 */
 		}
 
 		try {

@@ -62,10 +62,6 @@ public class SesionO {
 	}
 
 	public void setClienteO(Cliente clienteO) {
-		/*
-		 * if (clienteO == null) { setErrorClienteO("El cliente no puede ser null"); }
-		 */
-
 		this.clienteO = clienteO;
 	}
 
@@ -74,10 +70,6 @@ public class SesionO {
 	}
 
 	public void setTrabajadorO(Trabajador trabajadorO) {
-		/*
-		 * if (trabajadorO == null) {
-		 * setErrorTrabajadorO("El trabajador no puede ser null"); }
-		 */
 		this.trabajadorO = trabajadorO;
 	}
 
@@ -86,10 +78,6 @@ public class SesionO {
 	}
 
 	public void setServicioO(Servicio servicioO) {
-		/*
-		 * if (servicioO == null) { setErrorServicioO("El servicio no puede ser null");
-		 * }
-		 */
 		this.servicioO = servicioO;
 	}
 
@@ -99,7 +87,6 @@ public class SesionO {
 
 	public void setFecha(Date fecha) {
 		if (fecha != null && fecha.after(new Date())) {
-			//throw new AccesoDatosException("No puedes usar una fecha futura para la fecha de nacimiento");
 			setErrorFecha("No puedes usar una fecha futura para la fecha de la sesión");
 		}
 		this.fecha = fecha;
@@ -194,15 +181,6 @@ public class SesionO {
 		} catch (ParseException e) {
 			setErrorFecha("El formato de la fecha es incorrecto");
 		}
-		
-		/*
-		 * if (fecha == null || fecha.trim().length() == 0) {
-		 * setErrorFecha("La fecha es obligatoria"); this.fecha = null; return; }
-		 * 
-		 * SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); try {
-		 * Date fecha1 = formatoFecha.parse(fecha); this.fecha = fecha1; } catch
-		 * (ParseException e) { setErrorFecha("Error al convertir fecha"); }
-		 */
 	}
 
 	public boolean isCorrecto() {

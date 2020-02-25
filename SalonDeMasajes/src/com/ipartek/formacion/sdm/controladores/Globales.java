@@ -13,9 +13,5 @@ public class Globales {
 	public static Dao<Trabajador> daoTrabajador;
 	public static Dao<Sesion> daoSesion;
 	public static Dao<SesionO> daoSesionO;
-
-	/*
-	 * public static Dao<Servicio> daos; public static Dao<Trabajador> daot;
-	 */
 }
 
