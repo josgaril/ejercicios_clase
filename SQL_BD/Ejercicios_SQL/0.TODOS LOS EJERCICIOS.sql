@@ -281,24 +281,22 @@ WHERE e.salEmp>em.media
 ORDER BY e.codDepto;
 
 /* 48. Hallar los departamentos que tienen más de tres (3) empleados. Entregar el número de empleados de esos departamentos. */
-SELECT d.codDepto, d.nombreDpto,  COUNT(e.nomEmp) AS Empleados
+SELECT d.codDepto, d.nombreDpto,  COUNT(*) AS Empleados
 FROM empleado e
 INNER JOIN departamento d ON e.codDepto = d.codDepto 
-GROUP BY codDepto
+GROUP BY d.codDepto
 HAVING Empleados>3
-ORDER BY codDepto;
+ORDER BY d.codDepto;
 
 /* 49. Obtener la lista de empleados jefes, que tienen al menos un empleado a su cargo. Ordene el informe inversamente por el nombre. */
-SELECT e.nDIEmp, e.nomEmp, e3.numEmp FROM empleado e
-INNER JOIN(	SELECT e2.jefeID, COUNT(e1.nomEmp) AS numEmp
-			FROM empleado e1, empleado e2
-			WHERE e1.nDIEmp = e2.jefeID
-			GROUP BY e2.jefeID
-			HAVING COUNT(e2.nDIEmp)>= 1) e3
-ON e.nDIEmp = e3.jefeID ORDER BY e.nomEmp DESC;
+SELECT ej.nDIEmp, ej.nomEmp, COUNT(e.jefeID) AS "Numero de Empleados"
+FROM empleado e
+INNER JOIN empleado ej ON e.jefeID = ej.nDIEmp
+GROUP BY ej.nDIEmp
+ORDER BY ej.nomEmp DESC;
 
 /* 50. Hallar los departamentos que no tienen empleados */
-SELECT e.nomEmp, d.nombreDpto
+SELECT e.nomEmp, d.nombreDpto, d.ciudad
 FROM empleado e RIGHT JOIN departamento d ON e.codDepto = d.codDepto
 WHERE e.codDepto is Null;
 
@@ -310,25 +308,61 @@ WHERE e.codDepto is Null;
 		HAVING NumeroEmpleados>=0
 		ORDER BY NumeroEmpleados DESC;
 
+		-- Otra opción
+		SELECT * 
+		FROM departamento d 
+		WHERE d.codDepto NOT IN(SELECT codDepto FROM empleado);
+
+
 /* 51. Entregar un reporte con el numero de cargos en cada departamento y cual es el promedio de salario
 	   de cada uno. Indique el nombre del departamento en el resultado. */
-SELECT d.codDepto, d.nombreDpto, COUNT(e.cargoE) AS Cargos, AVG(e.salEmp) AS promedioSalario
+SELECT d.codDepto, d.nombreDpto, COUNT(e.cargoE) AS Cargos, IFNULL(AVG(e.salEmp),0) AS "Promedio Salario"
 FROM empleado e RIGHT JOIN departamento d ON e.codDepto = d.codDepto
 GROUP BY d.codDepto
-ORDER BY d.nombreDpto;      
+ORDER BY d.nombreDpto;  
        
 /* 52. Entregar el nombre del departamento cuya suma de salarios sea la más alta, indicando el valor de la suma. */
-SELECT d.codDepto,d.nombreDpto, SUM(e.salEmp) AS sumaSalarios
-FROM empleado e INNER JOIN departamento d on e.codDepto = d.codDepto
-GROUP BY d.codDepto
-ORDER BY sumaSalarios DESC
-LIMIT 1;
+		-- Suponiendo que solo hay un departamentos con la suma más alta
+		SELECT d.codDepto,d.nombreDpto, SUM(e.salEmp) AS sumaSalarios
+		FROM empleado e INNER JOIN departamento d on e.codDepto = d.codDepto
+		GROUP BY d.codDepto
+		ORDER BY sumaSalarios DESC
+		LIMIT 1;
+
+		-- Suponiendo que puede haber varios departamentos con la suma más alta
+		SELECT d.nombreDpto, SUM(e.salEmp)
+		FROM departamento d
+		INNER JOIN empleado e ON d.codDepto = e.codDepto
+		GROUP BY d.codDepto
+		HAVING d.codDepto = (SELECT d.codDepto
+			FROM departamento d
+			INNER JOIN empleado e ON e.codDepto = d.codDepto
+			GROUP BY d.codDepto
+			ORDER BY SUM(e.salEmp) DESC
+			LIMIT 1)
+		;
+
+		/* MISMO EJERCICO CON VISTAS*/
+		-- Calcular el total de salarios por departamento
+		CREATE VIEW SumSalar AS
+		 (SELECT codDepto, SUM(salEmp) AS sumS
+		 FROM Empleado
+		 GROUP BY codDepto);
+		-- Hallar la suma de salarios más alta
+		CREATE VIEW SumSalar2 AS
+		 (SELECT MAX(sumS) sSalD
+		 FROM SumSalar);
+		 -- Listar el nombre del departamento con suma de salarios sea la más alta
+		 SELECT d.nombreDpto, ss.sumS
+		 FROM departamento d 
+		 JOIN SumSalar ss ON ss.codDepto = d.codDepto
+		 WHERE ss.sumS = (SELECT * FROM SumSalar2);
 
 /* 53. Entregar un reporte con el código y nombre de cada jefe, junto al número de empleados que dirige.
 	   Puede haber empleados que no tengan supervisores, para esto se indicará solamente el numero de
        ellos dejando los valores restantes en NULL. */
-SELECT e1.nDIEmp, e1.nomEmp, COUNT(e2.nomEmp) AS empleados
-FROM empleado e1 
-RIGHT JOIN empleado e2 ON e1.nDIEmp = e2.jefeID
-GROUP BY e1.nDIEmp
-ORDER BY empleados DESC;
+SELECT ej.nDIEmp, ej.nomEmp, COUNT(e.nomEmp) AS Empleados
+FROM empleado e 
+LEFT JOIN empleado ej ON  e.jefeID = ej.nDIEmp
+GROUP BY ej.nDIEmp
+ORDER BY Empleados DESC, ej.nDIEmp DESC;
