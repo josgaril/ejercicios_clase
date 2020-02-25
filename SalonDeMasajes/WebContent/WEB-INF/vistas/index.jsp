@@ -33,7 +33,7 @@
 					€
 				</p>
 <%-- 				${servicio.idservicios == sesionO.servicioO.idservicios -- sesionO.servicio.idservicios=${servicio.idservicios}--%>
-				<a href="admin/sesionO?servicios.id=${servicio.idservicios}&op=agregar" class="btn btn-primary">Contratar</a>
+				<a href="admin/sesionO?sid=${servicio.idservicios}&op=agregar" class="btn btn-primary">Contratar</a>
 			</div>
 		</div>
 	</c:forEach>
