@@ -129,7 +129,7 @@
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/servicios"
 									class="dropdown-item">Listado</a></li>
-								<li><a tabindex="-1" href="admin/sercicio?op=agregar"
+								<li><a tabindex="-1" href="admin/servicio?op=agregar"
 									class="dropdown-item">Agregar</a></li>
 							</ul>
 						</li>
@@ -168,10 +168,10 @@
 					</div>
 				</div>
 
-				<!-- Acceso normal a Administracion -->
+<!-- 				Acceso normal a Administracion
 				<li class="nav-item"><a class="nav-link" href="admin/index">Administración
 						<i class="fas fa-user-cog"></i>
-				</a></li>
+				</a></li> -->
 			</ul>
 			
 			<ul class="navbar-nav">

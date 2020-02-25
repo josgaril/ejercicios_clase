@@ -7,6 +7,12 @@ body{
 	background-color:#bdfe92;
 }
 
+.tarjetas{
+	width: 18rem;
+	border-width: 2px;
+	border-color: black;
+	background-color: #c0c0c0;
+}
 .redes-sociales {
 	font-size: 2em;
 }

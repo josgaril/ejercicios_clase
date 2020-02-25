@@ -6,6 +6,7 @@
 <section id="sesionesO" class="row">
 	<c:forEach items="${sesionesO}" var="sesionO">
 		<article class="sesionO col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+			<hr>
 			<p class="id">ID: ${sesionO.id}</p>
 			<p class="cliente">Cliente: ${sesionO.clienteO.nombre} ${sesionO.clienteO.apellidos}</p>
 			<p class="trabajador">Trabajador: ${sesionO.trabajadorO.nombre} ${sesionO.trabajadorO.apellidos}</p>
