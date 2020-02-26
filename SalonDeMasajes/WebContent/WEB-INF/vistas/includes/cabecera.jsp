@@ -88,7 +88,7 @@
 				<!-- Level one dropdown -->
 				<li class="nav-item dropdown"><a id="dropdownMenu1" href="#"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					class="nav-link dropdown-toggle">Administrador <i class="fas fa-user-cog"></i></a>
+					class="nav-link dropdown-toggle">Admin <i class="fas fa-user-cog"></i></a>
 					<ul aria-labelledby="dropdownMenu1"
 						class="dropdown-menu border-0 shadow">
 						<!-- 	<li><a href="#" class="dropdown-item">Some action </a></li>
@@ -104,7 +104,7 @@
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/trabajadores"
-									class="dropdown-item">Listado</a></li>
+									class="dropdown-item">Administrar</a></li>
 								<li><a tabindex="-1" href="admin/trabajador?op=agregar"
 									class="dropdown-item">Agregar</a></li>
 							</ul>
@@ -116,7 +116,7 @@
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/clientes"
-									class="dropdown-item">Listado</a></li>
+									class="dropdown-item">Administrar</a></li>
 								<li><a tabindex="-1" href="admin/cliente?op=agregar"
 									class="dropdown-item">Agregar</a></li>
 							</ul>
@@ -128,7 +128,7 @@
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/servicios"
-									class="dropdown-item">Listado</a></li>
+									class="dropdown-item">Administrar</a></li>
 								<li><a tabindex="-1" href="admin/servicio?op=agregar"
 									class="dropdown-item">Agregar</a></li>
 							</ul>
@@ -140,7 +140,7 @@
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
 								<li><a tabindex="-1" href="admin/sesiones"
-									class="dropdown-item">Listado</a></li>
+									class="dropdown-item">Administrar</a></li>
 								<li><a tabindex="-1" href="admin/sesionO?op=agregar"
 									class="dropdown-item">Agregar</a></li>
 							</ul>

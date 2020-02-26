@@ -29,7 +29,7 @@
 	</c:forEach>
 </section>
 
-
+<hr>
 <h3 class="mt-3"> Listados</h3>
 <div class="EnlacesListados"> 
 	<a class="btn btn-primary" href="indexTrabajadores" role="button">Trabajadores</a>
