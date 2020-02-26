@@ -3,6 +3,7 @@ package com.ipartek.formacion.sdm.repositorios;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.ipartek.formacion.sdm.modelos.Cliente;
-import com.mysql.cj.jdbc.CallableStatement;
 
 public class ClientesMySQL implements Dao<Cliente> {
 	private static final String SQL_SELECT_ALL = "CALL clientesGetAll()";
@@ -89,7 +89,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public Cliente obtenerPorId(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (java.sql.CallableStatement cs = con.prepareCall(SQL_SELECT_BY_ID)) {
+			try (CallableStatement cs = con.prepareCall(SQL_SELECT_BY_ID)) {
 				cs.setInt(1, idclientes);
 
 				try (ResultSet rs = cs.executeQuery()) {
@@ -110,7 +110,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try (CallableStatement cs = (CallableStatement) con.prepareCall(SQL_INSERT)) {
+			try (CallableStatement cs = con.prepareCall(SQL_INSERT)) {
 				cs.setString(1, cliente.getNombre());
 				cs.setString(2, cliente.getApellidos());
 				cs.setString(3, cliente.getDni());
@@ -131,7 +131,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try (java.sql.CallableStatement cs = con.prepareCall(SQL_UPDATE)) {
+			try (CallableStatement cs = con.prepareCall(SQL_UPDATE)) {
 				cs.setInt(1, cliente.getIdclientes());
 				cs.setString(2, cliente.getNombre());
 				cs.setString(3, cliente.getApellidos());
@@ -153,7 +153,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public void borrar(Integer idclientes) {
 		try (Connection con = getConexion()) {
-			try (java.sql.CallableStatement cs = con.prepareCall(SQL_DELETE)) {
+			try (CallableStatement cs = con.prepareCall(SQL_DELETE)) {
 				cs.setLong(1, idclientes);
 
 				int numeroRegistrosModificados = cs.executeUpdate();

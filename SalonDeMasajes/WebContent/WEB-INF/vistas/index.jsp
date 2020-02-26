@@ -22,7 +22,7 @@
 						pattern="#0.000" />
 					€
 				</p>
-					<a href="javascript:alert('Acción desativada temporalmente')" class="btn btn-primary ">Contratar</a>
+					<a href="javascript:alert('Acción deshabilitada temporalmente')" class="btn btn-primary ">Contratar</a>
 <!-- 					<a href="admin/sesionO?sid=${servicio.idservicios}&op=agregar" class="btn btn-primary">Contratar</a> -->
 			</div>
 		</div>

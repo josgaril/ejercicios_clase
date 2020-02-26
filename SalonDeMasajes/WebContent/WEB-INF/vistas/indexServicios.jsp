@@ -6,6 +6,7 @@
 <section id="servicios" class="row">
 	<c:forEach items="${servicios}" var="servicio">
 		<article class="servicio col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+			<hr>
 			<p class="id">id: ${servicio.idservicios}</p>
 			<p class="nombre">nombre: ${servicio.nombre}</p>
 			<p class="precio">precio: <fmt:formatNumber type="currency"
