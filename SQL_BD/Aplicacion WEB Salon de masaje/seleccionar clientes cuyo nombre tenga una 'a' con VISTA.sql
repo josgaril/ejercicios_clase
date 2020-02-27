@@ -1,2 +1,2 @@
-SELECT * FROM masajes.clientes_getall
+SELECT * FROM masajes.clientesgetall
 WHERE nombre LIKE '%a%';
