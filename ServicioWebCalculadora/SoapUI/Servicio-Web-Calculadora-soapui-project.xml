@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5a62c02d-1103-44e8-86c8-a1f449b5dfd4" activeEnvironment="Default" name="Servicio Web Calculadora" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="caf29153-4d3d-440a-98e6-16a539716593" wsaVersion="NONE" name="CalculadoraSoapBinding" type="wsdl" bindingName="{http://serviciowebcalculadora.formacion.ipartek.com}CalculadoraSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ServicioWebCalculadora/services/Calculadora?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ServicioWebCalculadora/services/Calculadora?wsdl"><con:part><con:url>http://localhost:8080/ServicioWebCalculadora/services/Calculadora?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://serviciowebcalculadora.formacion.ipartek.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serviciowebcalculadora.formacion.ipartek.com" xmlns:intf="http://serviciowebcalculadora.formacion.ipartek.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://serviciowebcalculadora.formacion.ipartek.com" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="restar">
+        <complexType>
+          <sequence>
+            <element name="a" type="xsd:int"/>
+            <element name="b" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="restarResponse">
+        <complexType>
+          <sequence>
+            <element name="restarReturn" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="sumar">
+        <complexType>
+          <sequence>
+            <element name="a" type="xsd:int"/>
+            <element name="b" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="sumarResponse">
+        <complexType>
+          <sequence>
+            <element name="sumarReturn" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="dividir">
+        <complexType>
+          <sequence>
+            <element name="a" type="xsd:int"/>
+            <element name="b" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="dividirResponse">
+        <complexType>
+          <sequence>
+            <element name="dividirReturn" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="multiplicar">
+        <complexType>
+          <sequence>
+            <element name="a" type="xsd:int"/>
+            <element name="b" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="multiplicarResponse">
+        <complexType>
+          <sequence>
+            <element name="multiplicarReturn" type="xsd:int"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="sumarRequest">
+    <wsdl:part element="impl:sumar" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="dividirRequest">
+    <wsdl:part element="impl:dividir" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiplicarResponse">
+    <wsdl:part element="impl:multiplicarResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="restarRequest">
+    <wsdl:part element="impl:restar" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="restarResponse">
+    <wsdl:part element="impl:restarResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sumarResponse">
+    <wsdl:part element="impl:sumarResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="dividirResponse">
+    <wsdl:part element="impl:dividirResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiplicarRequest">
+    <wsdl:part element="impl:multiplicar" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Calculadora">
+    <wsdl:operation name="restar">
+      <wsdl:input message="impl:restarRequest" name="restarRequest"></wsdl:input>
+      <wsdl:output message="impl:restarResponse" name="restarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sumar">
+      <wsdl:input message="impl:sumarRequest" name="sumarRequest"></wsdl:input>
+      <wsdl:output message="impl:sumarResponse" name="sumarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dividir">
+      <wsdl:input message="impl:dividirRequest" name="dividirRequest"></wsdl:input>
+      <wsdl:output message="impl:dividirResponse" name="dividirResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiplicar">
+      <wsdl:input message="impl:multiplicarRequest" name="multiplicarRequest"></wsdl:input>
+      <wsdl:output message="impl:multiplicarResponse" name="multiplicarResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CalculadoraSoapBinding" type="impl:Calculadora">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="restar">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="restarRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="restarResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sumar">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="sumarRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sumarResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dividir">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="dividirRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="dividirResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiplicar">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="multiplicarRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="multiplicarResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CalculadoraService">
+    <wsdl:port binding="impl:CalculadoraSoapBinding" name="Calculadora">
+      <wsdlsoap:address location="http://localhost:8080/ServicioWebCalculadora/services/Calculadora"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ServicioWebCalculadora/services/Calculadora</con:endpoint></con:endpoints><con:operation id="49959f25-397d-41a0-8649-dc1ae0571523" isOneWay="false" action="" name="dividir" bindingOperationName="dividir" type="Request-Response" outputName="dividirResponse" inputName="dividirRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f369c90c-8e4a-4458-b54f-2261cbb06b8b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ServicioWebCalculadora/services/Calculadora</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://serviciowebcalculadora.formacion.ipartek.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:dividir>\r
+         <ser:a>3</ser:a>\r
+         <ser:b>1</ser:b>\r
+      </ser:dividir>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviciowebcalculadora.formacion.ipartek.com/Calculadora/dividirRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1d5ee409-7c0e-4119-b183-8f2ea7cef77f" isOneWay="false" action="" name="multiplicar" bindingOperationName="multiplicar" type="Request-Response" outputName="multiplicarResponse" inputName="multiplicarRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="78d2317e-8dee-49b7-9745-21a7d3151da1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ServicioWebCalculadora/services/Calculadora</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://serviciowebcalculadora.formacion.ipartek.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:multiplicar>\r
+         <ser:a>3</ser:a>\r
+         <ser:b>22</ser:b>\r
+      </ser:multiplicar>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviciowebcalculadora.formacion.ipartek.com/Calculadora/multiplicarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="a31e00e9-3a44-45b6-886c-932d1f5330d3" isOneWay="false" action="" name="restar" bindingOperationName="restar" type="Request-Response" outputName="restarResponse" inputName="restarRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="09ed9f84-e56a-4148-86e9-f25e3fc2cecb" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ServicioWebCalculadora/services/Calculadora</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://serviciowebcalculadora.formacion.ipartek.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:restar>\r
+         <ser:a>3</ser:a>\r
+         <ser:b>23</ser:b>\r
+      </ser:restar>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviciowebcalculadora.formacion.ipartek.com/Calculadora/restarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="78d98c4b-ae03-4f84-b3be-4a7cc3526072" isOneWay="false" action="" name="sumar" bindingOperationName="sumar" type="Request-Response" outputName="sumarResponse" inputName="sumarRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1a39ec40-a696-4e90-b9bf-b23e16afe835" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ServicioWebCalculadora/services/Calculadora</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://serviciowebcalculadora.formacion.ipartek.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:sumar>\r
+         <ser:a>34</ser:a>\r
+         <ser:b>2</ser:b>\r
+      </ser:sumar>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviciowebcalculadora.formacion.ipartek.com/Calculadora/sumarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
