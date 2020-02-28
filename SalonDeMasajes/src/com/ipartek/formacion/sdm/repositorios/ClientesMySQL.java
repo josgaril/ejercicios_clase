@@ -82,7 +82,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los trabajadores", e);
+			throw new AccesoDatosException("Error al obtener todos los clientes", e);
 		}
 	}
 
