@@ -19,26 +19,17 @@ public class SesionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
 		String id= request.getParameter("id");
-		//PRUEBA
 		String sid = request.getParameter("sid");
-		//FIN PRUEBA
 		if(id != null && id.trim().length() > 0) {
 			request.setAttribute("sesionO", Globales.daoSesionO.obtenerPorId(Integer.parseInt(id)));
 		}
 		
 		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
 		request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos()); 
-		/*
-		 * //PRUEBA if (sid != null && sid.trim().length() >0) {
-		 * request.setAttribute("serviciosa",
-		 * Globales.daoServicio.obtenerPorId(Integer.parseInt(sid))); } else {
-		 * request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
-		 * 
-		 * }
-		 */
-		// FIN PRUEBA
 		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
-		request.setAttribute("sid", sid);
+		
+			request.setAttribute("sid", sid);
+		
 		request.setAttribute("op", op);
 		request.setAttribute("primeravez", true);
 		request.getRequestDispatcher(ADMIN_SESION_JSP).forward(request, response);

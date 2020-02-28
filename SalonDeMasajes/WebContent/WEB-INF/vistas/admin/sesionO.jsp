@@ -64,20 +64,7 @@
 						id="servicio" name="servicio">
 						<option disabled selected value="">Selecciona un servicio</option>
 						<c:forEach items="${servicios}" var="servicio">
-							<c:choose>
-								<c:when test="${sid != null}">
-									<option
-										${sid == sesionO.servicioO.idservicios ? 'selected': ''}
-										value="${servicio.idservicios}">${servicio.nombre}</option>
-								</c:when>
-								<c:otherwise>
-									<option
-										${servicio.idservicios == sesionO.servicioO.idservicios ? 'selected': ''}
-										value="${servicio.idservicios}">${servicio.nombre}</option>
-
-								</c:otherwise>
-							</c:choose>
-							<%-- 							<option ${servicio.idservicios == sesionO.servicioO.idservicios ? 'selected': ''} value="${servicio.idservicios}">${servicio.nombre}</option>			 --%>
+							<option ${sid==servicio.idservicios?'selected': servicio.idservicios == sesionO.servicioO.idservicios ? 'selected': ''} value="${servicio.idservicios}">${servicio.nombre}</option>			
 						</c:forEach>
 
 					</select>
