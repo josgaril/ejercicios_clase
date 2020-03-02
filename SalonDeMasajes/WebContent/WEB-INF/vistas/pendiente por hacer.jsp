@@ -13,6 +13,7 @@ CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
 
 CONTROLAR     BIEN    LA    SESION    NORMAL  CUANDO    SE    MODIFICA  ,   SE    HACE    MAL
+- cuando se borra algun elemento, cuadro preguntando si estas seguro de borrarlo
 - EN CLASE TRABAJADORES CAMBIAR EL REGEX DE NOMBRE Y APELLIDOS. DEJA METER PUNTOS (.), 
 	COMPROBAR MAS. EN CLIENTES POSIBLEMENTE TMB PASE...
 - VALIDACIONES EN LA CLASE SESION NORMAL, no la de objetos. AL AGREGAR Y MODIFICAR
