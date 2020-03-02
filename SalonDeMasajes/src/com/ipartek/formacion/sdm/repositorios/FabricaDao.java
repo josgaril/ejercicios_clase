@@ -72,7 +72,7 @@ public class FabricaDao {
 	
 	public Dao<SesionO> getInstanciaSesionO() {
 		switch(tipo) {
-		case "memoria": return SesionTreeMapO.getInstancia();
+		case "memoria": return SesionOTreeMap.getInstancia();
 		case "mysql": return SesionesOMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}

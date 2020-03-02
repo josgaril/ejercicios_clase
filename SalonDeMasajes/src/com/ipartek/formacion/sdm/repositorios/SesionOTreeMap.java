@@ -9,14 +9,14 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 import com.ipartek.formacion.sdm.modelos.SesionO;
 import com.ipartek.formacion.sdm.modelos.Trabajador;
 
-class SesionTreeMapO implements Dao<SesionO> {
+class SesionOTreeMap implements Dao<SesionO> {
 
 	private TreeMap<Integer, SesionO> sesionesO = new TreeMap<>();
 
 	// SINGLETON
-	private static final SesionTreeMapO INSTANCIA = new SesionTreeMapO();
+	private static final SesionOTreeMap INSTANCIA = new SesionOTreeMap();
 
-	public SesionTreeMapO() {
+	public SesionOTreeMap() {
 
 		agregar(new SesionO(1, new Cliente(1, "Leticia", "Gonzalez Ruiz", "71545258P"),
 				new Trabajador(1, "Manuel", "Martinez Gombarri", "85514521B"),
@@ -32,7 +32,7 @@ class SesionTreeMapO implements Dao<SesionO> {
 				new GregorianCalendar(2018, 05, 05).getTime(), "No me ha gustado Nada", "Insuficiente"));
 	}
 
-	public static SesionTreeMapO getInstancia() {
+	public static SesionOTreeMap getInstancia() {
 		return INSTANCIA;
 	}
 
