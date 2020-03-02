@@ -17,7 +17,9 @@ import com.ipartek.formacion.sdm.modelos.Cliente;
 
 @WebServlet("/api/clientes/*")
 public class ClientesApi extends HttpServlet {
-    	
+
+	private static final long serialVersionUID = 1L;
+
 	private static final String URL_ID_VALIDA = "^/\\d+$";
 
 	//Creamos el objeto gson
@@ -25,9 +27,9 @@ public class ClientesApi extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Creamos la variable out que es tipo PrintWriter
+		//Declaramos la variable out que es tipo PrintWriter
 		PrintWriter out = response.getWriter();
-		//Creamos la variable id
+		//Declaramos la variable id
 		Integer id = null;
 		
 		try {
@@ -56,6 +58,7 @@ public class ClientesApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Comprobamos que no se le haya pasado ningún id, sino lanzamos excepción
 		try {
 			if (extraerId(request) != null) {
 				throw new Exception();
@@ -64,25 +67,29 @@ public class ClientesApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		//Declaramos la variable json, a la que le pasamos el texto
+		//Declaramos la variable json, que guardará el texto escrito.
 		String json = extraerJSON(request);
 		//Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente cliente= gson.fromJson(json, Cliente.class);
-					
+		//Agrega el cliente			
 		Globales.daoCliente.agregar(cliente);	
-		
+		//Muestra en pantalla el cliente añadido
 		response.getWriter().write(gson.toJson(cliente));
+		//El cliente se ha creado correctamente y muestra el código 201
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {	
+		//Declaramos la variable json en la que guardamos el texto escrito
 		String json = extraerJSON(request);
+		//Guarda en cliente el texto escrito en Json, que es de la clase Cliente
 		Cliente cliente = gson.fromJson(json, Cliente.class);
-
+		//Declaramos la variable id
 		Integer id = null;
-
+		//Extraemos el id, o el valor null si no tiene y nos da una excepcion
+		//indicando respuesta incorrecta.
 		try {
 			id = extraerId(request);
 
@@ -93,21 +100,24 @@ public class ClientesApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-
+		//Si el id no corresponde con el del cliente dará error y sadlrá.
 		if (id != cliente.getIdclientes()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
+		//Modifica el cliente
 		Globales.daoCliente.modificar(cliente);
-
+		//Muestra el cliente añadido
 		response.getWriter().write(gson.toJson(cliente));
 	}
 
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Declaramos la variable id
 		Integer id = null;
-
+		//Extraemos el id, o el valor null si no tiene y nos da una excepcion
+		//indicando respuesta incorrecta.
 		try {
 			id = extraerId(request);
 
@@ -118,27 +128,29 @@ public class ClientesApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-
+		//Borra el cliente
 		Globales.daoCliente.borrar(id);
-
+		//Muestra el mensaje de que el cliente se ha eliminado
 		response.getWriter().write("Cliente eliminado");
 	}
 
 
 	private static String extraerJSON(HttpServletRequest request) throws IOException {
+		//Leemos la cadena de texto pasado
 		BufferedReader br = request.getReader();
 
 		StringBuffer sb = new StringBuffer();
 		String linea;
+		//Mientras haya lineas por leer sigue añadiendo las lineas al buffer
 		while ((linea = br.readLine()) != null) {
 			sb.append(linea);
 		}
-
+		//Devolvemos el buffer leido
 		return sb.toString();
 	}
 
 	private static Integer extraerId(HttpServletRequest request) {
-		//declaramos path para indicar la url recibida
+		//declaramos path para guardar la url
 		String path = request.getPathInfo();
 		//si path es null o solo contiene la "/" devolvemos null
 		if (path == null || path.equals("/")) {

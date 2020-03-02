@@ -17,7 +17,9 @@ import com.ipartek.formacion.sdm.modelos.Trabajador;
 
 @WebServlet("/api/trabajadores/*")
 public class TrabajadoresApi extends HttpServlet {
-    	
+ 
+	private static final long serialVersionUID = 1L;
+
 	private static final String URL_ID_VALIDA = "^/\\d+$";
 
 	private static Gson gson = new Gson();
