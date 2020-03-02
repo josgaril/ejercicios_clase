@@ -18,7 +18,6 @@ public class IndexSesionesController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("sesionesO", Globales.daoSesionO.obtenerTodos());
-		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
 
 		request.getRequestDispatcher(INDEX_SESIONES).forward(request, response);
 	}
