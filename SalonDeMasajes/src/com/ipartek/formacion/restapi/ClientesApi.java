@@ -23,10 +23,13 @@ public class ClientesApi extends HttpServlet {
 	private static final String URL_ID_VALIDA = "^/\\d+$";
 	
 	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
-	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
+	private static final String REGEX_APELLIDOS = "(\\p{L}+)[([ '])(\\p{L}+)]+";
+//	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
+
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
 
-
+	//(\\p{L}+)(([ ])(\\p{L}+))?	"(\\p{L}+)[([ '])(\\p{L}+)]+"
+	
 	//Creamos el objeto gson
 	private static Gson gson = new Gson();
 
@@ -77,20 +80,20 @@ public class ClientesApi extends HttpServlet {
 		//Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente cliente= gson.fromJson(json, Cliente.class);
 		//Validaciones
-		boolean correcto=true;
+		boolean validacion=true;
 		if (cliente.getNombre() !=null && !cliente.getNombre().matches(REGEX_NOMBRE)) {
 			 response.getWriter().write("Solo se admiten nombres con caracteres de letras y espacios \n");
-			 correcto=false;
+			 validacion=false;
 		}
 		if (cliente.getApellidos() !=null && !cliente.getApellidos().matches(REGEX_APELLIDOS)) {
 			response.getWriter().write("Solo se admiten apellidos con caracteres de letras, espacios y apóstrofe \n");
-			correcto=false;
+			validacion=false;
 		}
 		if (cliente.getDni() !=null && !cliente.getDni().matches(REGEX_DNI)) {
 			response.getWriter().write("Formato de DNI incorrecto \n");
-			correcto=false;
+			validacion=false;
 		}
-		if (correcto)
+		if (validacion)
 		{
 			//Agrega el cliente			
 			Globales.daoCliente.agregar(cliente);	
@@ -131,8 +134,37 @@ public class ClientesApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		//Modifica el cliente
-		Globales.daoCliente.modificar(cliente);
+		
+		boolean validacion=true;
+		
+		if (cliente.getNombre() !=null && !cliente.getNombre().matches(REGEX_NOMBRE)) {
+			 response.getWriter().write("Solo se admiten nombres con caracteres de letras y espacios. \n");
+			 validacion=false;
+		}
+		if (cliente.getApellidos().length()<1 || cliente.getApellidos().length()>90 ) {
+			 response.getWriter().write("Apellido/s del cliente obligatorio. Entre 1 y 90 caracteres. \n");
+			 validacion=false;
+		} else if (cliente.getApellidos() !=null && !cliente.getApellidos().matches(REGEX_APELLIDOS)) {
+			response.getWriter().write("Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos. \n");
+			validacion=false;
+		}
+		//MODIFICAR PARA QUE FUNCIONE BIEN
+		if (cliente.getDni() == null ) {
+			response.getWriter().write("DNI obligatorio. \n");
+			validacion=false;
+		} else if (cliente.getDni() !=null && !cliente.getDni().matches(REGEX_DNI)) {
+			response.getWriter().write("Formato de DNI incorrecto. \n");
+			validacion=false;
+		}
+		if (validacion)
+		{
+			//Modifica el cliente
+			Globales.daoCliente.modificar(cliente);
+		}
+		else {
+			return;
+		}
+		
 		//Muestra el cliente añadido
 		response.getWriter().write(gson.toJson(cliente));
 	}
