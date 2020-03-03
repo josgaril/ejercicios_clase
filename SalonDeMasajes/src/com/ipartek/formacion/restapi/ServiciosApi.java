@@ -3,6 +3,7 @@ package com.ipartek.formacion.restapi;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,10 @@ public class ServiciosApi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String URL_ID_VALIDA = "^/\\d+$";
+
+	private static final String SERVICIO_NOMBRE = "(\\p{L}+)[([ ])(\\p{L})]+";
+
+	private static final String SERVICIO_PRECIO = "\\d+[,\\.]\\d{3}";
 
 	private static Gson gson = new Gson();
 
@@ -52,7 +57,6 @@ public class ServiciosApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Comprobamos que no se le haya pasado ningún id
 		try {
 			if (extraerID(request) != null) {
 				throw new Exception();
@@ -61,28 +65,31 @@ public class ServiciosApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		// Declaramos la variable json, que guardará el texto escrito.
+
 		String json = extraerJSON(request);
-		// Creamos un cliente al que le pasamos el texto escrito en json
+
 		Servicio servicio = gson.fromJson(json, Servicio.class);
-		// Agrega el cliente
-		Globales.daoServicio.agregar(servicio);
-		// Muestra en pantalla el cliente añadido
+
+		if (validacionesServicio(servicio, response)) {
+			Globales.daoServicio.agregar(servicio);
+		} else {
+			return;
+		}
+
 		response.getWriter().write(gson.toJson(servicio));
-		// El cliente se ha creado correctamente y muestra el código 201
+
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Declaramos la variable json en la que guardamos el texto escrito
+
 		String json = extraerJSON(request);
-		// Guarda en cliente el texto escrito en Json, que es de la clase Cliente
+
 		Servicio servicio = gson.fromJson(json, Servicio.class);
-		// Declaramos la variable id
+
 		Integer id = null;
-		// Extraemos el id, o el valor null si no tiene y nos da una excepcion
-		// indicando respuesta incorrecta.
+
 		try {
 			id = extraerID(request);
 
@@ -94,23 +101,24 @@ public class ServiciosApi extends HttpServlet {
 			return;
 		}
 
-		// Si el id no corresponde con el del cliente dará error y sadlrá.
 		if (id != servicio.getIdservicios()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		// Modifica el cliente
-		Globales.daoServicio.modificar(servicio);
-		// Muestra el cliente añadido
+		if (validacionesServicio(servicio, response)) {
+			Globales.daoServicio.modificar(servicio);
+		} else {
+			return;
+		}
+
 		response.getWriter().write(gson.toJson(servicio));
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Declaramos la variable id
+
 		Integer id = null;
-		// Extraemos el id, o el valor null si no tiene y nos da una excepcion
-		// indicando respuesta incorrecta.
+
 		try {
 			id = extraerID(request);
 
@@ -121,10 +129,33 @@ public class ServiciosApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		// Borra el cliente
+
 		Globales.daoServicio.borrar(id);
-		// Muestra el mensaje de que el cliente se ha eliminado
+
 		response.getWriter().write("El servicio ha sido eliminado");
+	}
+
+	private boolean validacionesServicio(Servicio servicio, HttpServletResponse response) throws IOException {
+		boolean correcto = true;
+
+		if (servicio.getNombre() == null || servicio.getNombre().length() < 1 || servicio.getNombre().length() > 45) {
+			response.getWriter().write("El nombre del servicio es obligatorio. Entre 1 y 45 caracteres. \n");
+			correcto = false;
+		} else if (servicio.getNombre() != null && !servicio.getNombre().matches(SERVICIO_NOMBRE)) {
+			response.getWriter().write(
+					"Solo se admiten nombres de servicio con caracteres de letras y serparación por espacios.\n");
+			correcto = false;
+		}
+		if (servicio.getPrecio() == null || servicio.getPrecio().compareTo(BigDecimal.ZERO) <= 0) {
+			response.getWriter().write("El precio del servicio es obligatorio y positivo. \n");
+			correcto = false;
+		} else if (servicio.getPrecio() != null && !servicio.getPrecio().toString().matches(SERVICIO_PRECIO)) {
+			response.getWriter()
+					.write("El precio debe tener al menos un entero y tres decimales, y debe ser positivo.\n");
+			correcto = false;
+		}
+
+		return correcto;
 	}
 
 	private static String extraerJSON(HttpServletRequest request) throws IOException {
@@ -140,18 +171,17 @@ public class ServiciosApi extends HttpServlet {
 	}
 
 	private static Integer extraerID(HttpServletRequest request) {
-		// declaramos path para guardar la url
+
 		String path = request.getPathInfo();
-		// si path es null o solo contiene la "/" devolvemos null
+
 		if (path == null || path.contentEquals("/")) {
 			return null;
 		}
-		// si la url recibida no es valida mandamos RuntimeException
+
 		if (!path.matches(URL_ID_VALIDA)) {
 			throw new RuntimeException("URL de petición no válida");
 		}
-		// devolvemos el valor del id convertido a su tipo(integer en este caso),
-		// para ello extraemos la cadena de la url desde el primer caracter
+
 		return Integer.parseInt(path.substring(1));
 	}
 
