@@ -25,9 +25,16 @@ public class SesionesOMySQL implements Dao<SesionO> {
 			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
 			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
 			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n"+ 
-			"ORDER BY sesion.id"
-																						 ;
-	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
+			"ORDER BY sesion.id" ;
+	
+	private static final String SQL_GET_BY_ID = "	SELECT *\r\n" + 
+			"			FROM sesiones sesion\r\n" + 
+			"			INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
+			"			INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
+			"			INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n" + 
+			"            WHERE sesion.id = ?\r\n" + 
+			"            ORDER BY sesion.id;";
+	//"SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE sesiones set clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
@@ -119,18 +126,22 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
-					Cliente clienteO;
-					Trabajador trabajadorO;
-					Servicio servicioO;
+					Cliente cliente;
+					Trabajador trabajador;
+					Servicio servicio;
 					SesionO sesionO=null;
 					
 					if (rs.next()) {
 						
-						clienteO = new Cliente(rs.getInt("clientes_idclientes"),null,null,null);
-						trabajadorO = new Trabajador(rs.getInt("trabajadores_idtrabajadores"),null,null,null);
-						servicioO = new Servicio(rs.getInt("servicios_idservicios"),null,null);
-
-						sesionO = new SesionO(rs.getInt("id"), clienteO, trabajadorO, servicioO, rs.getTimestamp("fecha"),rs.getString("resena"), rs.getString("calificacion"));
+						/*
+						 * cliente = new Cliente(rs.getInt("clientes_idclientes"),null,null,null);
+						 * trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"),null,null,null);
+						 * servicio = new Servicio(rs.getInt("servicios_idservicios"),null,null);
+						 */
+						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
+						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
+						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
+						sesionO = new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),rs.getString("resena"), rs.getString("calificacion"));
 						
 						return sesionO;				
 					} else {
