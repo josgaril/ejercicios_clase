@@ -12,6 +12,7 @@ EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
 CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
 
+-- Controlar las excepciones cuando se repite un cliente o trabajador con el mismo DNI(que es unico...)--
 HACER LOGIN CON BD, Creando BD de usuarios con email y contraseña.
 CONTROLAR     BIEN    LA    SESION    NORMAL  CUANDO    SE    MODIFICA  ,   SE    HACE    MAL
 - cuando se borra algun elemento, cuadro preguntando si estas seguro de borrarlo
