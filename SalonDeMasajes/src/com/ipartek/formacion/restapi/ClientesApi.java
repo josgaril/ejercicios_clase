@@ -21,6 +21,11 @@ public class ClientesApi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String URL_ID_VALIDA = "^/\\d+$";
+	
+	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
+	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
+	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
+
 
 	//Creamos el objeto gson
 	private static Gson gson = new Gson();
@@ -71,8 +76,29 @@ public class ClientesApi extends HttpServlet {
 		String json = extraerJSON(request);
 		//Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente cliente= gson.fromJson(json, Cliente.class);
-		//Agrega el cliente			
-		Globales.daoCliente.agregar(cliente);	
+		//Validaciones
+		boolean correcto=true;
+		if (cliente.getNombre() !=null && !cliente.getNombre().matches(REGEX_NOMBRE)) {
+			 response.getWriter().write("Solo se admiten nombres con caracteres de letras y espacios \n");
+			 correcto=false;
+		}
+		if (cliente.getApellidos() !=null && !cliente.getApellidos().matches(REGEX_APELLIDOS)) {
+			response.getWriter().write("Solo se admiten apellidos con caracteres de letras, espacios y apóstrofe \n");
+			correcto=false;
+		}
+		if (cliente.getDni() !=null && !cliente.getDni().matches(REGEX_DNI)) {
+			response.getWriter().write("Formato de DNI incorrecto \n");
+			correcto=false;
+		}
+		if (correcto)
+		{
+			//Agrega el cliente			
+			Globales.daoCliente.agregar(cliente);	
+		}
+		else {
+			return;
+		}
+		
 		//Muestra en pantalla el cliente añadido
 		response.getWriter().write(gson.toJson(cliente));
 		//El cliente se ha creado correctamente y muestra el código 201
