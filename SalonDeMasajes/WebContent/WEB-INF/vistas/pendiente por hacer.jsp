@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
+EN EL EXAMEN ENTRA REST
+MIRAR JAX-RS
 
 Para que te lleve a administracion/trabajadores por ejemplo, tienes que guardar la direccion a la que ibas ç
 en el filtro, se guarda en una variable de sesion y luego en el loginController le mandamos a esa variable

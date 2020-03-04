@@ -3,7 +3,6 @@ package com.ipartek.formacion.restapi;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,16 +42,14 @@ public class TrabajadoresApi extends HttpServlet {
 
 		if (id == null) {
 			out.write(gson.toJson(Globales.daoTrabajador.obtenerTodos()));
-			// out.write(gson.toJson(usuarios.values()));
-			// response.getWriter().write(new Gson().toJson(usuarios.values()));
 			return;
 		}
 
-		// Usuario usuario = usuarios.get(id);
 		Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
 
 		if (trabajador == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de trabajador no encontrado.");
 		} else {
 			out.write(gson.toJson(trabajador));
 		}
@@ -74,7 +71,16 @@ public class TrabajadoresApi extends HttpServlet {
 		Trabajador trabajador = gson.fromJson(json, Trabajador.class);
 
 		// Validaciones
-		// validacion = validacionesCliente(cliente, response);
+		// TODO CONTROLAR ERROR SI SE METE UN DNI DUPLICADO
+		Iterable<Trabajador> trabajadores = Globales.daoTrabajador.obtenerTodos();
+		for (Trabajador persona : trabajadores) {
+			if (persona.getDni().equals(trabajador.getDni())) {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.getWriter().write("El DNI está duplicado");
+				return;
+			}
+		}
+		// validacion = validacionesTrabajador(trabajador, response);
 		if (validacionesTrabajador(trabajador, response)) {
 			// Agrega el cliente
 			Globales.daoTrabajador.agregar(trabajador);
@@ -108,9 +114,16 @@ public class TrabajadoresApi extends HttpServlet {
 
 		if (id != trabajador.getIdtrabajadores()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write(
+					"Id de trabajador no encontrado o no coincide con el que se quiere modificar. No se ha podido modificar");
+
 			return;
 		}
-		Globales.daoTrabajador.modificar(trabajador);
+		if (validacionesTrabajador(trabajador, response)) {
+			Globales.daoTrabajador.modificar(trabajador);
+		} else {
+			return;
+		}
 
 		response.getWriter().write(gson.toJson(trabajador));
 
@@ -129,12 +142,20 @@ public class TrabajadoresApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Debe introducir el id de un trabajador existente para eliminarlo");
 			return;
 		}
 
-		Globales.daoTrabajador.borrar(id);
+		// TODO Comprobar validacion del dni si es null o no existe al borrar
+		Trabajador trabajadorABorrar = Globales.daoTrabajador.obtenerPorId(id);
 
-		response.getWriter().write("Trabajador eliminado");
+		if (trabajadorABorrar == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de trabajador no encontrado. No se ha podido eliminar");
+		} else {
+			Globales.daoTrabajador.borrar(id);
+			response.getWriter().write("Trabajador eliminado");
+		}
 	}
 
 	private boolean validacionesTrabajador(Trabajador trabajador, HttpServletResponse response) throws IOException {
@@ -144,18 +165,18 @@ public class TrabajadoresApi extends HttpServlet {
 			response.getWriter().write("Nombre del trabajador obligatorio.Entre 1 y 45 caracteres.  \n");
 			correcto = false;
 		} else if (trabajador.getNombre() != null && !trabajador.getNombre().matches(REGEX_NOMBRE)) {
-			response.getWriter().write(
-					"Solo se admiten nombres con caracteres de letras y espacios en nombres compuestos. \n");
+			response.getWriter()
+					.write("Solo se admiten nombres con caracteres de letras y espacios en nombres compuestos. \n");
 			correcto = false;
 		}
 
 		if (trabajador.getApellidos() == null || trabajador.getApellidos().length() < 1
 				|| trabajador.getApellidos().length() > 90) {
-			response.getWriter().write("Apellido/s del trabajador obligatorio.  \n");
+			response.getWriter().write("Apellido/s del trabajador obligatorio.Entre 1 y 90 caracteres. \n");
 			correcto = false;
 		} else if (trabajador.getApellidos() != null && !trabajador.getApellidos().matches(REGEX_APELLIDOS)) {
 			response.getWriter().write(
-					"Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos.Entre 1 y 90 caracteres.\n");
+					"Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos.\n");
 			correcto = false;
 		}
 
@@ -167,15 +188,6 @@ public class TrabajadoresApi extends HttpServlet {
 			correcto = false;
 		}
 
-		// TODO CONTROLAR ERROR SI SE METE UN DNI DUPLICADO
-		ArrayList<Trabajador> trabajadores = new ArrayList<>();
-
-		for (Trabajador persona : trabajadores) {
-			if (persona.getDni() == trabajador.getDni()) {
-				response.getWriter().write("El DNI está duplicado");
-				correcto = false;
-			}
-		}
 		return correcto;
 	}
 

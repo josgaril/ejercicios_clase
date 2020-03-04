@@ -50,7 +50,7 @@ public class ClientesApi extends HttpServlet {
 		}
 		// Si el id es null, escribe todos los clientes, convertidos a Json y acabamos
 		if (id == null) {
-			out.write(gson.toJson(Globales.daoCliente.obtenerTodos()));
+			out.write(gson.toJson(Globales.daoCliente.obtenerTodos()));		
 			return;
 		}
 		// En caso de pasar el id de un cliente, obtenemos ese cliente
