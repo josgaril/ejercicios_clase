@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 
 import com.ipartek.formacion.sdm.controladores.Globales;
 import com.ipartek.formacion.sdm.modelos.Trabajador;
+import com.ipartek.formacion.sdm.repositorios.AccesoDatosException;
 
 @Path("/trabajadores")
 @Produces("application/json")
@@ -29,15 +30,21 @@ public class TrabajadoresREST {
 	}
 	
 	@POST
-	public void agregar(Trabajador trabajador){
-		 Globales.daoTrabajador.agregar(trabajador); 
+	public Trabajador agregar(Trabajador trabajador){
+		return Globales.daoTrabajador.agregar(trabajador); 
 	}
 	
 	
 	  @PUT
 	  @Path("/{idtrabajadores}")
-	  public void modificar(@PathParam("idtrabajadores") Integer idtrabajadores, Trabajador trabajador ) {
+	  public Trabajador modificar(@PathParam("idtrabajadores") Integer idtrabajadores, Trabajador trabajador ) {
+		  
+		  if (idtrabajadores!= trabajador.getIdtrabajadores()){
+			  throw new AccesoDatosException("No coinciden los ids");
+		  }else { 	
 		  Globales.daoTrabajador.modificar(trabajador);
+		  }
+		return trabajador;
 	  }
 	  
 	  @DELETE
