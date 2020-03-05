@@ -37,6 +37,7 @@ public class TrabajadoresApi extends HttpServlet {
 			id = extraerId(request);
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error al obtener trabajador/es");
 			return;
 		}
 
@@ -57,38 +58,39 @@ public class TrabajadoresApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Integer id = extraerId(request);
 		try {
-			if (extraerId(request) != null) {
+			if (id!= null) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error.No se debe pasar un ID para agregar un trabajador");
 			return;
 		}
 
 		String json = extraerJSON(request);
 
-		Trabajador trabajador = gson.fromJson(json, Trabajador.class);
+		Trabajador trabajadorJson = gson.fromJson(json, Trabajador.class);
 
 		// Validaciones
-		// TODO CONTROLAR ERROR SI SE METE UN DNI DUPLICADO
-		Iterable<Trabajador> trabajadores = Globales.daoTrabajador.obtenerTodos();
-		for (Trabajador persona : trabajadores) {
-			if (persona.getDni().equals(trabajador.getDni())) {
+		// TODO DNI CONTROLADO, FALTA UBICAR CODIGO PARA QUE CONTROLE TOdO a la vez
+		Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+		for (Trabajador persona : todosLosTrabajadores) {
+			if (persona.getDni().equals(trabajadorJson.getDni())) {
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				response.getWriter().write("El DNI está duplicado");
 				return;
 			}
 		}
-		// validacion = validacionesTrabajador(trabajador, response);
-		if (validacionesTrabajador(trabajador, response)) {
+		if (validacionesTrabajador(trabajadorJson, response)) {
 			// Agrega el cliente
-			Globales.daoTrabajador.agregar(trabajador);
+			Globales.daoTrabajador.agregar(trabajadorJson);
 		} else {
 			return;
 		}
 
-		response.getWriter().write(gson.toJson(trabajador));
+		response.getWriter().write(gson.toJson(trabajadorJson));
 
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
@@ -97,7 +99,7 @@ public class TrabajadoresApi extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String json = extraerJSON(request);
-		Trabajador trabajador = gson.fromJson(json, Trabajador.class);
+		Trabajador trabajadorJson = gson.fromJson(json, Trabajador.class);
 
 		Integer id = null;
 
@@ -109,23 +111,35 @@ public class TrabajadoresApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("No se ha pasado id del trabajador a modificar");
 			return;
 		}
 
-		if (id != trabajador.getIdtrabajadores()) {
+		if (id != trabajadorJson.getIdtrabajadores()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			response.getWriter().write(
 					"Id de trabajador no encontrado o no coincide con el que se quiere modificar. No se ha podido modificar");
 
 			return;
 		}
-		if (validacionesTrabajador(trabajador, response)) {
-			Globales.daoTrabajador.modificar(trabajador);
+		// TODO DNI CONTROLADO, FALTA UBICAR CODIGO PARA QUE CONTROLE TOdO a la vez
+		Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+		Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
+		for (Trabajador persona : todosLosTrabajadores) {
+			if (persona.getDni().equals(trabajadorJson.getDni()) && !trabajadorJson.getDni().equals(trabajador.getDni())) {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.getWriter().write("El DNI está duplicado");
+				return;
+			}
+		}
+		
+		if (validacionesTrabajador(trabajadorJson, response)) {
+			Globales.daoTrabajador.modificar(trabajadorJson);
 		} else {
 			return;
 		}
 
-		response.getWriter().write(gson.toJson(trabajador));
+		response.getWriter().write(gson.toJson(trabajadorJson));
 
 	}
 
@@ -158,37 +172,38 @@ public class TrabajadoresApi extends HttpServlet {
 		}
 	}
 
-	private boolean validacionesTrabajador(Trabajador trabajador, HttpServletResponse response) throws IOException {
+	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response) throws IOException {
 		boolean correcto = true;
-		if (trabajador.getNombre() == null || trabajador.getNombre().length() < 1
-				|| trabajador.getNombre().length() > 45) {
+		if (trabajadorJson.getNombre() == null || trabajadorJson.getNombre().length() < 1
+				|| trabajadorJson.getNombre().length() > 45) {
 			response.getWriter().write("Nombre del trabajador obligatorio.Entre 1 y 45 caracteres.  \n");
 			correcto = false;
-		} else if (trabajador.getNombre() != null && !trabajador.getNombre().matches(REGEX_NOMBRE)) {
+		} else if (trabajadorJson.getNombre() != null && !trabajadorJson.getNombre().matches(REGEX_NOMBRE)) {
 			response.getWriter()
 					.write("Solo se admiten nombres con caracteres de letras y espacios en nombres compuestos. \n");
 			correcto = false;
 		}
 
-		if (trabajador.getApellidos() == null || trabajador.getApellidos().length() < 1
-				|| trabajador.getApellidos().length() > 90) {
+		if (trabajadorJson.getApellidos() == null || trabajadorJson.getApellidos().length() < 1
+				|| trabajadorJson.getApellidos().length() > 90) {
 			response.getWriter().write("Apellido/s del trabajador obligatorio.Entre 1 y 90 caracteres. \n");
 			correcto = false;
-		} else if (trabajador.getApellidos() != null && !trabajador.getApellidos().matches(REGEX_APELLIDOS)) {
+		} else if (trabajadorJson.getApellidos() != null && !trabajadorJson.getApellidos().matches(REGEX_APELLIDOS)) {
 			response.getWriter().write(
 					"Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos.\n");
 			correcto = false;
 		}
 
-		if (trabajador.getDni() == null || trabajador.getDni().length() < 1) {
+		if (trabajadorJson.getDni() == null || trabajadorJson.getDni().length() < 1) {
 			response.getWriter().write("DNI obligatorio. \n");
 			correcto = false;
-		} else if (trabajador.getDni() != null && !trabajador.getDni().matches(REGEX_DNI)) {
+		} else if (trabajadorJson.getDni() != null && !trabajadorJson.getDni().matches(REGEX_DNI)) {
 			response.getWriter().write("Formato de DNI incorrecto. \n");
 			correcto = false;
 		}
-
+	
 		return correcto;
+
 	}
 
 	private static String extraerJSON(HttpServletRequest request) throws IOException {
