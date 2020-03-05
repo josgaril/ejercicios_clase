@@ -139,7 +139,7 @@
 							class="dropdown-item dropdown-toggle">Sesiones</a>
 							<ul aria-labelledby="dropdownMenu2"
 								class="dropdown-menu border-0 shadow">
-								<li><a tabindex="-1" href="admin/sesiones"
+								<li><a tabindex="-1" href="admin/sesionesO"
 									class="dropdown-item">Administrar</a></li>
 								<li><a tabindex="-1" href="admin/sesionO?op=agregar"
 									class="dropdown-item">Agregar</a></li>
