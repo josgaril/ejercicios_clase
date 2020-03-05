@@ -446,13 +446,13 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
--- Table structure for table `usuarioss`
+-- Table structure for table `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarioss`;
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarioss` (
+CREATE TABLE `usuarios` (
   `idusuarios` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `password` char(6) COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -462,13 +462,13 @@ CREATE TABLE `usuarioss` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarioss`
+-- Dumping data for table `usuarios`
 --
 
-LOCK TABLES `usuarioss` WRITE;
-/*!40000 ALTER TABLE `usuarioss` DISABLE KEYS */;
-INSERT INTO `usuarioss` VALUES (1,'jose@jose.com','123456','administrador'),(2,'alberto@alberto.com','123456','user');
-/*!40000 ALTER TABLE `usuarioss` ENABLE KEYS */;
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'jose@jose.com','123456','administrador'),(2,'alberto@alberto.com','123456','user');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -928,4 +928,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-05  0:57:51
+-- Dump completed on 2020-03-05  1:04:01
