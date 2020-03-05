@@ -155,7 +155,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 
 	@Override
-	public void agregar(SesionO sesionO) {
+	public SesionO agregar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
@@ -174,11 +174,12 @@ public class SesionesOMySQL implements Dao<SesionO> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para agregar la sesión", e);
 		}
+		return sesionO;
 
 	}
 
 	@Override
-	public void modificar(SesionO sesionO) {
+	public SesionO modificar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
@@ -198,6 +199,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para modificar la sesión", e);
 		}
+		return sesionO;
 	}
 
 	@Override

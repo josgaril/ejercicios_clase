@@ -5,9 +5,9 @@ public interface Dao<T> {
 
 	T obtenerPorId(Integer id);
 
-	void agregar(T objeto);
+	T agregar(T objeto);
 
-	void modificar(T objeto);
+	T modificar(T objeto);
 
 	void borrar(Integer id);
 }

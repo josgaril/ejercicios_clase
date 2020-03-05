@@ -113,7 +113,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public Trabajador agregar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setString(1, trabajador.getNombre());
@@ -130,10 +130,11 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar", e);
 		}
+		return trabajador;
 	}
 
 	@Override
-	public void modificar(Trabajador trabajador) {
+	public Trabajador modificar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, trabajador.getNombre());
@@ -149,6 +150,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar el trabajador");
 		}
+		return trabajador;
 	}
 
 	@Override

@@ -106,7 +106,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void agregar(Servicio servicio) {
+	public Servicio agregar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_INSERT)) {
@@ -122,10 +122,11 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al insertar el trabajador", e);
 		}
+		return servicio;
 	}
 
 	@Override
-	public void modificar(Servicio servicio) {
+	public Servicio modificar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_UPDATE)) {
@@ -142,6 +143,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar el servicio", e);
 		}
+		return servicio;
 
 	}
 

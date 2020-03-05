@@ -35,15 +35,15 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void agregar(Servicio servicio) {
+	public Servicio agregar(Servicio servicio) {
 		Integer idservicios = servicios.size() == 0 ? 1 : servicios.lastKey() + 1;
 				servicio.setIdservicios(idservicios);
-				servicios.put(idservicios, servicio);
+				return servicios.put(idservicios, servicio);
 	}
 
 	@Override
-	public void modificar(Servicio servicio) {
-		servicios.put(servicio.getIdservicios(), servicio);
+	public Servicio modificar(Servicio servicio) {
+		return servicios.put(servicio.getIdservicios(), servicio);
 	}
 
 	@Override

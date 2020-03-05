@@ -33,15 +33,15 @@ public class TrabajadorTreeMap implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public Trabajador agregar(Trabajador trabajador) {
 		Integer idtrabajadores= trabajadores.size()==0? 1: trabajadores.lastKey() +1;
 		trabajador.setIdtrabajadores(idtrabajadores);
-		trabajadores.put(idtrabajadores, trabajador);
+		return trabajadores.put(idtrabajadores, trabajador);
 	}
 
 	@Override
-	public void modificar(Trabajador trabajador) {
-		trabajadores.put(trabajador.getIdtrabajadores(), trabajador);
+	public Trabajador modificar(Trabajador trabajador) {
+		return trabajadores.put(trabajador.getIdtrabajadores(), trabajador);
 	}
 
 	@Override
