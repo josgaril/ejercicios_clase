@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("usuario");
 
-		// TODO String email = request.getParameter("usuario");
+		
 
 		try (Connection conexion = DriverManager
 				.getConnection("jdbc:mysql://localhost:3306/masajes?serverTimezone=Europe/Madrid", "root", "admin")) {
