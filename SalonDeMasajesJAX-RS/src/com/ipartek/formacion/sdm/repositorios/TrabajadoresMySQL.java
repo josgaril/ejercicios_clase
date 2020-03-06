@@ -124,13 +124,14 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de una insert");
 				}
+				return trabajador;
+
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error al crear la sentencia agregar al trabajador", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar", e);
 		}
-		return trabajador;
 	}
 
 	@Override
@@ -146,11 +147,12 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de un update");
 				}
+				return trabajador;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar el trabajador");
 		}
-		return trabajador;
 	}
 
 	@Override

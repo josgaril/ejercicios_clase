@@ -127,11 +127,12 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return sesion;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al agregar la sesión", e);
 		}
-		return sesion;
 
 	}
 
@@ -152,11 +153,12 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return sesion;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar la sesión", e);
 		}
-		return sesion;
 	}
 
 	@Override

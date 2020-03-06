@@ -122,11 +122,12 @@ public class ClientesMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return cliente;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al insertar el cliente", e);
 		}
-		return cliente;
 	}
 
 	@Override
@@ -144,11 +145,12 @@ public class ClientesMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
 				}
+				return cliente;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar el cliente", e);
 		}
-		return cliente;
 
 	}
 

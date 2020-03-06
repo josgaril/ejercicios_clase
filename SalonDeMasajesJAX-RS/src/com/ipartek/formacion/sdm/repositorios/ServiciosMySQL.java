@@ -118,11 +118,12 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return servicio;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al insertar el trabajador", e);
 		}
-		return servicio;
 	}
 
 	@Override
@@ -139,11 +140,12 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
 				}
+				return servicio;
+
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al modificar el servicio", e);
 		}
-		return servicio;
 
 	}
 
