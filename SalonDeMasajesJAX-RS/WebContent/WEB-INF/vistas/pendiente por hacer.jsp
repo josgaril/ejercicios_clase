@@ -8,12 +8,15 @@ Para que te lleve a administracion/trabajadores por ejemplo, tienes que guardar 
 en el filtro, se guarda en una variable de sesion y luego en el loginController le mandamos a esa variable
 
 POR HACER:
+------------------------------------------------------------------------------------------
 EJERCICIO PRIMERO DE LIBRO, en la biblioteca no tiene que ir la validacion del formato, tiene que ir 
 en el programa principal cuando se añade un libro
 EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
 CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
+------------------------------------------------------------------------------------------
 
+-Insomnia
 -- Configurar bien el acceso Login, que busque los datos en el PathConfiguration en vez de meterlo a mano.
 -- Controlar las excepciones cuando se repite un cliente o trabajador con el mismo DNI(que es unico...)--
 HACER LOGIN CON BD, Creando BD de usuarios con email y contraseña.

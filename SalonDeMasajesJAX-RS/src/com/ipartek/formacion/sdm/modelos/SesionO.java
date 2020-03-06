@@ -4,12 +4,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SesionO {
 
 	private Integer id;
 	private Cliente clienteO;
 	private Trabajador trabajadorO;
 	private Servicio servicioO;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date fecha;
 	private String resena;
 	private String calificacion;
@@ -18,6 +22,7 @@ public class SesionO {
 	private String errorId, errorClienteO, errorTrabajadorO, errorServicioO, errorFecha, errorResena, errorCalificacion;
 
 	// CONSTRUCTORES
+	
 	public SesionO(Integer id, Cliente clienteO, Trabajador trabajadorO, Servicio servicioO, Date fecha, String resena,
 			String calificacion) {
 		setId(id);
@@ -60,7 +65,8 @@ public class SesionO {
 	public Cliente getClienteO() {
 		return clienteO;
 	}
-
+	
+	@JsonProperty
 	public void setClienteO(Cliente clienteO) {
 		this.clienteO = clienteO;
 	}
@@ -69,6 +75,7 @@ public class SesionO {
 		return trabajadorO;
 	}
 
+	@JsonProperty
 	public void setTrabajadorO(Trabajador trabajadorO) {
 		this.trabajadorO = trabajadorO;
 	}
@@ -76,18 +83,24 @@ public class SesionO {
 	public Servicio getServicioO() {
 		return servicioO;
 	}
-
+	
+	@JsonProperty
 	public void setServicioO(Servicio servicioO) {
 		this.servicioO = servicioO;
 	}
-
+	
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	public Date getFecha() {
 		return fecha;
 	}
-
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	public void setFecha(Date fecha) {
 		if (fecha != null && fecha.after(new Date())) {
 			setErrorFecha("No puedes usar una fecha futura para la fecha de la sesión");
+		}
+		if(fecha==null) {
+			setErrorFecha("No puedes usar una fecha nula");
+
 		}
 		this.fecha = fecha;
 	}

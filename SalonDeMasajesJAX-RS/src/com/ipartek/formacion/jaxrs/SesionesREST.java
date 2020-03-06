@@ -27,12 +27,12 @@ public class SesionesREST {
 	public SesionO obtenerPorId(@PathParam("id") Integer id) {
 		return Globales.daoSesionO.obtenerPorId(id);
 	}
-	 //TODO ARREGLAR
+
 	@POST
 	public SesionO agregar(SesionO sesionO) {
 		return Globales.daoSesionO.agregar(sesionO);
 	}
-	 //TODO ARREGLAR
+
 	@PUT
 	@Path("/{id}")
 	public SesionO modificar(@PathParam("id") Integer id, SesionO sesionO) {
