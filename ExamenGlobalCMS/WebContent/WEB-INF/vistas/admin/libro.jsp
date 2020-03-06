@@ -25,7 +25,7 @@
 				<div class="col-sm-10">
 					<input
 						class="form-control ${primeravez ? '' : (libro.errorNombre == null ? 'is-valid' : 'is-invalid') }"
-						id="nombre" name="nombre" value="${libro.nombre}"
+						id="nombre" name="nombre" min="2" max="150" value="${libro.nombre}"
 						placeholder="Nombre del libro" required>
 					<div class="invalid-feedback">${libro.errorNombre}</div>
 				</div>

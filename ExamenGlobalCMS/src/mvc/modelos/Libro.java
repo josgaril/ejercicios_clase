@@ -2,7 +2,7 @@ package mvc.modelos;
 
 public class Libro {
 
-	private static final String REGEX_NOMBRE = "[\\d\\p{L} .]+";
+	private static final String REGEX_NOMBRE = "[\\d\\p{L}][\\d\\p{L} \\.]+";
 
 	private Long id;
 	private String nombre;

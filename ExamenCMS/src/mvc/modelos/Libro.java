@@ -2,7 +2,8 @@ package mvc.modelos;
 
 public class Libro {
 
-	private static final String REGEX_NOMBRE = "[\\d\\p{L} ]+";
+	private static final String REGEX_NOMBRE = "[\\d\\p{L}][\\d\\p{L} \\.]+";
+	
 
 	private Long id;
 	private String nombre;
@@ -40,8 +41,8 @@ public class Libro {
 	}
 
 	public void setNombre(String nombre) {
-		if (nombre == null || nombre.trim().length() < 2 || nombre.trim().length() > 150) {
-			setErrorNombre("Se necesitan como mínimo 2 letras y máximo 150");
+		if (nombre == null || nombre.trim().length() < 3 || nombre.trim().length() > 150) {
+			setErrorNombre("Se necesitan como mínimo 3 letras y máximo 150");
 		}
 
 		if (!nombre.matches(REGEX_NOMBRE)) {

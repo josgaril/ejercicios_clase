@@ -23,7 +23,7 @@
 				<div class="col-sm-10">
 					<input
 						class="form-control ${primeravez ? '' : (libro.errorNombre == null ? 'is-valid' : 'is-invalid') }"
-						id="nombre" name="nombre" value="${libro.nombre}" placeholder="Nombre del libro" required >
+						id="nombre" name="nombre" value="${libro.nombre}" min="3" max="150" placeholder="Nombre del libro" required >
 					<div class="invalid-feedback">${libro.errorNombre}</div>
 				</div>
 			</div>
