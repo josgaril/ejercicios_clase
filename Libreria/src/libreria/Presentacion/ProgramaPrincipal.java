@@ -139,11 +139,11 @@ public class ProgramaPrincipal {
 		System.out.print("�Desea agregar el nuevo libro?(S/N): ");
 		cadena = br.readLine();
 		respuesta = cadena.charAt(0);
-		if (respuesta == 'S' || respuesta == 's') {
-			dao.agregar(libro);
-			System.out.println("Se ha agregado el nuevo libro.");
+		if (respuesta == 'N' || respuesta == 'n') {
+			System.out.println("No se ha agregado el nuevo libro.");
 		} else {
-			System.out.println("No se ha agregado el nuevo libro");
+			dao.agregar(libro);
+			System.out.println("Se ha agregado el nuevo libro");
 		}
 	}
 

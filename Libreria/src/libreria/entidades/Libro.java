@@ -32,7 +32,7 @@ public class Libro implements Serializable {
 
 	}
 
-	public Libro() { // creamos el constructor vacío
+	public Libro() { // creamos el constructor vacÃ­o
 
 	}
 
@@ -42,7 +42,7 @@ public class Libro implements Serializable {
 
 	public void setId(Long id) {
 		if (id != null && id < 0) {
-			throw new EntidadesException("No están permitidos id's negativos");
+			throw new EntidadesException("No estÃ¡n permitidos id's negativos");
 		}
 
 		this.id = id;
@@ -53,11 +53,11 @@ public class Libro implements Serializable {
 	}
 
 	public void setTitulo(String titulo) {
-		if (titulo == null || titulo.trim().length() <= 3 || titulo.trim().length() >= 150) {
-			throw new EntidadesException("El título debe tener entre 3 y 150 caracteres");
+		if (titulo == null || titulo.trim().length() < 3 || titulo.trim().length() > 150) {
+			throw new EntidadesException("El tÃ­tulo debe tener entre 3 y 150 caracteres");
 		}
 		if (!titulo.matches(REGEX_TITULO)) {
-			throw new EntidadesException("El título sólo debe tener caracteres de letras, espacios y/o apóstrofes");
+			throw new EntidadesException("El tÃ­tulo sÃ³lo debe tener caracteres de letras, espacios y/o apÃ³strofes");
 		}
 		this.titulo = titulo;
 	}
@@ -68,10 +68,10 @@ public class Libro implements Serializable {
 
 	public void setIsbn(String isbn) {
 		if (isbn == null || isbn.trim().length() == 0) {
-			throw new EntidadesException("El ISBN no puede estar vacío");
+			throw new EntidadesException("El ISBN no puede estar vacÃ­o");
 		}
 		if (!isbn.matches(REGEX_ISBN)) {
-			throw new EntidadesException("El ISBN tiene que estar formado por 10 números");
+			throw new EntidadesException("El ISBN tiene que estar formado por 10 nÃºmeros");
 		}
 		this.isbn = isbn;
 	}
@@ -82,7 +82,7 @@ public class Libro implements Serializable {
 
 	public void setPaginas(int paginas) {
 		if (paginas < 1) {
-			throw new EntidadesException("El número de páginas mínimo de un libro es 1");
+			throw new EntidadesException("El nÃºmero de pÃ¡ginas mÃ­nimo de un libro es 1");
 		}
 		this.paginas = paginas;
 	}
@@ -99,9 +99,18 @@ public class Libro implements Serializable {
 		if (!formato.matches(REGEX_FORMATO)) {
 			throw new EntidadesException("El formato solo pueden ser caracteres");			
 		}
-		if(!Biblioteca.formatoValido(formato)) {
+		
+		if (formato.equals("Digital") || formato.equals("Papel") || formato.equals("digital")
+				|| formato.equals("papel")) {
+			this.formato = formato;
+		} else {
 			throw new EntidadesException("El formato solo puede ser Digital o Papel");
 		}
+		
+		/*
+		 * if(!Biblioteca.formatoValido(formato)) { throw new
+		 * EntidadesException("El formato solo puede ser Digital o Papel"); }
+		 */
 		this.formato = formato;
 	}
 

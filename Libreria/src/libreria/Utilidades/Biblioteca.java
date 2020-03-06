@@ -18,7 +18,7 @@ public class Biblioteca {
 				i = Integer.parseInt(s.nextLine());
 			} catch (NumberFormatException e) {
 				correcto = false;
-				System.out.println("El dato introducido no es un número entero");
+				System.out.println("El dato introducido no es un nï¿½mero entero");
 			}
 		} while (!correcto);
 
@@ -30,15 +30,12 @@ public class Biblioteca {
 		return s.nextLine();
 	}
 
-	public static boolean formatoValido(String formato) {
-		boolean valor = true;
-		if (formato.equals("Digital") || formato.equals("Papel") || formato.equals("digital")
-				|| formato.equals("papel")) {
-			valor = true;
-		} else {
-
-			valor = false;
-		}
-		return valor;
-	}
+	/*
+	 * public static boolean formatoValido(String formato) { boolean valor = true;
+	 * if (formato.equals("Digital") || formato.equals("Papel") ||
+	 * formato.equals("digital") || formato.equals("papel")) { valor = true; } else
+	 * {
+	 * 
+	 * valor = false; } return valor; }
+	 */
 }
