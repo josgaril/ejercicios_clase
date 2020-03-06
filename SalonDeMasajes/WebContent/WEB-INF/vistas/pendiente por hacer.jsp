@@ -15,7 +15,11 @@ EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
 CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
 - Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
 ------------------------------------------------------------------------------------------
-·Comprobar en salon de masajes(ambas), que los metodos hacer el return dentro del try
+· Validaciones en todos los REST de JAX_RS
+·Comprobar en salon de masajes(ambas), que los metodos hacer el return dentro del try, meter 
+	los PreparedStatement y ResultSet con trycatch, no solo el connection. 
+·Si todo va bien, en salon de masajes BUENA cambiar en el DAO los metodos Agregar y Modificar 
+	para que devuelvan objeto (T) en vez de void.
 -Insomnia
 · Corregir lo de la fecha, para que formatee y en vez de T ponga un espacio
 · Mirar que te devuelva el id tambien al devolver el objeto creado

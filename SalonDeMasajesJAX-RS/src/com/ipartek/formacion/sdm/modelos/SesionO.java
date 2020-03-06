@@ -13,7 +13,7 @@ public class SesionO {
 	private Cliente clienteO;
 	private Trabajador trabajadorO;
 	private Servicio servicioO;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm", timezone="Europe/Madrid")
 	private Date fecha;
 	private String resena;
 	private String calificacion;
