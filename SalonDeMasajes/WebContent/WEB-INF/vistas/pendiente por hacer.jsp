@@ -9,11 +9,8 @@ en el filtro, se guarda en una variable de sesion y luego en el loginController 
 
 POR HACER:
 ------------------------------------------------------------------------------------------
-EJERCICIO PRIMERO DE LIBRO, en la biblioteca no tiene que ir la validacion del formato, tiene que ir 
-en el programa principal cuando se añade un libro
-EL NUMERO DE LETRAS DEL NOMBRE DEL LIBRO..
-CONTROLAR CUANDO METES S/N AL AGREGAR EL LIBRO.
-- Validaciones de libro CMS cuando metes un "". Probar tooooodas las validaciones
+EJERCICIO PRIMERO DE LIBRO:
+- Hacer metodo guardar y metodo cargar
 ------------------------------------------------------------------------------------------
 · Validaciones en todos los REST de JAX_RS
 ·Comprobar en salon de masajes(ambas), que los metodos hacer el return dentro del try, meter 
