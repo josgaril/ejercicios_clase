@@ -30,7 +30,15 @@ public class TrabjadorModificarController extends HttpServlet {
 		String dni = request.getParameter("dni");
 		
 		Trabajador trabajador = new Trabajador(Integer.parseInt(idtrabajadores), nombre, apellidos, dni);
-
+		
+		Trabajador trabajadorExistente = Globales.daoTrabajador.obtenerPorId(Integer.parseInt(idtrabajadores));
+		Iterable<Trabajador> trabajadores = Globales.daoTrabajador.obtenerTodos();
+		for (Trabajador trabajadorX: trabajadores) {	
+			if (trabajador.getDni().equals(trabajadorX.getDni()) && !trabajadorExistente.getDni().equals(trabajador.getDni())) {
+				trabajador.setErrorDni("El DNI corresponde a otro trabajador");
+				trabajador.setCorrecto(false);
+			}
+		}
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);

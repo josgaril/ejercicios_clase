@@ -34,7 +34,15 @@ public class ClienteCrearController extends HttpServlet {
 		Mensaje mensaje;
 
 		request.setAttribute("primeravez", false);
-
+		
+		Iterable<Cliente> clientes = Globales.daoCliente.obtenerTodos();
+		for (Cliente clienteX: clientes) {
+			if (cliente.getDni().equals(clienteX.getDni())){
+				cliente.setErrorDni("El DNI corresponde a otro cliente");
+				cliente.setCorrecto(false);
+			}
+		}
+		
 		if (cliente.isCorrecto()) {
 
 			Globales.daoCliente.agregar(cliente);

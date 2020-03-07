@@ -34,6 +34,14 @@ public class TrabajadorCrearController extends HttpServlet {
 
 		request.setAttribute("primeravez", false);
 		
+		 Iterable<Trabajador> trabajadoresTodos = Globales.daoTrabajador.obtenerTodos();
+		 for (Trabajador trabajadorX: trabajadoresTodos) {
+			 if(trabajador.getDni().equals(trabajadorX.getDni())) {
+				 trabajador.setErrorDni("El DNI corresponde a otro trabajador.");
+				 trabajador.setCorrecto(false);
+			 }
+		 }
+		
 		if (trabajador.isCorrecto()) {
 			Globales.daoTrabajador.agregar(trabajador);
 

@@ -35,6 +35,15 @@ public class ClienteModificarController extends HttpServlet {
 
 		request.setAttribute("primeravez", false);
 
+		Iterable<Cliente> clientesTodos = Globales.daoCliente.obtenerTodos();
+		Cliente clienteExistente = Globales.daoCliente.obtenerPorId(Integer.parseInt(idclientes));
+		for (Cliente clienteX: clientesTodos){
+			if (cliente.getDni().equals(clienteX.getDni()) && !cliente.getDni().equals(clienteExistente.getDni())) {
+				cliente.setErrorDni("El DNI corresponde a otro cliente");
+				cliente.setCorrecto(false);
+			}
+		}
+		
 		if (cliente.isCorrecto()) {
 			Globales.daoCliente.modificar(cliente);
 

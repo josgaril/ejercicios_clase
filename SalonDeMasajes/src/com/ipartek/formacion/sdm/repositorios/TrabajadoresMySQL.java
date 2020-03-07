@@ -16,7 +16,7 @@ import com.ipartek.formacion.sdm.modelos.Trabajador;
 public class TrabajadoresMySQL implements Dao<Trabajador> {
 	private static final String SQL_GET_ALL = "SELECT * FROM trabajadores";
 	private static final String SQL_GET_BY_ID = "SELECT * FROM trabajadores WHERE idtrabajadores=?";
-	
+
 	private static final String SQL_INSERT = "INSERT INTO trabajadores (nombre, apellidos, dni) VALUES (?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE trabajadores set nombre=?, apellidos=?, dni=? WHERE idtrabajadores=?";
 	private static final String SQL_DELETE = "DELETE FROM trabajadores WHERE idtrabajadores=?";
@@ -80,10 +80,14 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 								rs.getString("apellidos"), rs.getString("dni")));
 					}
 					return trabajadores;
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de trabajadores", e);
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener todos los trabajadores", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los trabajadores", e);
+			throw new AccesoDatosException("Error al conectar para obtener todos los trabajadores", e);
 		}
 	}
 
@@ -101,18 +105,21 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 					} else {
 						return null;
 					}
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de trabajadores", e);
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener trabajador con id: " + idtrabajadores, e);
 			}
-		} catch (Exception e) {
-			throw new AccesoDatosException("Error al obtener el trabajador: " + idtrabajadores, e);
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al conectar para Obtener el trabajador con id: " +idtrabajadores, e);
 		}
 	}
 
 	@Override
 	public void agregar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con
-					.prepareStatement(SQL_INSERT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
 				ps.setString(3, trabajador.getDni());
@@ -121,17 +128,19 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de una insert");
 				}
+
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Agregar trabajador", e);
 			}
-		} catch (Exception e) {
-			throw new AccesoDatosException("Error al agregar el trabajador", e);
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al conectar para agregar trabajador", e);
 		}
 	}
 
 	@Override
 	public void modificar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con
-					.prepareStatement(SQL_UPDATE)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
 				ps.setString(3, trabajador.getDni());
@@ -141,9 +150,11 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de un update");
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Modificar trabajador", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el trabajador");
+			throw new AccesoDatosException("Error al conectar para modificar trabajador", e);
 		}
 	}
 
@@ -158,9 +169,11 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Borrar trabajador con id: " + idtrabajadores, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar el trabajador", e);
+			throw new AccesoDatosException("Error al conectar para borrar el trabajador con id: " + idtrabajadores, e);
 		}
 	}
 }
