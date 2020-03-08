@@ -74,16 +74,7 @@ public class TrabajadoresApi extends HttpServlet {
 		Trabajador trabajadorJson = gson.fromJson(json, Trabajador.class);
 
 		// Validaciones
-		// TODO DNI CONTROLADO, FALTA UBICAR CODIGO PARA QUE CONTROLE TOdO a la vez
-		/*
-		 * Iterable<Trabajador> todosLosTrabajadores =
-		 * Globales.daoTrabajador.obtenerTodos(); for (Trabajador persona :
-		 * todosLosTrabajadores) { if (persona.getDni().equals(trabajadorJson.getDni()))
-		 * { response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		 * response.getWriter().write("El DNI está duplicado"); return; } }
-		 */
-		if (validacionesTrabajador(trabajadorJson, response,id)) {
-			// Agrega el cliente
+		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.agregar(trabajadorJson);
 		} else {
 			return;
@@ -114,15 +105,8 @@ public class TrabajadoresApi extends HttpServlet {
 			return;
 		}
 
-		if (id != trabajadorJson.getIdtrabajadores()) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			response.getWriter().write(
-					"Id de trabajador no encontrado o no coincide con el que se quiere modificar. No se ha podido modificar");
-
-			return;
-		}
-
-		if (validacionesTrabajador(trabajadorJson, response,id)) {
+		// Validaciones
+		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.modificar(trabajadorJson);
 		} else {
 			return;
@@ -160,10 +144,11 @@ public class TrabajadoresApi extends HttpServlet {
 		}
 	}
 
-	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response, Integer id) throws IOException {
+	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response, Integer id)
+			throws IOException {
 		boolean correcto = true;
-		
-		if (trabajadorJson.getNombre() == null || trabajadorJson.getNombre().length() < 1
+		boolean idExiste = false;
+		if (trabajadorJson.getNombre() == null || trabajadorJson.getNombre().trim().length() < 1
 				|| trabajadorJson.getNombre().length() > 45) {
 			response.getWriter().write("Nombre del trabajador obligatorio.Entre 1 y 45 caracteres.  \n");
 			correcto = false;
@@ -173,7 +158,7 @@ public class TrabajadoresApi extends HttpServlet {
 			correcto = false;
 		}
 
-		if (trabajadorJson.getApellidos() == null || trabajadorJson.getApellidos().length() < 1
+		if (trabajadorJson.getApellidos() == null || trabajadorJson.getApellidos().trim().length() < 1
 				|| trabajadorJson.getApellidos().length() > 90) {
 			response.getWriter().write("Apellido/s del trabajador obligatorio.Entre 1 y 90 caracteres. \n");
 			correcto = false;
@@ -183,7 +168,7 @@ public class TrabajadoresApi extends HttpServlet {
 			correcto = false;
 		}
 
-		if (trabajadorJson.getDni() == null || trabajadorJson.getDni().length() < 1) {
+		if (trabajadorJson.getDni() == null || trabajadorJson.getDni().trim().length() < 1) {
 			response.getWriter().write("DNI obligatorio. \n");
 			correcto = false;
 		} else if (trabajadorJson.getDni() != null && !trabajadorJson.getDni().matches(REGEX_DNI)) {
@@ -192,13 +177,14 @@ public class TrabajadoresApi extends HttpServlet {
 		}
 
 		if (id == null) {
-			//Si estamos agregando un trabajador(no pasamos id), comprobamos que el dni del nuevo trabajador no esté duplicado
+			// Si estamos agregando un trabajador(no pasamos id), comprobamos que el dni del
+			// nuevo trabajador no esté duplicado
 			Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
 			for (Trabajador persona : todosLosTrabajadores) {
 				if (persona.getDni().equals(trabajadorJson.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					response.getWriter().write("El DNI del trabajador a agregar está duplicado");
-					correcto=false;
+					correcto = false;
 				}
 			}
 		} else {
@@ -206,13 +192,41 @@ public class TrabajadoresApi extends HttpServlet {
 			 * En caso de estar modificando un trabajador(ya disponemos de su id),
 			 * comprobamos que el dni del nuevo trabajador no esté duplicado
 			 */
-			Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
-			Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
-			for (Trabajador persona : todosLosTrabajadores) {
-				if (persona.getDni().equals(trabajadorJson.getDni())
-						&& !trabajadorJson.getDni().equals(trabajador.getDni())) {
+			if (id != trabajadorJson.getIdtrabajadores()) {
+				
+				/* Prueba controlar validacion si el id no existe en validaciones
+				 * Iterable<Trabajador> todosLosTrabajadores =
+				 * Globales.daoTrabajador.obtenerTodos(); for (Trabajador persona :
+				 * todosLosTrabajadores) { if
+				 * (persona.getIdtrabajadores().equals(trabajadorJson.getIdtrabajadores())) {
+				 * response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				 * response.getWriter().write(
+				 * "Id de trabajador no encontradoe o no coincide con el que se quiere modificar. No se ha podido modificar"
+				 * ); correcto = false; } }
+				 */
+
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.getWriter().write(
+						"Id de trabajador no coincide con el que se quiere modificar. No se ha podido modificar");
+				correcto = false;
+
+			} else {
+				Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+				Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
+				for (Trabajador persona : todosLosTrabajadores) {
+					if (trabajadorJson.getIdtrabajadores() == persona.getIdtrabajadores()) {
+						idExiste = true;
+						if (persona.getDni().equals(trabajadorJson.getDni())
+								&& !trabajadorJson.getDni().equals(trabajador.getDni())) {
+							response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+							response.getWriter().write("El DNI del trabajador a modificar está duplicado");
+							correcto = false;
+						}
+					}
+				}
+				if (idExiste==false) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					response.getWriter().write("El DNI del trabajador a modificar está duplicado");
+					response.getWriter().write("Id de trabajador no existe");
 					correcto = false;
 				}
 			}

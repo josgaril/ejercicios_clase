@@ -22,16 +22,11 @@ public class ClientesApi extends HttpServlet {
 	private static final String URL_ID_VALIDA = "^/\\d+$";
 
 	private static final String REGEX_NOMBRE = "(\\p{L}+)[([ ])(\\p{L})]+";
-//	private static final String REGEX_NOMBRE = "[\\p{L} ]+";
 	private static final String REGEX_APELLIDOS = "(\\p{L}+)[([ '])(\\p{L})]+";
-//	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
-
-	// (\\p{L}+)(([ ])(\\p{L}+))? "(\\p{L}+)[([ '])(\\p{L}+)]+"
 
 	// Creamos el objeto gson
 	private static Gson gson = new Gson();
-	// private static boolean validacion = true;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -48,9 +43,10 @@ public class ClientesApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
+
 		// Si el id es null, escribe todos los clientes, convertidos a Json y acabamos
 		if (id == null) {
-			out.write(gson.toJson(Globales.daoCliente.obtenerTodos()));		
+			out.write(gson.toJson(Globales.daoCliente.obtenerTodos()));
 			return;
 		}
 		// En caso de pasar el id de un cliente, obtenemos ese cliente
@@ -59,6 +55,8 @@ public class ClientesApi extends HttpServlet {
 		// Si el cliente es null, error No encontrado.
 		if (cliente == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de cliente no encontrado.");
+
 		} else {
 			// si lo encuentra, lo escribe.
 			out.write(gson.toJson(cliente));
@@ -69,30 +67,30 @@ public class ClientesApi extends HttpServlet {
 			throws ServletException, IOException {
 		// Comprobamos que no se le haya pasado ningún id, sino lanzamos excepción, la
 		// cual nos indica que la solicitud es incorrecta
+		Integer id = extraerId(request);
 		try {
-			if (extraerId(request) != null) {
+			if (id != null) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error.No se debe pasar un ID para agregar un cliente");
 			return;
 		}
 		// Declaramos la variable json, que guardará el texto escrito.
 		String json = extraerJSON(request);
 		// Creamos un cliente al que le pasamos el texto escrito en json
-		Cliente cliente = gson.fromJson(json, Cliente.class);
+		Cliente clienteJson = gson.fromJson(json, Cliente.class);
 
 		// Validaciones
-		// validacion = validacionesCliente(cliente, response);
-		if (validacionesCliente(cliente, response)) {
-			// Agrega el cliente
-			Globales.daoCliente.agregar(cliente);
+		if (validacionesCliente(clienteJson, response, id)) {
+			// Si la validacion es correcta, se agrega el cliente
+			Globales.daoCliente.agregar(clienteJson);
 		} else {
 			return;
 		}
-
 		// Muestra en pantalla el cliente añadido
-		response.getWriter().write(gson.toJson(cliente));
+		response.getWriter().write(gson.toJson(clienteJson));
 		// El cliente se ha creado correctamente y muestra el código 201
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
@@ -102,10 +100,13 @@ public class ClientesApi extends HttpServlet {
 			throws ServletException, IOException {
 		// Declaramos la variable json en la que guardamos el texto escrito
 		String json = extraerJSON(request);
+		
 		// Guarda en cliente el texto escrito en Json, que es de la clase Cliente
-		Cliente cliente = gson.fromJson(json, Cliente.class);
+		Cliente clienteJson = gson.fromJson(json, Cliente.class);
+		
 		// Declaramos la variable id
 		Integer id = null;
+		
 		// Extraemos el id, o el valor null si no tiene y nos da una excepcion
 		// indicando respuesta incorrecta.
 		try {
@@ -116,25 +117,43 @@ public class ClientesApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error.Se debe pasar el id del cliente a modificar.");
+
 			return;
 		}
-		// Si el id no corresponde con el del cliente dará error y sadlrá.
-		if (id != cliente.getIdclientes()) {
+		// Si el id no corresponde con el del cliente dará error y saldrá.
+		if (id != clienteJson.getIdclientes()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write(
+					"Id de cliente no coincide con el que se quiere modificar. No se ha podido modificar");
 			return;
 		}
 
+		//PRUEBA cliente que no existe
+		boolean existe=false;
+		Iterable<Cliente> clientestodos = Globales.daoCliente.obtenerTodos();
+		for (Cliente clienteX: clientestodos) {
+			if (clienteX.getIdclientes()==clienteJson.getIdclientes()) {
+				existe=true;
+			}
+		}
+		if (existe==false) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write(
+					"Id de cliente no encontrado. \n");
+			return;
+		}
+		//FIN PRUEBA
 		// Validaciones
-		// validacion = validacionesCliente(cliente, response);
-		if (validacionesCliente(cliente, response)) {
+		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
-			Globales.daoCliente.modificar(cliente);
+			Globales.daoCliente.modificar(clienteJson);
 		} else {
 			return;
 		}
 
 		// Muestra el cliente añadido
-		response.getWriter().write(gson.toJson(cliente));
+		response.getWriter().write(gson.toJson(clienteJson));
 
 	}
 
@@ -153,14 +172,83 @@ public class ClientesApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Debe introducir el id de un cliente existente para eliminarlo");
 			return;
 		}
-		// Borra el cliente
-		Globales.daoCliente.borrar(id);
-		// Muestra el mensaje de que el cliente se ha eliminado
-		response.getWriter().write("Cliente eliminado");
+
+		Cliente clienteABorrar = Globales.daoCliente.obtenerPorId(id);
+		if (clienteABorrar == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de cliente no encontrado. No se ha podido borrar");
+		} else {
+			// Borra el cliente
+			Globales.daoCliente.borrar(id);
+			// Muestra el mensaje de que el cliente se ha eliminado
+			response.getWriter().write("Cliente eliminado");
+		}
 	}
 
+	private boolean validacionesCliente(Cliente clienteJson, HttpServletResponse response, Integer id) throws IOException {
+		boolean correcto = true;
+		
+		if (clienteJson.getNombre() == null && clienteJson.getNombre().trim().length() < 1
+				|| clienteJson.getNombre().length() > 45) {
+			response.getWriter().write("El nombre del cliente debe tener entre 1 y 45 caracteres.\n");
+			correcto = false;
+		} else if (clienteJson.getNombre() != null && !clienteJson.getNombre().matches(REGEX_NOMBRE)) {
+			response.getWriter()
+					.write("Solo se admiten nombres con caracteres de letras y espacios en nombres compuestos. \n");
+			correcto = false;
+		}
+
+		if (clienteJson.getApellidos() == null || clienteJson.getApellidos().trim().length() < 1
+				|| clienteJson.getApellidos().length() > 90) {
+			response.getWriter().write("Apellido/s del cliente obligatorio.Entre 1 y 90 caracteres. \n");
+			correcto = false;
+		} else if (clienteJson.getApellidos() != null && !clienteJson.getApellidos().matches(REGEX_APELLIDOS)) {
+			response.getWriter().write(
+					"Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos.\n");
+			correcto = false;
+		}
+
+		if (clienteJson.getDni() == null || clienteJson.getDni().trim().length() < 1) {
+			response.getWriter().write("DNI obligatorio. \n");
+			correcto = false;
+		} else if (clienteJson.getDni() != null && !clienteJson.getDni().matches(REGEX_DNI)) {
+			response.getWriter().write("Formato de DNI incorrecto. \n");
+			correcto = false;
+		}
+		
+		//Si estamos agregando un cliente(no pasamos id), comprobamos que el dni del nuevo cliente no esté duplicado
+		if (id == null) {
+			Iterable<Cliente> todosLosClientes= Globales.daoCliente.obtenerTodos();
+			for (Cliente persona : todosLosClientes) {
+				if (persona.getDni().equals(clienteJson.getDni())) {
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					response.getWriter().write("El DNI del trabajador a agregar está duplicado");
+					correcto=false;
+				}
+			}
+		} else {
+			/*
+			 * En caso de estar modificando un cliente(ya disponemos de su id),
+			 * comprobamos que el dni del nuevo cliente no esté duplicado
+			 */
+			Iterable<Cliente> todosLosClientes= Globales.daoCliente.obtenerTodos();
+			Cliente cliente = Globales.daoCliente.obtenerPorId(id);
+			for (Cliente persona : todosLosClientes) {
+				if (persona.getDni().equals(clienteJson.getDni())
+						&& !clienteJson.getDni().equals(cliente.getDni())) {
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					response.getWriter().write("El DNI del trabajador a modificar está duplicado");
+					correcto = false;
+				}
+			}
+		}
+		
+		return correcto;
+	}
+	
 	private static String extraerJSON(HttpServletRequest request) throws IOException {
 		// Leemos la cadena de texto pasado
 		BufferedReader br = request.getReader();
@@ -175,42 +263,7 @@ public class ClientesApi extends HttpServlet {
 		return sb.toString();
 	}
 
-	private boolean validacionesCliente(Cliente cliente, HttpServletResponse response) throws IOException {
-		boolean correcto = true;
-		if (cliente.getNombre() == null) {
-			response.getWriter().write("Nombre del cliente obligatorio.  \n");
-			correcto = false;
-		}else if (cliente.getNombre() != null && cliente.getNombre().length() < 1 || cliente.getNombre().length() > 45){
-			response.getWriter().write(
-					"El nombre debe tener entre 1 y 45 caracteres.\n");
-			correcto = false;
-		} else if (cliente.getNombre() != null && !cliente.getNombre().matches(REGEX_NOMBRE)) {
-			response.getWriter().write(
-					"Solo se admiten nombres con caracteres de letras y espacios en nombres compuestos. \n");
-			correcto = false;
-		}
-
-		if (cliente.getApellidos() == null || cliente.getApellidos().length() < 1
-				|| cliente.getApellidos().length() > 90) {
-			response.getWriter().write("Apellido/s del cliente obligatorio.  \n");
-			correcto = false;
-		} else if (cliente.getApellidos() != null && !cliente.getApellidos().matches(REGEX_APELLIDOS)) {
-			response.getWriter().write(
-					"Solo se admiten apellidos con caracteres de letras, apóstrofe y espacios entre apellidos.Entre 1 y 90 caracteres.\n");
-			correcto = false;
-		}
-
-		//TODO CONTROLAR ERROR SI SE METE UN DNI DUPLICADO
-
-		if (cliente.getDni() == null || cliente.getDni().length() < 1) {
-			response.getWriter().write("DNI obligatorio. \n");
-			correcto = false;
-		} else if (cliente.getDni() != null && !cliente.getDni().matches(REGEX_DNI)) {
-			response.getWriter().write("Formato de DNI incorrecto. \n");
-			correcto = false;
-		}
-		return correcto;
-	}
+	
 
 	private static Integer extraerId(HttpServletRequest request) {
 		// declaramos path para guardar la url
