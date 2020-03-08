@@ -60,7 +60,7 @@ public class TrabajadoresApi extends HttpServlet {
 			throws ServletException, IOException {
 		Integer id = extraerId(request);
 		try {
-			if (id!= null) {
+			if (id != null) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
@@ -75,15 +75,14 @@ public class TrabajadoresApi extends HttpServlet {
 
 		// Validaciones
 		// TODO DNI CONTROLADO, FALTA UBICAR CODIGO PARA QUE CONTROLE TOdO a la vez
-		Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
-		for (Trabajador persona : todosLosTrabajadores) {
-			if (persona.getDni().equals(trabajadorJson.getDni())) {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				response.getWriter().write("El DNI está duplicado");
-				return;
-			}
-		}
-		if (validacionesTrabajador(trabajadorJson, response)) {
+		/*
+		 * Iterable<Trabajador> todosLosTrabajadores =
+		 * Globales.daoTrabajador.obtenerTodos(); for (Trabajador persona :
+		 * todosLosTrabajadores) { if (persona.getDni().equals(trabajadorJson.getDni()))
+		 * { response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		 * response.getWriter().write("El DNI está duplicado"); return; } }
+		 */
+		if (validacionesTrabajador(trabajadorJson, response,id)) {
 			// Agrega el cliente
 			Globales.daoTrabajador.agregar(trabajadorJson);
 		} else {
@@ -122,18 +121,8 @@ public class TrabajadoresApi extends HttpServlet {
 
 			return;
 		}
-		// TODO DNI CONTROLADO, FALTA UBICAR CODIGO PARA QUE CONTROLE TOdO a la vez
-		Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
-		Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
-		for (Trabajador persona : todosLosTrabajadores) {
-			if (persona.getDni().equals(trabajadorJson.getDni()) && !trabajadorJson.getDni().equals(trabajador.getDni())) {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				response.getWriter().write("El DNI está duplicado");
-				return;
-			}
-		}
-		
-		if (validacionesTrabajador(trabajadorJson, response)) {
+
+		if (validacionesTrabajador(trabajadorJson, response,id)) {
 			Globales.daoTrabajador.modificar(trabajadorJson);
 		} else {
 			return;
@@ -160,7 +149,6 @@ public class TrabajadoresApi extends HttpServlet {
 			return;
 		}
 
-		// TODO Comprobar validacion del dni si es null o no existe al borrar
 		Trabajador trabajadorABorrar = Globales.daoTrabajador.obtenerPorId(id);
 
 		if (trabajadorABorrar == null) {
@@ -172,8 +160,9 @@ public class TrabajadoresApi extends HttpServlet {
 		}
 	}
 
-	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response) throws IOException {
+	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response, Integer id) throws IOException {
 		boolean correcto = true;
+		
 		if (trabajadorJson.getNombre() == null || trabajadorJson.getNombre().length() < 1
 				|| trabajadorJson.getNombre().length() > 45) {
 			response.getWriter().write("Nombre del trabajador obligatorio.Entre 1 y 45 caracteres.  \n");
@@ -201,7 +190,34 @@ public class TrabajadoresApi extends HttpServlet {
 			response.getWriter().write("Formato de DNI incorrecto. \n");
 			correcto = false;
 		}
-	
+
+		if (id == null) {
+			//Si estamos agregando un trabajador(no pasamos id), comprobamos que el dni del nuevo trabajador no esté duplicado
+			Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+			for (Trabajador persona : todosLosTrabajadores) {
+				if (persona.getDni().equals(trabajadorJson.getDni())) {
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					response.getWriter().write("El DNI del trabajador a agregar está duplicado");
+					correcto=false;
+				}
+			}
+		} else {
+			/*
+			 * En caso de estar modificando un trabajador(ya disponemos de su id),
+			 * comprobamos que el dni del nuevo trabajador no esté duplicado
+			 */
+			Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+			Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
+			for (Trabajador persona : todosLosTrabajadores) {
+				if (persona.getDni().equals(trabajadorJson.getDni())
+						&& !trabajadorJson.getDni().equals(trabajador.getDni())) {
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					response.getWriter().write("El DNI del trabajador a modificar está duplicado");
+					correcto = false;
+				}
+			}
+		}
+
 		return correcto;
 
 	}
