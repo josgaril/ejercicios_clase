@@ -93,10 +93,13 @@ public class Sesion {
 	}
 
 	public void setFecha(Date fecha) {
+		//Activada opción de no dejar meter fecha futura si la aplicación es de historial de sesiones
 		if (fecha != null && fecha.after(new Date())) {
-			setErrorFecha("No puedes usar una fecha futura para la fecha del servicio");
+			setErrorFecha("No puedes usar una fecha futura para la fecha de la sesión");
 		}
-
+		if(fecha==null) {
+			setErrorFecha("No puedes usar una fecha nula");
+		}
 		this.fecha = fecha;
 	}
 
