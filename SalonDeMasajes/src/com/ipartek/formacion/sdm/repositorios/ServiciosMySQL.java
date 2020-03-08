@@ -114,7 +114,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void agregar(Servicio servicio) {
+	public Servicio agregar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_INSERT)) {
@@ -126,6 +126,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return servicio;
 			}catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar servicio", e);
 			}
@@ -135,7 +136,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public void modificar(Servicio servicio) {
+	public Servicio modificar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_UPDATE)) {
@@ -148,6 +149,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
 				}
+				return servicio;
 			}catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Modificar servicio", e);
 			}

@@ -20,21 +20,17 @@ import com.ipartek.formacion.sdm.modelos.Trabajador;
 
 public class SesionesOMySQL implements Dao<SesionO> {
 
-	private static final String SQL_GET_ALL= "SELECT *\r\n" + 
-			"FROM sesiones sesion\r\n" + 
-			"INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
-			"INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
-			"INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n"+ 
-			"ORDER BY sesion.id" ;
-	
-	private static final String SQL_GET_BY_ID = "	SELECT *\r\n" + 
-			"			FROM sesiones sesion\r\n" + 
-			"			INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n" + 
-			"			INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n" + 
-			"			INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n" + 
-			"            WHERE sesion.id = ?\r\n" + 
-			"            ORDER BY sesion.id;";
-	//"SELECT * FROM sesiones WHERE id=?";
+	private static final String SQL_GET_ALL = "SELECT *\r\n" + "FROM sesiones sesion\r\n"
+			+ "INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n"
+			+ "INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n"
+			+ "INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n" + "ORDER BY sesion.id";
+
+	private static final String SQL_GET_BY_ID = "	SELECT *\r\n" + "			FROM sesiones sesion\r\n"
+			+ "			INNER JOIN clientes c ON sesion.clientes_idclientes=c.idclientes\r\n"
+			+ "			INNER JOIN trabajadores t ON sesion.trabajadores_idtrabajadores=t.idtrabajadores\r\n"
+			+ "			INNER JOIN servicios s ON sesion.servicios_idservicios=s.idservicios\r\n"
+			+ "            WHERE sesion.id = ?\r\n" + "            ORDER BY sesion.id;";
+	// "SELECT * FROM sesiones WHERE id=?";
 
 	private static final String SQL_INSERT = "INSERT INTO sesiones (clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, fecha, resena,calificacion) VALUES (?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE sesiones set clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, fecha=?, resena=?, calificacion=? WHERE id=?";
@@ -42,11 +38,9 @@ public class SesionesOMySQL implements Dao<SesionO> {
 
 	private static String url, usuario, password;
 
-	
-
 	// SINGLETON
 	private static SesionesOMySQL instancia;
-	
+
 	private SesionesOMySQL(String url, String usuario, String password) {
 		SesionesOMySQL.url = url;
 		SesionesOMySQL.usuario = usuario;
@@ -79,8 +73,6 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 	// FIN SINGLETON
 
-	
-	
 	private Connection getConnexion() throws SQLException {
 		try {
 			return DriverManager.getConnection(url, usuario, password);
@@ -99,23 +91,27 @@ public class SesionesOMySQL implements Dao<SesionO> {
 					Trabajador trabajador;
 					Servicio servicio;
 					SesionO sesionO;
-									
+
 					while (rs.next()) {
-						//Crear ArrayList aqui si usamos Statement en vez de PreparedStatement
-						//usamos el constructor general, con tipos integer, string y fechas...
-						
-						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
-						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
-						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
-						sesionO=(new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));						 
-						
+						// Crear ArrayList aqui si usamos Statement en vez de PreparedStatement
+						// usamos el constructor general, con tipos integer, string y fechas...
+
+						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"),
+								rs.getString("c.apellidos"), rs.getString("c.dni"));
+						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"),
+								rs.getString("t.apellidos"), rs.getString("t.dni"));
+						servicio = new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"),
+								rs.getBigDecimal("s.precio"));
+						sesionO = (new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),
+								rs.getString("resena"), rs.getString("calificacion")));
+
 						sesionesO.add(sesionO);
 					}
 					return sesionesO;
-				}catch (SQLException e) {
+				} catch (SQLException e) {
 					throw new AccesoDatosException("Error al acceder a los registros de sesiones", e);
 				}
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Obtener todas las sesiones", e);
 			}
 		} catch (SQLException e) {
@@ -133,22 +129,26 @@ public class SesionesOMySQL implements Dao<SesionO> {
 					Cliente cliente;
 					Trabajador trabajador;
 					Servicio servicio;
-					SesionO sesionO=null;
-					
+					SesionO sesionO = null;
+
 					if (rs.next()) {
-						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
-						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
-						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
-						sesionO = new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),rs.getString("resena"), rs.getString("calificacion"));
-						
-						return sesionO;				
+						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"),
+								rs.getString("c.apellidos"), rs.getString("c.dni"));
+						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"),
+								rs.getString("t.apellidos"), rs.getString("t.dni"));
+						servicio = new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"),
+								rs.getBigDecimal("s.precio"));
+						sesionO = new SesionO(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),
+								rs.getString("resena"), rs.getString("calificacion"));
+
+						return sesionO;
 					} else {
 						return null;
 					}
-				}catch (SQLException e) {
+				} catch (SQLException e) {
 					throw new AccesoDatosException("Error al acceder a los registros de sesiones ");
 				}
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Obtener sesion con id: " + id, e);
 			}
 		} catch (SQLException e) {
@@ -157,7 +157,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 
 	@Override
-	public void agregar(SesionO sesionO) {
+	public SesionO agregar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
@@ -166,12 +166,13 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				ps.setTimestamp(4, new Timestamp(sesionO.getFecha().getTime()));
 				ps.setString(5, sesionO.getResena());
 				ps.setString(6, sesionO.getCalificacion());
-				
+
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return sesionO;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
@@ -182,7 +183,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 
 	@Override
-	public void modificar(SesionO sesionO) {
+	public SesionO modificar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
@@ -198,7 +199,8 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-			}catch (SQLException e) {
+				return sesionO;
+			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Modificar sesión", e);
 			}
 		} catch (SQLException e) {
@@ -210,7 +212,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	public void borrar(Integer id) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
-				
+
 				ps.setInt(1, id);
 
 				int numeroRegistrosModificados = ps.executeUpdate();

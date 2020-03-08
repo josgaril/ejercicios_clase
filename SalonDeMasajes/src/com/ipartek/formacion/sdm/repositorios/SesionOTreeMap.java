@@ -21,7 +21,7 @@ class SesionOTreeMap implements Dao<SesionO> {
 		agregar(new SesionO(1, new Cliente(1, "Leticia", "Gonzalez Ruiz", "71545258P"),
 				new Trabajador(1, "Manuel", "Martinez Gombarri", "85514521B"),
 				new Servicio(1, "Masaje de caderas", new BigDecimal("38.458")),
-				new GregorianCalendar(2019,11,15).getTime(), "mu bien", "mal"));
+				new GregorianCalendar(2019, 11, 15).getTime(), "mu bien", "mal"));
 		agregar(new SesionO(2, new Cliente(1, "jose", "garcia", "71284315G"),
 				new Trabajador(2, "Fran", "Xisco", "71345622G"),
 				new Servicio(2, "Masaje a 4 manos", new BigDecimal("48.154")),
@@ -49,16 +49,17 @@ class SesionOTreeMap implements Dao<SesionO> {
 	}
 
 	@Override
-	public void agregar(SesionO sesionO) {
+	public SesionO agregar(SesionO sesionO) {
 		Integer id = sesionesO.size() == 0 ? 1 : sesionesO.lastKey() + 1;
 		sesionO.setId(id);
 		sesionesO.put(id, sesionO);
+		return sesionO;
 	}
 
 	@Override
-	public void modificar(SesionO sesionO) {
+	public SesionO modificar(SesionO sesionO) {
 		sesionesO.put(sesionO.getId(), sesionO);
-
+		return sesionO;
 	}
 
 	@Override

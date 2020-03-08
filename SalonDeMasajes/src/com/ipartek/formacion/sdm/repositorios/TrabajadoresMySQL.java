@@ -117,7 +117,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public Trabajador agregar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setString(1, trabajador.getNombre());
@@ -128,7 +128,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de una insert");
 				}
-
+				return trabajador;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar trabajador", e);
 			}
@@ -138,7 +138,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void modificar(Trabajador trabajador) {
+	public Trabajador modificar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setString(1, trabajador.getNombre());
@@ -150,6 +150,7 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de un update");
 				}
+				return trabajador;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Modificar trabajador", e);
 			}

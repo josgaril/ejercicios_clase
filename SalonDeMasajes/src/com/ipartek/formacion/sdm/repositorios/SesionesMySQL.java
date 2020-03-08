@@ -119,7 +119,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public void agregar(Sesion sesion) {
+	public Sesion agregar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				ps.setInt(1, sesion.getClientes_idclientes());
@@ -134,6 +134,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return sesion;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
@@ -144,7 +145,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public void modificar(Sesion sesion) {
+	public Sesion modificar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				ps.setInt(1, sesion.getClientes_idclientes());
@@ -160,6 +161,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return sesion;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Modificar sesión", e);
 			}

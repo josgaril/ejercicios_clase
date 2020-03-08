@@ -116,7 +116,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	}
 
 	@Override
-	public void agregar(Cliente cliente) {
+	public Cliente agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement cs = con.prepareCall(SQL_INSERT)) {
 				cs.setString(1, cliente.getNombre());
@@ -130,6 +130,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+				return cliente;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar cliente", e);
 			}
@@ -139,7 +140,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	}
 
 	@Override
-	public void modificar(Cliente cliente) {
+	public Cliente modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement cs = con.prepareCall(SQL_UPDATE)) {
 				cs.setInt(1, cliente.getIdclientes());
@@ -152,6 +153,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
 				}
+				return cliente;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Modificar cliente", e);
 			}

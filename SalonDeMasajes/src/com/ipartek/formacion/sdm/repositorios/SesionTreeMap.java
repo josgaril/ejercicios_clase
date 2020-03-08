@@ -56,16 +56,17 @@ public class SesionTreeMap implements Dao<Sesion> {
 	}
 
 	@Override
-	public void agregar(Sesion sesion) {
+	public Sesion agregar(Sesion sesion) {
 		Integer id = sesiones.size() == 0 ? 1 : sesiones.lastKey() + 1;
 		sesion.setId(id);
 		sesiones.put(id, sesion);
+		return sesion;
 	}
 
 	@Override
-	public void modificar(Sesion sesion) {
+	public Sesion modificar(Sesion sesion) {
 		sesiones.put(sesion.getId(), sesion);
-
+		return sesion;
 	}
 
 	@Override

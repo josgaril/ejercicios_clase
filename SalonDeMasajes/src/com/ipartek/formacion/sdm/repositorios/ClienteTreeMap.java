@@ -35,15 +35,17 @@ public class ClienteTreeMap implements Dao<Cliente> {
 	}
 
 	@Override
-	public void agregar(Cliente cliente) {
+	public Cliente agregar(Cliente cliente) {
 		Integer idclientes = clientes.size() == 0 ? 1 : clientes.lastKey() + 1;
 		cliente.setIdclientes(idclientes);
 		clientes.put(idclientes, cliente);
+		return cliente;
 	}
 
 	@Override
-	public void modificar(Cliente cliente) {
+	public Cliente modificar(Cliente cliente) {
 		clientes.put(cliente.getIdclientes(), cliente);
+		return cliente;
 	}
 
 	@Override
