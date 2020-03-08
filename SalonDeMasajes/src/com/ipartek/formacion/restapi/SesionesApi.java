@@ -63,6 +63,14 @@ public class SesionesApi extends HttpServlet {
 		}
 		String json = extraerJSON(request);
 		SesionO sesion = gson.fromJson(json, SesionO.class);
+		
+		Iterable<SesionO> sesionesTodas = Globales.daoSesionO.obtenerTodos();
+		for (SesionO sesionX: sesionesTodas) {
+			if (sesion.getFecha().equals(sesionX.getFecha())) {
+				response.getWriter().write("Ya hay otra sesión en esa fecha a esa hora");
+				return;
+			}
+		}
 		Globales.daoSesionO.agregar(sesion);
 		response.getWriter().write(gson.toJson(sesion));
 		response.setStatus(HttpServletResponse.SC_CREATED);
@@ -92,6 +100,15 @@ public class SesionesApi extends HttpServlet {
 			return;
 		}
 
+		Iterable<SesionO> sesionesTodas = Globales.daoSesionO.obtenerTodos();
+		SesionO sesionExistente = Globales.daoSesionO.obtenerPorId(id);
+		for (SesionO sesionX: sesionesTodas) {
+			if (sesion.getFecha().equals(sesionX.getFecha()) && !sesion.getFecha().equals(sesionExistente.getFecha())) {
+				response.getWriter().write("Ya hay otra sesión en esa fecha a esa hora");
+				return;
+			}
+		}
+		
 		Globales.daoSesionO.modificar(sesion);
 		response.getWriter().write(gson.toJson(sesion));
 	}
