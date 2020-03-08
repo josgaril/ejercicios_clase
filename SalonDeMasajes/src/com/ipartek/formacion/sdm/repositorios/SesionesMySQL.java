@@ -15,7 +15,7 @@ import java.util.Properties;
 import com.ipartek.formacion.sdm.modelos.Sesion;
 
 public class SesionesMySQL implements Dao<Sesion> {
-	
+
 	private static final String SQL_GET_ALL = "SELECT * FROM sesiones";
 	private static final String SQL_GET_BY_ID = "SELECT * FROM sesiones WHERE id=?";
 
@@ -61,8 +61,6 @@ public class SesionesMySQL implements Dao<Sesion> {
 	}
 	// FIN SINGLETON
 
-	
-	
 	private Connection getConnection() throws SQLException {
 		try {
 			return DriverManager.getConnection(url, usuario, password);
@@ -78,16 +76,20 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ArrayList<Sesion> sesiones = new ArrayList<>();
 				try (ResultSet rs = ps.executeQuery()) {
 					while (rs.next()) {
-						  sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
-						  rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
-						  rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));
-						 
+						sesiones.add(new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
+								rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
+								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion")));
+
 					}
 					return sesiones;
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al obtener los registros de sesiones", e);
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener todas las sesiones", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todas las sesiones", e);
+			throw new AccesoDatosException("Error al conectar para obtener todas las sesiones", e);
 		}
 	}
 
@@ -99,15 +101,20 @@ public class SesionesMySQL implements Dao<Sesion> {
 
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"), rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
+						return new Sesion(rs.getInt("id"), rs.getInt("clientes_idclientes"),
+								rs.getInt("trabajadores_idtrabajadores"), rs.getInt("servicios_idservicios"),
 								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
 					} else {
 						return null;
 					}
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al obtener los registros de sesiones", e);
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener sesion id: " + id, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obetner la sesion id: " + id, e);
+			throw new AccesoDatosException("Error al conectar para obtener la sesion id: " + id, e);
 		}
 	}
 
@@ -121,15 +128,17 @@ public class SesionesMySQL implements Dao<Sesion> {
 				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
-				
+
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al agregar la sesión", e);
+			throw new AccesoDatosException("Error al conectar para agregar sesión", e);
 		}
 
 	}
@@ -151,9 +160,11 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Modificar sesión", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar la sesión", e);
+			throw new AccesoDatosException("Error al conectar para modificar la sesión", e);
 		}
 	}
 
@@ -168,11 +179,12 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de un delete");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Borrar sesion id:" + id, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar la sesion id:" + id, e);
+			throw new AccesoDatosException("Error al conectar para borrar la sesion id:" + id, e);
 		}
-
 	}
 
 }

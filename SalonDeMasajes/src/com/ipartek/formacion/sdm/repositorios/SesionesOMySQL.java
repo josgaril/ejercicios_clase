@@ -112,7 +112,11 @@ public class SesionesOMySQL implements Dao<SesionO> {
 						sesionesO.add(sesionO);
 					}
 					return sesionesO;
+				}catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de sesiones", e);
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener todas las sesiones", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para obtener todas las sesiones", e);
@@ -132,12 +136,6 @@ public class SesionesOMySQL implements Dao<SesionO> {
 					SesionO sesionO=null;
 					
 					if (rs.next()) {
-						
-						/*
-						 * cliente = new Cliente(rs.getInt("clientes_idclientes"),null,null,null);
-						 * trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"),null,null,null);
-						 * servicio = new Servicio(rs.getInt("servicios_idservicios"),null,null);
-						 */
 						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"), rs.getString("c.apellidos"), rs.getString("c.dni"));
 						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"), rs.getString("t.apellidos"), rs.getString("t.dni"));
 						servicio= new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"), rs.getBigDecimal("s.precio"));
@@ -147,7 +145,11 @@ public class SesionesOMySQL implements Dao<SesionO> {
 					} else {
 						return null;
 					}
+				}catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de sesiones ");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener sesion con id: " + id, e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para obtener la sesion id: " + id, e);
@@ -170,6 +172,8 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para agregar la sesión", e);
@@ -194,6 +198,8 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Modificar sesión", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para modificar la sesión", e);
@@ -213,10 +219,10 @@ public class SesionesOMySQL implements Dao<SesionO> {
 					throw new AccesoDatosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
 			} catch (SQLException e) {
-				throw new AccesoDatosException("Error al crear la sentencia", e);
+				throw new AccesoDatosException("Error al crear la sentencia Borrar sesion con id: " + id, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al conectar para borrar la sesión", e);
+			throw new AccesoDatosException("Error al conectar para borrar la sesión con id: " + id, e);
 		}
 	}
 

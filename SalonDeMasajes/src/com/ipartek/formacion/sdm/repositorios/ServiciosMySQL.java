@@ -77,10 +77,14 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 								rs.getBigDecimal("precio")));
 					}
 					return servicios;
+				}catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a a los registros de servicios", e);
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener todos los servicios", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los servicios", e);
+			throw new AccesoDatosException("Error al conectar para obtener todos los servicios", e);
 		}
 	}
 
@@ -98,10 +102,14 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 					} else {
 						return null;
 					}
+				}catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de servicios", e);
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener servicio con id: " + idservicios, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el servicio id: " + idservicios, e);
+			throw new AccesoDatosException("Error al conectar para obtener el servicio id: " + idservicios, e);
 		}
 	}
 
@@ -118,9 +126,11 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Agregar servicio", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al insertar el trabajador", e);
+			throw new AccesoDatosException("Error al conectar para agregar servicio", e);
 		}
 	}
 
@@ -138,27 +148,31 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Modificar servicio", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al modificar el servicio", e);
+			throw new AccesoDatosException("Error al conectar para modificar el servicio", e);
 		}
 
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void borrar(Integer idservicios) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
-				ps.setInt(1, id);
+				ps.setInt(1, idservicios);
 
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
 				}
+			}catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Borrar servicio con id: " + idservicios, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al borrar el servicio", e);
+			throw new AccesoDatosException("Error al conectar para borrar el servicio con id: " + idservicios, e);
 		}
 	}
 
