@@ -38,6 +38,13 @@ public class SesionCrearController extends HttpServlet {
 
 		request.setAttribute("primeravez", false);
 
+		Iterable<Sesion> sesionesTodas = Globales.daoSesion.obtenerTodos();
+		for (Sesion sesionX: sesionesTodas) {
+			if (sesion.getFecha().equals(sesionX.getFecha())){
+				sesion.setErrorFecha("Ya hay otra sesión a esa hora.");
+				sesion.setCorrecto(false);
+			}
+		}
 		if (sesion.isCorrecto()) {
 			Globales.daoSesion.agregar(sesion);
 

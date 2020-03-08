@@ -38,6 +38,15 @@ public class SesionModificarController extends HttpServlet {
 
 		request.setAttribute("primeravez", false);
 
+		Iterable<SesionO> sesionesTodas = Globales.daoSesionO.obtenerTodos();
+		SesionO sesionExistente = Globales.daoSesionO.obtenerPorId(Integer.parseInt(id));
+		for (SesionO sesionX: sesionesTodas) {
+			if (sesionO.getFecha().equals(sesionX.getFecha()) && !sesionO.getFecha().equals(sesionExistente.getFecha())){
+				sesionO.setErrorFecha("Ya hay otra sesión a esa hora.");
+				sesionO.setCorrecto(false);
+			}
+		}
+		
 		if (sesionO.isCorrecto()) {
 			Globales.daoSesionO.modificar(sesionO);
 
