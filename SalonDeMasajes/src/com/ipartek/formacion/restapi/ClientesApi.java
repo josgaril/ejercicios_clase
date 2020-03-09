@@ -86,13 +86,14 @@ public class ClientesApi extends HttpServlet {
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Si la validacion es correcta, se agrega el cliente
 			Globales.daoCliente.agregar(clienteJson);
+			// Muestra en pantalla el cliente añadido
+			response.getWriter().write(gson.toJson(clienteJson));
+			// El cliente se ha creado correctamente y muestra el código 201
+			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
 			return;
 		}
-		// Muestra en pantalla el cliente añadido
-		response.getWriter().write(gson.toJson(clienteJson));
-		// El cliente se ha creado correctamente y muestra el código 201
-		response.setStatus(HttpServletResponse.SC_CREATED);
+		
 	}
 
 	@Override
@@ -155,8 +156,9 @@ public class ClientesApi extends HttpServlet {
 			return;
 		}
 
-		// Muestra el cliente añadido
-		response.getWriter().write(gson.toJson(clienteJson));
+		// Muestra el cliente añadido con el id correspondiente
+		Cliente clienteJsonModificado= Globales.daoCliente.obtenerPorId(id);
+		response.getWriter().write(gson.toJson(clienteJsonModificado));
 
 	}
 

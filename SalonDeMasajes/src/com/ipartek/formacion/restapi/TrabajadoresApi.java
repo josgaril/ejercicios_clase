@@ -73,7 +73,7 @@ public class TrabajadoresApi extends HttpServlet {
 
 		Trabajador trabajadorJson = gson.fromJson(json, Trabajador.class);
 
-		// Validaciones
+		// Validaciones del trabajador
 		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.agregar(trabajadorJson);
 		} else {
@@ -81,7 +81,7 @@ public class TrabajadoresApi extends HttpServlet {
 		}
 
 		response.getWriter().write(gson.toJson(trabajadorJson));
-
+		
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
 
@@ -130,12 +130,12 @@ public class TrabajadoresApi extends HttpServlet {
 		// Validaciones del trabajador
 		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.modificar(trabajadorJson);
+			Trabajador trabajadorJsonModificado= Globales.daoTrabajador.obtenerPorId(id);
+			response.getWriter().write(gson.toJson(trabajadorJsonModificado));
 		} else {
 			return;
 		}
-
-		response.getWriter().write(gson.toJson(trabajadorJson));
-
+		
 	}
 
 	@Override
