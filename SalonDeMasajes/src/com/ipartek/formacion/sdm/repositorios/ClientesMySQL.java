@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class ClientesMySQL implements Dao<Cliente> {
 	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
 	private static final String SQL_UPDATE = "CALL clientesUpdate(?,?,?,?)";
 	private static final String SQL_DELETE = "CALL clientesDelete(?)";
+	private static final String SQL_MAX_ID = 
+			"SELECT idclientes, nombre, apellidos, dni \r\n" + "FROM clientes\r\n" +
+			"ORDER BY idclientes DESC\r\n" +
+			"LIMIT 1";
 
 	private static String url, usuario, password;
 	// SINGLETON
@@ -130,12 +135,33 @@ public class ClientesMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-				return cliente;
+				return ultimoCliente(cliente);
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar cliente", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para agregar cliente", e);
+		}
+	}
+
+	private Cliente ultimoCliente(Cliente cliente) {
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_MAX_ID)) {
+				try (ResultSet rs = ps.executeQuery()) {
+					if (rs.next()) {
+						return new Cliente(rs.getInt("idclientes"), rs.getString("nombre"), rs.getNString("apellidos"),
+								rs.getString("dni"));
+					} else {
+						return null;
+					}
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al obtener el ultimo cliente", e);
+				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener el ultimo cliente", e);
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al conectar para obtener el ultimo cliente", e);
 		}
 	}
 

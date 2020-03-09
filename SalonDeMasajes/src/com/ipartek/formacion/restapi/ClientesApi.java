@@ -88,18 +88,19 @@ public class ClientesApi extends HttpServlet {
 		if (validacionesCliente(clienteJson, response, id)) {
 			
 			// Si la validacion es correcta, se agrega el cliente
-			Globales.daoCliente.agregar(clienteJson);
-			
-			//Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia de max(id)
-			Integer ultimoID= null;
-			Iterable<Cliente> clientesTodos = Globales.daoCliente.obtenerTodos();
-			for (Cliente clienteX: clientesTodos) {
-				ultimoID = clienteX.getIdclientes();
-			}		
-			
-			// Muestra en pantalla el cliente añadido
-			Cliente clienteJsonAgregado = Globales.daoCliente.obtenerPorId(ultimoID);
-			response.getWriter().write(gson.toJson(clienteJsonAgregado));
+			Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
+			response.getWriter().write(gson.toJson(nuevoCliente));
+
+			/*
+			 * //Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia
+			 * de max(id) Integer ultimoID= null; Iterable<Cliente> clientesTodos =
+			 * Globales.daoCliente.obtenerTodos(); for (Cliente clienteX: clientesTodos) {
+			 * ultimoID = clienteX.getIdclientes(); }
+			 * 
+			 * // Muestra en pantalla el cliente añadido Cliente clienteJsonAgregado =
+			 * Globales.daoCliente.obtenerPorId(ultimoID);
+			 * response.getWriter().write(gson.toJson(clienteJsonAgregado));
+			 */
 			
 			// El cliente se ha creado correctamente y muestra el código 201
 			response.setStatus(HttpServletResponse.SC_CREATED);
