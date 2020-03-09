@@ -65,6 +65,7 @@ public class ClientesApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		// Comprobamos que no se le haya pasado ningún id, sino lanzamos excepción, la
 		// cual nos indica que la solicitud es incorrecta
 		Integer id = extraerId(request);
@@ -79,15 +80,27 @@ public class ClientesApi extends HttpServlet {
 		}
 		// Declaramos la variable json, que guardará el texto escrito.
 		String json = extraerJSON(request);
+		
 		// Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente clienteJson = gson.fromJson(json, Cliente.class);
 
 		// Validaciones
 		if (validacionesCliente(clienteJson, response, id)) {
+			
 			// Si la validacion es correcta, se agrega el cliente
 			Globales.daoCliente.agregar(clienteJson);
+			
+			//Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia de max(id)
+			Integer ultimoID= null;
+			Iterable<Cliente> clientesTodos = Globales.daoCliente.obtenerTodos();
+			for (Cliente clienteX: clientesTodos) {
+				ultimoID = clienteX.getIdclientes();
+			}		
+			
 			// Muestra en pantalla el cliente añadido
-			response.getWriter().write(gson.toJson(clienteJson));
+			Cliente clienteJsonAgregado = Globales.daoCliente.obtenerPorId(ultimoID);
+			response.getWriter().write(gson.toJson(clienteJsonAgregado));
+			
 			// El cliente se ha creado correctamente y muestra el código 201
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
@@ -101,13 +114,13 @@ public class ClientesApi extends HttpServlet {
 			throws ServletException, IOException {
 		// Declaramos la variable json en la que guardamos el texto escrito
 		String json = extraerJSON(request);
-		
+
 		// Guarda en cliente el texto escrito en Json, que es de la clase Cliente
 		Cliente clienteJson = gson.fromJson(json, Cliente.class);
-		
+
 		// Declaramos la variable id
 		Integer id = null;
-		
+
 		// Extraemos el id, o el valor null si no tiene y nos da una excepcion
 		// indicando respuesta incorrecta.
 		try {
@@ -122,32 +135,31 @@ public class ClientesApi extends HttpServlet {
 
 			return;
 		}
-		
+
 		// Si el id no corresponde con el del cliente dará error y saldrá.
 		if (!id.equals(clienteJson.getIdclientes())) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			response.getWriter().write(
-					"Id de cliente no coincide con el que se quiere modificar. No se ha podido modificar");
+			response.getWriter()
+					.write("Id de cliente no coincide con el que se quiere modificar. No se ha podido modificar");
 			return;
 		}
 
-		//En caso de que coincida el id, buscamos cliente con ese id
-		boolean existe=false;
+		// En caso de que coincida el id, buscamos cliente con ese id
+		boolean existe = false;
 		Iterable<Cliente> clientestodos = Globales.daoCliente.obtenerTodos();
-		for (Cliente clienteX: clientestodos) {
-			if (clienteX.getIdclientes()==clienteJson.getIdclientes()) {
-				existe=true;
+		for (Cliente clienteX : clientestodos) {
+			if (clienteX.getIdclientes() == clienteJson.getIdclientes()) {
+				existe = true;
 			}
 		}
-		//si no encuentra el cliente con ese id, error de No encontrado
-		if (existe==false) {
+		// si no encuentra el cliente con ese id, error de No encontrado
+		if (existe == false) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			response.getWriter().write(
-					"Id de cliente no encontrado.");
+			response.getWriter().write("Id de cliente no encontrado.");
 			return;
 		}
-		//FIN PRUEBA
-		
+		// FIN PRUEBA
+
 		// Validaciones del cliente
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
@@ -157,7 +169,7 @@ public class ClientesApi extends HttpServlet {
 		}
 
 		// Muestra el cliente añadido con el id correspondiente
-		Cliente clienteJsonModificado= Globales.daoCliente.obtenerPorId(id);
+		Cliente clienteJsonModificado = Globales.daoCliente.obtenerPorId(id);
 		response.getWriter().write(gson.toJson(clienteJsonModificado));
 
 	}
@@ -180,8 +192,8 @@ public class ClientesApi extends HttpServlet {
 			response.getWriter().write("Debe introducir el id de un cliente existente para eliminarlo");
 			return;
 		}
-		
-		//Buscamos el cliente con ese id para eliminarlo
+
+		// Buscamos el cliente con ese id para eliminarlo
 		Cliente clienteABorrar = Globales.daoCliente.obtenerPorId(id);
 		if (clienteABorrar == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -194,9 +206,10 @@ public class ClientesApi extends HttpServlet {
 		}
 	}
 
-	private boolean validacionesCliente(Cliente clienteJson, HttpServletResponse response, Integer id) throws IOException {
+	private boolean validacionesCliente(Cliente clienteJson, HttpServletResponse response, Integer id)
+			throws IOException {
 		boolean correcto = true;
-		
+
 		if (clienteJson.getNombre() == null && clienteJson.getNombre().trim().length() < 1
 				|| clienteJson.getNombre().length() > 45) {
 			response.getWriter().write("El nombre del cliente debe tener entre 1 y 45 caracteres.\n");
@@ -224,37 +237,37 @@ public class ClientesApi extends HttpServlet {
 			response.getWriter().write("Formato de DNI incorrecto. \n");
 			correcto = false;
 		}
-		
-		//Si estamos agregando un cliente(no pasamos id), comprobamos que el dni del nuevo cliente no esté duplicado
+
+		// Si estamos agregando un cliente(no pasamos id), comprobamos que el dni del
+		// nuevo cliente no esté duplicado
 		if (id == null) {
-			Iterable<Cliente> todosLosClientes= Globales.daoCliente.obtenerTodos();
+			Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
 			for (Cliente persona : todosLosClientes) {
 				if (persona.getDni().equals(clienteJson.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					response.getWriter().write("El DNI del cliente a agregar está duplicado");
-					correcto=false;
+					correcto = false;
 				}
 			}
 		} else {
 			/*
-			 * En caso de estar modificando un cliente(ya disponemos de su id),
-			 * comprobamos que el dni del nuevo cliente no esté duplicado
+			 * En caso de estar modificando un cliente(ya disponemos de su id), comprobamos
+			 * que el dni del nuevo cliente no esté duplicado
 			 */
-			Iterable<Cliente> todosLosClientes= Globales.daoCliente.obtenerTodos();
+			Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
 			Cliente cliente = Globales.daoCliente.obtenerPorId(id);
 			for (Cliente persona : todosLosClientes) {
-				if (persona.getDni().equals(clienteJson.getDni())
-						&& !clienteJson.getDni().equals(cliente.getDni())) {
+				if (persona.getDni().equals(clienteJson.getDni()) && !clienteJson.getDni().equals(cliente.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					response.getWriter().write("El DNI del cliente a modificar está duplicado");
 					correcto = false;
 				}
 			}
 		}
-		
+
 		return correcto;
 	}
-	
+
 	private static String extraerJSON(HttpServletRequest request) throws IOException {
 		// Leemos la cadena de texto pasado
 		BufferedReader br = request.getReader();
@@ -268,8 +281,6 @@ public class ClientesApi extends HttpServlet {
 		// Devolvemos el buffer leido
 		return sb.toString();
 	}
-
-	
 
 	private static Integer extraerId(HttpServletRequest request) {
 		// declaramos path para guardar la url
