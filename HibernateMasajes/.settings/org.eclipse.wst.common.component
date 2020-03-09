@@ -2,7 +2,7 @@
     <wb-module deploy-name="HibernateMasajes">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="HibernateMasajes"/>
         <property name="java-output-path" value="/HibernateMasajes/build/classes"/>
+        <property name="context-root" value="HibernateMasajes"/>
     </wb-module>
 </project-modules>
