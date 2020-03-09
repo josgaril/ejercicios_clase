@@ -105,7 +105,29 @@ public class TrabajadoresApi extends HttpServlet {
 			return;
 		}
 
-		// Validaciones
+		if (!id.equals(trabajadorJson.getIdtrabajadores())) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter()
+					.write("Id de trabajador no coincide con el que se quiere modificar. No se ha podido modificar");
+			return;
+		}
+
+		// En caso de que coincida el id, buscamos cliente con ese id
+		boolean existe = false;
+		Iterable<Trabajador> trabajadorestodos = Globales.daoTrabajador.obtenerTodos();
+		for (Trabajador trabajadorX : trabajadorestodos) {
+			if (trabajadorX.getIdtrabajadores() == trabajadorJson.getIdtrabajadores()) {
+				existe = true;
+			}
+		}
+		// si no encuentra el cliente con ese id, error de No encontrado
+		if (existe == false) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de trabajador no encontrado. ");
+			return;
+		}
+
+		// Validaciones del trabajador
 		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.modificar(trabajadorJson);
 		} else {
@@ -147,7 +169,6 @@ public class TrabajadoresApi extends HttpServlet {
 	private boolean validacionesTrabajador(Trabajador trabajadorJson, HttpServletResponse response, Integer id)
 			throws IOException {
 		boolean correcto = true;
-		boolean idExiste = false;
 		if (trabajadorJson.getNombre() == null || trabajadorJson.getNombre().trim().length() < 1
 				|| trabajadorJson.getNombre().length() > 45) {
 			response.getWriter().write("Nombre del trabajador obligatorio.Entre 1 y 45 caracteres.  \n");
@@ -192,41 +213,14 @@ public class TrabajadoresApi extends HttpServlet {
 			 * En caso de estar modificando un trabajador(ya disponemos de su id),
 			 * comprobamos que el dni del nuevo trabajador no esté duplicado
 			 */
-			if (id != trabajadorJson.getIdtrabajadores()) {
-				
-				/* Prueba controlar validacion si el id no existe en validaciones
-				 * Iterable<Trabajador> todosLosTrabajadores =
-				 * Globales.daoTrabajador.obtenerTodos(); for (Trabajador persona :
-				 * todosLosTrabajadores) { if
-				 * (persona.getIdtrabajadores().equals(trabajadorJson.getIdtrabajadores())) {
-				 * response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				 * response.getWriter().write(
-				 * "Id de trabajador no encontradoe o no coincide con el que se quiere modificar. No se ha podido modificar"
-				 * ); correcto = false; } }
-				 */
+			Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
+			Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
+			for (Trabajador trabajadorX : todosLosTrabajadores) {
 
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				response.getWriter().write(
-						"Id de trabajador no coincide con el que se quiere modificar. No se ha podido modificar");
-				correcto = false;
-
-			} else {
-				Iterable<Trabajador> todosLosTrabajadores = Globales.daoTrabajador.obtenerTodos();
-				Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(id);
-				for (Trabajador persona : todosLosTrabajadores) {
-					if (trabajadorJson.getIdtrabajadores() == persona.getIdtrabajadores()) {
-						idExiste = true;
-						if (persona.getDni().equals(trabajadorJson.getDni())
-								&& !trabajadorJson.getDni().equals(trabajador.getDni())) {
-							response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-							response.getWriter().write("El DNI del trabajador a modificar está duplicado");
-							correcto = false;
-						}
-					}
-				}
-				if (idExiste==false) {
+				if (trabajadorX.getDni().equals(trabajadorJson.getDni())
+						&& !trabajadorJson.getDni().equals(trabajador.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					response.getWriter().write("Id de trabajador no existe");
+					response.getWriter().write("El DNI del trabajador a modificar está duplicado");
 					correcto = false;
 				}
 			}

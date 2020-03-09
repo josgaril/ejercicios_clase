@@ -121,15 +121,16 @@ public class ClientesApi extends HttpServlet {
 
 			return;
 		}
+		
 		// Si el id no corresponde con el del cliente dará error y saldrá.
-		if (id != clienteJson.getIdclientes()) {
+		if (!id.equals(clienteJson.getIdclientes())) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			response.getWriter().write(
 					"Id de cliente no coincide con el que se quiere modificar. No se ha podido modificar");
 			return;
 		}
 
-		//PRUEBA cliente que no existe
+		//En caso de que coincida el id, buscamos cliente con ese id
 		boolean existe=false;
 		Iterable<Cliente> clientestodos = Globales.daoCliente.obtenerTodos();
 		for (Cliente clienteX: clientestodos) {
@@ -137,14 +138,16 @@ public class ClientesApi extends HttpServlet {
 				existe=true;
 			}
 		}
+		//si no encuentra el cliente con ese id, error de No encontrado
 		if (existe==false) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			response.getWriter().write(
-					"Id de cliente no encontrado. \n");
+					"Id de cliente no encontrado.");
 			return;
 		}
 		//FIN PRUEBA
-		// Validaciones
+		
+		// Validaciones del cliente
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
 			Globales.daoCliente.modificar(clienteJson);
@@ -225,7 +228,7 @@ public class ClientesApi extends HttpServlet {
 			for (Cliente persona : todosLosClientes) {
 				if (persona.getDni().equals(clienteJson.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					response.getWriter().write("El DNI del trabajador a agregar está duplicado");
+					response.getWriter().write("El DNI del cliente a agregar está duplicado");
 					correcto=false;
 				}
 			}
@@ -240,7 +243,7 @@ public class ClientesApi extends HttpServlet {
 				if (persona.getDni().equals(clienteJson.getDni())
 						&& !clienteJson.getDni().equals(cliente.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					response.getWriter().write("El DNI del trabajador a modificar está duplicado");
+					response.getWriter().write("El DNI del cliente a modificar está duplicado");
 					correcto = false;
 				}
 			}
