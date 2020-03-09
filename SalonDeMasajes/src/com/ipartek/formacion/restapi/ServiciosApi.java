@@ -127,11 +127,15 @@ public class ServiciosApi extends HttpServlet {
 		//Validaciones del servicio
 		if (validacionesServicio(servicioJson, response)) {
 			Globales.daoServicio.modificar(servicioJson);
+			response.getWriter().write(gson.toJson(servicioJson));
+
 		} else {
 			return;
 		}
-		Servicio servicioJsonModificado= Globales.daoServicio.obtenerPorId(id);
-		response.getWriter().write(gson.toJson(servicioJsonModificado));
+		/*
+		 * Servicio servicioJsonModificado= Globales.daoServicio.obtenerPorId(id);
+		 * response.getWriter().write(gson.toJson(servicioJsonModificado));
+		 */
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)

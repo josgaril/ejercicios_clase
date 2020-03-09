@@ -55,7 +55,7 @@ public class ClientesApi extends HttpServlet {
 		// Si el cliente es null, error No encontrado.
 		if (cliente == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			response.getWriter().write("Id de cliente no encontrado.");
+			out.write("Id de cliente no encontrado.");
 
 		} else {
 			// si lo encuentra, lo escribe.
@@ -123,7 +123,7 @@ public class ClientesApi extends HttpServlet {
 		Integer id = null;
 
 		// Extraemos el id, o el valor null si no tiene y nos da una excepcion
-		// indicando respuesta incorrecta.
+		// indicando que se debe pasar id para modificar el cliente.
 		try {
 			id = extraerId(request);
 
@@ -154,25 +154,27 @@ public class ClientesApi extends HttpServlet {
 			}
 		}
 		// si no encuentra el cliente con ese id, error de No encontrado
-		if (existe == false) {
+		if (!existe) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			response.getWriter().write("Id de cliente no encontrado.");
 			return;
 		}
-		// FIN PRUEBA
 
 		// Validaciones del cliente
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
 			Globales.daoCliente.modificar(clienteJson);
+			response.getWriter().write(gson.toJson(clienteJson));
+
 		} else {
 			return;
 		}
 
 		// Muestra el cliente añadido con el id correspondiente
-		Cliente clienteJsonModificado = Globales.daoCliente.obtenerPorId(id);
-		response.getWriter().write(gson.toJson(clienteJsonModificado));
-
+		/*
+		 * Cliente clienteJsonModificado = Globales.daoCliente.obtenerPorId(id);
+		 * response.getWriter().write(gson.toJson(clienteJsonModificado));
+		 */
 	}
 
 	@Override

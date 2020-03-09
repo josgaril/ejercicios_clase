@@ -145,8 +145,12 @@ public class TrabajadoresApi extends HttpServlet {
 		// Validaciones del trabajador
 		if (validacionesTrabajador(trabajadorJson, response, id)) {
 			Globales.daoTrabajador.modificar(trabajadorJson);
-			Trabajador trabajadorJsonModificado = Globales.daoTrabajador.obtenerPorId(id);
-			response.getWriter().write(gson.toJson(trabajadorJsonModificado));
+			response.getWriter().write(gson.toJson(trabajadorJson));
+			/*
+			 * Trabajador trabajadorJsonModificado =
+			 * Globales.daoTrabajador.obtenerPorId(id);
+			 * response.getWriter().write(gson.toJson(trabajadorJsonModificado));
+			 */
 		} else {
 			return;
 		}
