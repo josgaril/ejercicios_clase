@@ -20,6 +20,10 @@ EJERCICIO PRIMERO DE LIBRO:
 	clientes,trabajadores y servicios. y jsonFormat para la fecha en el setter
 	
 -Insomnia
+· CONFIGURAR BIEN cuando agregamos un nuevo cliente, que devuelva el id. 
+	Al hacer la sentencia el return devuelve el cliente, en vez de eso, podemos llamar a un metodo 
+	al que le pasamos ese cliente y hacemos la sentencia de busqueda por MAX(id). 
+	devolvemos el cliente cn el maximo id. obtenerPorId(maxId) para entenderme.
 · ApiREST.En clientes y trabajadores, Si meto un id que no existe lo coge como que no es el mismo que el de la url
 · REST. Corregir lo de la fecha, para que formatee y en vez de T ponga un espacio
 · Mirar que te devuelva el id tambien al devolver el objeto creado
