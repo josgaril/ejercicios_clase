@@ -57,12 +57,15 @@ public class ServiciosApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Integer id = null;
 		try {
-			if (extraerID(request) != null) {
+			id = extraerID(request);
+			if (id != null) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error, no se debe pasar id para agregar servicio.");
 			return;
 		}
 
@@ -86,7 +89,7 @@ public class ServiciosApi extends HttpServlet {
 
 		String json = extraerJSON(request);
 
-		Servicio servicio = gson.fromJson(json, Servicio.class);
+		Servicio servicioJson = gson.fromJson(json, Servicio.class);
 
 		Integer id = null;
 
@@ -98,20 +101,38 @@ public class ServiciosApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Error.Se debe pasar el id del servicio a modificar.");
 			return;
 		}
 
-		if (id != servicio.getIdservicios()) {
+		if (!id.equals(servicioJson.getIdservicios())) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter()
+					.write("Id de servicio no coincide con el que se quiere modificar. No se ha podido modificar");
 			return;
 		}
-		if (validacionesServicio(servicio, response)) {
-			Globales.daoServicio.modificar(servicio);
+
+		boolean existe = false;
+		Iterable<Servicio> serviciosTodos = Globales.daoServicio.obtenerTodos();
+		for (Servicio servicioX : serviciosTodos) {
+			if (servicioX.getIdservicios() == servicioJson.getIdservicios()) {
+				existe = true;
+			}
+		}
+		if (existe == false) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de servicio no encontrado");
+			return;
+		}
+
+		//Validaciones del servicio
+		if (validacionesServicio(servicioJson, response)) {
+			Globales.daoServicio.modificar(servicioJson);
 		} else {
 			return;
 		}
 
-		response.getWriter().write(gson.toJson(servicio));
+		response.getWriter().write(gson.toJson(servicioJson));
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
@@ -127,9 +148,17 @@ public class ServiciosApi extends HttpServlet {
 			}
 		} catch (Exception e) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Debe introducir el id de un servicio existente para eliminarlo");
 			return;
 		}
 
+		Servicio servicioABorrar = Globales.daoServicio.obtenerPorId(id);
+		if (servicioABorrar == null){
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("Id de servicio no encontrado. No se ha podido borrar");
+			return;
+		}
+		
 		Globales.daoServicio.borrar(id);
 
 		response.getWriter().write("El servicio ha sido eliminado");
@@ -143,7 +172,7 @@ public class ServiciosApi extends HttpServlet {
 			correcto = false;
 		} else if (servicio.getNombre() != null && !servicio.getNombre().matches(SERVICIO_NOMBRE)) {
 			response.getWriter().write(
-					"Solo se admiten nombres de servicio con caracteres de letras y serparación por espacios.\n");
+					"Solo se admiten nombres de servicio con caracteres de letras y separación por espacios.\n");
 			correcto = false;
 		}
 		if (servicio.getPrecio() == null || servicio.getPrecio().compareTo(BigDecimal.ZERO) <= 0) {

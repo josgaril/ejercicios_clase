@@ -178,7 +178,8 @@ public class ClientesApi extends HttpServlet {
 			response.getWriter().write("Debe introducir el id de un cliente existente para eliminarlo");
 			return;
 		}
-
+		
+		//Buscamos el cliente con ese id para eliminarlo
 		Cliente clienteABorrar = Globales.daoCliente.obtenerPorId(id);
 		if (clienteABorrar == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
