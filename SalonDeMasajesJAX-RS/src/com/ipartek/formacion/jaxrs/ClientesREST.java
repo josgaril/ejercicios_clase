@@ -26,13 +26,13 @@ public class ClientesREST {
 
 	@GET
 	public Iterable<Cliente> obtenerTodos() {
-		LOGGER.info("obtenerTodos");
+		LOGGER.info("ObtenerTodos");
 
 		return Globales.daoCliente.obtenerTodos();
 	}
 
 	@GET
-	@Path("/{idclientes}: \\d+}")
+	@Path("/{idclientes: \\d+}")
 	public Cliente obtenerPorId(@PathParam("idclientes") Integer idclientes) {
 		LOGGER.info("ObtenerPorID(" + idclientes + ")");
 
@@ -47,7 +47,7 @@ public class ClientesREST {
 
 	@POST
 	public Response insertar(Cliente cliente) {
-		LOGGER.info("insertar");
+		LOGGER.info("Insertar");
 		Globales.daoCliente.agregar(cliente);
 
 		return Response.status(Status.CREATED).entity(cliente).build();
@@ -56,7 +56,7 @@ public class ClientesREST {
 	@PUT
 	@Path("/{idclientes: \\d+}")
 	public Cliente modificar(@PathParam("idclientes") Integer idclientes, Cliente cliente) {
-		LOGGER.info("modificar");
+		LOGGER.info("Modificar");
 
 		if (!cliente.getIdclientes().equals(idclientes)) {
 			LOGGER.warning("No coinciden los ids");
@@ -78,16 +78,17 @@ public class ClientesREST {
 	}
 
 	@DELETE
-	@Path("/{idclientes}: \\d+}")
+	@Path("/{idclientes: \\d+}")
 	public String borrar(@PathParam("idclientes") Integer idclientes) {
-		LOGGER.info("borrar");
+		LOGGER.info("Borrar");
+		
 		Cliente cliente = Globales.daoCliente.obtenerPorId(idclientes);
 		if (cliente == null) {
 			LOGGER.warning("No se ha encontrado el cliente (" + idclientes + ")");
 			throw new WebApplicationException("No se ha encontrado el cliente (" + idclientes + ")", Status.NOT_FOUND);
 		}
 		Globales.daoCliente.borrar(idclientes);
-		return ("Cliente-eliminado");
+		return "{}";
 	}
 
 }
