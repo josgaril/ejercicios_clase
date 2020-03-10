@@ -49,11 +49,11 @@ class SesionOTreeMap implements Dao<SesionO> {
 	}
 
 	@Override
-	public SesionO agregar(SesionO sesionO) {
+	public Integer agregar(SesionO sesionO) {
 		Integer id = sesionesO.size() == 0 ? 1 : sesionesO.lastKey() + 1;
 		sesionO.setId(id);
 		sesionesO.put(id, sesionO);
-		return sesionO;
+		return null;
 	}
 
 	@Override

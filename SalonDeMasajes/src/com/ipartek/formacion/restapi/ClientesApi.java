@@ -65,7 +65,7 @@ public class ClientesApi extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// Comprobamos que no se le haya pasado ningún id, sino lanzamos excepción, la
 		// cual nos indica que la solicitud es incorrecta
 		Integer id = extraerId(request);
@@ -80,40 +80,32 @@ public class ClientesApi extends HttpServlet {
 		}
 		// Declaramos la variable json, que guardará el texto escrito.
 		String json = extraerJSON(request);
-		
+
 		// Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente clienteJson = gson.fromJson(json, Cliente.class);
 
-		// Validaciones
-		if (validacionesCliente(clienteJson, response, id)) {
-			
-			// Si la validacion es correcta, se agrega el cliente
-			/*
-			 * Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
-			 * response.getWriter().write(gson.toJson(nuevoCliente));
-			 */
+		Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
+		response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
 
-			Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
-			response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
-
-			
-			/*
-			 * //Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia
-			 * de max(id) Integer ultimoID= null; Iterable<Cliente> clientesTodos =
-			 * Globales.daoCliente.obtenerTodos(); for (Cliente clienteX: clientesTodos) {
-			 * ultimoID = clienteX.getIdclientes(); }
-			 * 
-			 * // Muestra en pantalla el cliente añadido Cliente clienteJsonAgregado =
-			 * Globales.daoCliente.obtenerPorId(ultimoID);
-			 * response.getWriter().write(gson.toJson(clienteJsonAgregado));
-			 */
-			
-			// El cliente se ha creado correctamente y muestra el código 201
-			response.setStatus(HttpServletResponse.SC_CREATED);
-		} else {
-			return;
-		}
 		
+		/*
+		 * // Validaciones if (validacionesCliente(clienteJson, response, id)) {
+		 * 
+		 * // Si la validacion es correcta, se agrega el cliente
+		 * 
+		 * Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
+		 * response.getWriter().write(gson.toJson(nuevoCliente));
+		 * 
+		 * 
+		 * Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
+		 * response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(
+		 * ultimoId)));
+		 * 
+		 * 
+		 * // El cliente se ha creado correctamente y muestra el código 201
+		 * response.setStatus(HttpServletResponse.SC_CREATED); } else { return; }
+		 */
+
 	}
 
 	@Override
@@ -169,7 +161,7 @@ public class ClientesApi extends HttpServlet {
 		// Validaciones del cliente
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
-			Cliente clienteModificado =Globales.daoCliente.modificar(clienteJson);
+			Cliente clienteModificado = Globales.daoCliente.modificar(clienteJson);
 			response.getWriter().write(gson.toJson(clienteModificado));
 
 		} else {
@@ -251,8 +243,8 @@ public class ClientesApi extends HttpServlet {
 		// nuevo cliente no esté duplicado
 		if (id == null) {
 			Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
-			for (Cliente persona : todosLosClientes) {
-				if (persona.getDni().equals(clienteJson.getDni())) {
+			for (Cliente clienteX : todosLosClientes) {
+				if (clienteX.getDni().equals(clienteJson.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					response.getWriter().write("El DNI del cliente a agregar está duplicado");
 					correcto = false;
@@ -265,8 +257,8 @@ public class ClientesApi extends HttpServlet {
 			 */
 			Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
 			Cliente cliente = Globales.daoCliente.obtenerPorId(id);
-			for (Cliente persona : todosLosClientes) {
-				if (persona.getDni().equals(clienteJson.getDni()) && !clienteJson.getDni().equals(cliente.getDni())) {
+			for (Cliente clientX : todosLosClientes) {
+				if (clientX.getDni().equals(clienteJson.getDni()) && !clienteJson.getDni().equals(cliente.getDni())) {
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					response.getWriter().write("El DNI del cliente a modificar está duplicado");
 					correcto = false;

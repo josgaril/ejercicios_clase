@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -119,9 +120,9 @@ public class SesionesMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public Sesion agregar(Sesion sesion) {
+	public Integer agregar(Sesion sesion) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
@@ -134,7 +135,13 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-				return sesion;
+
+				Integer idGenerado=null;
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if(generatedKeys.next()) {
+					 idGenerado= generatedKeys.getInt(1);
+				}
+				return idGenerado;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}

@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletResponse;
+
+import com.ipartek.formacion.sdm.controladores.Globales;
 import com.ipartek.formacion.sdm.modelos.Cliente;
 
 public class ClientesMySQL implements Dao<Cliente> {
@@ -21,10 +23,6 @@ public class ClientesMySQL implements Dao<Cliente> {
 	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
 	private static final String SQL_UPDATE = "CALL clientesUpdate(?,?,?,?)";
 	private static final String SQL_DELETE = "CALL clientesDelete(?)";
-	private static final String SQL_MAX_ID = 
-			"SELECT idclientes, nombre, apellidos, dni \r\n" + "FROM clientes\r\n" +
-			"ORDER BY idclientes DESC\r\n" +
-			"LIMIT 1";
 
 	private static String url, usuario, password;
 	// SINGLETON
@@ -121,22 +119,32 @@ public class ClientesMySQL implements Dao<Cliente> {
 	}
 
 	@Override
-	public Cliente agregar(Cliente cliente) {
+	public Integer agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement cs = con.prepareCall(SQL_INSERT)) {
 				cs.setString(1, cliente.getNombre());
 				cs.setString(2, cliente.getApellidos());
 				cs.setString(3, cliente.getDni());
-
+			
 				cs.registerOutParameter(4, java.sql.Types.INTEGER);
 
+				Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
+				for (Cliente clienteX : todosLosClientes) {
+					if (clienteX.getDni().equals(cliente.getDni())) {
+						cliente.setErrorDni("El DNI del cliente a agregar está duplicado");
+						throw new AccesoDatosException("DNI duplicado");
+					}
+				}
 				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-				return ultimoCliente(cliente);
-			} catch (SQLException e) {
+				
+				//meter setid en el cliente y devolver el cliente
+				return cs.getInt(4);
+				
+				} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar cliente", e);
 			}
 		} catch (SQLException e) {
@@ -144,28 +152,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 		}
 	}
 
-	private Cliente ultimoCliente(Cliente cliente) {
-		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_MAX_ID)) {
-				try (ResultSet rs = ps.executeQuery()) {
-					if (rs.next()) {
-						return new Cliente(rs.getInt("idclientes"), rs.getString("nombre"), rs.getNString("apellidos"),
-								rs.getString("dni"));
-					} else {
-						return null;
-					}
-				} catch (SQLException e) {
-					throw new AccesoDatosException("Error al obtener el ultimo cliente", e);
-				}
-			} catch (SQLException e) {
-				throw new AccesoDatosException("Error en la sentencia Obtener el ultimo cliente", e);
-			}
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al conectar para obtener el ultimo cliente", e);
-		}
-	}
-
-	@Override
+		@Override
 	public Cliente modificar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement cs = con.prepareCall(SQL_UPDATE)) {

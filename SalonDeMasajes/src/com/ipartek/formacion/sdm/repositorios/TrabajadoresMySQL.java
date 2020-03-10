@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -117,9 +118,9 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 	}
 
 	@Override
-	public Trabajador agregar(Trabajador trabajador) {
+	public Integer agregar(Trabajador trabajador) {
 		try (Connection con = getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT,Statement.RETURN_GENERATED_KEYS)) {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
 				ps.setString(3, trabajador.getDni());
@@ -128,7 +129,13 @@ public class TrabajadoresMySQL implements Dao<Trabajador> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho mas o menos de una insert");
 				}
-				return trabajador;
+				Integer idGenerado=null;
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if(generatedKeys.next()) {
+					 idGenerado= generatedKeys.getInt(1);
+				}
+				return idGenerado;
+				
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar trabajador", e);
 			}

@@ -24,7 +24,7 @@ public class TrabajadoresREST {
 	}
 	
 	@GET
-	@Path("/{idtrabajadores}")
+	@Path("/{idtrabajadores: \\d+}") //comprueba que el id sea numerico
 	public Trabajador obtenerPorId(@PathParam("idtrabajadores") Integer idtrabajadores) {
 		return Globales.daoTrabajador.obtenerPorId(idtrabajadores);		
 	}

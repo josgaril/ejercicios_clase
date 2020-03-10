@@ -35,11 +35,11 @@ class ServicioTreeMap implements Dao<Servicio> {
 	}
 
 	@Override
-	public Servicio agregar(Servicio servicio) {
+	public Integer agregar(Servicio servicio) {
 		Integer idservicios = servicios.size() == 0 ? 1 : servicios.lastKey() + 1;
 		servicio.setIdservicios(idservicios);
 		servicios.put(idservicios, servicio);
-		return servicio;
+		return null;
 	}
 
 	@Override

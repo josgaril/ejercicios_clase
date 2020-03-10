@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -114,19 +115,26 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Servicio agregar(Servicio servicio) {
+	public Integer agregar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
-					.prepareStatement(SQL_INSERT)) {
+					.prepareStatement(SQL_INSERT,Statement.RETURN_GENERATED_KEYS)) {
 				ps.setString(1, servicio.getNombre());
 				ps.setBigDecimal(2, servicio.getPrecio());
 
 				int numeroRegistrosModificados = ps.executeUpdate();
-
+			
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-				return servicio;
+				
+				Integer idGenerado=null;
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if(generatedKeys.next()) {
+					 idGenerado= generatedKeys.getInt(1);
+				}
+				return idGenerado;
+				
 			}catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar servicio", e);
 			}

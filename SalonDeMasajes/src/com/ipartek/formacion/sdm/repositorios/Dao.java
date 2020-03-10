@@ -5,7 +5,7 @@ public interface Dao<T> {
 
 	T obtenerPorId(Integer id);
 
-	T agregar(T objeto);
+	Integer agregar(T objeto); //Integer para que devuelva el id generado
 
 	T modificar(T objeto);
 

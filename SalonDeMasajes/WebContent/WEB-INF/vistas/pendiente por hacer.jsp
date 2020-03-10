@@ -12,6 +12,21 @@ POR HACER:
 EJERCICIO PRIMERO DE LIBRO:
 - Hacer metodo guardar y metodo cargar
 ------------------------------------------------------------------------------------------
+PONER EN TODOS LOS apiRest el metodo agregar como Integer y devolver en el id(esta hecho en servicios).
+Probar un apiRest, en el agregar put, que agregue antes de entrar en las validaciones, y que el agregar devuelva
+  el objeto entero, con el idnuevo ya 
+  
+  Cliente cliente = globales.daoCliente.agregar(clienteJson)
+  mostrar en pantalla cliente
+  
+  a ver si asi me da el objeto entero
+  
+Comprobar si en jaxr, si devolvemos el objeto saldrian los errores bien.
+	 Los errores al devolver el objeto si salen, hay que mirar para añadir que devuelva el objeto con el id. nuevo 
+
+CREAR OTRA CLASE CON SU REPOSITORIO PARA PRACTICAR PARA EL EXAMEN, Ej: usuario, usuarioMySQL,dao,factory,listener, globales..
+
+
 · Validaciones en todos los REST de JAX_RS
 ·Comprobar en salon de masajes(ambas), que los metodos hacer el return dentro del try, meter 
 	los PreparedStatement y ResultSet con trycatch, no solo el connection. 

@@ -157,9 +157,9 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 
 	@Override
-	public SesionO agregar(SesionO sesionO) {
+	public Integer agregar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT,Statement.RETURN_GENERATED_KEYS)) {
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
 				ps.setInt(2, sesionO.getTrabajadorO().getIdtrabajadores());
 				ps.setInt(3, sesionO.getServicioO().getIdservicios());
@@ -172,7 +172,12 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
-				return sesionO;
+				Integer idGenerado=null;
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if(generatedKeys.next()) {
+					 idGenerado= generatedKeys.getInt(1);
+				}
+				return idGenerado;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}

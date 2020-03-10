@@ -59,10 +59,10 @@ public class Cliente {
 			setErrorNombre("El nombre tiene que tener entre 1 y 45 caracteres");
 		}
 
-		
-		  if (nombre !=null && !nombre.matches(REGEX_NOMBRE)) {
-		  setErrorNombre("Solo se admiten caracteres de letras y espacios"); }
-		 
+		if (nombre != null && !nombre.matches(REGEX_NOMBRE)) {
+			setErrorNombre("Solo se admiten caracteres de letras y espacios");
+		}
+
 		this.nombre = nombre;
 	}
 
@@ -75,11 +75,9 @@ public class Cliente {
 			setErrorApellidos("Los apellidos tienen que tener entre 1 y 90 caracteres");
 		}
 
-		
-		  if (apellidos !=null && !apellidos.matches(REGEX_APELLIDOS)) {
-		  setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe"
-		  ); }
-		 
+		if (apellidos != null && !apellidos.matches(REGEX_APELLIDOS)) {
+			setErrorApellidos("Solo se admiten caracteres de letras, espacios y apóstrofe");
+		}
 
 		this.apellidos = apellidos;
 	}
@@ -92,14 +90,12 @@ public class Cliente {
 		if (dni == null || dni.trim().length() != 9) {
 			setErrorDni("El dni tiene que estar formado por 9 caracteres");
 		}
-
-		
-		  if (dni !=null && !dni.matches(REGEX_DNI)) { setErrorDni("Formato de DNI incorrecto"); }
-		 
+		if (dni != null && !dni.matches(REGEX_DNI)) {
+			setErrorDni("Formato de DNI incorrecto");
+		}
 
 		this.dni = dni;
 	}
-
 
 	public boolean isCorrecto() {
 		return correcto;
