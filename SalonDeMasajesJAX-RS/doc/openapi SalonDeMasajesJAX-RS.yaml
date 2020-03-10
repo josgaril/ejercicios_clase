@@ -1,0 +1,475 @@
+openapi: 3.0.1
+info:
+  title: MasajesREST
+  description: Ejemplo de API con Swagger
+  contact:
+    email: jose@email.net
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/SalonDeMasajesJAX-RS/jax-rs/'
+paths:
+  /trabajadores:
+    get:
+      tags:
+        - trabajadores
+      summary: Obtener todos los trabajadores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trabajador'
+    post:
+      tags:
+        - trabajadores
+      summary: Dar de alta un trabajador nuevo
+      requestBody:
+        description: Trabajador a añadir
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trabajador'
+        required: true
+      responses:
+        '201':
+          description: Trabajador creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trabajador'
+  '/trabajadores/{idtrabajadores}':
+    get:
+      tags:
+        - trabajadores
+      summary: Obtener trabajador por id
+      parameters:
+        - name: idtrabajadores
+          in: path
+          description: ID del trabajador pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trabajador'
+        '404':
+          description: No se ha encontrado el trabajador
+    put:
+      tags:
+        - trabajadores
+      summary: Modificar un trabajador existente
+      parameters:
+        - name: idtrabajadores
+          in: path
+          description: Id del trabajador a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Trabajador a modificar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trabajador'
+        required: true
+      responses:
+        '200':
+          description: Trabajador modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trabajador'
+        '400':
+          description: No coinciden los ids
+        '404':
+          description: No se ha encontrado el trabajador a modificar
+        
+    delete:
+      tags:
+        - trabajadores
+      summary: Borrar un trabajador por su Id
+      parameters:
+        - name: idtrabajadores
+          in: path
+          description: ID del trabajador a borrar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Trabajador borrado
+        '404':
+          description: No se ha encontrado el trabajador a borrar
+  /clientes:
+    get:
+      tags:
+        - clientes
+      summary: Obtener todos los clientes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      tags:
+        - clientes
+      summary: Dar de alta un cliente nuevo
+      requestBody:
+        description: Cliente a añadir
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        '201':
+          description: Cliente creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+  '/clientes/{idclientes}':
+    get:
+      tags:
+        - clientes
+      summary: Obtener cliente por id
+      parameters:
+        - name: idclientes
+          in: path
+          description: ID del cliente pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: No se ha encontrado el cliente
+    put:
+      tags:
+        - clientes
+      summary: Modificar un cliente existente
+      parameters:
+        - name: idclientes
+          in: path
+          description: Id del cliente a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Cliente a modificar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        '200':
+          description: Cliente modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: No coinciden los ids
+        '404':
+          description: No se ha encontrado el cliente a modificar
+        
+    delete:
+      tags:
+        - clientes
+      summary: Borrar un cliente por su Id
+      parameters:
+        - name: idclientes
+          in: path
+          description: ID del cliente a borrar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Cliente borrado
+        '404':
+          description: No se ha encontrado el cliente a borrar
+  /servicios:
+    get:
+      tags:
+        - servicios
+      summary: Obtener todos los servicios
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Servicio'
+    post:
+      tags:
+        - servicios
+      summary: Dar de alta un servicio nuevo
+      requestBody:
+        description: Servicio a añadir
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Servicio'
+        required: true
+      responses:
+        '201':
+          description: Servicio creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servicio'
+  '/servicios/{idservicios}':
+    get:
+      tags:
+        - servicios
+      summary: Obtener servicio por id
+      parameters:
+        - name: idservicios
+          in: path
+          description: ID del servicio pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servicio'
+        '404':
+          description: No se ha encontrado el servicio
+    put:
+      tags:
+        - servicios
+      summary: Modificar un servicio existente
+      parameters:
+        - name: idservicios
+          in: path
+          description: Id del servicio a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Servicio a modificar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Servicio'
+        required: true
+      responses:
+        '200':
+          description: Servicio modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servicio'
+        '400':
+          description: No coinciden los ids
+        '404':
+          description: No se ha encontrado el servicio a modificar
+          
+    delete:
+      tags:
+        - servicios
+      summary: Borrar un servicio por su Id
+      parameters:
+        - name: idservicios
+          in: path
+          description: ID del servicio a borrar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Servicio borrado
+        '404':
+          description: No se ha encontrado el servicio a borrar
+  /sesionesO:
+    get:
+      tags:
+        - sesiones
+      summary: Obtener todos las sesiones
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SesionO'
+    post:
+      tags:
+        - sesiones
+      summary: Dar de alta una sesion nueva
+      requestBody:
+        description: Sesion a añadir
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SesionO'
+        required: true
+      responses:
+        '201':
+          description: Sesion creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SesionO'
+  '/sesionesO/{id}':
+    get:
+      tags:
+        - sesiones
+      summary: Obtener sesiones por id
+      parameters:
+        - name: id
+          in: path
+          description: ID de la sesion pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SesionO'
+        '404':
+          description: No se ha encontrado la sesion
+    put:
+      tags:
+        - sesiones
+      summary: Modificar una sesion existente
+      parameters:
+        - name: id
+          in: path
+          description: Id de la sesion a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Sesion a modificar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SesionO'
+        required: true
+      responses:
+        '200':
+          description: Sesion modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SesionO'
+        '400':
+          description: No coinciden los ids
+        '404':
+          description: No se ha encontrado la sesion a modificar
+          
+    delete:
+      tags:
+        - sesiones
+      summary: Borrar una sesion por su Id
+      parameters:
+        - name: id
+          in: path
+          description: ID de la sesion a borrar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sesion borrado
+        '404':
+          description: No se ha encontrado la sesion a borrar          
+components:
+  schemas:
+    Trabajador:
+      type: object
+      properties:
+        idtrabajadores:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        dni:
+          type: string
+    Cliente:
+      type: object
+      properties:
+        idclientes:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        dni:
+          type: string
+    Servicio:
+      type: object
+      properties:
+        idservicios:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        precio:
+          type: integer
+    SesionO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        clienteO:
+          $ref: '#/components/schemas/Cliente'
+        trabajadorO:
+          $ref: '#/components/schemas/Trabajador'
+        servicioO:
+          $ref: '#/components/schemas/Servicio'
+        fecha:
+          type: string
+        resena:
+          type: string
+        calificacion:
+          type: string  
