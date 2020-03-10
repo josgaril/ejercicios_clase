@@ -34,6 +34,7 @@ public class TrabajadoresREST {
 	@Path("/{idtrabajadores: \\d+}") // comprueba que el id sea numerico
 	public Trabajador obtenerPorId(@PathParam("idtrabajadores") Integer idtrabajadores) {
 		LOGGER.info("getByID(" + idtrabajadores + ")");
+		
 		Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(idtrabajadores);
 		if (trabajador == null) {
 			LOGGER.warning("No se ha encontrado el trabajador(" + idtrabajadores + ")");
@@ -59,6 +60,7 @@ public class TrabajadoresREST {
 			LOGGER.warning("No coinciden los ids");
 			throw new WebApplicationException("No coinciden los ids", Status.BAD_REQUEST);
 		}
+		
 		boolean existe = false;
 		Iterable<Trabajador> trabajadoresTodos = Globales.daoTrabajador.obtenerTodos();
 		for (Trabajador trabajadorX : trabajadoresTodos) {
@@ -67,8 +69,8 @@ public class TrabajadoresREST {
 			}
 		}
 		if (!existe) {
-			LOGGER.warning("No se ha encontrado el trabajador a modificar");
-			throw new WebApplicationException("No se ha encontrado el trabajador a modificar", Status.NOT_FOUND);
+			LOGGER.warning("No se ha encontrado el trabajador("+ idtrabajadores + ")");
+			throw new WebApplicationException("No se ha encontrado el trabajador ("+idtrabajadores + ")", Status.NOT_FOUND);
 		}
 		Globales.daoTrabajador.modificar(trabajador);
 		return trabajador;
