@@ -1,5 +1,7 @@
 package com.ipartek.formacion.jaxrs;
 
+import java.util.logging.Logger;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -9,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.ipartek.formacion.sdm.controladores.Globales;
@@ -18,21 +21,36 @@ import com.ipartek.formacion.sdm.modelos.SesionO;
 @Produces("application/json")
 @Consumes("application/json")
 public class SesionesREST {
+	private static final Logger LOGGER = Logger.getLogger(SesionesREST.class.getCanonicalName());
 
 	@GET
 	public Iterable<SesionO> obtenerTodos() {
+		LOGGER.info("ObtenerTodos");
+
 		return Globales.daoSesionO.obtenerTodos();
 	}
 
 	@GET
-	@Path("/{id}")
+	@Path("/{id: \\d+}")
 	public SesionO obtenerPorId(@PathParam("id") Integer id) {
-		return Globales.daoSesionO.obtenerPorId(id);
+		LOGGER.info("ObtenerPorId");
+
+		SesionO sesion = Globales.daoSesionO.obtenerPorId(id);
+		if (sesion == null) {
+			LOGGER.warning("No se ha encontrado la sesion(" + id + ")");
+			throw new WebApplicationException("No se ha encontrado la sesion(" + id + ")", Status.NOT_FOUND);
+		}
+
+		return sesion;
 	}
 
 	@POST
-	public SesionO agregar(SesionO sesionO) {
-		return Globales.daoSesionO.agregar(sesionO);
+	public Response agregar(SesionO sesionO) {
+		LOGGER.info("Agregar");
+
+		Globales.daoSesionO.agregar(sesionO);
+		return Response.status(Status.CREATED).entity(sesionO).build();
+
 		/*
 		 * try { return Globales.daoSesionO.agregar(sesionO); } catch (Exception e) {
 		 * throw new WebApplicationException("Error al agregar sesion",
@@ -41,9 +59,12 @@ public class SesionesREST {
 	}
 
 	@PUT
-	@Path("/{id}")
+	@Path("/{id: \\d+}")
 	public SesionO modificar(@PathParam("id") Integer id, SesionO sesionO) {
-		if (id != sesionO.getId()) {
+		LOGGER.info("Modificar");
+
+		if (!id.equals(sesionO.getId())) {
+			LOGGER.warning("No concuerdan los id");
 			throw new WebApplicationException("No concuerdan los id", Status.BAD_REQUEST);
 		}
 
@@ -55,17 +76,25 @@ public class SesionesREST {
 			}
 		}
 		if (!existe) {
-			throw new WebApplicationException("No existe el id", Status.NOT_FOUND);
+			LOGGER.warning("No se ha encontrado la sesion(" + id + ")");
+			throw new WebApplicationException("No se ha encontrado la sesion(" + id + ")", Status.NOT_FOUND);
 		}
-		return Globales.daoSesionO.modificar(sesionO);
-
+		Globales.daoSesionO.modificar(sesionO);
+		return sesionO;
 	}
 
 	@DELETE
-	@Path("/{id}")
+	@Path("/{id: \\d+}")
 	public String borrar(@PathParam("id") Integer id) {
-		Globales.daoSesionO.borrar(id);
-		return ("Sesion-eliminada");
+		LOGGER.info("Borrar");
+		
+		SesionO sesion = Globales.daoSesionO.obtenerPorId(id);
+		if(sesion == null) {
+			LOGGER.warning("No se ha encontrado la sesion(" + id + ") para borarr");
+			throw new WebApplicationException("No se ha encontrado la sesion(" + id + ") para borarr", Status.NOT_FOUND);
+		}
+		Globales.daoSesionO.borrar(id);		
+		return "{}";
 	}
 
 }

@@ -72,6 +72,7 @@ public class ServiciosREST {
 			throw new WebApplicationException("No se ha encontrado el servicio("+ idservicios + ")", Status.NOT_FOUND);
 		}
 		
+		Globales.daoServicio.modificar(servicio);
 		return servicio;
 	}
 

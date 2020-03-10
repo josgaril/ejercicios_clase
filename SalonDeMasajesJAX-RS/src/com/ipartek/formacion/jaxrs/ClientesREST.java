@@ -74,14 +74,15 @@ public class ClientesREST {
 			LOGGER.warning("No se ha encontrado el cliente(" + idclientes + ")");
 			throw new WebApplicationException("No se ha encontrado el cliente (" + idclientes + ")", Status.NOT_FOUND);
 		}
-		return Globales.daoCliente.modificar(cliente);
+		Globales.daoCliente.modificar(cliente);
+		return cliente;
 	}
 
 	@DELETE
 	@Path("/{idclientes: \\d+}")
 	public String borrar(@PathParam("idclientes") Integer idclientes) {
 		LOGGER.info("Borrar");
-		
+
 		Cliente cliente = Globales.daoCliente.obtenerPorId(idclientes);
 		if (cliente == null) {
 			LOGGER.warning("No se ha encontrado el cliente (" + idclientes + ")");
