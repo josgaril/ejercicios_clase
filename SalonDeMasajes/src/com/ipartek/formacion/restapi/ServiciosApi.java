@@ -74,8 +74,8 @@ public class ServiciosApi extends HttpServlet {
 		Servicio servicioJson = gson.fromJson(json, Servicio.class);
 
 		if (validacionesServicio(servicioJson, response)) {
-			Globales.daoServicio.agregar(servicioJson);
-			response.getWriter().write(gson.toJson(servicioJson));
+			Integer ultimoid=Globales.daoServicio.agregar(servicioJson);
+			response.getWriter().write(gson.toJson(Globales.daoServicio.obtenerPorId(ultimoid)));
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
 			return;

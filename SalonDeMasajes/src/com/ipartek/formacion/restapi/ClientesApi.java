@@ -88,9 +88,15 @@ public class ClientesApi extends HttpServlet {
 		if (validacionesCliente(clienteJson, response, id)) {
 			
 			// Si la validacion es correcta, se agrega el cliente
-			Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
-			response.getWriter().write(gson.toJson(nuevoCliente));
+			/*
+			 * Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
+			 * response.getWriter().write(gson.toJson(nuevoCliente));
+			 */
 
+			Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
+			response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
+
+			
 			/*
 			 * //Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia
 			 * de max(id) Integer ultimoID= null; Iterable<Cliente> clientesTodos =
@@ -163,8 +169,8 @@ public class ClientesApi extends HttpServlet {
 		// Validaciones del cliente
 		if (validacionesCliente(clienteJson, response, id)) {
 			// Modifica el cliente
-			Globales.daoCliente.modificar(clienteJson);
-			response.getWriter().write(gson.toJson(clienteJson));
+			Cliente clienteModificado =Globales.daoCliente.modificar(clienteJson);
+			response.getWriter().write(gson.toJson(clienteModificado));
 
 		} else {
 			return;

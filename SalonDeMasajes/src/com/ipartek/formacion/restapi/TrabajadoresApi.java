@@ -77,19 +77,8 @@ public class TrabajadoresApi extends HttpServlet {
 
 		// Validaciones del trabajador
 		if (validacionesTrabajador(trabajadorJson, response, id)) {
-			Globales.daoTrabajador.agregar(trabajadorJson);
-
-			// Obtenemos el id del nuevo cliente TODO Buscar el ultimo id con la sentencia
-			// de max(id)
-			Integer ultimoID = null;
-			Iterable<Trabajador> trabajadoresTodos = Globales.daoTrabajador.obtenerTodos();
-			for (Trabajador trabajadorX : trabajadoresTodos) {
-				ultimoID = trabajadorX.getIdtrabajadores();
-			}
-
-			// Muestra en pantalla el cliente añadido 
-			Trabajador trabajadorJsonAgregado = Globales.daoTrabajador.obtenerPorId(ultimoID);
-			response.getWriter().write(gson.toJson(trabajadorJsonAgregado));
+			Integer ultimoId = Globales.daoTrabajador.agregar(trabajadorJson);
+			response.getWriter().write(gson.toJson(Globales.daoTrabajador.obtenerPorId(ultimoId)));
 			
 		} else {
 			return;

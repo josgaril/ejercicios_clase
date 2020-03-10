@@ -73,8 +73,8 @@ public class SesionesApi extends HttpServlet {
 
 		if (validacionesSesion(response, sesionJson, id)) {
 			// TODO Falta luego devolver el id de la sesion
-			Globales.daoSesionO.agregar(sesionJson);
-			response.getWriter().write(gson.toJson(sesionJson));
+			Integer ultimoID=Globales.daoSesionO.agregar(sesionJson);
+			response.getWriter().write(gson.toJson(Globales.daoSesionO.obtenerPorId(ultimoID)));
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
 			return;
