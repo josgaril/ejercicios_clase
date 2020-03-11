@@ -24,7 +24,7 @@ public class LibroREST {
 
 	@Context
 	private ServletContext context;
-	
+
 	@GET
 	public Iterable<Libro> obtenerTodos() {
 		LOGGER.info("ObtenerTodos");
@@ -46,7 +46,7 @@ public class LibroREST {
 
 		return libro;
 	}
-	
+
 	@GET
 	@Path("/{titulo}")
 	public Libro obtenerPorTitulo(@PathParam("titulo") String titulo) {
@@ -64,8 +64,8 @@ public class LibroREST {
 	@POST
 	public Libro insertar(Libro libro) {
 		LOGGER.info("Insertar");
-			Globales.daoLibro.agregar(libro);
-			return libro;
+		Globales.daoLibro.agregar(libro);
+		return libro;
 	}
 
 	@PUT
@@ -89,7 +89,7 @@ public class LibroREST {
 			LOGGER.warning("No se ha encontrado el libro(" + id + ")");
 			throw new WebApplicationException("No se ha encontrado el libro (" + id + ")", Status.NOT_FOUND);
 		}
-			Globales.daoLibro.modificar(libro);
+		Globales.daoLibro.modificar(libro);
 		return libro;
 	}
 
@@ -98,7 +98,7 @@ public class LibroREST {
 	public String borrar(@PathParam("id") Integer id) {
 		LOGGER.info("Borrar");
 
-		Libro libro= Globales.daoLibro.obtenerPorId(id);
+		Libro libro = Globales.daoLibro.obtenerPorId(id);
 		if (libro == null) {
 			LOGGER.warning("No se ha encontrado el libro (" + id + ")");
 			throw new WebApplicationException("No se ha encontrado el libro (" + id + ")", Status.NOT_FOUND);

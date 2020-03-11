@@ -24,7 +24,7 @@ public class AutorREST {
 
 	@Context
 	private ServletContext context;
-	
+
 	@GET
 	public Iterable<Autor> obtenerTodos() {
 		LOGGER.info("ObtenerTodos");
@@ -50,8 +50,8 @@ public class AutorREST {
 	@POST
 	public Autor insertar(Autor autor) {
 		LOGGER.info("Insertar");
-			Globales.daoAutor.agregar(autor);
-			return autor;
+		Globales.daoAutor.agregar(autor);
+		return autor;
 	}
 
 	@PUT
@@ -75,7 +75,7 @@ public class AutorREST {
 			LOGGER.warning("No se ha encontrado el autor(" + id + ")");
 			throw new WebApplicationException("No se ha encontrado el autor (" + id + ")", Status.NOT_FOUND);
 		}
-			Globales.daoAutor.modificar(autor);
+		Globales.daoAutor.modificar(autor);
 		return autor;
 	}
 
@@ -84,7 +84,7 @@ public class AutorREST {
 	public String borrar(@PathParam("id") Integer id) {
 		LOGGER.info("Borrar");
 
-		Autor autor= Globales.daoAutor.obtenerPorId(id);
+		Autor autor = Globales.daoAutor.obtenerPorId(id);
 		if (autor == null) {
 			LOGGER.warning("No se ha encontrado el cliente (" + id + ")");
 			throw new WebApplicationException("No se ha encontrado el cliente (" + id + ")", Status.NOT_FOUND);
