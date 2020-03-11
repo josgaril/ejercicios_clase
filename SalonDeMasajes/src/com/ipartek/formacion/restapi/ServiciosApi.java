@@ -74,10 +74,11 @@ public class ServiciosApi extends HttpServlet {
 		Servicio servicioJson = gson.fromJson(json, Servicio.class);
 
 		if (validacionesServicio(servicioJson, response)) {
-			Integer ultimoid=Globales.daoServicio.agregar(servicioJson);
-			response.getWriter().write(gson.toJson(Globales.daoServicio.obtenerPorId(ultimoid)));
+			Servicio servicio=Globales.daoServicio.agregar(servicioJson);
+			response.getWriter().write(gson.toJson(servicio));
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 		
@@ -130,12 +131,10 @@ public class ServiciosApi extends HttpServlet {
 			response.getWriter().write(gson.toJson(servicioJson));
 
 		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-		/*
-		 * Servicio servicioJsonModificado= Globales.daoServicio.obtenerPorId(id);
-		 * response.getWriter().write(gson.toJson(servicioJsonModificado));
-		 */
+
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)

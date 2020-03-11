@@ -115,7 +115,7 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 	}
 
 	@Override
-	public Integer agregar(Servicio servicio) {
+	public Servicio agregar(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con
 					.prepareStatement(SQL_INSERT,Statement.RETURN_GENERATED_KEYS)) {
@@ -133,7 +133,8 @@ import com.ipartek.formacion.sdm.modelos.Servicio;
 				if(generatedKeys.next()) {
 					 idGenerado= generatedKeys.getInt(1);
 				}
-				return idGenerado;
+				servicio.setIdservicios(idGenerado);
+				return servicio;
 				
 			}catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar servicio", e);

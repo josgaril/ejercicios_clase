@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.ipartek.formacion.sdm.controladores.Globales;
 import com.ipartek.formacion.sdm.modelos.Cliente;
 
 public class ClientesMySQL implements Dao<Cliente> {
@@ -117,7 +116,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	}
 
 	@Override
-	public Integer agregar(Cliente cliente) {
+	public Cliente agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement cs = con.prepareCall(SQL_INSERT)) {
 				cs.setString(1, cliente.getNombre());
@@ -126,28 +125,15 @@ public class ClientesMySQL implements Dao<Cliente> {
 			
 				cs.registerOutParameter(4, java.sql.Types.INTEGER);
 
-				Iterable<Cliente> todosLosClientes = Globales.daoCliente.obtenerTodos();
-				for (Cliente clienteX : todosLosClientes) {
-					if (clienteX.getDni().equals(cliente.getDni())) {
-						cliente.setErrorDni("El DNI del cliente a agregar está duplicado");
-						throw new AccesoDatosException("DNI duplicado");
-					}
-				}
 				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
 				
-				
-				//PRUEBA meter setid en el cliente y devolver el cliente
-				/*
-				 * cliente.setIdclientes(cs.getInt(4)); return cliente;
-				 */
-				//FIN PRUEBA
-				
-				return cs.getInt(4);
-				
+				 cliente.setIdclientes(cs.getInt(4));
+				 return cliente;
+				 
 				} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar cliente", e);
 			}

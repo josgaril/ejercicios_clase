@@ -13,25 +13,7 @@ public class SesionTreeMap implements Dao<Sesion> {
 	private static final SesionTreeMap INSTANCIA = new SesionTreeMap();
 
 	public SesionTreeMap() {
-		/*
-		 * agregar(new Sesion(null, new Cliente(1, "jose", "garcia", "71284315G"), new
-		 * Trabajador(1, "Fran", "Xisco", "71345622G"), new Servicio(2,
-		 * "Masaje a 4 manos", new BigDecimal("48.154")), new GregorianCalendar(2020,
-		 * 10, 02).getTime(), "Me ha gustado mucho", "Notable")); agregar(new
-		 * Sesion(null, new Cliente(2, "Alberto", "Perez", "72224315G"), new
-		 * Trabajador(2, "Roberto", "perex", "71284222G"), new Servicio(2,
-		 * "Masaje de pies", new BigDecimal("60,456")), new GregorianCalendar(2020, 10,
-		 * 02).getTime(), "Me ha gustado ", "Muy bien")); agregar(new Sesion(null, new
-		 * Cliente(3, "jose", "garcia", "71255515G"), new Trabajador(2, "Roberto",
-		 * "perex", "71284222G"), new Servicio(2, "Masaje cadera", new
-		 * BigDecimal("48.154")), new GregorianCalendar(2020, 10, 02).getTime(),
-		 * "Lo mejor", "Excelente"));
-		 */
-		/*
-		 * agregar(new Sesion(null, "Select idcliente FROM clientes WHERE id=1", 1, 1,
-		 * new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
-		 * "Notable"));
-		 */
+	
 		agregar(new Sesion(null, 1, 1, 1, new GregorianCalendar(2020, 11, 02).getTime(), "Me ha gustado mucho",
 				"Notable"));
 		agregar(new Sesion(null, 2, 2, 3, new GregorianCalendar(2019, 5, 05).getTime(), "No me ha gustado nada",
@@ -56,11 +38,11 @@ public class SesionTreeMap implements Dao<Sesion> {
 	}
 
 	@Override
-	public Integer agregar(Sesion sesion) {
+	public Sesion agregar(Sesion sesion) {
 		Integer id = sesiones.size() == 0 ? 1 : sesiones.lastKey() + 1;
 		sesion.setId(id);
 		sesiones.put(id, sesion);
-		return null;
+		return sesion;
 	}
 
 	@Override

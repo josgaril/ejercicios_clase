@@ -72,11 +72,12 @@ public class SesionesApi extends HttpServlet {
 		SesionO sesionJson = gson.fromJson(json, SesionO.class);
 
 		if (validacionesSesion(response, sesionJson, id)) {
-			// TODO Falta luego devolver el id de la sesion
-			Integer ultimoID=Globales.daoSesionO.agregar(sesionJson);
-			response.getWriter().write(gson.toJson(Globales.daoSesionO.obtenerPorId(ultimoID)));
+			
+			SesionO sesion=Globales.daoSesionO.agregar(sesionJson);
+			response.getWriter().write(gson.toJson(sesion));
 			response.setStatus(HttpServletResponse.SC_CREATED);
 		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 
@@ -100,8 +101,6 @@ public class SesionesApi extends HttpServlet {
 		String json = extraerJSON(request);
 		SesionO sesionJson = gson.fromJson(json, SesionO.class);
 
-		// TODO QUEDA COMPROBAR QUE EL ID PASADO ES EL MISMO Y QUE EXISTE O NO, pasar
-		// fecha a validacionesSesion
 		if (!id.equals(sesionJson.getId())) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			response.getWriter()
@@ -127,13 +126,9 @@ public class SesionesApi extends HttpServlet {
 			Globales.daoSesionO.modificar(sesionJson);
 			response.getWriter().write(gson.toJson(sesionJson));
 		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-
-		/*
-		 * SesionO sesionJsonModificada = Globales.daoSesionO.obtenerPorId(id);
-		 * response.getWriter().write(gson.toJson(sesionJsonModificada));
-		 */
 
 	}
 
@@ -221,7 +216,6 @@ public class SesionesApi extends HttpServlet {
 			return correcto;
 		} else {
 			// estamos modificando
-			// esto a validacioens
 			Iterable<SesionO> sesionesTodas = Globales.daoSesionO.obtenerTodos();
 			SesionO sesionExistente = Globales.daoSesionO.obtenerPorId(id);
 			for (SesionO sesionX : sesionesTodas) {

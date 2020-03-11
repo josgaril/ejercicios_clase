@@ -84,34 +84,25 @@ public class ClientesApi extends HttpServlet {
 		// Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente clienteJson = gson.fromJson(json, Cliente.class);
 
-		/*PRUEBA DEVOLVER CLIENTE CON EL ID metido en el set
-		 * Cliente cliente = Globales.daoCliente.agregar(clienteJson);
-		 * response.getWriter().write(gson.toJson(cliente));
-		 */
-		
+		// Validaciones
+		if (validacionesCliente(clienteJson, response, id)) {
 
-		  Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
-		  response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
+			// Si la validacion es correcta, se agrega el cliente
+			Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
+			response.getWriter().write(gson.toJson(nuevoCliente));
 
-		
+			// El cliente se ha creado correctamente y muestra el código 201
+			response.setStatus(HttpServletResponse.SC_CREATED);
+		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return;
+		}
+
 		/*
-		 * // Validaciones if (validacionesCliente(clienteJson, response, id)) {
-		 * 
-		 * // Si la validacion es correcta, se agrega el cliente
-		 * 
-		 * Cliente nuevoCliente = Globales.daoCliente.agregar(clienteJson);
-		 * response.getWriter().write(gson.toJson(nuevoCliente));
-		 * 
-		 * 
-		 * Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
-		 * response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(
-		 * ultimoId)));
-		 * 
-		 * 
-		 * // El cliente se ha creado correctamente y muestra el código 201
-		 * response.setStatus(HttpServletResponse.SC_CREATED); } else { return; }
+		 * TODO Con mis validaciones funciona correctamente, pero hay que hacerlo utilizando las 
+		 * validaciones directas del objeto. que muestre el objeto con los errores si no 
+		 * está correcto.
 		 */
-
 	}
 
 	@Override
@@ -169,16 +160,10 @@ public class ClientesApi extends HttpServlet {
 			// Modifica el cliente
 			Cliente clienteModificado = Globales.daoCliente.modificar(clienteJson);
 			response.getWriter().write(gson.toJson(clienteModificado));
-
 		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
-
-		// Muestra el cliente añadido con el id correspondiente
-		/*
-		 * Cliente clienteJsonModificado = Globales.daoCliente.obtenerPorId(id);
-		 * response.getWriter().write(gson.toJson(clienteJsonModificado));
-		 */
 	}
 
 	@Override

@@ -120,9 +120,10 @@ public class SesionesMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public Integer agregar(Sesion sesion) {
+	public Sesion agregar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
+			
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());
@@ -141,7 +142,8 @@ public class SesionesMySQL implements Dao<Sesion> {
 				if(generatedKeys.next()) {
 					 idGenerado= generatedKeys.getInt(1);
 				}
-				return idGenerado;
+				sesion.setId(idGenerado);
+				return sesion;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
@@ -155,6 +157,7 @@ public class SesionesMySQL implements Dao<Sesion> {
 	public Sesion modificar(Sesion sesion) {
 		try (Connection con = getConnection()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+				
 				ps.setInt(1, sesion.getClientes_idclientes());
 				ps.setInt(2, sesion.getTrabajadores_idtrabajadores());
 				ps.setInt(3, sesion.getServicios_idservicios());

@@ -173,7 +173,7 @@ public class ClientesPoolMySQL implements Dao<Cliente> {
 	}
 
 	@Override
-	public Integer agregar(Cliente cliente) {
+	public Cliente agregar(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try (CallableStatement s = con.prepareCall(SQL_INSERT)) {
 				s.setString(1, cliente.getNombre());
@@ -187,7 +187,8 @@ public class ClientesPoolMySQL implements Dao<Cliente> {
 				if (numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
-				return s.getInt(4);
+				cliente.setIdclientes(s.getInt(4));
+				return cliente;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error al crear la sentencia", e);
 			}

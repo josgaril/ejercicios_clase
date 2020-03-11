@@ -86,7 +86,9 @@ public class SesionesOMySQL implements Dao<SesionO> {
 		try (Connection con = getConnexion()) {
 			try (Statement s = con.createStatement()) {
 				try (ResultSet rs = s.executeQuery(SQL_GET_ALL)) {
+				
 					ArrayList<SesionO> sesionesO = new ArrayList<>();
+					
 					Cliente cliente;
 					Trabajador trabajador;
 					Servicio servicio;
@@ -126,6 +128,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
+
 					Cliente cliente;
 					Trabajador trabajador;
 					Servicio servicio;
@@ -157,9 +160,10 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	}
 
 	@Override
-	public Integer agregar(SesionO sesionO) {
+	public SesionO agregar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT,Statement.RETURN_GENERATED_KEYS)) {
+				
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
 				ps.setInt(2, sesionO.getTrabajadorO().getIdtrabajadores());
 				ps.setInt(3, sesionO.getServicioO().getIdservicios());
@@ -177,7 +181,8 @@ public class SesionesOMySQL implements Dao<SesionO> {
 				if(generatedKeys.next()) {
 					 idGenerado= generatedKeys.getInt(1);
 				}
-				return idGenerado;
+				sesionO.setId(idGenerado);
+				return sesionO;
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Agregar sesión", e);
 			}
@@ -191,6 +196,7 @@ public class SesionesOMySQL implements Dao<SesionO> {
 	public SesionO modificar(SesionO sesionO) {
 		try (Connection con = getConnexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+			
 				ps.setInt(1, sesionO.getClienteO().getIdclientes());
 				ps.setInt(2, sesionO.getTrabajadorO().getIdtrabajadores());
 				ps.setInt(3, sesionO.getServicioO().getIdservicios());

@@ -11,8 +11,6 @@ import com.ipartek.formacion.sdm.modelos.Usuario;
 public class UsuariosMySQL {
 
 	public Usuario ObtenerUsuario(Usuario usu) {
-		//Usuario usuario = null;
-
 		try (Connection con = getConexion()) { // Llamar al metodo getconexion o a la clase
 			try (PreparedStatement ps = con.prepareStatement("SELECT * FROM usuarios WHERE nombre=? AND password=?")) {
 				ps.setString(1, usu.getEmail());
