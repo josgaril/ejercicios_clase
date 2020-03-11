@@ -83,8 +83,14 @@ public class ClientesREST {
 		if (cliente.isCorrecto()) {
 			Globales.daoCliente.modificar(cliente);
 			return cliente;
+		}else {
+			LOGGER.warning("Los datos del cliente no son correctos");
+			throw new WebApplicationException("Los datos del cliente no son correctos", Status.BAD_REQUEST);
+			//return cliente; TODO ARREGLAR 
+			//se devueve el cliente con los errores. No lo dejo porque 
+			//me devuelve codigo 200 como si se hubiese agregado  
+			
 		}
-		return cliente;
 	}
 
 	@DELETE
