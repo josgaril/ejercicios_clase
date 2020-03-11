@@ -29,12 +29,13 @@ public class LibroMySQL implements Dao<Libro> {
 			"INNER JOIN autores a ON a.id=l.autores_id\r\n" + 
 			"WHERE l.titulo LIKE ?";
 	private static String url, usuario, password;
+	
 	// SINGLETON
 
 	// Creamos la variable 'instancia'
 	private static LibroMySQL instancia;
 
-	// Constructor privado de ClientesMySQL
+	// Constructor privado de LibroMySQL
 	private LibroMySQL(String url, String usuario, String password) {
 		LibroMySQL.url = url;
 		LibroMySQL.usuario = usuario;
@@ -51,7 +52,7 @@ public class LibroMySQL implements Dao<Libro> {
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				// ..la creamos con el constructor de ClientesMySQL
+				// ..la creamos con el constructor de LibroMySQL
 				instancia = new LibroMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}

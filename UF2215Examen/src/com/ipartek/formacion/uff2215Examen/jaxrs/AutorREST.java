@@ -36,7 +36,7 @@ public class AutorREST {
 	@GET
 	@Path("/{id: \\d+}")
 	public Autor obtenerPorId(@PathParam("id") Integer id) {
-		LOGGER.info("ObtenerPorID(" + id + ")");
+		LOGGER.info("ObtenerPorID (" + id + ")");
 
 		Autor autor = Globales.daoAutor.obtenerPorId(id);
 		if (autor == null) {
@@ -72,7 +72,7 @@ public class AutorREST {
 			}
 		}
 		if (!existe) {
-			LOGGER.warning("No se ha encontrado el autor(" + id + ")");
+			LOGGER.warning("No se ha encontrado el autor (" + id + ")");
 			throw new WebApplicationException("No se ha encontrado el autor (" + id + ")", Status.NOT_FOUND);
 		}
 		Globales.daoAutor.modificar(autor);
@@ -86,8 +86,8 @@ public class AutorREST {
 
 		Autor autor = Globales.daoAutor.obtenerPorId(id);
 		if (autor == null) {
-			LOGGER.warning("No se ha encontrado el cliente (" + id + ")");
-			throw new WebApplicationException("No se ha encontrado el cliente (" + id + ")", Status.NOT_FOUND);
+			LOGGER.warning("No se ha encontrado el autor (" + id + ")");
+			throw new WebApplicationException("No se ha encontrado el autor (" + id + ")", Status.NOT_FOUND);
 		}
 		Globales.daoAutor.borrar(id);
 		return "{}";
