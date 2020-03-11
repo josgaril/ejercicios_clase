@@ -1,4 +1,4 @@
-package com.ipartek.formacion.uff2215Examen.jaxrs;
+package com.ipartek.formacion.uff2215Examen.filtros;
 
 import java.io.IOException;
 

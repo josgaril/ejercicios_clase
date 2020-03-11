@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import com.ipartek.formacion.uff2215Examen.jaxrs.Globales;
+import com.ipartek.formacion.uff2215Examen.controladores.Globales;
 import com.ipartek.formacion.uff2215Examen.repositorios.FabricaDao;
 
 @WebListener

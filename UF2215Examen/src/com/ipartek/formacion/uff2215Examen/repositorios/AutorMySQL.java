@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.ipartek.formacion.uff2215Examen.jaxrs.Autor;
+import com.ipartek.formacion.uff2215Examen.modelos.Autor;
 
 public class AutorMySQL implements Dao<Autor>{
 

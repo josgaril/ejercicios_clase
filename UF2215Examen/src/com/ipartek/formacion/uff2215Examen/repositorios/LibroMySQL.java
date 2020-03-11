@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.ipartek.formacion.uff2215Examen.jaxrs.Autor;
-import com.ipartek.formacion.uff2215Examen.jaxrs.Libro;
+import com.ipartek.formacion.uff2215Examen.modelos.Autor;
+import com.ipartek.formacion.uff2215Examen.modelos.Libro;
 
 public class LibroMySQL implements Dao<Libro> {
 

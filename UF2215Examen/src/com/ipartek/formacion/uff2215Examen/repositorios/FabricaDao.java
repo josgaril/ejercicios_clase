@@ -4,8 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.ipartek.formacion.uff2215Examen.jaxrs.Autor;
-import com.ipartek.formacion.uff2215Examen.jaxrs.Libro;
+import com.ipartek.formacion.uff2215Examen.modelos.Autor;
+import com.ipartek.formacion.uff2215Examen.modelos.Libro;
 
 public class FabricaDao {
 	private String pathConfiguracion;

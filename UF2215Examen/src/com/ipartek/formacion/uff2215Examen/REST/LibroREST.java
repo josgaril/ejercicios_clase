@@ -1,4 +1,4 @@
-package com.ipartek.formacion.uff2215Examen.jaxrs;
+package com.ipartek.formacion.uff2215Examen.REST;
 
 import java.util.logging.Logger;
 
@@ -14,6 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response.Status;
+
+import com.ipartek.formacion.uff2215Examen.controladores.Globales;
+import com.ipartek.formacion.uff2215Examen.modelos.Libro;
 
 @Path("/libros")
 @Produces("application/json")
