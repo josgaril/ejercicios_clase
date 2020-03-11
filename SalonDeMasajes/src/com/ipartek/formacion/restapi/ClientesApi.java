@@ -84,8 +84,14 @@ public class ClientesApi extends HttpServlet {
 		// Creamos un cliente al que le pasamos el texto escrito en json
 		Cliente clienteJson = gson.fromJson(json, Cliente.class);
 
-		Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
-		response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
+		/*PRUEBA DEVOLVER CLIENTE CON EL ID metido en el set
+		 * Cliente cliente = Globales.daoCliente.agregar(clienteJson);
+		 * response.getWriter().write(gson.toJson(cliente));
+		 */
+		
+
+		  Integer ultimoId = Globales.daoCliente.agregar(clienteJson);
+		  response.getWriter().write(gson.toJson(Globales.daoCliente.obtenerPorId(ultimoId)));
 
 		
 		/*

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.ipartek.formacion.sdm.controladores.Globales;
 import com.ipartek.formacion.sdm.modelos.Cliente;
 
@@ -141,7 +139,13 @@ public class ClientesMySQL implements Dao<Cliente> {
 					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
 				}
 				
-				//meter setid en el cliente y devolver el cliente
+				
+				//PRUEBA meter setid en el cliente y devolver el cliente
+				/*
+				 * cliente.setIdclientes(cs.getInt(4)); return cliente;
+				 */
+				//FIN PRUEBA
+				
 				return cs.getInt(4);
 				
 				} catch (SQLException e) {

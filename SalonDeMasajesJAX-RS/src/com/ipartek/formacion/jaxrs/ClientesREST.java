@@ -22,7 +22,7 @@ import com.ipartek.formacion.sdm.modelos.Cliente;
 @Consumes("application/json")
 public class ClientesREST {
 
-	private static final Logger LOGGER = Logger.getLogger(TrabajadoresREST.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(ClientesREST.class.getCanonicalName());
 
 	@GET
 	public Iterable<Cliente> obtenerTodos() {
