@@ -55,10 +55,10 @@ public class Servicio {
 
 	public void setPrecio(BigDecimal precio) {
 		
-		/*
-		 * if (precio.compareTo(BigDecimal.ZERO) <= 0) {
-		 * setErrorPrecio("El precio debe ser mayor que cero"); }
-		 */
+		
+		  if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+		  setErrorPrecio("El precio debe ser mayor que cero"); }
+		 
 		 
 		this.precio = precio;
 	}
