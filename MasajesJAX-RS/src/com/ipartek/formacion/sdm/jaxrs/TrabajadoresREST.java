@@ -2,6 +2,7 @@ package com.ipartek.formacion.sdm.jaxrs;
 
 import java.util.logging.Logger;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response.Status;
 
 @Path("/trabajadores")
@@ -20,9 +21,13 @@ import javax.ws.rs.core.Response.Status;
 public class TrabajadoresREST {
 	private static final Logger LOGGER = Logger.getLogger(TrabajadoresREST.class.getCanonicalName());
 
+	@Context
+	private ServletContext context;
+
 	@GET
 	public Iterable<Trabajador> obtenerTodos() {
 		LOGGER.info("getAll");
+		LOGGER.info(context.toString());
 
 		return Globales.daoTrabajador.obtenerTodos();
 	}
@@ -31,7 +36,7 @@ public class TrabajadoresREST {
 	@Path("/{idtrabajadores: \\d+}") // comprueba que el id sea numerico
 	public Trabajador obtenerPorId(@PathParam("idtrabajadores") Integer idtrabajadores) {
 		LOGGER.info("getByID(" + idtrabajadores + ")");
-		
+
 		Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(idtrabajadores);
 		if (trabajador == null) {
 			LOGGER.warning("No se ha encontrado el trabajador(" + idtrabajadores + ")");
@@ -41,11 +46,17 @@ public class TrabajadoresREST {
 	}
 
 	@POST
-	public Response agregar(Trabajador trabajador) {
+	public Trabajador agregar(Trabajador trabajador) {
 		LOGGER.info("Insert");
-		Globales.daoTrabajador.agregar(trabajador);
-		
-		return Response.status(Status.CREATED).entity(trabajador).build();
+
+		if (trabajador.isCorrecto()) {
+			Globales.daoTrabajador.agregar(trabajador);
+			return trabajador;
+		} else {
+			LOGGER.warning("Los datos del trabajador no son correctos");
+			throw new WebApplicationException("Los datos del trabajador no son correctos", Status.BAD_REQUEST);
+
+		}
 	}
 
 	@PUT
@@ -57,7 +68,7 @@ public class TrabajadoresREST {
 			LOGGER.warning("No coinciden los ids");
 			throw new WebApplicationException("No coinciden los ids", Status.BAD_REQUEST);
 		}
-		
+
 		boolean existe = false;
 		Iterable<Trabajador> trabajadoresTodos = Globales.daoTrabajador.obtenerTodos();
 		for (Trabajador trabajadorX : trabajadoresTodos) {
@@ -66,11 +77,16 @@ public class TrabajadoresREST {
 			}
 		}
 		if (!existe) {
-			LOGGER.warning("No se ha encontrado el trabajador("+ idtrabajadores + ")");
-			throw new WebApplicationException("No se ha encontrado el trabajador ("+idtrabajadores + ")", Status.NOT_FOUND);
+			LOGGER.warning("No se ha encontrado el trabajador(" + idtrabajadores + ")");
+			throw new WebApplicationException("No se ha encontrado el trabajador (" + idtrabajadores + ")",
+					Status.NOT_FOUND);
 		}
-		Globales.daoTrabajador.modificar(trabajador);
-		return trabajador;
+		if (trabajador.isCorrecto()) {
+			Globales.daoTrabajador.modificar(trabajador);
+			return trabajador;
+		} else {
+			return trabajador;
+		}
 	}
 
 	@DELETE

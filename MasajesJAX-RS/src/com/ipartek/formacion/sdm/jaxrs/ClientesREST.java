@@ -2,6 +2,7 @@ package com.ipartek.formacion.sdm.jaxrs;
 
 import java.util.logging.Logger;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response.Status;
 
 @Path("/clientes")
@@ -21,9 +22,13 @@ public class ClientesREST {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientesREST.class.getCanonicalName());
 
+	@Context
+	private ServletContext context;
+	
 	@GET
 	public Iterable<Cliente> obtenerTodos() {
 		LOGGER.info("ObtenerTodos");
+		LOGGER.info(context.toString());
 
 		return Globales.daoCliente.obtenerTodos();
 	}
@@ -43,11 +48,15 @@ public class ClientesREST {
 	}
 
 	@POST
-	public Response insertar(Cliente cliente) {
+	public Cliente insertar(Cliente cliente) {
 		LOGGER.info("Insertar");
-		Globales.daoCliente.agregar(cliente);
-
-		return Response.status(Status.CREATED).entity(cliente).build();
+		if (cliente.isCorrecto()) {
+			Globales.daoCliente.agregar(cliente);
+			return cliente;
+		}else {
+			LOGGER.warning("Los datos del cliente no son correctos");
+			throw new WebApplicationException("Los datos del cliente no son correctos", Status.BAD_REQUEST);
+		}
 	}
 
 	@PUT
@@ -71,7 +80,10 @@ public class ClientesREST {
 			LOGGER.warning("No se ha encontrado el cliente(" + idclientes + ")");
 			throw new WebApplicationException("No se ha encontrado el cliente (" + idclientes + ")", Status.NOT_FOUND);
 		}
-		Globales.daoCliente.modificar(cliente);
+		if (cliente.isCorrecto()) {
+			Globales.daoCliente.modificar(cliente);
+			return cliente;
+		}
 		return cliente;
 	}
 
