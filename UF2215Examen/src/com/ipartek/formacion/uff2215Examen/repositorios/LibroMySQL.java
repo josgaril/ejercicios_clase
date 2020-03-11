@@ -32,10 +32,8 @@ public class LibroMySQL implements Dao<Libro> {
 	
 	// SINGLETON
 
-	// Creamos la variable 'instancia'
 	private static LibroMySQL instancia;
 
-	// Constructor privado de LibroMySQL
 	private LibroMySQL(String url, String usuario, String password) {
 		LibroMySQL.url = url;
 		LibroMySQL.usuario = usuario;
@@ -43,20 +41,18 @@ public class LibroMySQL implements Dao<Libro> {
 
 	}
 
-	// Inicializamos la instancia
 	public static LibroMySQL getInstancia(String pathConfiguracion) {
 		try {
-			// si no existe la instancia..
+
 			if (instancia == null) {
-				// obtenemos los datos del archivo de configuración
+
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				// ..la creamos con el constructor de LibroMySQL
 				instancia = new LibroMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
-			// devolvemos la instancia
+
 			return instancia;
 		} catch (FileNotFoundException e) {
 			throw new AccesoDatosException("Fichero de configuración no encontrado", e);

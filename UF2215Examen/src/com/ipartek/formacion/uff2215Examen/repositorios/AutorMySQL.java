@@ -13,17 +13,15 @@ import java.util.Properties;
 
 import com.ipartek.formacion.uff2215Examen.modelos.Autor;
 
-public class AutorMySQL implements Dao<Autor>{
+public class AutorMySQL implements Dao<Autor> {
 
 	private static final String SQL_SELECT_ALL = "SELECT * FROM autores";
 	private static final String SQL_SELECT_BY_ID = "SELECT * FROM autores WHERE id=?";
 	private static String url, usuario, password;
 	// SINGLETON
 
-	// Creamos la variable 'instancia'
 	private static AutorMySQL instancia;
 
-	// Constructor privado de AutorMySQL
 	private AutorMySQL(String url, String usuario, String password) {
 		AutorMySQL.url = url;
 		AutorMySQL.usuario = usuario;
@@ -31,20 +29,18 @@ public class AutorMySQL implements Dao<Autor>{
 
 	}
 
-	// Inicializamos la instancia
 	public static AutorMySQL getInstancia(String pathConfiguracion) {
 		try {
-			// si no existe la instancia..
+
 			if (instancia == null) {
-				// obtenemos los datos del archivo de configuración
+
 				Properties configuracion = new Properties();
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
-				// ..la creamos con el constructor de AutorMySQL
 				instancia = new AutorMySQL(configuracion.getProperty("mysql.url"),
 						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
-			// devolvemos la instancia
+
 			return instancia;
 		} catch (FileNotFoundException e) {
 			throw new AccesoDatosException("Fichero de configuración no encontrado", e);
@@ -53,7 +49,7 @@ public class AutorMySQL implements Dao<Autor>{
 		}
 	}
 	// FIN SINGLETON
-	
+
 	private Connection getConexion() {
 		try {
 			new com.mysql.cj.jdbc.Driver();
@@ -62,8 +58,7 @@ public class AutorMySQL implements Dao<Autor>{
 			throw new AccesoDatosException("Error en la conexión a la base de datos");
 		}
 	}
-	
-	
+
 	@Override
 	public Iterable<Autor> obtenerTodos() {
 		try (Connection con = getConexion()) {
@@ -72,8 +67,7 @@ public class AutorMySQL implements Dao<Autor>{
 					ArrayList<Autor> autores = new ArrayList<>();
 
 					while (rs.next()) {
-						autores.add(new Autor(rs.getInt("id"), rs.getString("nombre"),
-								rs.getString("apellidos")));
+						autores.add(new Autor(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos")));
 					}
 					return autores;
 				} catch (SQLException e) {
@@ -126,15 +120,13 @@ public class AutorMySQL implements Dao<Autor>{
 	@Override
 	public void borrar(Integer id) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
-		
+
 	}
 
 	@Override
 	public Autor obtenerPorTitulo(String titulo) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
-		//return null;
+		// return null;
 	}
-
-	
 
 }
