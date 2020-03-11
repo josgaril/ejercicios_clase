@@ -50,7 +50,7 @@ public class LibroREST {
 	@GET
 	@Path("/{titulo}")
 	public Libro obtenerPorTitulo(@PathParam("titulo") String titulo) {
-		LOGGER.info("ObtenerPorID(" + titulo + ")");
+		LOGGER.info("ObtenerPorTitulo(" + titulo + ")");
 
 		Libro libro = Globales.daoLibro.obtenerPorTitulo(titulo);
 		if (libro == null) {
