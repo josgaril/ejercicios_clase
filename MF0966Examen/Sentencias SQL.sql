@@ -1,5 +1,4 @@
--- SQL listar últimos 5 cursos    
-
+-- SQL listar últimos 5 cursos    Ordeno los cursos por la fecha de inicio
 SELECT *
 FROM curso 
 ORDER BY fInicio DESC 
