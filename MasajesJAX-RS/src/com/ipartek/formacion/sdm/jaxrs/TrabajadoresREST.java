@@ -85,7 +85,9 @@ public class TrabajadoresREST {
 			Globales.daoTrabajador.modificar(trabajador);
 			return trabajador;
 		} else {
-			return trabajador;
+			LOGGER.warning("Los datos del trabajador no son correctos");
+			throw new WebApplicationException("Los datos del trabajador no son correctos", Status.BAD_REQUEST);
+			//return trabajador;
 		}
 	}
 

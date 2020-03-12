@@ -57,11 +57,6 @@ public class SesionesREST {
 			LOGGER.warning("Los datos de la sesion no son correctos");
 			throw new WebApplicationException("Los datos de la sesion no son correctos", Status.BAD_REQUEST);
 		}
-		/*
-		 * try { return Globales.daoSesion.agregar(sesion); } catch (Exception e) {
-		 * throw new WebApplicationException("Error al agregar sesion",
-		 * Status.BAD_REQUEST); }
-		 */
 	}
 
 	@PUT
@@ -89,8 +84,12 @@ public class SesionesREST {
 		if (sesion.isCorrecto()) {
 			Globales.daoSesion.modificar(sesion);
 			return sesion;
+		}else {
+			LOGGER.warning("Los datos de la sesion no son correctos");
+			throw new WebApplicationException("Los datos de la sesion no son correctos", Status.BAD_REQUEST);
+			//return sesion;
 		}
-		return sesion;
+	
 	}
 
 	@DELETE

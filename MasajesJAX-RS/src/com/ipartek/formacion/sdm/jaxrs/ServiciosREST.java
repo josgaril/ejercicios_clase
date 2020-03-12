@@ -84,8 +84,12 @@ public class ServiciosREST {
 		if (servicio.isCorrecto()) {
 			Globales.daoServicio.modificar(servicio);
 			return servicio;
+		}else {
+			LOGGER.warning("Los datos del servicio no son correctos");
+			throw new WebApplicationException("Los datos del servicio no son correctos", Status.BAD_REQUEST);
+			//return servicio;
 		}
-		return servicio;
+		
 	}
 
 	@DELETE
