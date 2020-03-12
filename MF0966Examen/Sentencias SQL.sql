@@ -2,7 +2,7 @@
 
 SELECT *
 FROM curso 
-ORDER BY codigo DESC 
+ORDER BY fInicio DESC 
 LIMIT 5;
 
 -- SQL listar últimos 5 usuarios creados 
