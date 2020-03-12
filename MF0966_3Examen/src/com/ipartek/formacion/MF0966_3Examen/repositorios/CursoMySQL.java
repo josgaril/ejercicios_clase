@@ -19,7 +19,9 @@ public class CursoMySQL implements Dao<Curso> {
 	private static final String SQL_SELECT_ALL = "SELECT * \r\n"
 			+ "FROM curso c\r\n" + "INNER JOIN profesor p ON c.profesor_codigo=p.codigo ORDER BY c.codigo";
 
-	private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" + "FROM curso cur\r\n"
+	private static final String SQL_GET_BY_CODIGO = 
+			  "SELECT * \r\n" 
+			+ "FROM curso cur\r\n"
 			+ "INNER JOIN profesor p ON cur.profesor_codigo = p.codigo\r\n"
 			+ "INNER JOIN cliente c ON cur.cliente_codigo = c.codigo WHERE cur.codigo =?";
 
@@ -104,12 +106,12 @@ public class CursoMySQL implements Dao<Curso> {
 				try (ResultSet rs = ps.executeQuery()) {
 
 					Profesor profesor;
-					Curso curso = null;
+					Curso curso= null;
 
 					if (rs.next()) {
 						profesor = new Profesor(rs.getString("p.nombre"), rs.getString("p.apellidos"));
-						curso = (new Curso(rs.getInt("c.codigo"),rs.getString("c.nombre"), rs.getString("c.identificador"),
-								rs.getInt("c.nHoras"), profesor));
+						curso = new Curso(rs.getInt("c.codigo"),rs.getString("c.nombre"), rs.getString("c.identificador"),
+								rs.getInt("c.nHoras"), profesor);
 						return curso;
 					} else {
 						return null;
