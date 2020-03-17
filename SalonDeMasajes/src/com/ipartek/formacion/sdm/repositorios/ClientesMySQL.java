@@ -70,7 +70,7 @@ public class ClientesMySQL implements Dao<Cliente> {
 	@Override
 	public Iterable<Cliente> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (CallableStatement sp = (CallableStatement) con.prepareCall(SQL_SELECT_ALL)) {
+			try (CallableStatement sp = con.prepareCall(SQL_SELECT_ALL)) {
 				try (ResultSet rs = sp.executeQuery()) {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
