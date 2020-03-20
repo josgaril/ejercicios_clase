@@ -19,7 +19,6 @@ public class Curso {
 	
 	public Curso(Integer codigo, String nombre, String identificador, Date fInicio, Date fFin, Integer nHoras,
 			String temario, Boolean activo, Cliente cliente, BigDecimal precio, Profesor profesor) {
-		super();
 		setCodigo(codigo);
 		setNombre(nombre);
 		setIdentificador(identificador);

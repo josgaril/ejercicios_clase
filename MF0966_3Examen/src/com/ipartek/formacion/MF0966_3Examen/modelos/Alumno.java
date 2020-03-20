@@ -18,7 +18,7 @@ public class Alumno {
 	private Boolean activo;
 	
 	public Alumno(Integer codigo, String nombre, String apellidos, Date fNacimiento, String direccion, String poblacion,
-			Integer codigopostal, Integer Telefono, String email, String dni, Integer nHermanos, Boolean activo) {
+			Integer codigopostal, Integer telefono, String email, String dni, Integer nHermanos, Boolean activo) {
 		setCodigo(codigo);
 		setNombre(nombre);
 		setApellidos(apellidos);
