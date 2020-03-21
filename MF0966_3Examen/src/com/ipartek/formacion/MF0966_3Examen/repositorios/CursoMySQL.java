@@ -16,14 +16,18 @@ import com.ipartek.formacion.MF0966_3Examen.modelos.Profesor;
 
 public class CursoMySQL implements Dao<Curso> {
 
-	private static final String SQL_SELECT_ALL = "SELECT * \r\n"
-			+ "FROM curso c\r\n" + "INNER JOIN profesor p ON c.profesor_codigo=p.codigo ORDER BY c.codigo";
+	private static final String SQL_GET_ALL = 
+			  "SELECT * \r\n"
+			+ "FROM curso c\r\n" 
+			+ "INNER JOIN profesor p ON c.profesor_codigo=p.codigo\r\n"
+			+ "ORDER BY c.codigo";
 
 	private static final String SQL_GET_BY_CODIGO = 
 			  "SELECT * \r\n" 
-			+ "FROM curso cur\r\n"
-			+ "INNER JOIN profesor p ON cur.profesor_codigo = p.codigo\r\n"
-			+ "INNER JOIN cliente c ON cur.cliente_codigo = c.codigo WHERE cur.codigo =?";
+			+ "FROM curso c\r\n"
+			+ "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n"
+			+ "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n"
+			+ "WHERE c.codigo =?";
 
 	private static String url, usuario, password;
 
@@ -71,7 +75,7 @@ public class CursoMySQL implements Dao<Curso> {
 	@Override
 	public Iterable<Curso> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_ALL)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Curso> cursos = new ArrayList<>();
 
@@ -117,7 +121,7 @@ public class CursoMySQL implements Dao<Curso> {
 						return null;
 					}
 				} catch (SQLException e) {
-					throw new AccesoDatosException("Error al acceder a los registros de cursos");
+					throw new AccesoDatosException("Error al acceder a los registros de cursos",e);
 				}
 			} catch (SQLException e) {
 				throw new AccesoDatosException("Error en la sentencia Obtener cursos con id: " + codigo, e);

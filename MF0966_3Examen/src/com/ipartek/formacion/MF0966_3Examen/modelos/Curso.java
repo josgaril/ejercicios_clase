@@ -3,12 +3,16 @@ package com.ipartek.formacion.MF0966_3Examen.modelos;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Curso {
 
 	private Integer codigo;
 	private String nombre;
 	private String identificador;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fInicio;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fFin;
 	private Integer nHoras;
 	private String temario;

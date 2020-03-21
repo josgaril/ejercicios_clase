@@ -19,14 +19,21 @@ import com.ipartek.formacion.MF0966_3Examen.modelos.Resena;
 
 public class ResenaMySQL implements Dao<Resena> {
 
-	private static final String SQL_SELECT_ALL = "SELECT * \r\n" + "FROM resena r\r\n"
+	private static final String SQL_GET_ALL = 
+			  "SELECT * \r\n" 
+			+ "FROM resena r\r\n"
 			+ "INNER JOIN curso c ON r.curso_codigo = c.codigo\r\n"
 			+ "INNER JOIN profesor p ON c.profesor_codigo=p.codigo\r\n"
-			+ "INNER JOIN alumno a ON r.alumno_codigo = a.codigo";
-	private static final String SQL_SELECT_BY_ID = "SELECT * \r\n" + "FROM resena r\r\n"
+			+ "INNER JOIN alumno a ON r.alumno_codigo = a.codigo\r\n"
+			+ "ORDER BY r.id";
+	private static final String SQL_GET_BY_ID = 
+			  "SELECT * \r\n" 
+			+ "FROM resena r\r\n"
 			+ "INNER JOIN curso c ON r.curso_codigo = c.codigo\r\n"
 			+ "INNER JOIN profesor p ON c.profesor_codigo=p.codigo\r\n"
-			+ "INNER JOIN alumno a ON r.alumno_codigo = a.codigo\r\n" + "WHERE r.id= ?";
+			+ "INNER JOIN alumno a ON r.alumno_codigo = a.codigo\r\n"
+			+ "WHERE r.id= ?";
+	
 	private static final String SQL_INSERT = "INSERT INTO resena (resena, curso_codigo, alumno_codigo) VALUES (?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE resena set resena=?, curso_codigo=?, alumno_codigo=? WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM resena WHERE id=?";
@@ -76,7 +83,7 @@ public class ResenaMySQL implements Dao<Resena> {
 	@Override
 	public Iterable<Resena> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_ALL)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Resena> resenas = new ArrayList<>();
 
@@ -114,7 +121,7 @@ public class ResenaMySQL implements Dao<Resena> {
 	@Override
 	public Resena obtenerPorId(Integer id) {
 		try (Connection con = getConexion()) {
-			try (PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_ID)) {
 				ps.setInt(1, id);
 
 				try (ResultSet rs = ps.executeQuery()) {
