@@ -3,12 +3,16 @@ package com.ipartek.formacion.mf0966_3ejerciciocasa.modelos;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Curso {
 
 	private Integer codigo;
 	private String nombre;
 	private String identificador;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fInicio;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fFin;
 	private Integer nHoras;
 	private String temario;
@@ -19,17 +23,17 @@ public class Curso {
 
 	public Curso(Integer codigo, String nombre, String identificador, Date fInicio, Date fFin, Integer nHoras,
 			String temario, Boolean activo, Cliente cliente, BigDecimal precio, Profesor profesor) {
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.identificador = identificador;
-		this.fInicio = fInicio;
-		this.fFin = fFin;
-		this.nHoras = nHoras;
-		this.temario = temario;
-		this.activo = activo;
-		this.cliente = cliente;
-		this.precio = precio;
-		this.profesor = profesor;
+		setCodigo(codigo);
+		setNombre(nombre);
+		setIdentificador(identificador);
+		setfInicio(fInicio);
+		setfFin(fFin);
+		setnHoras(nHoras);
+		setTemario(temario);
+		setActivo(activo);
+		setCliente(cliente);
+		setPrecio(precio);
+		setProfesor(profesor);
 	}
 
 	public Curso(String nombre, String identificador, Date fInicio, Date fFin, Integer nHoras, String temario,
@@ -125,7 +129,7 @@ public class Curso {
 		return profesor;
 	}
 
-	public void setProfesor_codigo(Profesor profesor) {
+	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
 	}
 

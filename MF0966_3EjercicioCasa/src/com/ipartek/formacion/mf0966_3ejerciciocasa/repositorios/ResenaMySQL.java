@@ -19,19 +19,27 @@ import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Profesor;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
 
 public class ResenaMySQL implements Dao<Resena> {
+	//private static final String SQL_GET_ALL = "SELECT * FROM resena";
 
-	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM resena r\r\n"
+			
+	private static final String SQL_GET_ALL = 
+			  "SELECT * \r\n" 
+			+ "FROM resena r \r\n"
 			+ "INNER JOIN alumno a ON a.codigo = r.alumno_codigo\r\n"
 			+ "INNER JOIN curso c ON c.codigo = r.curso_codigo\r\n"
 			+ "INNER JOIN profesor p ON p.codigo = c.profesor_codigo\r\n"
-			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo";
+			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n"
+			+ "ORDER BY r.codigo";
 
-	private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" + "FROM resena r\r\n"
+	private static final String SQL_GET_BY_CODIGO = 
+			  "SELECT * \r\n" 
+			+ "FROM resena r\r\n"
 			+ "INNER JOIN alumno a ON a.codigo = r.alumno_codigo\r\n"
 			+ "INNER JOIN curso c ON c.codigo = r.curso_codigo\r\n"
 			+ "INNER JOIN profesor p ON p.codigo = c.profesor_codigo\r\n"
-			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n" + "WHERE r.codigo=?";
-
+			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n" 
+			+ "WHERE r.codigo=?\r\n";
+	
 	private static final String SQL_INSERT = "Call resenaCreate(?,?,?,?)";
 	private static final String SQL_UPDATE = "Call resenaUpdate(?,?,?,?)";
 	private static final String SQL_DELETE = "Call resenaDelete(?)";
@@ -98,12 +106,12 @@ public class ResenaMySQL implements Dao<Resena> {
 								rs.getInt("a.telefono"), rs.getString("a.email"), rs.getString("a.dni"),
 								rs.getInt("a.nHermanos"), rs.getBoolean("a.activo"));
 
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getInt("p.nss"), rs.getString("p.nombre"),
+						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
 								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
 								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
 								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
 						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.dni"),
+								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
 								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
 								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
 						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),
@@ -130,6 +138,8 @@ public class ResenaMySQL implements Dao<Resena> {
 	public Resena obtenerPorCodigo(Integer codigo) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_CODIGO)) {
+				ps.setInt(1, codigo);
+				
 				try (ResultSet rs = ps.executeQuery()) {
 
 					Resena resena;
@@ -145,12 +155,12 @@ public class ResenaMySQL implements Dao<Resena> {
 								rs.getInt("a.telefono"), rs.getString("a.email"), rs.getString("a.dni"),
 								rs.getInt("a.nHermanos"), rs.getBoolean("a.activo"));
 
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getInt("p.nss"), rs.getString("p.nombre"),
+						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
 								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
 								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
 								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
 						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.dni"),
+								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
 								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
 								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
 						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),
@@ -167,10 +177,10 @@ public class ResenaMySQL implements Dao<Resena> {
 					throw new AccesoDatosException("Error al accceder a los registros de reseñas", e);
 				}
 			} catch (Exception e) {
-				throw new AccesoDatosException("Error en las entencia Obrener todas las reseñas", e);
+				throw new AccesoDatosException("Error en las sentencia Obtener reseña: " + codigo, e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al conectar para obtener todas las reseñas", e);
+			throw new AccesoDatosException("Error al conectar para obtener la reseña: " + codigo, e);
 		}
 	}
 
@@ -207,7 +217,8 @@ public class ResenaMySQL implements Dao<Resena> {
 				cs.setInt(2, resena.getAlumno().getCodigo());
 				cs.setInt(3, resena.getCurso().getCodigo());
 				cs.setString(4, resena.getComentario());
-
+				
+				
 				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {

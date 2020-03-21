@@ -29,11 +29,11 @@ public class Cliente {
 			Integer codigopostal, String identificador, Boolean activo) {
 		this(null, nombre, email, telefono, direccion, poblacion, codigopostal, identificador, activo);
 	}
-	
+
 	public Cliente() {
 		this(null, null, null, null, null, null, null, null, null);
 	}
-	
+
 	public Integer getCodigo() {
 		return codigo;
 	}

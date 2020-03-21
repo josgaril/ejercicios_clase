@@ -2,12 +2,15 @@ package com.ipartek.formacion.mf0966_3ejerciciocasa.modelos;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Profesor {
 
 	private Integer codigo;
-	private Integer nss;
+	private Long nss;
 	private String nombre;
 	private String apellidos;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fNacimiento;
 	private String dni;
 	private String direccion;
@@ -15,9 +18,9 @@ public class Profesor {
 	private Integer codigopostal;
 	private Integer telefono;
 	private String email;
-	private Boolean activo = true;
+	private Boolean activo;
 
-	public Profesor(Integer codigo, Integer nss, String nombre, String apellidos, Date fNacimiento, String dni,
+	public Profesor(Integer codigo, Long nss, String nombre, String apellidos, Date fNacimiento, String dni,
 			String direccion, String poblacion, Integer codigopostal, Integer telefono, String email, Boolean activo) {
 		setCodigo(codigo);
 		setNss(nss);
@@ -33,7 +36,7 @@ public class Profesor {
 		setActivo(activo);
 	}
 
-	public Profesor(Integer nss, String nombre, String apellidos, Date fNacimiento, String dni, String direccion,
+	public Profesor(Long nss, String nombre, String apellidos, Date fNacimiento, String dni, String direccion,
 			String poblacion, Integer codigopostal, Integer telefono, String email, Boolean activo) {
 		this(null, nss, nombre, apellidos, fNacimiento, dni, direccion, poblacion, codigopostal, telefono, email,
 				activo);
@@ -51,12 +54,12 @@ public class Profesor {
 		this.codigo = codigo;
 	}
 
-	public Integer getNss() {
+	public Long getNss() {
 		return nss;
 	}
 
-	public void setNss(Integer nss) {
-		this.nss = nss;
+	public void setNss(Long nss2) {
+		this.nss = nss2;
 	}
 
 	public String getNombre() {

@@ -17,13 +17,19 @@ import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Profesor;
 
 public class CursoMySQL implements Dao<Curso> {
 
-	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM curso c\r\n"
+	private static final String SQL_GET_ALL = 
+			  "SELECT * \r\n" 
+			+ "FROM curso c\r\n"
 			+ "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n"
-			+ "INNER JOIN cliente cl ON c.cliente_codigo = c.codigo";
+			+ "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n"
+			+ "ORDER BY c.codigo";
 
-	private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" + "FROM curso c\r\n"
+	private static final String SQL_GET_BY_CODIGO = 
+			  "SELECT * \r\n" 
+			+ "FROM curso c\r\n"
 			+ "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n"
-			+ "INNER JOIN cliente cl ON c.cliente_codigo = c.codigo\r\n" + "WHERE c.codigo=?";
+			+ "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" 
+			+ "WHERE c.codigo=?";
 
 	private static String url, usuario, password;
 
@@ -46,7 +52,7 @@ public class CursoMySQL implements Dao<Curso> {
 				configuracion.load(new FileInputStream(pathConfiguracion));
 
 				instancia = new CursoMySQL(configuracion.getProperty("mysql.url"),
-						configuracion.getProperty("mysql.user"), configuracion.getProperty("mysql.password"));
+						configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
 			}
 
 			return instancia;
@@ -63,7 +69,7 @@ public class CursoMySQL implements Dao<Curso> {
 			new com.mysql.cj.jdbc.Driver();
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (Exception e) {
-			throw new AccesoDatosException("Error en la conexión a la base de datos");
+			throw new AccesoDatosException("Error en la conexión a la base de datos", e);
 		}
 	}
 
@@ -78,12 +84,12 @@ public class CursoMySQL implements Dao<Curso> {
 					Cliente cliente;
 					Curso curso;
 					while (rs.next()) {
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getInt("p.nss"), rs.getString("p.nombre"),
+						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
 								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
 								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
 								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
 						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.dni"),
+								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
 								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
 								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
 						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),
@@ -108,18 +114,20 @@ public class CursoMySQL implements Dao<Curso> {
 	public Curso obtenerPorCodigo(Integer codigo) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_CODIGO)) {
+				ps.setInt(1, codigo);
+
 				try (ResultSet rs = ps.executeQuery()) {
 					
 					Profesor profesor;
 					Cliente cliente;
 					Curso curso;
 					if (rs.next()) {
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getInt("p.nss"), rs.getString("p.nombre"),
+						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
 								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
 								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
 								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
 						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.dni"),
+								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
 								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
 								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
 						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),

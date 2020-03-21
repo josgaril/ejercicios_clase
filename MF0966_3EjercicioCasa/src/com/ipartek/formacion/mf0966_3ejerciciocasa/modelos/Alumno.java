@@ -2,11 +2,14 @@ package com.ipartek.formacion.mf0966_3ejerciciocasa.modelos;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Alumno {
 
 	private Integer codigo;
 	private String nombre;
 	private String apellidos;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
 	private Date fNacimiento;
 	private String direccion;
 	private String poblacion;

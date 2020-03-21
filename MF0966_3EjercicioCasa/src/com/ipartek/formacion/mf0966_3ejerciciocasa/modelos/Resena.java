@@ -6,13 +6,20 @@ public class Resena {
 	private Alumno alumno;
 	private Curso curso;
 	private String comentario;
-	
+
 	public Resena(Integer codigo, Alumno alumno, Curso curso, String comentario) {
-		super();
-		this.codigo = codigo;
-		this.alumno = alumno;
-		this.curso = curso;
-		this.comentario = comentario;
+		setCodigo(codigo);
+		setAlumno(alumno);
+		setCurso(curso);
+		setComentario(comentario);
+	}
+
+	public Resena(Alumno alumno, Curso curso, String comentario) {
+		this(null, alumno, curso, comentario);
+	}
+
+	public Resena() {
+		this(null, null, null, null);
 	}
 
 	public Integer getCodigo() {
@@ -88,10 +95,5 @@ public class Resena {
 	public String toString() {
 		return "Resena [codigo=" + codigo + ", alumno=" + alumno + ", comentario=" + comentario + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }
