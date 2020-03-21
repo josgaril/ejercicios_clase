@@ -11,27 +11,55 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Alumno;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Cliente;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Curso;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Profesor;
+import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
 
 public class CursoMySQL implements Dao<Curso> {
 
-	private static final String SQL_GET_ALL = 
-			  "SELECT * \r\n" 
-			+ "FROM curso c\r\n"
+	
+	
+	private static final String SQL_GET_ALL=
+			  "SELECT c.nombre AS nombreCurso, c.identificador AS identificadorCurso, c.nHoras AS nHorasCurso, p.nombre AS nombreProfesor, p.apellidos AS apellidosProfesor\r\n "
+			+ "FROM curso c \r\n" 
 			+ "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n"
-			+ "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n"
-			+ "ORDER BY c.codigo";
+			+ "ORDER BY nombreCurso";
+			
+	/* TODOS LOS CURSOS CON TODOS LOS CAMPOS
+	 * 
+	 * private static final String SQL_GET_ALL = "SELECT * \r\n" +
+	 * "FROM curso c\r\n" +
+	 * "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n" +
+	 * "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" +
+	 * "ORDER BY c.codigo";
+	 */
 
 	private static final String SQL_GET_BY_CODIGO = 
-			  "SELECT * \r\n" 
-			+ "FROM curso c\r\n"
-			+ "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n"
-			+ "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" 
-			+ "WHERE c.codigo=?";
-
-	private static String url, usuario, password;
+			"SELECT c.codigo AS codigoCurso, c.nombre AS nombreCurso, c.identificador AS identificadorCurso , c.fInicio AS fInicioCurso, c.fFin AS fFinCurso, c.nHoras AS nHorasCurso, c.temario AS temarioCurso, c.activo AS activoCurso, c.precio AS precioCurso,\r\n" + 
+			"p.codigo AS codigoProfesor, p.nss AS nssProfesor, p.nombre AS nombreProfesor, p.apellidos AS apellidosProfesor, p.fNacimiento AS fNacimientoProfesor, p.dni AS dniProfesor, p.direccion AS direccionProfesor, p.poblacion AS poblacionProfesor, p.codigopostal AS codigopostalProfesor, p.telefono AS telefonoProfesor, p.email AS emailProfesor, p.activo AS activoProfesor,\r\n" + 
+			"cl.codigo AS codigoCliente, cl.nombre AS nombreCliente, cl.email AS emailCliente, cl.telefono as telefonoCliente, cl.direccion AS direccionCliente, cl.poblacion AS poblacionCliente, cl.codigopostal AS codigopostalCliente, cl.identificador AS identificadorCliente, cl.activo AS activoCliente,\r\n" + 
+			"r.codigo AS codigoResena, r.alumno_codigo AS codigoAlumno, a.nombre AS nombreAlumno, a.apellidos AS apellidosAlumno, r.comentario AS comentarioResena\r\n" + 
+			"FROM curso c\r\n" + 
+			"INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n" + 
+			"INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" + 
+			"INNER JOIN resena r ON r.curso_codigo = c.codigo\r\n" + 
+			"INNER JOIN alumno a ON r.alumno_codigo = a.codigo\r\n" + 
+			"WHERE c.codigo=?\r\n" + 
+			"ORDER BY apellidosAlumno, nombreAlumno";
+	
+	/*DETALLE DE UN CURSO CON SUS CAMPOS
+	 * 
+	 * private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" +
+	 * "FROM curso c\r\n" +
+	 * "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n" +
+	 * "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" +
+	 * "WHERE c.codigo=?";
+	 */
+	
+	
+	 private static String url, usuario, password;
 
 	// SINGLETON
 
@@ -76,27 +104,47 @@ public class CursoMySQL implements Dao<Curso> {
 	@Override
 	public Iterable<Curso> obtenerTodos() {
 		try (Connection con = getConexion()) {
+			
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Curso> cursos = new ArrayList<>();
 
 					Profesor profesor;
-					Cliente cliente;
 					Curso curso;
 					while (rs.next()) {
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
-								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
-								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
-								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
-						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
-								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
-								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
-						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),
-								rs.getString("c.identificador"), rs.getTimestamp("c.fInicio"),
-								rs.getTimestamp("c.fFin"), rs.getInt("c.nHoras"), rs.getString("c.temario"),
-								rs.getBoolean("c.activo"), cliente, rs.getBigDecimal("c.precio"), profesor);
+						profesor = new Profesor(rs.getString("nombreProfesor"),
+								rs.getString("apellidosProfesor"));
+						curso = new Curso(rs.getString("nombreCurso"),
+								rs.getString("identificadorCurso"), rs.getInt("nHorasCurso"), profesor);
 						cursos.add(curso);
+			
+			
+			
+						/*
+						 * TODOS LOS CURSOS CON TODOS LOS CAMPOS
+						 * 
+						 * try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) { try
+						 * (ResultSet rs = ps.executeQuery()) { ArrayList<Curso> cursos = new
+						 * ArrayList<>();
+						 * 
+						 * Profesor profesor; Cliente cliente; Curso curso; while (rs.next()) { profesor
+						 * = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"),
+						 * rs.getString("p.nombre"), rs.getString("p.apellidos"),
+						 * rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
+						 * rs.getString("p.direccion"), rs.getString("p.poblacion"),
+						 * rs.getInt("p.codigopostal"), rs.getInt("p.telefono"),
+						 * rs.getString("p.email"), rs.getBoolean("p.activo")); cliente = new
+						 * Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
+						 * rs.getString("cl.email"), rs.getInt("cl.telefono"),
+						 * rs.getString("cl.direccion"), rs.getString("cl.poblacion"),
+						 * rs.getInt("cl.codigopostal"), rs.getString("cl.identificador"),
+						 * rs.getBoolean("cl.activo")); curso = new Curso(rs.getInt("c.codigo"),
+						 * rs.getString("c.nombre"), rs.getString("c.identificador"),
+						 * rs.getTimestamp("c.fInicio"), rs.getTimestamp("c.fFin"),
+						 * rs.getInt("c.nHoras"), rs.getString("c.temario"), rs.getBoolean("c.activo"),
+						 * cliente, rs.getBigDecimal("c.precio"), profesor); cursos.add(curso);
+						 */
+			 
 					}
 					return cursos;
 				} catch (SQLException e) {
@@ -121,20 +169,53 @@ public class CursoMySQL implements Dao<Curso> {
 					Profesor profesor;
 					Cliente cliente;
 					Curso curso;
+					Resena resena;
+					Alumno alumno;
 					if (rs.next()) {
-						profesor = new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"), rs.getString("p.nombre"),
-								rs.getString("p.apellidos"), rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
-								rs.getString("p.direccion"), rs.getString("p.poblacion"), rs.getInt("p.codigopostal"),
-								rs.getInt("p.telefono"), rs.getString("p.email"), rs.getBoolean("p.activo"));
-						cliente = new Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
-								rs.getString("cl.email"), rs.getInt("cl.telefono"), rs.getString("cl.direccion"),
-								rs.getString("cl.poblacion"), rs.getInt("cl.codigopostal"),
-								rs.getString("cl.identificador"), rs.getBoolean("cl.activo"));
-						curso = new Curso(rs.getInt("c.codigo"), rs.getString("c.nombre"),
-								rs.getString("c.identificador"), rs.getTimestamp("c.fInicio"),
-								rs.getTimestamp("c.fFin"), rs.getInt("c.nHoras"), rs.getString("c.temario"),
-								rs.getBoolean("c.activo"), cliente, rs.getBigDecimal("c.precio"), profesor);
+						profesor = new Profesor(rs.getInt("codigoProfesor"), rs.getLong("nssProfesor"), rs.getString("nombreProfesor"),
+								rs.getString("apellidosProfesor"), rs.getTimestamp("fNacimientoProfesor"), rs.getString("dniProfesor"),
+								rs.getString("direccionProfesor"), rs.getString("poblacionProfesor"), rs.getInt("codigopostalProfesor"),
+								rs.getInt("telefonoProfesor"), rs.getString("emailProfesor"), rs.getBoolean("activoProfesor"));
+						cliente = new Cliente(rs.getInt("codigoCliente"), rs.getString("nombreCliente"),
+								rs.getString("emailCliente"), rs.getInt("telefonoCliente"), rs.getString("direccionCliente"),
+								rs.getString("poblacionCliente"), rs.getInt("codigopostalCliente"),
+								rs.getString("identificadorCliente"), rs.getBoolean("activoCliente"));
+						
+						alumno = new Alumno(rs.getInt("codigoAlumno"), rs.getString("nombreAlumno"),
+								rs.getString("apellidosAlumno"), rs.getTimestamp("fNacimientoAlumno"),
+								rs.getString("direccionAlumno"), rs.getString("poblacionAlumno"), rs.getInt("codigopostalAlumno"),
+								rs.getInt("telefonoAlumno"), rs.getString("emailAlumno"), rs.getString("dniAlumno"),
+								rs.getInt("nHermanosAlumno"), rs.getBoolean("activoAlumno"));
+						
+						curso = new Curso(rs.getInt("codigoCurso"), rs.getString("nombreCurso"),
+								rs.getString("identificadorCurso"), rs.getTimestamp("fInicioCurso"),
+								rs.getTimestamp("fFinCurso"), rs.getInt("nHorasCurso"), rs.getString("temarioCurso"),
+								rs.getBoolean("activoCurso"), cliente, rs.getBigDecimal("precioCurso"), profesor);
+						
+						resena= new Resena(alumno, curso, rs.getString("comentario"));
+						
 						return curso;
+				
+						/*
+						 * DETALLE DE UN CURSO CON SUS CAMPOS try (ResultSet rs = ps.executeQuery()) {
+						 * 
+						 * Profesor profesor; Cliente cliente; Curso curso; if (rs.next()) { profesor =
+						 * new Profesor(rs.getInt("p.codigo"), rs.getLong("p.nss"),
+						 * rs.getString("p.nombre"), rs.getString("p.apellidos"),
+						 * rs.getTimestamp("p.fNacimiento"), rs.getString("p.dni"),
+						 * rs.getString("p.direccion"), rs.getString("p.poblacion"),
+						 * rs.getInt("p.codigopostal"), rs.getInt("p.telefono"),
+						 * rs.getString("p.email"), rs.getBoolean("p.activo")); cliente = new
+						 * Cliente(rs.getInt("cl.codigo"), rs.getString("cl.nombre"),
+						 * rs.getString("cl.email"), rs.getInt("cl.telefono"),
+						 * rs.getString("cl.direccion"), rs.getString("cl.poblacion"),
+						 * rs.getInt("cl.codigopostal"), rs.getString("cl.identificador"),
+						 * rs.getBoolean("cl.activo")); curso = new Curso(rs.getInt("c.codigo"),
+						 * rs.getString("c.nombre"), rs.getString("c.identificador"),
+						 * rs.getTimestamp("c.fInicio"), rs.getTimestamp("c.fFin"),
+						 * rs.getInt("c.nHoras"), rs.getString("c.temario"), rs.getBoolean("c.activo"),
+						 * cliente, rs.getBigDecimal("c.precio"), profesor); return curso;
+						 */
 					} else {
 						return null;
 					}

@@ -10,7 +10,7 @@ public class Profesor {
 	private Long nss;
 	private String nombre;
 	private String apellidos;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Madrid")
 	private Date fNacimiento;
 	private String dni;
 	private String direccion;
@@ -40,6 +40,10 @@ public class Profesor {
 			String poblacion, Integer codigopostal, Integer telefono, String email, Boolean activo) {
 		this(null, nss, nombre, apellidos, fNacimiento, dni, direccion, poblacion, codigopostal, telefono, email,
 				activo);
+	}
+
+	public Profesor(String nombre, String apellidos) {
+		this(null, null, nombre, apellidos, null, null, null, null, null, null, null, null);
 	}
 
 	public Profesor() {

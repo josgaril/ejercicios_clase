@@ -18,6 +18,10 @@ public class Resena {
 		this(null, alumno, curso, comentario);
 	}
 
+	public Resena(Alumno alumno, String comentario) {
+		this(alumno, null, comentario);
+	}
+
 	public Resena() {
 		this(null, null, null, null);
 	}
