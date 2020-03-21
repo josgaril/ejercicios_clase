@@ -1,4 +1,4 @@
-package com.ipartek.formacion.mf0966_3ejerciciocasa.modelos;
+package com.ipartek.formacion.MF0966_3Examen.modelos;
 
 import java.util.Date;
 
