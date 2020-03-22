@@ -62,11 +62,6 @@ public class ResenaREST {
 	@Path("/{codigo: \\d+}")
 	public Resena modificar(@PathParam("codigo") Integer codigo, Resena resena) {
 		LOGGER.info("Modificar");
-		Resena resena2 = Globales.daoResena.obtenerPorCodigo(codigo);
-		if (resena2 == null) {
-			LOGGER.warning("No se ha pasado el codigo de la reseña a modificar");
-			throw new WebApplicationException("No se ha pasado el codigo de la reseña a modifiar", Status.BAD_REQUEST);
-		}
 
 		if (!codigo.equals(resena.getCodigo())) {
 			LOGGER.warning("No coinciden los codigos");
@@ -101,7 +96,7 @@ public class ResenaREST {
 			throw new WebApplicationException("No se ha encontrado la reseña(" + codigo + ")", Status.NOT_FOUND);
 		}
 		Globales.daoResena.borrar(codigo);
-		return "{}";
+		return "Borrada";
 	}
 	
 }

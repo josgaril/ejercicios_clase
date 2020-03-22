@@ -19,8 +19,6 @@ import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
 
 public class CursoMySQL implements Dao<Curso> {
 
-	
-	
 	private static final String SQL_GET_ALL=
 			  "SELECT c.nombre AS nombreCurso, c.identificador AS identificadorCurso, c.nHoras AS nHorasCurso, p.nombre AS nombreProfesor, p.apellidos AS apellidosProfesor\r\n "
 			+ "FROM curso c \r\n" 
@@ -181,19 +179,23 @@ public class CursoMySQL implements Dao<Curso> {
 								rs.getString("poblacionCliente"), rs.getInt("codigopostalCliente"),
 								rs.getString("identificadorCliente"), rs.getBoolean("activoCliente"));
 						
-						alumno = new Alumno(rs.getInt("codigoAlumno"), rs.getString("nombreAlumno"),
-								rs.getString("apellidosAlumno"), rs.getTimestamp("fNacimientoAlumno"),
-								rs.getString("direccionAlumno"), rs.getString("poblacionAlumno"), rs.getInt("codigopostalAlumno"),
-								rs.getInt("telefonoAlumno"), rs.getString("emailAlumno"), rs.getString("dniAlumno"),
-								rs.getInt("nHermanosAlumno"), rs.getBoolean("activoAlumno"));
+						/*
+						 * alumno = new Alumno(rs.getInt("codigoAlumno"), rs.getString("nombreAlumno"),
+						 * rs.getString("apellidosAlumno"), rs.getTimestamp("fNacimientoAlumno"),
+						 * rs.getString("direccionAlumno"), rs.getString("poblacionAlumno"),
+						 * rs.getInt("codigopostalAlumno"), rs.getInt("telefonoAlumno"),
+						 * rs.getString("emailAlumno"), rs.getString("dniAlumno"),
+						 * rs.getInt("nHermanosAlumno"), rs.getBoolean("activoAlumno"));
+						 */
 						
 						curso = new Curso(rs.getInt("codigoCurso"), rs.getString("nombreCurso"),
 								rs.getString("identificadorCurso"), rs.getTimestamp("fInicioCurso"),
 								rs.getTimestamp("fFinCurso"), rs.getInt("nHorasCurso"), rs.getString("temarioCurso"),
 								rs.getBoolean("activoCurso"), cliente, rs.getBigDecimal("precioCurso"), profesor);
 						
-						resena= new Resena(alumno, curso, rs.getString("comentario"));
-						
+						/*
+						 * resena= new Resena(alumno, curso, rs.getString("comentario"));
+						 */						
 						return curso;
 				
 						/*
