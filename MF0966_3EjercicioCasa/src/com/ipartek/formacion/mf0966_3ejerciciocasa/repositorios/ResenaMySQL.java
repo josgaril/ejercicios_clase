@@ -18,31 +18,33 @@ import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Curso;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Profesor;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
 
-public class ResenaMySQL implements Dao<Resena> {
-	//private static final String SQL_GET_ALL = "SELECT * FROM resena";
+public class ResenaMySQL implements ResenaDao {
+	// private static final String SQL_GET_ALL = "SELECT * FROM resena";
 
-			
-	private static final String SQL_GET_ALL = 
-			  "SELECT * \r\n" 
-			+ "FROM resena r \r\n"
+	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM resena r \r\n"
 			+ "INNER JOIN alumno a ON a.codigo = r.alumno_codigo\r\n"
 			+ "INNER JOIN curso c ON c.codigo = r.curso_codigo\r\n"
 			+ "INNER JOIN profesor p ON p.codigo = c.profesor_codigo\r\n"
-			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n"
-			+ "ORDER BY r.codigo";
+			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n" + "ORDER BY r.codigo";
 
-	private static final String SQL_GET_BY_CODIGO = 
-			  "SELECT * \r\n" 
-			+ "FROM resena r\r\n"
+	private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" + "FROM resena r\r\n"
 			+ "INNER JOIN alumno a ON a.codigo = r.alumno_codigo\r\n"
 			+ "INNER JOIN curso c ON c.codigo = r.curso_codigo\r\n"
 			+ "INNER JOIN profesor p ON p.codigo = c.profesor_codigo\r\n"
-			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n" 
-			+ "WHERE r.codigo=?\r\n";
-	
+			+ "INNER JOIN cliente cl ON cl.codigo = c.cliente_codigo\r\n" + "WHERE r.codigo=?\r\n";
+
 	private static final String SQL_INSERT = "Call resenaCreate(?,?,?,?)";
 	private static final String SQL_UPDATE = "Call resenaUpdate(?,?,?,?)";
 	private static final String SQL_DELETE = "Call resenaDelete(?)";
+
+	private static final String SQL_GET_BY_CODIGO_CURSO = 
+			"SELECT c.codigo AS codigoCurso,a.nombre AS nombreAlumno, a.apellidos AS apellidosAlumno, r.comentario AS comentarioResena\r\n" + 
+			"FROM resena r \r\n" + 
+			"INNER JOIN curso c ON r.curso_codigo = c.codigo \r\n" + 
+			"INNER JOIN profesor p ON c.profesor_codigo=p.codigo \r\n" + 
+			"INNER JOIN alumno a ON r.alumno_codigo = a.codigo\r\n" + 
+			"WHERE c.codigo=?\r\n" + 
+			"ORDER BY apellidosAlumno, nombreAlumno";
 
 	private static String url, usuario, password;
 
@@ -127,7 +129,7 @@ public class ResenaMySQL implements Dao<Resena> {
 					throw new AccesoDatosException("Error al accceder a los registros de reseñas", e);
 				}
 			} catch (Exception e) {
-				throw new AccesoDatosException("Error en las entencia Obrener todas las reseñas", e);
+				throw new AccesoDatosException("Error en las entencia Obtener todas las reseñas", e);
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al conectar para obtener todas las reseñas", e);
@@ -139,7 +141,7 @@ public class ResenaMySQL implements Dao<Resena> {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_BY_CODIGO)) {
 				ps.setInt(1, codigo);
-				
+
 				try (ResultSet rs = ps.executeQuery()) {
 
 					Resena resena;
@@ -217,8 +219,7 @@ public class ResenaMySQL implements Dao<Resena> {
 				cs.setInt(2, resena.getAlumno().getCodigo());
 				cs.setInt(3, resena.getCurso().getCodigo());
 				cs.setString(4, resena.getComentario());
-				
-				
+
 				int numeroRegistrosModificados = cs.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
@@ -249,6 +250,39 @@ public class ResenaMySQL implements Dao<Resena> {
 			}
 		} catch (Exception e) {
 			throw new AccesoDatosException("Error al conectar para eliminar la reseña: " + codigo, e);
+		}
+	}
+
+	@Override
+	public Iterable<Resena> obtenerTodasPorCodigoCurso(Integer codigo) {
+		try (Connection con = getConexion()) {
+			try(PreparedStatement ps = con.prepareStatement(SQL_GET_BY_CODIGO_CURSO)){
+				ps.setInt(1, codigo);
+				
+				try(ResultSet rs = ps.executeQuery()){
+					ArrayList<Resena> resenas = new ArrayList<>();
+					
+					Alumno alumno;
+					Resena resena;
+					Curso curso;
+					while(rs.next()) {
+						
+						alumno = new Alumno(rs.getString("nombreAlumno"), rs.getString("apellidosAlumno"));
+						curso = new Curso(rs.getInt("codigoCurso"));
+						resena= new Resena(alumno, curso, rs.getString("comentarioResena"));
+						resenas.add(resena);
+					}
+					return resenas;
+				} catch (SQLException e) {
+					throw new AccesoDatosException("Error al acceder a los registros de reseñas", e);
+
+				}
+			} catch (SQLException e) {
+				throw new AccesoDatosException("Error en la sentencia Obtener reseñas del curso: " + codigo, e);
+
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al conectar para obtener las reseñas del curso: " + codigo, e);
 		}
 	}
 

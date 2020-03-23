@@ -4,8 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Curso;
-import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
+import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Alumno;
 
 public class FabricaDao {
 	private String pathConfiguracion;
@@ -35,20 +34,26 @@ public class FabricaDao {
 	
 	// FIN SINGLETON
 	
-	public Dao<Curso> getInstanciaCurso() {
+	public CursoDao getInstanciaCurso() {
 		switch(tipo) {
 		case "mysql": return CursoMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
 	
-	public Dao<Resena> getInstanciaResena() {
+	public ResenaDao getInstanciaResena() {
 		switch(tipo) {
 		case "mysql": return ResenaMySQL.getInstancia(pathConfiguracion);
 		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
 		}
 	}
 	
+	public Dao<Alumno> getInstanciaAlumno() {
+		switch(tipo) {
+		case "mysql": return AlumnoMySQL.getInstancia(pathConfiguracion);
+		default: throw new AccesoDatosException("No se reconoce el tipo " + tipo);
+		}
+	}
 
 	
 	
