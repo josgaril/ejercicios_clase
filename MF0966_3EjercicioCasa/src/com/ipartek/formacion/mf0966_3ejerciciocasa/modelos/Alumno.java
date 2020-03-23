@@ -9,7 +9,7 @@ public class Alumno {
 	private Integer codigo;
 	private String nombre;
 	private String apellidos;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone="Europe/Madrid")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Madrid")
 	private Date fNacimiento;
 	private String direccion;
 	private String poblacion;
@@ -46,12 +46,15 @@ public class Alumno {
 	 * public Alumno() { this(codigo, nombre, apellidos, null, null, null, null,
 	 * telefono, email, dni, null, null); }
 	 */
-	
-	public Alumno() {
-		this(null, null, null, null, null, null, null, null, null, null, null,
-				null);
+
+	public Alumno(String nombre, String apellidos) {
+		this(null, nombre, apellidos, null, null, null, null, null, null, null, null, null);
 	}
-	
+
+	public Alumno() {
+		this(null, null, null, null, null, null, null, null, null, null, null, null);
+	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}

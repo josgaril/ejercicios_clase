@@ -20,6 +20,7 @@ public class InicioListener implements ServletContextListener {
 
 		Globales.daoCurso = fabricaDao.getInstanciaCurso();
 		Globales.daoResena = fabricaDao.getInstanciaResena();
+		Globales.daoAlumno = fabricaDao.getInstanciaAlumno();
 	}
 
 }

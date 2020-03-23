@@ -41,8 +41,12 @@ public class Curso {
 		this(null, nombre, identificador, fInicio, fFin, nHoras, temario, activo, cliente, precio, profesor);
 	}
 
-	public Curso(String nombre, String identificador, Integer nHoras, Profesor profesor) {
-		this(null, nombre, identificador,null,null, nHoras,null,null,null,null, profesor);
+	public Curso(Integer codigo,String nombre, String identificador, Integer nHoras, Profesor profesor) {
+		this(codigo, nombre, identificador,null,null, nHoras,null,null,null,null, profesor);
+	}
+	
+	public Curso(Integer codigo) {
+		this(codigo, null, null,null,null, null,null,null,null,null, null);
 	}
 	
 	public Curso() {
