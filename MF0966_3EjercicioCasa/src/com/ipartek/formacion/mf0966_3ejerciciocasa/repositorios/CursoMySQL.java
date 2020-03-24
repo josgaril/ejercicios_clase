@@ -47,14 +47,6 @@ public class CursoMySQL implements CursoDao {
 			"WHERE c.codigo=?\r\n" + 
 			"ORDER BY apellidosAlumno, nombreAlumno";
 
-	/*
-	 * DETALLE DE UN CURSO CON SUS CAMPOS
-	 * private static final String SQL_GET_BY_CODIGO = "SELECT * \r\n" +
-	 * "FROM curso c\r\n" +
-	 * "INNER JOIN profesor p ON c.profesor_codigo = p.codigo\r\n" +
-	 * "INNER JOIN cliente cl ON c.cliente_codigo = cl.codigo\r\n" +
-	 * "WHERE c.codigo=?";
-	 */
 
 	private static String url, usuario, password;
 
@@ -101,21 +93,8 @@ public class CursoMySQL implements CursoDao {
 	@Override
 	public Iterable<Curso> obtenerTodos() {
 		try (Connection con = getConexion()) {
-			// TODOS LOS CURSOS CON TODOS LOS CAMPOS
-			/*
-			 * try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL_CAMPOS)) { try
-			 * (ResultSet rs = ps.executeQuery()) { ArrayList<Curso> cursos = new
-			 * ArrayList<>();
-			 * 
-			 * Profesor profesor; Curso curso; while (rs.next()) { profesor = new
-			 * Profesor(rs.getString("nombreProfesor"), rs.getString("apellidosProfesor"));
-			 * curso = new Curso(rs.getString("nombreCurso"),
-			 * rs.getString("identificadorCurso"), rs.getInt("nHorasCurso"), profesor);
-			 * cursos.add(curso);
-			 */
 
 			// TODOS LOS CURSOS CON TODOS LOS CAMPOS
-
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ALL)) {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<Curso> cursos = new ArrayList<>();
