@@ -116,7 +116,7 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` VALUES (1,'Desarrrollo de Aplicaciones con Tecnologias Web','18482675','2017-01-09','2017-06-13',510,NULL,1,2,300000.00,1),(2,'Desarrollo de Bases de Datos y Programacion orientada a Objetos','18488225','2017-02-20','2017-09-29',630,'IFCD0112_FIC.pdf',1,2,400000.00,1),(3,'Publicidad en internet','18482678','2017-03-27','2017-03-30',10,NULL,1,3,1500.00,1),(4,'Programación en Bases de Datos relaciones con Oracle 12c','CI67','2017-05-02','2017-05-30',30,'CI67.pdf',1,3,3500.00,1);
+INSERT INTO `curso` VALUES (1,'Desarrollo de Aplicaciones con Tecnologias Web','18482675','2017-01-09','2017-06-13',510,NULL,1,2,300000.00,1),(2,'Desarrollo de Bases de Datos y Programacion orientada a Objetos','18488225','2017-02-20','2017-09-29',630,'IFCD0112_FIC.pdf',1,2,400000.00,1),(3,'Publicidad en internet','18482678','2017-03-27','2017-03-30',10,NULL,1,3,1500.00,1),(4,'Programación en Bases de Datos relaciones con Oracle 12c','CI67','2017-05-02','2017-05-30',30,'CI67.pdf',1,3,3500.00,1);
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `resena` (
   KEY `fk_resena_unica` (`alumno_codigo`,`curso_codigo`),
   CONSTRAINT `fk_resena_alumno1` FOREIGN KEY (`alumno_codigo`) REFERENCES `alumno` (`codigo`),
   CONSTRAINT `fk_resena_curso1` FOREIGN KEY (`curso_codigo`) REFERENCES `curso` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `resena` (
 
 LOCK TABLES `resena` WRITE;
 /*!40000 ALTER TABLE `resena` DISABLE KEYS */;
-INSERT INTO `resena` VALUES (1,1,1,'Muy bueno'),(2,2,1,'No me gustó mucho'),(3,1,2,'Recomendable'),(4,4,3,'De los mejores cursos que he realizado'),(5,1,4,'Repetiría sin dudarlo'),(6,2,2,'No era muy bueno'),(7,4,1,'Simple pero recomendable'),(8,1,2,'Curso buenísimo'),(11,4,2,'Es lo que buscaba. Genial'),(13,4,2,'Esperaba menos, estoy encantado');
+INSERT INTO `resena` VALUES (1,1,1,'muy bueno'),(2,2,1,'No me gustó mucho'),(3,1,2,'Recomendable'),(4,4,3,'De los mejores cursos que he realizado'),(5,1,4,'Repetiría sin dudarlo'),(6,2,2,'No era muy bueno'),(7,4,1,'Simple pero recomendable'),(8,1,2,'Curso buenísimo'),(11,4,2,'Es lo que buscaba. Genial'),(13,4,2,'Esperaba menos, estoy encantado');
 /*!40000 ALTER TABLE `resena` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1063,4 +1063,4 @@ ALTER DATABASE `mf0966_3ejerciciocasa` CHARACTER SET utf8mb4 COLLATE utf8mb4_spa
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 18:56:21
+-- Dump completed on 2020-03-24 13:46:53
