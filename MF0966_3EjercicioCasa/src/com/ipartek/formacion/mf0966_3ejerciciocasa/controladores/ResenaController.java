@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/resena")
 public class ResenaController extends HttpServlet {
-	private static final String RESENA_FORMULARIO = "/WEB-INF/vistas/admin/resena.jsp";
+	private static final String RESENA_FORMULARIO = "/WEB-INF/vistas/admin/formularioResena.jsp";
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -20,14 +20,14 @@ public class ResenaController extends HttpServlet {
 		String codigo = request.getParameter("codigo");
 
 		if (codigo != null && codigo.trim().length() > 0) {
-			request.setAttribute("resenas", Globales.daoResena.obtenerPorCodigo(Integer.parseInt(codigo)));
+			request.setAttribute("resena", Globales.daoResena.obtenerPorCodigo(Integer.parseInt(codigo)));
 		}
 
 		request.setAttribute("alumnos", Globales.daoAlumno.obtenerTodos());
-		request.setAttribute("cursos", Globales.daoCurso.obtenerTodos());
+		request.setAttribute("cursos", Globales.daoCurso.obtenerTodosRealizados());
 
 		request.setAttribute("op", op);
-		//request.setAttribute("primeravez", true);
+		request.setAttribute("primeravez", true);
 		request.getRequestDispatcher(RESENA_FORMULARIO).forward(request, response);
 	}
 
