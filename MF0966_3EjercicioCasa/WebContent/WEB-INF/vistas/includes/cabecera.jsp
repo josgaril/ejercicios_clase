@@ -55,13 +55,26 @@
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Administración </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="admin/cursos">Cursos</a> 
 						<a class="dropdown-item" href="admin/resenas">Reseñas</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link" href="admin/cursos">Cursos</a></li>
-				<li class="nav-item"><a class="nav-link" href="admin/resenas">Reseñas</a></li>
+				<li class="nav-item"><a class="nav-link" href="cursos">Cursos</a></li>
 			</ul>
 		</div>
 	</nav>
+
+	<c:if test="${mensaje != null}">
+		<div
+			class="alert alert-${mensaje.nivelBootstrap} alert-dismissible fade show"
+			role="alert">
+			${mensaje.texto}
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<%
+			session.removeAttribute("mensaje");
+		%>
+	</c:if>
 
 	<main class="container-fluid">

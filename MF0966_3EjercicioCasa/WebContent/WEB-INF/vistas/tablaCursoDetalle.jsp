@@ -37,22 +37,12 @@
 				<td>${curso.profesor.nombre}${curso.profesor.apellidos}</td>
 			</tr>
 		</tbody>
-		<tfoot class="thead-dark">
-			<tr>
-				<th>Codigo</th>
-				<th>Nombre</th>
-				<th>Identificador</th>
-				<th>Fecha de inicio</th>
-				<th>Fecha Fin</th>
-				<th>Numero de horas</th>
-				<th>Temario</th>
-				<th>Activo</th>
-				<th>Cliente</th>
-				<th>Precio</th>
-				<th>Profesor</th>
-			</tr>
-		</tfoot>
+
 	</table>
+</section>
+
+<section id="resenas">
+	<h3 class="titulo text-center pt-3">Reseñas del curso</h3>
 
 	<table
 		class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
@@ -65,15 +55,22 @@
 		<tbody>
 			<c:forEach items="${resena}" var="resena">
 				<tr>
-					<td>${resena.alumno.nombre}${resena.alumno.apellidos}</td>
-					<td>${resena.comentario}</td>
+					<td>${resena.alumno.nombre} ${resena.alumno.apellidos}</td>
+					<td><c:if test="${r.comentario!= '' }">
+							<a class="comentarios" href="javascript:alert('${resena.comentario}')">${fn:substring(resena.comentario, 0, 60)}
+								${ fn:length(resena.comentario) > 60 ? '...' : '' } </a>
+						</c:if></td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>
 		<tfoot class="thead-dark">
 			<tr>
 				<th>Alumno</th>
-				<th>Comentario</th>
+				<th>Comentario
+				<!--  Boton accesible si está logeado, sino bloqueado. si accede tendra que dejar bloqueado el curso y el alumno -->
+				 	<a class="btn btn-primary float-right" href="admin/resena?op?agregar&codcurso=${curso.codigo}"> Agregar reseña</a>
+				</th>
 			</tr>
 		</tfoot>
 	</table>

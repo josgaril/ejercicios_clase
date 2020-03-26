@@ -19,7 +19,7 @@
 			<c:forEach items="${cursos}" var="curso">
 				<tr>
 					<td>
-					<a href="admin/curso/detalle?codigo=${curso.codigo}"> ${curso.nombre} </a></td>
+					<a href="curso/detalle?codigo=${curso.codigo}"> ${curso.nombre} </a></td>
 					<td>${curso.identificador}</td>
 					<td>${curso.nHoras}</td>
 					<td>${curso.profesor.nombre} ${curso.profesor.apellidos}</td>

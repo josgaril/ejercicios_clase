@@ -24,7 +24,7 @@
 					<td>${resena.curso.nombre}</td>
 					<td>
 						<c:if test="${r.comentario!= '' }">
-							<a href="javascript:alert('${resena.comentario}')">${fn:substring(resena.comentario, 0, 20)}
+							<a class="comentarios" href="javascript:alert('${resena.comentario}')">${fn:substring(resena.comentario, 0, 20)}
 								${ fn:length(resena.comentario) > 20 ? '...' : '' } </a>
 						</c:if>
 <%-- 					resena.comentario. <javascript <%=  %> > Poner... y que salga el cuadro con el comentario completo</td> --%>
