@@ -7,7 +7,18 @@ public class Resena {
 	private Curso curso;
 	private String comentario;
 
+	private boolean correcto = true;
+	private String errorCodigo, errorAlumno, errorCurso, errorComentario;
+
 	public Resena(Integer codigo, Alumno alumno, Curso curso, String comentario) {
+		setCodigo(codigo);
+		setAlumno(alumno);
+		setCurso(curso);
+		setComentario(comentario);
+	}
+
+	// Constructor String
+	public Resena(String codigo, String alumno, String curso, String comentario) {
 		setCodigo(codigo);
 		setAlumno(alumno);
 		setCurso(curso);
@@ -22,8 +33,9 @@ public class Resena {
 		this(alumno, null, comentario);
 	}
 
+	// Constructor vacío
 	public Resena() {
-		this(null, null, null, null);
+		// TODO Prueba a dejarlo vacio en vez de: this(null, null, null, null);
 	}
 
 	public Integer getCodigo() {
@@ -54,8 +66,92 @@ public class Resena {
 		return comentario;
 	}
 
+	private void setCodigo(String codigo) {
+		if (codigo == null || codigo.trim().length() == 0) {
+			this.codigo = null;
+			return;
+		}
+
+		try {
+			this.codigo = Integer.parseInt(codigo);
+		} catch (NumberFormatException e) {
+			setErrorCodigo("No era un número");
+		}
+	}
+
+	private void setAlumno(String alumno) {
+		if (alumno == null || alumno.trim().length() == 0) {
+			setErrorAlumno("Debes elegir un alumno");
+		} else {
+			try {
+				setAlumno(new Alumno(Integer.parseInt(alumno)));
+			} catch (NumberFormatException e) {
+				setErrorAlumno("El codigo del tabajador debe ser numérico");
+			}
+		}
+	}
+
+	private void setCurso(String curso) {
+		if (curso == null || curso.trim().length() == 0) {
+			setErrorCurso("Debes elegir un curso");
+		} else {
+			try {
+				setCurso(new Curso(Integer.parseInt(curso)));
+			} catch (NumberFormatException e) {
+				setErrorCurso("El codigo del curso debe ser numérico");
+			}
+		}
+	}
+
 	public void setComentario(String comentario) {
+		if (comentario == null || comentario.trim().length() < 1 || comentario.trim().length() > 1000) {
+			setErrorComentario("El comentario debe tener como máximo 1000 caracteres");
+		}
 		this.comentario = comentario;
+	}
+
+	public boolean isCorrecto() {
+		return correcto;
+	}
+
+	public void setCorrecto(boolean correcto) {
+		this.correcto = correcto;
+	}
+
+	public String getErrorCodigo() {
+		return errorCodigo;
+	}
+
+	public void setErrorCodigo(String errorCodigo) {
+		setCorrecto(false);
+		this.errorCodigo = errorCodigo;
+	}
+
+	public String getErrorAlumno() {
+		return errorAlumno;
+	}
+
+	public void setErrorAlumno(String errorAlumno) {
+		setCorrecto(false);
+		this.errorAlumno = errorAlumno;
+	}
+
+	public String getErrorCurso() {
+		return errorCurso;
+	}
+
+	public void setErrorCurso(String errorCurso) {
+		setCorrecto(false);
+		this.errorCurso = errorCurso;
+	}
+
+	public String getErrorComentario() {
+		return errorComentario;
+	}
+
+	public void setErrorComentario(String errorComentario) {
+		setCorrecto(false);
+		this.errorComentario = errorComentario;
 	}
 
 	@Override

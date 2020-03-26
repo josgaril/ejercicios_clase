@@ -51,6 +51,10 @@ public class Alumno {
 		this(null, nombre, apellidos, null, null, null, null, null, null, null, null, null);
 	}
 
+	public Alumno(Integer codigo) {
+		this(codigo, null, null, null, null, null, null, null, null, null, null, null);
+	}
+	
 	public Alumno() {
 		this(null, null, null, null, null, null, null, null, null, null, null, null);
 	}

@@ -45,12 +45,14 @@ public class Curso {
 		this(codigo, nombre, identificador,null,null, nHoras,null,null,null,null, profesor);
 	}
 	
+	//constructor para obtener solo el codigo del curso
 	public Curso(Integer codigo) {
 		this(codigo, null, null,null,null, null,null,null,null,null, null);
 	}
 	
+	//Constructor vacío
 	public Curso() {
-		this(null, null, null, null, null, null, null, null, null, null, null);
+		//TODO Prueba, dejado consructor vacio en vez de: this(null, null, null, null, null, null, null, null, null, null, null);
 	}
 	
 	public Integer getCodigo() {
