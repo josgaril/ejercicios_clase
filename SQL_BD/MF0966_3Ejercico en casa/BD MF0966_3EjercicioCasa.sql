@@ -202,7 +202,7 @@ CREATE TABLE `resena` (
   KEY `fk_resena_unica` (`alumno_codigo`,`curso_codigo`),
   CONSTRAINT `fk_resena_alumno1` FOREIGN KEY (`alumno_codigo`) REFERENCES `alumno` (`codigo`),
   CONSTRAINT `fk_resena_curso1` FOREIGN KEY (`curso_codigo`) REFERENCES `curso` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `resena` (
 
 LOCK TABLES `resena` WRITE;
 /*!40000 ALTER TABLE `resena` DISABLE KEYS */;
-INSERT INTO `resena` VALUES (1,1,1,'muy bueno'),(2,2,1,'No me gustó mucho'),(3,1,2,'Recomendable'),(4,4,3,'De los mejores cursos que he realizado'),(5,1,4,'Repetiría sin dudarlo'),(6,2,2,'No era muy bueno'),(7,4,1,'Simple pero recomendable'),(8,1,2,'Curso buenísimo'),(11,4,2,'Es lo que buscaba. Genial'),(13,4,2,'Esperaba menos, estoy encantado');
+INSERT INTO `resena` VALUES (1,1,1,'muy bueno'),(2,2,1,'No me gustó mucho'),(3,1,2,'Recomendable'),(4,4,3,'De los mejores cursos que he realizado'),(5,1,4,'Repetiría sin dudarlo'),(6,2,2,'No era muy bueno'),(7,4,1,'Simple pero recomendable'),(8,1,2,'Curso buenísimo'),(11,4,2,'Es lo que buscaba. Genial'),(13,4,2,'Esperaba menos, estoy encantado'),(15,1,1,'Comentario de prueba'),(16,2,3,'Primer comentario agregado'),(17,4,4,'Segundo comentario agregado'),(20,1,4,'modificacion de comentario');
 /*!40000 ALTER TABLE `resena` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1063,4 +1063,4 @@ ALTER DATABASE `mf0966_3ejerciciocasa` CHARACTER SET utf8mb4 COLLATE utf8mb4_spa
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 13:46:53
+-- Dump completed on 2020-03-27 10:46:40

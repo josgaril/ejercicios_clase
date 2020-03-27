@@ -1,4 +1,4 @@
-package com.ipartek.formacion.mf0966_3ejerciciocasa.controladores;
+package com.ipartek.formacion.mf0966_3ejerciciocasa.controladores.resenas;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.mf0966_3ejerciciocasa.controladores.Globales;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Mensaje;
 import com.ipartek.formacion.mf0966_3ejerciciocasa.modelos.Resena;
 

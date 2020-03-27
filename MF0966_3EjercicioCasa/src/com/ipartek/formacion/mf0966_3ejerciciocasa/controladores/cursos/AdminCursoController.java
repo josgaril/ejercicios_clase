@@ -1,11 +1,14 @@
-package com.ipartek.formacion.mf0966_3ejerciciocasa.controladores;
+package com.ipartek.formacion.mf0966_3ejerciciocasa.controladores.cursos;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ipartek.formacion.mf0966_3ejerciciocasa.controladores.Globales;
 
 @WebServlet("/cursos")
 public class AdminCursoController extends HttpServlet {

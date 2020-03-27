@@ -75,7 +75,7 @@
 		</tfoot>
 	</table>
 
-	<a class=" btn btn-success" href="admin/cursos">Atrás</a>
+	<a class=" btn btn-success" href="cursos">Atrás</a>
 </section>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

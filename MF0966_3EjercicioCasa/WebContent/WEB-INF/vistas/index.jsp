@@ -11,7 +11,7 @@
 		<div class="card" style="width: 18rem;">
 		  <img src="imgs/${curso.nombre}.jpg" class="card-img-top " alt="imagen del curso" style="height:200px">
 		  <div class="card-body">
-		    <a href="admin/curso/detalle?codigo=${curso.codigo}">${curso.nombre}</a>
+		    <a href="curso/detalle?codigo=${curso.codigo}">${curso.nombre}</a>
 		  </div>
 		    <div class="card-body">
 		    <p class="card-text">Identificador: ${curso.identificador}</p>
