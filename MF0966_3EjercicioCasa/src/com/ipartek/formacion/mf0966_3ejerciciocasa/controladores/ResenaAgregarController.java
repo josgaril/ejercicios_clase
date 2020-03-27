@@ -27,7 +27,7 @@ public class ResenaAgregarController extends HttpServlet {
 		String codigoCurso = request.getParameter("curso");
 		String comentario = request.getParameter("comentario");
 		String url = request.getParameter("url");
-
+		String codCurso = request.getParameter("codigo");
 		Resena resena = new Resena(codigo, codigoAlumno, codigoCurso, comentario);
 
 		request.setAttribute("primeravez", false);
@@ -45,6 +45,7 @@ public class ResenaAgregarController extends HttpServlet {
 			
 			request.setAttribute("op", op);
 			request.setAttribute("resena", resena);
+			request.setAttribute("codCurso", codCurso);
 			request.setAttribute("alumnos", Globales.daoAlumno.obtenerTodos());
 			request.setAttribute("cursos", Globales.daoCurso.obtenerTodosRealizados());
 		

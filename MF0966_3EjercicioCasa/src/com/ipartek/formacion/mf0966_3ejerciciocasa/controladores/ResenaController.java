@@ -18,6 +18,7 @@ public class ResenaController extends HttpServlet {
 
 		String op = request.getParameter("op");
 		String codigo = request.getParameter("codigo");
+		String codCurso = request.getParameter("codCurso");
 
 		if (codigo != null && codigo.trim().length() > 0) {
 			request.setAttribute("resena", Globales.daoResena.obtenerPorCodigo(Integer.parseInt(codigo)));
@@ -27,6 +28,7 @@ public class ResenaController extends HttpServlet {
 		request.setAttribute("cursos", Globales.daoCurso.obtenerTodosRealizados());
 
 		request.setAttribute("op", op);
+		request.setAttribute("codCurso", codCurso);
 		request.setAttribute("primeravez", true);
 		request.getRequestDispatcher(RESENA_FORMULARIO).forward(request, response);
 	}

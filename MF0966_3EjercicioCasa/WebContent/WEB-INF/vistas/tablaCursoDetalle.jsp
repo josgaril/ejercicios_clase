@@ -69,7 +69,7 @@
 				<th>Alumno</th>
 				<th>Comentario
 				<!--  Boton accesible si está logeado, sino bloqueado. si accede tendra que dejar bloqueado el curso y el alumno -->
-				 	<a class="btn btn-primary float-right" href="admin/resena?op?agregar&codcurso=${curso.codigo}"> Agregar reseña</a>
+				 	<a class="btn btn-primary float-right" href="admin/resena?op=agregar&codCurso=${curso.codigo}"> Agregar reseña</a>
 				</th>
 			</tr>
 		</tfoot>

@@ -242,7 +242,7 @@ public class ResenaMySQL implements ResenaDao {
 
 				int numeroRegistrosModificados = cs.executeUpdate();
 				if (numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Se ha hecho mas o menos de 1 insert");
+					throw new AccesoDatosException("Numero de registros modificados: " + numeroRegistrosModificados);
 				}
 
 			} catch (Exception e) {
