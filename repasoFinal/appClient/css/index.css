@@ -1,0 +1,57 @@
+body {
+    max-width: 1024px;
+    margin: auto;
+}
+
+main {
+    min-height: 90vh;
+}
+
+
+#titulo{
+    background: salmon;
+    border: 1 solid black;
+    font-size: 40px;
+    /* text-align: center;
+    align-content: center; */
+    height: 80px;
+}
+
+.buscador{
+    border: 1 solid black;
+}
+
+
+#gallery img{
+    filter: grayscale(100%);
+}
+
+#gallery img.selected {
+    border:3px solid rgb(22, 151, 236);
+    filter: grayscale(0);
+}
+
+/* Footer*/
+.pie {
+    background-color: cornflowerblue;
+    padding: 0.5rem;
+/*     margin-top: 1rem;
+ */    border-top: 10rem;
+}
+
+.copyright {
+    font-size: 1rem;
+}
+
+.redes-sociales {
+    font-size: 2rem;
+}
+/* Fin Footer*/
+
+.valid{
+    color: green;
+}
+
+.invalid{
+    color: red;
+}
