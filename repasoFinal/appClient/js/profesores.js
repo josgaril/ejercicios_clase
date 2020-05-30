@@ -441,7 +441,8 @@ function contratarCurso(idPersona = 0, idCurso){
 }
 
 function pruebaSencilla(){
-    console.log("Prueba para añadir simplemente estea funcion y hacer el merge al master.")
+    console.log("Prueba para añadir simplemente estea funcion y hacer el merge al master.");
+    console.losg("Introducimos la linea 2 en profesores PruebasMergeRepasoFinal");
 }
 
 /*  Pendiente por hacer:
