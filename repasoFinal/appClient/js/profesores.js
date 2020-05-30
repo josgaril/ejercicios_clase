@@ -443,8 +443,10 @@ function contratarCurso(idPersona = 0, idCurso){
 function pruebaSencilla(){
     console.log("Prueba para añadir simplemente estea funcion y hacer el merge al master.");
     console.log("Introducimos la linea 1 en profesores de master");
-    console.losg("Introducimos la linea 2 en profesores PruebasMergeRepasoFinal");
+    console.log("Introducimos la linea 2 en profesores PruebasMergeRepasoFinal");
     console.log("Linea 3 en profesoes master");
+    console.log("Introducimos la linea 4 en profesores PruebasMergeRepasoFinal y hacer commit con el merge");
+
 }
 
 /*  Pendiente por hacer:
