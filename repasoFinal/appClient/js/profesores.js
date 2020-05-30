@@ -17,7 +17,7 @@ function init(){
     galeriaImagenes();
     cargarCursosDisponibles();
     cargarPersonas();
-  zz
+    pruebaSencilla();
 }
 
 function listener(){
@@ -440,6 +440,9 @@ function contratarCurso(idPersona = 0, idCurso){
     ;
 }
 
+function pruebaSencilla(){
+    console.log("Prueba para añadir simplemente estea funcion y hacer el merge al master.")
+}
 
 /*  Pendiente por hacer:
     - nombre disponible o no debajo del nombre
